@@ -51,6 +51,16 @@ public class Cube {
       }
    }
    
+   public Cube(Cube.CubeColor source[][]) {
+      cube = new CubeColor[6][];
+      for(int i = 0; i < cube.length; i++) {
+         cube[i] = new CubeColor[9];
+         for(int j = 0; j < 9; j++) {
+            cube[i][j] = source[i][j];
+         }
+      }
+   }
+   
    public boolean cubeSolved() {
       for(int i = 0; i < 6; i++) {
          for(int j = 0; j < 9; j++) {
