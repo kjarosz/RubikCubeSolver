@@ -18,7 +18,7 @@ public class CubeInputPanel extends JPanel {
    }
    
    private void createFaces() {
-      mFaces = new FaceInputPanel[9];
+      mFaces = new FaceInputPanel[6];
       
       add(new JPanel());
       
@@ -44,5 +44,19 @@ public class CubeInputPanel extends JPanel {
       
       add(new JPanel());
       add(new JPanel());
+   }
+   
+   public Cube.CubeColor[][] getCubeDescriptor() {
+      Cube.CubeColor descriptor[][] = new Cube.CubeColor[6][];
+      
+      for(int i = 0; i < 6; i++) {
+         descriptor[i] = new Cube.CubeColor[9];
+         Cube.CubeColor face[] = mFaces[i].getColors();
+         for(int j = 0; j < 9; j++) {
+            descriptor[i][j] = face[j];
+         }
+      }
+      
+      return descriptor;
    }
 }
