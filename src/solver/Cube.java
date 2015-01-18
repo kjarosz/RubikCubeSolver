@@ -68,14 +68,23 @@ public class Cube {
       cube[face][3] = old;
    }
    
-   private static final int ROW_TOP_RIGHT = 0;
-   private static final int ROW_TOP_LEFT = 1;
-   private static final int ROW_LEFT_DOWN = 2;
-   private static final int ROW_LEFT_UP = 3;
-   private static final int ROW_BOTTOM_RIGHT = 4;
-   private static final int ROW_BOTTOM_LEFT = 5;
-   private static final int ROW_RIGHT_DOWN = 6;
-   private static final int ROW_RIGHT_UP = 7;
+   private static final int 
+   L = 0, Li = 1,
+   F = 2, Fi = 3,
+   R = 4, Ri = 5,
+   B = 6, Bi = 7,
+   U = 8, Ui = 9,
+   D = 10,Di = 11;
+   
+   private static final int 
+   ROW_TOP_RIGHT = 0,
+   ROW_TOP_LEFT = 1,
+   ROW_LEFT_DOWN = 2,
+   ROW_LEFT_UP = 3,
+   ROW_BOTTOM_RIGHT = 4,
+   ROW_BOTTOM_LEFT = 5,
+   ROW_RIGHT_DOWN = 6,
+   ROW_RIGHT_UP = 7;
    
    private void getRow(int face, int row, CubeColor output[]) {
       switch(row) {
@@ -172,96 +181,147 @@ public class Cube {
       setRow(face2, row2, buffer);
    }
    
-   public void L() {
-      turnFaceClockwise(LEFT);
+   private static final int transforms[][] = {
+      // L
+      {LEFT, TOP, ROW_LEFT_DOWN,
+            BACK, ROW_RIGHT_UP, TOP, ROW_LEFT_DOWN,
+            BOTTOM, ROW_LEFT_DOWN, BACK, ROW_RIGHT_UP,
+            FRONT, ROW_LEFT_DOWN, BOTTOM, ROW_LEFT_DOWN,
+            FRONT, ROW_LEFT_DOWN},
+      // Li
+      {LEFT, TOP, ROW_LEFT_DOWN,
+            FRONT, ROW_LEFT_DOWN, TOP, ROW_LEFT_DOWN,
+            BOTTOM, ROW_LEFT_DOWN, FRONT, ROW_LEFT_DOWN,
+            BACK, ROW_RIGHT_UP, BOTTOM, ROW_LEFT_DOWN,
+            BACK, ROW_RIGHT_UP},
+      // F
+      {FRONT, TOP, ROW_BOTTOM_RIGHT,
+            LEFT, ROW_RIGHT_UP, TOP, ROW_BOTTOM_RIGHT,
+            BOTTOM, ROW_TOP_LEFT, LEFT, ROW_RIGHT_UP,
+            RIGHT, ROW_LEFT_DOWN, BOTTOM, ROW_TOP_LEFT,
+            RIGHT, ROW_LEFT_DOWN},
+      // Fi
+      {FRONT, TOP, ROW_BOTTOM_RIGHT,
+            RIGHT, ROW_LEFT_DOWN, TOP, ROW_BOTTOM_RIGHT,
+            BOTTOM, ROW_TOP_LEFT, RIGHT, ROW_LEFT_DOWN,
+            LEFT, ROW_RIGHT_UP, BOTTOM, ROW_TOP_LEFT,
+            LEFT, ROW_RIGHT_UP},
+      // R
+      {RIGHT, TOP, ROW_RIGHT_UP,
+            FRONT, ROW_RIGHT_UP, TOP, ROW_RIGHT_UP,
+            BOTTOM, ROW_RIGHT_UP, FRONT, ROW_RIGHT_UP,
+            BACK, ROW_LEFT_DOWN, BOTTOM, ROW_RIGHT_UP,
+            BACK, ROW_LEFT_DOWN},
+      // Ri
+      {RIGHT, TOP, ROW_RIGHT_UP,
+            BACK, ROW_LEFT_DOWN, TOP, ROW_RIGHT_UP,
+            BOTTOM, ROW_RIGHT_UP, BACK, ROW_LEFT_DOWN,
+            FRONT, ROW_RIGHT_UP, BOTTOM, ROW_RIGHT_UP,
+            FRONT, ROW_RIGHT_UP},
+      // B
+      {BACK, TOP, ROW_TOP_LEFT,
+            RIGHT, ROW_RIGHT_UP, TOP, ROW_TOP_LEFT,
+            BOTTOM, ROW_BOTTOM_RIGHT, RIGHT, ROW_RIGHT_UP,
+            LEFT, ROW_LEFT_DOWN, BOTTOM, ROW_BOTTOM_RIGHT,
+            LEFT, ROW_LEFT_DOWN},
+      // Bi
+      {BACK, TOP, ROW_TOP_LEFT,
+            LEFT, ROW_LEFT_DOWN, TOP, ROW_TOP_LEFT,
+            BOTTOM, ROW_BOTTOM_RIGHT, LEFT, ROW_LEFT_DOWN,
+            RIGHT, ROW_RIGHT_UP, BOTTOM, ROW_BOTTOM_RIGHT,
+            RIGHT, ROW_RIGHT_UP},
+      // U
+      {TOP, LEFT, ROW_TOP_RIGHT,
+            FRONT, ROW_TOP_RIGHT, LEFT, ROW_TOP_RIGHT,
+            RIGHT, ROW_TOP_RIGHT, FRONT, ROW_TOP_RIGHT,
+            BACK, ROW_TOP_RIGHT, RIGHT, ROW_TOP_RIGHT,
+            BACK, ROW_TOP_RIGHT},
+      // Ui
+      {TOP, LEFT, ROW_TOP_RIGHT,
+            BACK, ROW_TOP_RIGHT, LEFT, ROW_TOP_RIGHT,
+            RIGHT, ROW_TOP_RIGHT, BACK, ROW_TOP_RIGHT,
+            FRONT, ROW_TOP_RIGHT, RIGHT, ROW_TOP_RIGHT,
+            FRONT, ROW_TOP_RIGHT},
+      // D
+      {BOTTOM, FRONT, ROW_BOTTOM_RIGHT,
+            LEFT, ROW_BOTTOM_RIGHT, FRONT, ROW_BOTTOM_RIGHT,
+            BACK, ROW_BOTTOM_RIGHT, LEFT, ROW_BOTTOM_RIGHT,
+            RIGHT, ROW_BOTTOM_RIGHT, BACK, ROW_BOTTOM_RIGHT,
+            RIGHT, ROW_BOTTOM_RIGHT},
+      // Di
+      {BOTTOM, FRONT, ROW_BOTTOM_RIGHT,
+            RIGHT, ROW_BOTTOM_RIGHT, FRONT, ROW_BOTTOM_RIGHT,
+            BACK, ROW_BOTTOM_RIGHT, RIGHT, ROW_BOTTOM_RIGHT,
+            LEFT, ROW_BOTTOM_RIGHT, BACK, ROW_BOTTOM_RIGHT,
+            LEFT, ROW_BOTTOM_RIGHT}
+   };
+   
+   private void performTransform(int transform, boolean inverted) {
+      int step = 0;
+      if(inverted)
+         turnFaceCounterclockwise(transforms[transform][step++]);
+      else
+         turnFaceClockwise(transforms[transform][step++]);
       
       CubeColor oldRow[] = new CubeColor[3];
       CubeColor buffer[] = new CubeColor[3];
       
-      getRow(TOP, ROW_LEFT_DOWN, oldRow);
+      getRow(transforms[transform][step++], transforms[transform][step++], oldRow);
       
-      xferRow(BACK, ROW_RIGHT_UP, TOP, ROW_LEFT_DOWN, buffer);
-      xferRow(BOTTOM, ROW_LEFT_DOWN, BACK, ROW_RIGHT_UP, buffer);
-      xferRow(FRONT, ROW_LEFT_DOWN, BOTTOM, ROW_LEFT_DOWN, buffer);
+      for(int i = 0; i < 3; i++) {
+         xferRow(transforms[transform][step++], transforms[transform][step++],
+               transforms[transform][step++], transforms[transform][step++], buffer);
+      }
       
-      setRow(FRONT, ROW_LEFT_DOWN, oldRow);
+      setRow(transforms[transform][step++], transforms[transform][step++], oldRow);
+   }
+   
+   public void L() {
+      performTransform(L, false);
    }
    
    public void Li() {
-      turnFaceCounterclockwise(LEFT);
-      
-      CubeColor oldRow[] = new CubeColor[3];
-      CubeColor buffer[] = new CubeColor[3];
-      
-      getRow(TOP, ROW_LEFT_DOWN, oldRow);
-      
-      xferRow(FRONT, ROW_LEFT_DOWN, TOP, ROW_LEFT_DOWN, buffer);
-      xferRow(BOTTOM, ROW_LEFT_DOWN, FRONT, ROW_LEFT_DOWN, buffer);
-      xferRow(BACK, ROW_RIGHT_UP, BOTTOM, ROW_LEFT_DOWN, buffer);
-      
-      setRow(BACK, ROW_RIGHT_UP, oldRow);
+      performTransform(Li, true);
    }
    
    public void F() {
-      turnFaceClockwise(FRONT);
-      
-      CubeColor oldRow[] = new CubeColor[3];
-      CubeColor buffer[] = new CubeColor[3];
-      
-      getRow(TOP, ROW_BOTTOM_RIGHT, oldRow);
-      
-      xferRow(LEFT, ROW_RIGHT_UP, TOP, ROW_BOTTOM_RIGHT, buffer);
-      xferRow(BOTTOM, ROW_TOP_LEFT, LEFT, ROW_RIGHT_UP, buffer);
-      xferRow(RIGHT, ROW_LEFT_DOWN, BOTTOM, ROW_TOP_LEFT, buffer);
-      
-      setRow(RIGHT, ROW_LEFT_DOWN, oldRow);
+      performTransform(F, false);
    }
    
    public void Fi() {
-      turnFaceCounterclockwise(FRONT);
-      
-      CubeColor oldRow[] = new CubeColor[3];
-      CubeColor buffer[] = new CubeColor[3];
-      
-      getRow(TOP, ROW_BOTTOM_RIGHT, oldRow);
-      
-      xferRow(RIGHT, ROW_LEFT_DOWN, TOP, ROW_BOTTOM_RIGHT, buffer);
-      xferRow(BOTTOM, ROW_TOP_LEFT, RIGHT, ROW_LEFT_DOWN, buffer);
-      xferRow(LEFT, ROW_RIGHT_UP, BOTTOM, ROW_TOP_LEFT, buffer);
-      
-      setRow(LEFT, ROW_RIGHT_UP, oldRow);
+      performTransform(Fi, true);
    }
    
    public void R() {
-      
+      performTransform(R, false);
    }
    
    public void Ri() {
-      
+      performTransform(Ri, true);
    }
    
    public void B() {
-      
+      performTransform(B, false);
    }
    
    public void Bi() {
-      
+      performTransform(Bi, true);
    }
    
    public void U() {
-      
+      performTransform(U, false);
    }
    
    public void Ui() {
-      
+      performTransform(Ui, true);
    }
    
    public void D() {
-      
+      performTransform(D, false);
    }
    
    public void Di() {
-      
+      performTransform(Di, true);
    }
    
    private String getColorCharacter(CubeColor color) {
