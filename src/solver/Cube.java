@@ -3,20 +3,20 @@ package solver;
 
 public class Cube {
 
-   private enum CubeColor {
+   public static enum CubeColor {
       BLUE,
+      WHITE,
       RED,
       YELLOW,
       ORANGE,
-      WHITE,
       GREEN
    }
 
-   private static final int LEFT = 0;
-   private static final int FRONT = 1;
-   private static final int RIGHT = 2;
-   private static final int BACK = 3;
-   private static final int TOP = 4;
+   private static final int TOP = 0;
+   private static final int LEFT = 1;
+   private static final int FRONT = 2;
+   private static final int RIGHT = 3;
+   private static final int BACK = 4;
    private static final int BOTTOM = 5;
    
    private CubeColor cube[][];
@@ -47,6 +47,16 @@ public class Cube {
          cube[i] = new CubeColor[9];
          for(int j = 0; j < 9; j++) {
             cube[i][j] = source.cube[i][j];
+         }
+      }
+   }
+   
+   public Cube(Cube.CubeColor source[][]) {
+      cube = new CubeColor[6][];
+      for(int i = 0; i < cube.length; i++) {
+         cube[i] = new CubeColor[9];
+         for(int j = 0; j < 9; j++) {
+            cube[i][j] = source[i][j];
          }
       }
    }
