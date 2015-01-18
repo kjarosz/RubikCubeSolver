@@ -62,4 +62,12 @@ public class ColorPicker extends JPopupMenu {
          add(new PickerButton(this, button, Cube.CubeColor.values()[i]));
       }
    }
+   
+   public int calculateWidth() {
+      return PickerButton.PICKER_BUTTON_SIZE.width * 3;
+   }
+   
+   public int calculateHeight() {
+      return PickerButton.PICKER_BUTTON_SIZE.height * 2;
+   }
 }

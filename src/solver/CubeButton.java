@@ -28,7 +28,9 @@ public class CubeButton extends JButton {
       addMouseListener(new MouseAdapter() {
          @Override
          public void mousePressed(MouseEvent ev) {
-            colorPicker.show((JButton)ev.getSource(), ev.getX(), ev.getY());
+            colorPicker.show((JButton)ev.getSource(), 
+                  ev.getX() - colorPicker.calculateWidth()/2, 
+                  ev.getY() - colorPicker.calculateHeight()/2);
          }
       });
    }
