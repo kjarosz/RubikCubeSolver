@@ -12,7 +12,10 @@ public class CubeInputPanel extends JPanel {
    }
    
    private void createWidgets() {
-      setLayout(new GridLayout(3, 4));
+      GridLayout layout = new GridLayout(3, 4);
+      layout.setHgap(5);
+      layout.setVgap(5);
+      setLayout(layout);
       
       createFaces();
    }
