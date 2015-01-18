@@ -51,6 +51,17 @@ public class Cube {
       }
    }
    
+   public boolean cubeSolved() {
+      for(int i = 0; i < 6; i++) {
+         for(int j = 0; j < 9; j++) {
+            if(cube[i][j] != cube[i][4]) {
+               return false;
+            }
+         }
+      }
+      return true;
+   }
+   
    private void turnFaceClockwise(int face) {
       CubeColor old = cube[face][0];
       cube[face][0] = cube[face][6];
