@@ -4,19 +4,19 @@ package solver;
 public class Cube {
 
    public static enum CubeColor {
+      BLUE,
       WHITE,
       RED,
       YELLOW,
       ORANGE,
-      BLUE,
       GREEN
    }
 
-   private static final int LEFT = 0;
-   private static final int FRONT = 1;
-   private static final int RIGHT = 2;
-   private static final int BACK = 3;
-   private static final int TOP = 4;
+   private static final int TOP = 0;
+   private static final int LEFT = 1;
+   private static final int FRONT = 2;
+   private static final int RIGHT = 3;
+   private static final int BACK = 4;
    private static final int BOTTOM = 5;
    
    private CubeColor cube[][];
