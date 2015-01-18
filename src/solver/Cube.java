@@ -3,12 +3,12 @@ package solver;
 
 public class Cube {
 
-   private enum CubeColor {
-      BLUE,
+   public static enum CubeColor {
+      WHITE,
       RED,
       YELLOW,
       ORANGE,
-      WHITE,
+      BLUE,
       GREEN
    }
 
