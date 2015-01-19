@@ -3,6 +3,7 @@ package solver;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.LinkedList;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -11,6 +12,45 @@ import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 
 public class Solver extends JFrame implements Runnable {
+   private static enum Move {
+      L, Li, F, Fi, R, Ri,
+      B, Bi, U, Ui, D, Di;
+   }
+   
+   private static final String MOVE_STRINGS[] = {
+      "L", "Li", "F", "Fi", "R", "Ri", "B", "Bi", "U", "Ui", "D", "Di"
+   };
+   
+   private class Algorithm {
+      Cube cubeState;
+      LinkedList<Move> moves;
+      
+      public Algorithm(Cube cube) {
+         cubeState = new Cube(cube);
+         moves = new LinkedList<>();
+      }
+      
+      public Algorithm(Algorithm algorithm, Move newMove) {
+         cubeState = new Cube(algorithm.cubeState);
+         moves = new LinkedList<>(algorithm.moves);
+         moves.addFirst(newMove);
+         
+         switch(newMove) {
+         case L: cubeState.L(); break;
+         case Li: cubeState.Li(); break;
+         case F: cubeState.F(); break;
+         case Fi: cubeState.Fi(); break;
+         case R: cubeState.R(); break;
+         case Ri: cubeState.Ri(); break;
+         case B: cubeState.B(); break;
+         case Bi: cubeState.Bi(); break;
+         case U: cubeState.U(); break;
+         case Ui: cubeState.Ui(); break;
+         case D: cubeState.D(); break;
+         case Di: cubeState.Di(); break;
+         }
+      }
+   }
    
    private CubeInputPanel mCubeInputPanel;
    private JTextField mOutput;
@@ -94,7 +134,80 @@ public class Solver extends JFrame implements Runnable {
    }
    
    private void solveCube() {
-      mStartingCube.printCube();
+      if(mStartingCube.cubeSolved()) {
+         mStop = true;
+         return;
+      }
+      
+      LinkedList<Algorithm> currentLevel = new LinkedList<>();
+      LinkedList<Algorithm> nextLevel = new LinkedList<>();
+      
+      Algorithm startAlgorithm = new Algorithm(mStartingCube);
+      currentLevel.add(startAlgorithm);
+      
+      boolean solutionFound = false;
+      Algorithm solution = null;
+      int level = 0;
+      
+      final Move moveset[] = Move.values();
+      
+      MainLoop:
+      while(!solutionFound) {
+         updateLevel(++level);
+         
+         while(!currentLevel.isEmpty()) {
+            if(mStop) {
+               break MainLoop;
+            }
+            
+            Algorithm algorithm = currentLevel.pop();
+            Move lastMove = null;
+            if(!algorithm.moves.isEmpty())
+               lastMove = algorithm.moves.getLast();
+            for(Move move: moveset) {
+               if(move == lastMove)
+                  continue;
+               
+               Algorithm newAlgorithm = new Algorithm(algorithm, move);
+               if(newAlgorithm.cubeState.cubeSolved()) {
+                  solutionFound = true;
+                  solution = newAlgorithm;
+                  break MainLoop; // Don't even bother with the remainder.
+               }
+               
+               nextLevel.add(newAlgorithm);
+            }
+         }
+         
+         currentLevel.addAll(nextLevel);
+         nextLevel.clear();
+      }
+      
+      if(solutionFound) {
+         outputSolution(solution);
+      }
+   }
+   
+   private void updateLevel(final int level) {
+      SwingUtilities.invokeLater(new Runnable() {
+         @Override
+         public void run() {
+            mOutput.setText("Working level: " + level);
+         }
+      });
+   }
+   
+   private void outputSolution(Algorithm solution) {
+      StringBuilder solutionString = new StringBuilder();
+      for(Move move: solution.moves) {
+         solutionString.insert(0, MOVE_STRINGS[move.ordinal()] + " ");
+      }
+      SwingUtilities.invokeLater(new Runnable() {
+         @Override
+         public void run() {
+            mOutput.setText(solutionString.toString());
+         }
+      });
    }
    
    public static void main(String[] args) {
