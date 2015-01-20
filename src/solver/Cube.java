@@ -1,5 +1,9 @@
 package solver;
 
+import java.util.LinkedList;
+
+import solver.Solver.Move;
+
 
 public class Cube {
 
@@ -288,72 +292,25 @@ public class Cube {
             LEFT, ROW_BOTTOM_RIGHT}
    };
    
-   private void performTransform(int transform, boolean inverted) {
+   public void performTransform(Move transform) {
+      int transformIdx = transform.ordinal();
       int step = 0;
-      if(inverted)
-         turnFaceCounterclockwise(transforms[transform][step++]);
+      if(transformIdx % 2 != 0)
+         turnFaceCounterclockwise(transforms[transformIdx][step++]);
       else
-         turnFaceClockwise(transforms[transform][step++]);
+         turnFaceClockwise(transforms[transformIdx][step++]);
       
       CubeColor oldRow[] = new CubeColor[3];
       CubeColor buffer[] = new CubeColor[3];
       
-      getRow(transforms[transform][step++], transforms[transform][step++], oldRow);
+      getRow(transforms[transformIdx][step++], transforms[transformIdx][step++], oldRow);
       
       for(int i = 0; i < 3; i++) {
-         xferRow(transforms[transform][step++], transforms[transform][step++],
-               transforms[transform][step++], transforms[transform][step++], buffer);
+         xferRow(transforms[transformIdx][step++], transforms[transformIdx][step++],
+               transforms[transformIdx][step++], transforms[transformIdx][step++], buffer);
       }
       
-      setRow(transforms[transform][step++], transforms[transform][step++], oldRow);
-   }
-   
-   public void L() {
-      performTransform(L, false);
-   }
-   
-   public void Li() {
-      performTransform(Li, true);
-   }
-   
-   public void F() {
-      performTransform(F, false);
-   }
-   
-   public void Fi() {
-      performTransform(Fi, true);
-   }
-   
-   public void R() {
-      performTransform(R, false);
-   }
-   
-   public void Ri() {
-      performTransform(Ri, true);
-   }
-   
-   public void B() {
-      performTransform(B, false);
-   }
-   
-   public void Bi() {
-      performTransform(Bi, true);
-   }
-   
-   public void U() {
-      performTransform(U, false);
-   }
-   
-   public void Ui() {
-      performTransform(Ui, true);
-   }
-   
-   public void D() {
-      performTransform(D, false);
-   }
-   
-   public void Di() {
-      performTransform(Di, true);
+      setRow(transforms[transformIdx][step++], transforms[transformIdx][step++], oldRow);
    }
    
    private String getColorCharacter(CubeColor color) {
