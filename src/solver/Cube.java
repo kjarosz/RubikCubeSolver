@@ -1,6 +1,7 @@
 package solver;
 
 import java.util.LinkedList;
+import java.util.Random;
 
 import solver.Solver.Move;
 
@@ -103,15 +104,7 @@ public class Cube {
       cube[face][7] = cube[face][3];
       cube[face][3] = old;
    }
-   
-   private static final int 
-   L = 0, Li = 1,
-   F = 2, Fi = 3,
-   R = 4, Ri = 5,
-   B = 6, Bi = 7,
-   U = 8, Ui = 9,
-   D = 10,Di = 11;
-   
+      
    private static final int 
    ROW_TOP_RIGHT = 0,
    ROW_TOP_LEFT = 1,
@@ -311,6 +304,20 @@ public class Cube {
       }
       
       setRow(transforms[transformIdx][step++], transforms[transformIdx][step++], oldRow);
+   }
+   
+   public LinkedList<Move> scrambleCube(int moves) {
+      LinkedList<Move> scrambleMoveset = new LinkedList<>();
+      
+      Random random = new Random();
+      Move moveset[] = Solver.Move.values();
+      for(int i = 0; i < moves; i++) {
+         Move move = moveset[random.nextInt(moveset.length)];
+         performTransform(move);
+         scrambleMoveset.add(move);
+      }
+      
+      return scrambleMoveset;
    }
    
    private String getColorCharacter(CubeColor color) {
