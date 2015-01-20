@@ -311,13 +311,37 @@ public class Cube {
       
       Random random = new Random();
       Move moveset[] = Solver.Move.values();
+      Move move = null;
       for(int i = 0; i < moves; i++) {
-         Move move = moveset[random.nextInt(moveset.length)];
+         do {
+            move = moveset[random.nextInt(moveset.length)];
+         } while(moveIsStupid(scrambleMoveset, move));
+         
          performTransform(move);
          scrambleMoveset.add(move);
       }
       
       return scrambleMoveset;
+   }
+      
+   private boolean moveIsStupid(LinkedList<Move> scrambleMoveset, Move move) {
+      if(scrambleMoveset.isEmpty())
+         return false;
+      
+      Move lastMove = scrambleMoveset.getLast();
+      
+      // Do not repeat move
+      if(move == lastMove)
+         return true;
+      
+      // If move undoes the last one.
+      int moveIdx = move.ordinal();
+      if(moveIdx % 2 == 0) {
+         return lastMove.ordinal() == moveIdx + 1;
+      } else {
+         return lastMove.ordinal() == moveIdx - 1;
+      }
+      
    }
    
    public Cube.CubeColor[][] getDescriptor() {
