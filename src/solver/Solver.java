@@ -8,17 +8,18 @@ import java.util.LinkedList;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 
 public class Solver extends JFrame implements Runnable {
-   private static enum Move {
+   public static enum Move {
       L, Li, F, Fi, R, Ri,
       B, Bi, U, Ui, D, Di;
    }
    
-   private static final String MOVE_STRINGS[] = {
-      "L", "Li", "F", "Fi", "R", "Ri", "B", "Bi", "U", "Ui", "D", "Di"
+   public static final String MOVE_STRINGS[] = {
+      "L ", "Li", "F ", "Fi", "R ", "Ri", "B ", "Bi", "U ", "Ui", "D ", "Di"
    };
    
    private class Algorithm {
@@ -32,23 +33,9 @@ public class Solver extends JFrame implements Runnable {
       
       public Algorithm(Algorithm algorithm, Move newMove) {
          cubeState = new Cube(algorithm.cubeState);
+         cubeState.performTransform(newMove);
          moves = new LinkedList<>(algorithm.moves);
          moves.addFirst(newMove);
-         
-         switch(newMove) {
-         case L: cubeState.L(); break;
-         case Li: cubeState.Li(); break;
-         case F: cubeState.F(); break;
-         case Fi: cubeState.Fi(); break;
-         case R: cubeState.R(); break;
-         case Ri: cubeState.Ri(); break;
-         case B: cubeState.B(); break;
-         case Bi: cubeState.Bi(); break;
-         case U: cubeState.U(); break;
-         case Ui: cubeState.Ui(); break;
-         case D: cubeState.D(); break;
-         case Di: cubeState.Di(); break;
-         }
       }
    }
    
