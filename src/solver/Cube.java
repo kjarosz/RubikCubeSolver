@@ -306,7 +306,7 @@ public class Cube {
       setRow(transforms[transformIdx][step++], transforms[transformIdx][step++], oldRow);
    }
    
-   public LinkedList<Move> scrambleCube(int moves) {
+   public LinkedList<Move> scramble(int moves) {
       LinkedList<Move> scrambleMoveset = new LinkedList<>();
       
       Random random = new Random();
