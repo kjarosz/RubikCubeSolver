@@ -320,6 +320,17 @@ public class Cube {
       return scrambleMoveset;
    }
    
+   public Cube.CubeColor[][] getDescriptor() {
+      Cube.CubeColor descriptor[][] = new Cube.CubeColor[6][];
+      for(int i = 0; i < 6; i++) {
+         descriptor[i] = new Cube.CubeColor[9];
+         for(int j = 0; j < 9; j++) {
+            descriptor[i][j] = cube[i][j];
+         }
+      }
+      return descriptor;
+   }
+   
    private String getColorCharacter(CubeColor color) {
       switch(color) {
       case BLUE: return "B";
