@@ -43,4 +43,10 @@ public class FaceInputPanel extends JPanel {
       }
       return colors;
    }
+   
+   public void setColors(Cube.CubeColor colors[]) {
+      for(int i = 0; i < 9; i++) {
+         mButtons[i].setCubeColor(colors[i]);
+      }
+   }
 }

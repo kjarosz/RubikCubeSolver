@@ -62,4 +62,10 @@ public class CubeInputPanel extends JPanel {
       
       return descriptor;
    }
+   
+   public void setCubeDescriptor(Cube.CubeColor descriptor[][]) {
+      for(int i = 0; i < 6; i++) {
+         mFaces[i].setColors(descriptor[i]);
+      }
+   }
 }
