@@ -61,6 +61,16 @@ public class Solver extends JFrame implements Runnable {
    
    private void createWidgets() {
       setLayout(new BorderLayout());
+      
+      JPanel scramblerPanel = new JPanel();
+      JTextArea scramblerOutput = new JTextArea(2, 30);
+      scramblerOutput.setEditable(false);
+      scramblerPanel.add(scramblerOutput);
+      JButton scrambleButton = new JButton("Scramble");
+      scrambleButton.addActionListener(scrambleButtonListener(scramblerOutput));
+      scramblerPanel.add(scrambleButton);
+      add(scramblerPanel, BorderLayout.NORTH);
+      
       mCubeInputPanel = new CubeInputPanel();
       add(mCubeInputPanel, BorderLayout.CENTER);
       
@@ -73,6 +83,36 @@ public class Solver extends JFrame implements Runnable {
       mSolveButton.addActionListener(solveButtonListener());
       solutionPanel.add(mSolveButton, BorderLayout.EAST);
       add(solutionPanel, BorderLayout.SOUTH);
+   }
+   
+   private ActionListener scrambleButtonListener(final JTextArea output) {
+      return new ActionListener() {
+         @Override
+         public void actionPerformed(ActionEvent e) {
+            Cube.CubeColor descriptor[][] = mCubeInputPanel.getCubeDescriptor();
+            Cube cube = new Cube(descriptor);
+            LinkedList<Move> moves = cube.scramble(25);
+            
+            StringBuilder movelistString = new StringBuilder();
+            int newlineCounter = 0;
+            for(Move move: moves) {
+               String moveStr = MOVE_STRINGS[move.ordinal()];
+               movelistString.append(moveStr + " ");
+               newlineCounter++;
+               if(newlineCounter == 13) {
+                  newlineCounter = 0;
+                  movelistString.append("\n");
+               }
+            }
+            
+            Cube.CubeColor scrambledDescriptor[][] = cube.getDescriptor();
+            mCubeInputPanel.setCubeDescriptor(scrambledDescriptor);
+            
+            output.setText(movelistString.toString());
+            
+            repaint();
+         }
+      };
    }
    
    private ActionListener solveButtonListener() {
