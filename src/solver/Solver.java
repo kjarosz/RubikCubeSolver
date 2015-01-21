@@ -147,6 +147,8 @@ public class Solver extends JFrame implements Runnable {
                @Override
                public void run() {
                   mSolveButton.setText("Solve");
+                  String outputText = mOutput.getText() + " (stopped)";
+                  mOutput.setText(outputText);
                }
             });
             mSolve = false;
@@ -165,49 +167,60 @@ public class Solver extends JFrame implements Runnable {
          mStop = true;
          return;
       }
+            
+      final Move moveset[] = Move.values();
       
-      LinkedList<Algorithm> currentLevel = new LinkedList<>();
-      LinkedList<Algorithm> nextLevel = new LinkedList<>();
+      Algorithm levelAlgorithm[] = new Algorithm[20];
+      int levelIndices[] = new int[20];
+      for(int i = 0; i < 20; i++) {
+         levelIndices[i] = 0;
+      }
       
-      Algorithm startAlgorithm = new Algorithm(mStartingCube);
-      currentLevel.add(startAlgorithm);
+      levelAlgorithm[0] = new Algorithm(mStartingCube);
       
       boolean solutionFound = false;
       Algorithm solution = null;
-      int level = 0;
-      
-      final Move moveset[] = Move.values();
+      int depth = -1;
       
       MainLoop:
       while(!solutionFound) {
-         updateLevel(++level);
+         updateLevel(++depth);
          
-         while(!currentLevel.isEmpty()) {
+         int level = 0;
+         levelIndices[0] = 0;
+         while(true) {
             if(mStop) {
                break MainLoop;
             }
             
-            Algorithm algorithm = currentLevel.pop();
-            Move lastMove = null;
-            if(!algorithm.moves.isEmpty())
-               lastMove = algorithm.moves.getLast();
-            for(Move move: moveset) {
-               if(move == lastMove)
+            while(level < depth) {
+               if(level < 0) {
+                  continue MainLoop;
+               }
+               
+               if(levelIndices[level] < moveset.length) {
+                  levelAlgorithm[level+1] = new Algorithm(levelAlgorithm[level], moveset[levelIndices[level]]);
+                  levelIndices[level]++;
+                  level++;
+                  levelIndices[level] = 0;
+               } else {
+                  level--;
+               }
+            }
+            
+            for(int i = 0; i < moveset.length; i++) {
+               if(moveIsStupid(levelAlgorithm[level], moveset[i]))
                   continue;
                
-               Algorithm newAlgorithm = new Algorithm(algorithm, move);
+               Algorithm newAlgorithm = new Algorithm(levelAlgorithm[level], moveset[i]);
                if(newAlgorithm.cubeState.cubeSolved()) {
                   solutionFound = true;
                   solution = newAlgorithm;
-                  break MainLoop; // Don't even bother with the remainder.
+                  break MainLoop;
                }
-               
-               nextLevel.add(newAlgorithm);
             }
+            level--;
          }
-         
-         currentLevel.addAll(nextLevel);
-         nextLevel.clear();
       }
       
       if(solutionFound) {
@@ -219,9 +232,34 @@ public class Solver extends JFrame implements Runnable {
       SwingUtilities.invokeLater(new Runnable() {
          @Override
          public void run() {
-            mOutput.setText("Working level: " + level);
+            mOutput.setText("Working level: " + (level+1));
          }
       });
+   }
+   
+   private boolean moveIsStupid(Algorithm algorithm, Move move) {
+      if(algorithm.moves.isEmpty()) {
+         return false;
+      }
+      
+      Move lastMove = algorithm.moves.getLast();
+      
+      // Do not repeat move
+      if(move == lastMove && algorithm.moves.size() > 1) {
+         Move secondToLast = algorithm.moves.get(algorithm.moves.size() - 2);
+         if(secondToLast == move)
+            return true;
+         else
+            return false;
+      }
+      
+      // If move undoes the last one.
+      int moveIdx = move.ordinal();
+      if(moveIdx % 2 == 0) {
+         return lastMove.ordinal() == moveIdx + 1;
+      } else {
+         return lastMove.ordinal() == moveIdx - 1;
+      }
    }
    
    private void outputSolution(Algorithm solution) {
