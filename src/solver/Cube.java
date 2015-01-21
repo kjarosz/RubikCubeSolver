@@ -133,8 +133,7 @@ public class Cube {
    
    private void xferRow(int face1, int row_op1, int face2, int row_op2) {
       for(int i = 0; i < 3; i++) {
-         cube[face1][ROW_OP_INDICES[row_op1][i]] =
-               cube[face2][ROW_OP_INDICES[row_op2][i]];
+         cube[face2][ROW_OP_INDICES[row_op2][i]] = cube[face1][ROW_OP_INDICES[row_op1][i]];
       }
    }
    
@@ -226,8 +225,9 @@ public class Cube {
       getRow(transforms[transformIdx][step++], transforms[transformIdx][step++], oldRow);
       
       for(int i = 0; i < 3; i++) {
-         xferRow(transforms[transformIdx][step++], transforms[transformIdx][step++],
-               transforms[transformIdx][step++], transforms[transformIdx][step++]);
+         xferRow(transforms[transformIdx][step], transforms[transformIdx][step+1],
+               transforms[transformIdx][step+2], transforms[transformIdx][step+3]);
+         step += 4;
       }
       
       setRow(transforms[transformIdx][step++], transforms[transformIdx][step++], oldRow);
