@@ -104,110 +104,38 @@ public class Cube {
       cube[face][7] = cube[face][3];
       cube[face][3] = old;
    }
-      
+   
+   // ROW_OPS
    private static final int 
-   ROW_TOP_RIGHT = 0,
-   ROW_TOP_LEFT = 1,
-   ROW_LEFT_DOWN = 2,
-   ROW_LEFT_UP = 3,
-   ROW_BOTTOM_RIGHT = 4,
-   ROW_BOTTOM_LEFT = 5,
-   ROW_RIGHT_DOWN = 6,
-   ROW_RIGHT_UP = 7;
+   ROW_TOP_LEFT = 0,
+   ROW_LEFT_DOWN = 1,
+   ROW_BOTTOM_RIGHT = 2,
+   ROW_RIGHT_UP = 3;
    
-   private void getRow(int face, int row, CubeColor output[]) {
-      switch(row) {
-      case ROW_TOP_RIGHT:
-         for(int i = 0; i < 3; i++) {
-            output[i] = cube[face][i];
-         }
-         break;
-      case ROW_TOP_LEFT:
-         for(int i = 0; i < 3; i++) {
-            output[i] = cube[face][2 - i];
-         }
-         break;
-      case ROW_LEFT_DOWN:
-         for(int i = 0; i < 3; i++) {
-            output[i] = cube[face][i*3];
-         }
-         break;
-      case ROW_LEFT_UP:
-         for(int i = 0; i < 3; i++) {
-            output[i] = cube[face][6 - i*3];
-         }
-         break;
-      case ROW_BOTTOM_RIGHT:
-         for(int i = 0; i < 3; i++) {
-            output[i] = cube[face][6 + i];
-         }
-         break;
-      case ROW_BOTTOM_LEFT:
-         for(int i = 0; i < 3; i++) {
-            output[i] = cube[face][8 - i];
-         }
-         break;
-      case ROW_RIGHT_DOWN:
-         for(int i = 0; i < 3; i++) {
-            output[i] = cube[face][2 + i*3];
-         }
-         break;
-      case ROW_RIGHT_UP:
-         for(int i = 0; i < 3; i++) {
-            output[i] = cube[face][8 - i*3];
-         }
-         break;
+   private static final int ROW_OP_INDICES[][] = {
+      { 2, 1, 0 }, // ROW_TOP_LEFT
+      { 0, 3, 6 }, // ROW_LEFT_DOWN
+      { 6, 7, 8 }, // ROW_BOTTOM_RIGHT
+      { 8, 5, 2 }  // ROW_RIGHT_UP
+   };
+   
+   private void getRow(int face, int row_op, CubeColor output[]) {
+      for(int i = 0; i < 3; i++) {
+         output[i] = cube[face][ROW_OP_INDICES[row_op][i]];
       }
    }
    
-   private void setRow(int face, int row, CubeColor input[]) {
-      switch(row) {
-      case ROW_TOP_RIGHT:
-         for(int i = 0; i < 3; i++) {
-            cube[face][i] = input[i];
-         }
-         break;
-      case ROW_TOP_LEFT:
-         for(int i = 0; i < 3; i++) {
-            cube[face][2 - i] = input[i];
-         }
-         break;
-      case ROW_LEFT_DOWN:
-         for(int i = 0; i < 3; i++) {
-            cube[face][i*3] = input[i];
-         }
-         break;
-      case ROW_LEFT_UP:
-         for(int i = 0; i < 3; i++) {
-            cube[face][6 - i*3] = input[i];
-         }
-         break;
-      case ROW_BOTTOM_RIGHT:
-         for(int i = 0; i < 3; i++) {
-            cube[face][6 + i] = input[i];
-         }
-         break;
-      case ROW_BOTTOM_LEFT:
-         for(int i = 0; i < 3; i++) {
-            cube[face][8 - i] = input[i];
-         }
-         break;
-      case ROW_RIGHT_DOWN:
-         for(int i = 0; i < 3; i++) {
-            cube[face][2 + i*3] = input[i];
-         }
-         break;
-      case ROW_RIGHT_UP:
-         for(int i = 0; i < 3; i++) {
-            cube[face][8 - i*3] = input[i];
-         }
-         break;
+   private void setRow(int face, int row_op, CubeColor input[]) {
+      for(int i = 0; i < 3; i++) {
+         cube[face][ROW_OP_INDICES[row_op][i]] = input[i];
       }
    }
    
-   private void xferRow(int face1, int row1, int face2, int row2, CubeColor buffer[]) {
-      getRow(face1, row1, buffer);
-      setRow(face2, row2, buffer);
+   private void xferRow(int face1, int row_op1, int face2, int row_op2) {
+      for(int i = 0; i < 3; i++) {
+         cube[face1][ROW_OP_INDICES[row_op1][i]] =
+               cube[face2][ROW_OP_INDICES[row_op2][i]];
+      }
    }
    
    private static final int transforms[][] = {
@@ -260,17 +188,17 @@ public class Cube {
             RIGHT, ROW_RIGHT_UP, BOTTOM, ROW_BOTTOM_RIGHT,
             RIGHT, ROW_RIGHT_UP},
       // U
-      {TOP, LEFT, ROW_TOP_RIGHT,
-            FRONT, ROW_TOP_RIGHT, LEFT, ROW_TOP_RIGHT,
-            RIGHT, ROW_TOP_RIGHT, FRONT, ROW_TOP_RIGHT,
-            BACK, ROW_TOP_RIGHT, RIGHT, ROW_TOP_RIGHT,
-            BACK, ROW_TOP_RIGHT},
+      {TOP, LEFT, ROW_TOP_LEFT,
+            FRONT, ROW_TOP_LEFT, LEFT, ROW_TOP_LEFT,
+            RIGHT, ROW_TOP_LEFT, FRONT, ROW_TOP_LEFT,
+            BACK, ROW_TOP_LEFT, RIGHT, ROW_TOP_LEFT,
+            BACK, ROW_TOP_LEFT},
       // Ui
-      {TOP, LEFT, ROW_TOP_RIGHT,
-            BACK, ROW_TOP_RIGHT, LEFT, ROW_TOP_RIGHT,
-            RIGHT, ROW_TOP_RIGHT, BACK, ROW_TOP_RIGHT,
-            FRONT, ROW_TOP_RIGHT, RIGHT, ROW_TOP_RIGHT,
-            FRONT, ROW_TOP_RIGHT},
+      {TOP, LEFT, ROW_TOP_LEFT,
+            BACK, ROW_TOP_LEFT, LEFT, ROW_TOP_LEFT,
+            RIGHT, ROW_TOP_LEFT, BACK, ROW_TOP_LEFT,
+            FRONT, ROW_TOP_LEFT, RIGHT, ROW_TOP_LEFT,
+            FRONT, ROW_TOP_LEFT},
       // D
       {BOTTOM, FRONT, ROW_BOTTOM_RIGHT,
             LEFT, ROW_BOTTOM_RIGHT, FRONT, ROW_BOTTOM_RIGHT,
@@ -294,13 +222,12 @@ public class Cube {
          turnFaceClockwise(transforms[transformIdx][step++]);
       
       CubeColor oldRow[] = new CubeColor[3];
-      CubeColor buffer[] = new CubeColor[3];
       
       getRow(transforms[transformIdx][step++], transforms[transformIdx][step++], oldRow);
       
       for(int i = 0; i < 3; i++) {
          xferRow(transforms[transformIdx][step++], transforms[transformIdx][step++],
-               transforms[transformIdx][step++], transforms[transformIdx][step++], buffer);
+               transforms[transformIdx][step++], transforms[transformIdx][step++]);
       }
       
       setRow(transforms[transformIdx][step++], transforms[transformIdx][step++], oldRow);
