@@ -199,10 +199,14 @@ public class Solver extends JFrame implements Runnable {
                }
                
                if(levelIndices[level] < moveset.length) {
-                  levelAlgorithm[level+1] = new Algorithm(levelAlgorithm[level], moveset[levelIndices[level]]);
-                  levelIndices[level]++;
-                  level++;
-                  levelIndices[level] = 0;
+                  if(!moveIsStupid(levelAlgorithm[level], moveset[levelIndices[level]])) {
+                     levelAlgorithm[level+1] = new Algorithm(levelAlgorithm[level], moveset[levelIndices[level]]);
+                     levelIndices[level]++;
+                     level++;
+                     levelIndices[level] = 0;
+                  } else {
+                     levelIndices[level]++;
+                  }
                } else {
                   level--;
                }
@@ -251,6 +255,30 @@ public class Solver extends JFrame implements Runnable {
             return true;
          else
             return false;
+      }
+      
+      // Commutative moves
+      switch(move) {
+      case D:
+      case Di:
+         if(lastMove == Move.F || lastMove == Move.Fi) {
+            return true;
+         }
+         break;
+      case R:
+      case Ri:
+         if(lastMove == Move.L || lastMove == Move.Li) {
+            return true;
+         }
+         break;
+      case B:
+      case Bi:
+         if(lastMove == Move.F || lastMove == Move.Fi) {
+            return true;
+         }
+         break;
+      default:
+         break;
       }
       
       // If move undoes the last one.
