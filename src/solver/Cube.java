@@ -77,34 +77,6 @@ public class Cube {
       return true;
    }
    
-   private void turnFaceClockwise(int face) {
-      CubeColor old = cube[face][0];
-      cube[face][0] = cube[face][6];
-      cube[face][6] = cube[face][8];
-      cube[face][8] = cube[face][2];
-      cube[face][2] = old;
-      
-      old = cube[face][1];
-      cube[face][1] = cube[face][3];
-      cube[face][3] = cube[face][7];
-      cube[face][7] = cube[face][5];
-      cube[face][5] = old;
-   }
-   
-   private void turnFaceCounterclockwise(int face) {
-      CubeColor old = cube[face][0];
-      cube[face][0] = cube[face][2];
-      cube[face][2] = cube[face][8];
-      cube[face][8] = cube[face][6];
-      cube[face][6] = old;
-      
-      old = cube[face][1];
-      cube[face][1] = cube[face][5];
-      cube[face][5] = cube[face][7];
-      cube[face][7] = cube[face][3];
-      cube[face][3] = old;
-   }
-   
    // ROW_OPS
    private static final int 
    ROW_TOP_LEFT = 0,
@@ -118,24 +90,6 @@ public class Cube {
       { 6, 7, 8 }, // ROW_BOTTOM_RIGHT
       { 8, 5, 2 }  // ROW_RIGHT_UP
    };
-   
-   private void getRow(int face, int row_op, CubeColor output[]) {
-      for(int i = 0; i < 3; i++) {
-         output[i] = cube[face][ROW_OP_INDICES[row_op][i]];
-      }
-   }
-   
-   private void setRow(int face, int row_op, CubeColor input[]) {
-      for(int i = 0; i < 3; i++) {
-         cube[face][ROW_OP_INDICES[row_op][i]] = input[i];
-      }
-   }
-   
-   private void xferRow(int face1, int row_op1, int face2, int row_op2) {
-      for(int i = 0; i < 3; i++) {
-         cube[face2][ROW_OP_INDICES[row_op2][i]] = cube[face1][ROW_OP_INDICES[row_op1][i]];
-      }
-   }
    
    private static final int transforms[][] = {
       // L
@@ -212,6 +166,34 @@ public class Cube {
             LEFT, ROW_BOTTOM_RIGHT}
    };
    
+   private void turnFaceClockwise(int face) {
+      CubeColor old = cube[face][0];
+      cube[face][0] = cube[face][6];
+      cube[face][6] = cube[face][8];
+      cube[face][8] = cube[face][2];
+      cube[face][2] = old;
+      
+      old = cube[face][1];
+      cube[face][1] = cube[face][3];
+      cube[face][3] = cube[face][7];
+      cube[face][7] = cube[face][5];
+      cube[face][5] = old;
+   }
+   
+   private void turnFaceCounterclockwise(int face) {
+      CubeColor old = cube[face][0];
+      cube[face][0] = cube[face][2];
+      cube[face][2] = cube[face][8];
+      cube[face][8] = cube[face][6];
+      cube[face][6] = old;
+      
+      old = cube[face][1];
+      cube[face][1] = cube[face][5];
+      cube[face][5] = cube[face][7];
+      cube[face][7] = cube[face][3];
+      cube[face][3] = old;
+   }
+   
    public void performTransform(Move transform) {
       int transformIdx = transform.ordinal();
       int step = 0;
@@ -220,17 +202,23 @@ public class Cube {
       else
          turnFaceClockwise(transforms[transformIdx][step++]);
       
-      CubeColor oldRow[] = new CubeColor[3];
-      
-      getRow(transforms[transformIdx][step++], transforms[transformIdx][step++], oldRow);
-      
+      CubeColor oldColor;
       for(int i = 0; i < 3; i++) {
-         xferRow(transforms[transformIdx][step], transforms[transformIdx][step+1],
-               transforms[transformIdx][step+2], transforms[transformIdx][step+3]);
-         step += 4;
+         oldColor = cube[transforms[transformIdx][1]][ROW_OP_INDICES[transforms[transformIdx][2]][i]];
+         
+         cube[transforms[transformIdx][5]][ROW_OP_INDICES[transforms[transformIdx][6]][i]] =
+               cube[transforms[transformIdx][3]][ROW_OP_INDICES[transforms[transformIdx][4]][i]];
+         
+         cube[transforms[transformIdx][9]][ROW_OP_INDICES[transforms[transformIdx][10]][i]] =
+               cube[transforms[transformIdx][7]][ROW_OP_INDICES[transforms[transformIdx][8]][i]];
+         
+         cube[transforms[transformIdx][13]][ROW_OP_INDICES[transforms[transformIdx][14]][i]] =
+               cube[transforms[transformIdx][11]][ROW_OP_INDICES[transforms[transformIdx][12]][i]];
+         
+         cube[transforms[transformIdx][15]][ROW_OP_INDICES[transforms[transformIdx][16]][i]] = oldColor;
+               
+         
       }
-      
-      setRow(transforms[transformIdx][step++], transforms[transformIdx][step++], oldRow);
    }
    
    public LinkedList<Move> scramble(int moves) {
