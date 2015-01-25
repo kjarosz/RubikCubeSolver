@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import java.util.LinkedList;
 
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
@@ -13,18 +14,22 @@ import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 
 import solver.algorithms.Algorithm;
+import solver.algorithms.Algorithm.Move;
 import solver.algorithms.Cube;
 import solver.algorithms.IDASolver;
+import solver.algorithms.SolverFactory;
 import solver.algorithms.SolvingAlgorithm;
-import solver.algorithms.Algorithm.Move;
 import solver.ui.CubeInputPanel;
 import solver.ui.ProgressReporter;
 
 public class Solver extends JFrame implements Runnable, ProgressReporter {
    
    private CubeInputPanel mCubeInputPanel;
+   private JComboBox<String> mAlgorithmSelector;
    private JTextField mOutput;
    private JButton mSolveButton;
+   
+   private SolverFactory mSolverFactory;
    
    // Thread control
    private boolean mSolve;
@@ -32,6 +37,8 @@ public class Solver extends JFrame implements Runnable, ProgressReporter {
    
    public Solver() {  
       new Thread(this).start();
+      
+      mSolverFactory = SolverFactory.getInstance();
       
       createWidgets();
       
@@ -55,15 +62,30 @@ public class Solver extends JFrame implements Runnable, ProgressReporter {
       mCubeInputPanel = new CubeInputPanel();
       add(mCubeInputPanel, BorderLayout.CENTER);
       
+      JPanel solutionPanel = createSolutionPanel();
+      add(solutionPanel, BorderLayout.SOUTH);
+   }
+   
+   private JPanel createSolutionPanel() {
       JPanel solutionPanel = new JPanel();
       solutionPanel.setLayout(new BorderLayout());
+      
       mOutput = new JTextField();
       mOutput.setEditable(false);
       solutionPanel.add(mOutput, BorderLayout.CENTER);
+      
+      JPanel controlPanel = new JPanel();
+      mAlgorithmSelector = new JComboBox<>(mSolverFactory.getAvailableAlgorithms());
+      mAlgorithmSelector.setSelectedIndex(0);
+      controlPanel.add(mAlgorithmSelector);
+      
       mSolveButton = new JButton("Solve");
       mSolveButton.addActionListener(solveButtonListener());
-      solutionPanel.add(mSolveButton, BorderLayout.EAST);
-      add(solutionPanel, BorderLayout.SOUTH);
+      controlPanel.add(mSolveButton);
+      
+      solutionPanel.add(controlPanel, BorderLayout.SOUTH);
+      
+      return solutionPanel;
    }
    
    private ActionListener scrambleButtonListener(final JTextArea output) {
