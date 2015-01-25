@@ -1,9 +1,9 @@
-package solver;
+package solver.algorithms;
 
 import java.util.LinkedList;
 import java.util.Random;
 
-import solver.Algorithm.Move;
+import solver.algorithms.Algorithm.Move;
 
 
 public class Cube {

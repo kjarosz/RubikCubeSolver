@@ -12,7 +12,13 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 
-import solver.Algorithm.Move;
+import solver.algorithms.Algorithm;
+import solver.algorithms.Cube;
+import solver.algorithms.IDASolver;
+import solver.algorithms.SolvingAlgorithm;
+import solver.algorithms.Algorithm.Move;
+import solver.ui.CubeInputPanel;
+import solver.ui.ProgressReporter;
 
 public class Solver extends JFrame implements Runnable, ProgressReporter {
    

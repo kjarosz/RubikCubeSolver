@@ -1,6 +1,7 @@
-package solver;
+package solver.algorithms;
 
-import solver.Algorithm.Move;
+import solver.algorithms.Algorithm.Move;
+import solver.ui.ProgressReporter;
 
 public class IDASolver implements SolvingAlgorithm {
    

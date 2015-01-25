@@ -1,4 +1,4 @@
-package solver;
+package solver.algorithms;
 
 import java.util.LinkedList;
 
@@ -13,8 +13,8 @@ public class Algorithm {
      "L ", "Li", "F ", "Fi", "R ", "Ri", "B ", "Bi", "U ", "Ui", "D ", "Di"
    };
      
-   Cube cubeState;
-   LinkedList<Move> moves;
+   public Cube cubeState;
+   public LinkedList<Move> moves;
    
    public Algorithm(Cube cube) {
       cubeState = new Cube(cube);

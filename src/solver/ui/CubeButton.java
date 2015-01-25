@@ -1,4 +1,4 @@
-package solver;
+package solver.ui;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -7,6 +7,9 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 import javax.swing.JButton;
+
+import solver.algorithms.Cube;
+import solver.algorithms.Cube.CubeColor;
 
 public class CubeButton extends JButton {
    private static final Dimension BUTTON_SIZE = new Dimension(25, 25);

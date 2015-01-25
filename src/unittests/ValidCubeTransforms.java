@@ -1,4 +1,6 @@
-package solver;
+package unittests;
+
+import solver.algorithms.Cube;
 
 public class ValidCubeTransforms {
    public static Cube.CubeColor TEST_RESULTS[][][] = {

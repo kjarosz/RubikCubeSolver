@@ -1,10 +1,12 @@
-package solver;
+package unittests;
 
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import solver.Algorithm.Move;
+import solver.algorithms.Algorithm;
+import solver.algorithms.Cube;
+import solver.algorithms.Algorithm.Move;
 
 public class TestCubeTransforms {
    

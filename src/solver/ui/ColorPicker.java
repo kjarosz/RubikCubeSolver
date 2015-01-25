@@ -1,4 +1,4 @@
-package solver;
+package solver.ui;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -9,6 +9,9 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JPopupMenu;
+
+import solver.algorithms.Cube;
+import solver.algorithms.Cube.CubeColor;
 
 public class ColorPicker extends JPopupMenu {
    

@@ -1,10 +1,13 @@
-package solver;
+package solver.ui;
 
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+
+import solver.algorithms.Cube;
+import solver.algorithms.Cube.CubeColor;
 
 public class FaceInputPanel extends JPanel {
    private CubeButton mButtons[];
