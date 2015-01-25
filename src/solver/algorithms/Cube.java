@@ -33,8 +33,8 @@ public class Cube {
    };
    
    public final static int EDGE_LOCATIONS[][] = {
-      { TOP, 7, FRONT, 1 },  {TOP, 5, RIGHT, 2}, {TOP, 2, BACK, 2}, {TOP, 3, LEFT, 2},
-      { BOTTOM, 2, FRONT, 7}, {BOTTOM, 5, RIGHT, 7}, {BOTTOM, 7, BACK, 7}, {BOTTOM, 3, BACK, 7},
+      { TOP, 7, FRONT, 1 },  {TOP, 5, RIGHT, 1}, {TOP, 1, BACK, 1}, {TOP, 3, LEFT, 1},
+      { BOTTOM, 1, FRONT, 7}, {BOTTOM, 5, RIGHT, 7}, {BOTTOM, 7, BACK, 7}, {BOTTOM, 3, LEFT, 7},
       { FRONT, 3, LEFT, 5}, {FRONT, 5, RIGHT, 3}, {BACK, 3, RIGHT, 5}, {BACK, 5, LEFT, 3}
    };
    
@@ -314,13 +314,13 @@ public class Cube {
    
    private Cube.CubeColor[] getEdgeColors(int indices[]) {
       Cube.CubeColor colors[] = new Cube.CubeColor[2];
-      colors[0] = cube[indices[0]][5];
-      colors[1] = cube[indices[1]][5];
+      colors[0] = cube[indices[0]][4];
+      colors[1] = cube[indices[2]][4];
       return colors;
    }
    
    private Edge findEdgeLocation(Cube.CubeColor edgeColors[]) {
-      for(int i = 0; i < EDGE_LOCATIONS.length; i++) {
+      for(int i = 0; i < EDGE_LOCATIONS.length; i++) {         
          if (edgeMatches(edgeColors, i, false)) {
             return Edge.values()[i];
          }
@@ -328,6 +328,10 @@ public class Cube {
             return Edge.values()[i+12];
          }
       }
+      int edge = Edge.DL.ordinal();
+      System.out.println(edgeColors[0] + ", " + edgeColors[1]);
+      System.out.println(cube[EDGE_LOCATIONS[edge][0]][EDGE_LOCATIONS[edge][1]]);
+      System.out.println(cube[EDGE_LOCATIONS[edge][2]][EDGE_LOCATIONS[edge][3]]);
       throw new RuntimeException("Invalid color combination.");
    }
    
