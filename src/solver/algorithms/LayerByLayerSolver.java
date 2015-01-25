@@ -40,6 +40,7 @@ public class LayerByLayerSolver implements SolvingAlgorithm {
          permutations.put(arrangement, move);
       }
 
+      // For progress tracking.
       int level = 0;
       
       LinkedList<Algorithm> nextAlgorithmQueue = new LinkedList<>();
