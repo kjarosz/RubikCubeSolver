@@ -16,7 +16,6 @@ import javax.swing.SwingUtilities;
 import solver.algorithms.Algorithm;
 import solver.algorithms.Algorithm.Move;
 import solver.algorithms.Cube;
-import solver.algorithms.IDASolver;
 import solver.algorithms.SolverFactory;
 import solver.algorithms.SolvingAlgorithm;
 import solver.ui.CubeInputPanel;
@@ -161,7 +160,8 @@ public class Solver extends JFrame implements Runnable, ProgressReporter {
       Cube.CubeColor descriptor[][] = mCubeInputPanel.getCubeDescriptor();
       Cube startingCube = new Cube(descriptor);
       
-      mSolvingAlgorithm = new IDASolver();
+      String algorithmName = (String)mAlgorithmSelector.getSelectedItem();
+      mSolvingAlgorithm = mSolverFactory.getAlgorithm(algorithmName);
       Algorithm solution = mSolvingAlgorithm.solveCube(startingCube, this);
       if(solution != null)
          outputSolution(solution);
