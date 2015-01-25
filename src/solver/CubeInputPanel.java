@@ -25,16 +25,16 @@ public class CubeInputPanel extends JPanel {
       
       add(new JPanel());
       
-      mFaces[0] = new FaceInputPanel("Top", Cube.CubeColor.BLUE);
+      mFaces[0] = new FaceInputPanel("Top", Cube.TOP);
       add(mFaces[0]);
       
       add(new JPanel());
       add(new JPanel());
       
-      mFaces[1] = new FaceInputPanel("Left", Cube.CubeColor.WHITE);
-      mFaces[2] = new FaceInputPanel("Front", Cube.CubeColor.RED);
-      mFaces[3] = new FaceInputPanel("Right", Cube.CubeColor.YELLOW);
-      mFaces[4] = new FaceInputPanel("Back", Cube.CubeColor.ORANGE);
+      mFaces[1] = new FaceInputPanel("Left", Cube.LEFT);
+      mFaces[2] = new FaceInputPanel("Front", Cube.FRONT);
+      mFaces[3] = new FaceInputPanel("Right", Cube.RIGHT);
+      mFaces[4] = new FaceInputPanel("Back", Cube.BACK);
       
       for(int i = 1; i < 5; i++) {
          add(mFaces[i]);
@@ -42,19 +42,19 @@ public class CubeInputPanel extends JPanel {
       
       add(new JPanel());
       
-      mFaces[5] = new FaceInputPanel("Bottom", Cube.CubeColor.GREEN);
+      mFaces[5] = new FaceInputPanel("Bottom", Cube.BOTTOM);
       add(mFaces[5]);
       
       add(new JPanel());
       add(new JPanel());
    }
    
-   public Cube.CubeColor[][] getCubeDescriptor() {
-      Cube.CubeColor descriptor[][] = new Cube.CubeColor[6][];
+   public int[][] getCubeDescriptor() {
+      int descriptor[][] = new int[6][];
       
       for(int i = 0; i < 6; i++) {
-         descriptor[i] = new Cube.CubeColor[9];
-         Cube.CubeColor face[] = mFaces[i].getColors();
+         descriptor[i] = new int[9];
+         int face[] = mFaces[i].getColors();
          for(int j = 0; j < 9; j++) {
             descriptor[i][j] = face[j];
          }
@@ -63,7 +63,7 @@ public class CubeInputPanel extends JPanel {
       return descriptor;
    }
    
-   public void setCubeDescriptor(Cube.CubeColor descriptor[][]) {
+   public void setCubeDescriptor(int descriptor[][]) {
       for(int i = 0; i < 6; i++) {
          mFaces[i].setColors(descriptor[i]);
       }
