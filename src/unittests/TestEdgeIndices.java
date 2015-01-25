@@ -18,12 +18,12 @@ public class TestEdgeIndices {
    };
    
    final static Edge SOLUTIONS[] = {
-      Edge.LF, Edge.DL, Edge.FD, Edge.FR,
-      Edge.RD, Edge.UL, Edge.UB, Edge.UF,
-      Edge.DB, Edge.BL, Edge.RB, Edge.UR,
-      Edge.FL, Edge.LD, Edge.DF, Edge.RF,
-      Edge.DR, Edge.LU, Edge.BU, Edge.FU,
-      Edge.BD, Edge.LB, Edge.BR, Edge.RU
+      Edge.DL, Edge.BL, Edge.DR, Edge.DB,
+      Edge.BU, Edge.FD, Edge.FL, Edge.UR,
+      Edge.FU, Edge.UL, Edge.RB, Edge.FR,
+      Edge.LD, Edge.LB, Edge.RD, Edge.BD,
+      Edge.UB, Edge.DF, Edge.LF, Edge.RU,
+      Edge.UF, Edge.LU, Edge.BR, Edge.RF
    };
    
    @Test
@@ -35,7 +35,9 @@ public class TestEdgeIndices {
       }
       
       for(Edge edge: Cube.Edge.values()) {
-         assertTrue(edge + " has not been found correctly.", SOLUTIONS[edge.ordinal()] == cube.findEdge(edge));
+         
+         Edge location = cube.findEdge(edge);
+         assertTrue("Failed at " + edge + ".\n" + SOLUTIONS[edge.ordinal()] + " != " + location, SOLUTIONS[edge.ordinal()] == location);
       }
    }
 
