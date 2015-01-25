@@ -1,16 +1,18 @@
 package solver;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
+import solver.Algorithm.Move;
+
 public class TestCubeTransforms {
    
-   public final static Solver.Move TEST_MOVES[] = {
-      Solver.Move.L, Solver.Move.F, Solver.Move.R, Solver.Move.B, Solver.Move.U, Solver.Move.D, 
-      Solver.Move.Li, Solver.Move.Fi, Solver.Move.Ri, Solver.Move.Bi, Solver.Move.Ui, Solver.Move.Di, 
-      Solver.Move.Li, Solver.Move.Fi, Solver.Move.Ri, Solver.Move.Bi, Solver.Move.Ui, Solver.Move.Di, 
-      Solver.Move.L, Solver.Move.F, Solver.Move.R, Solver.Move.B, Solver.Move.U, Solver.Move.D 
+   public final static Move TEST_MOVES[] = {
+      Move.L, Move.F, Move.R, Move.B, Move.U, Move.D, 
+      Move.Li, Move.Fi, Move.Ri, Move.Bi, Move.Ui, Move.Di, 
+      Move.Li, Move.Fi, Move.Ri, Move.Bi, Move.Ui, Move.Di, 
+      Move.L, Move.F, Move.R, Move.B, Move.U, Move.D 
    };
    
    @Test
@@ -20,7 +22,7 @@ public class TestCubeTransforms {
          testCube.performTransform(TEST_MOVES[i]);
          Cube.CubeColor descriptor[][] = testCube.getDescriptor();
          assertTrue(
-               "Move " + Solver.MOVE_STRINGS[TEST_MOVES[i].ordinal()] + " is invalid.", 
+               "Move " + Algorithm.MOVE_STRINGS[TEST_MOVES[i].ordinal()] + " is invalid.", 
                transformIsValid(i, descriptor));
       }
    }

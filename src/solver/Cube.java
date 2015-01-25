@@ -3,7 +3,7 @@ package solver;
 import java.util.LinkedList;
 import java.util.Random;
 
-import solver.Solver.Move;
+import solver.Algorithm.Move;
 
 
 public class Cube {
@@ -225,7 +225,7 @@ public class Cube {
       LinkedList<Move> scrambleMoveset = new LinkedList<>();
       
       Random random = new Random();
-      Move moveset[] = Solver.Move.values();
+      Move moveset[] = Move.values();
       Move move = null;
       for(int i = 0; i < moves; i++) {
          do {
