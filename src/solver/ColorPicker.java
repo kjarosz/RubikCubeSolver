@@ -17,7 +17,7 @@ public class ColorPicker extends JPopupMenu {
       
       private Cube.CubeColor color;
       
-      public PickerButton(final ColorPicker picker, final CubeButton cubeButton, Cube.CubeColor color) {
+      public PickerButton(final ColorPicker picker, final CubeButton cubeButton, final Cube.CubeColor color) {
          setMinimumSize(PICKER_BUTTON_SIZE);
          setPreferredSize(PICKER_BUTTON_SIZE);
          setMaximumSize(PICKER_BUTTON_SIZE);

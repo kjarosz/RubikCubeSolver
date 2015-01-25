@@ -291,7 +291,7 @@ public class Solver extends JFrame implements Runnable {
    }
    
    private void outputSolution(Algorithm solution) {
-      StringBuilder solutionString = new StringBuilder();
+      final StringBuilder solutionString = new StringBuilder();
       for(Move move: solution.moves) {
          solutionString.insert(0, MOVE_STRINGS[move.ordinal()] + " ");
       }
