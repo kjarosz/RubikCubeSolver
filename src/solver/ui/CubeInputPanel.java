@@ -5,7 +5,6 @@ import java.awt.GridLayout;
 import javax.swing.JPanel;
 
 import solver.algorithms.Cube;
-import solver.algorithms.Cube.CubeColor;
 
 public class CubeInputPanel extends JPanel {
    private FaceInputPanel mFaces[];
