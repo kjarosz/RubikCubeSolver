@@ -13,6 +13,7 @@ import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSlider;
 import javax.swing.SwingUtilities;
@@ -57,15 +58,26 @@ public class CubeButton extends JButton {
             
             final JDialog dialog = new JDialog();
             
+            JPanel rPanel = new JPanel();
+            rPanel.add(new JLabel("R:"));
             final JSlider red = new JSlider(JSlider.HORIZONTAL, 0, 255, Cube.sFace_Colors[mColor].getRed());
+            rPanel.add(red);
+            
+            JPanel gPanel = new JPanel();
+            gPanel.add(new JLabel("G:"));
             final JSlider green = new JSlider(JSlider.HORIZONTAL, 0, 255, Cube.sFace_Colors[mColor].getGreen());
+            gPanel.add(green);
+            
+            JPanel bPanel = new JPanel();
+            bPanel.add(new JLabel("B:"));
             final JSlider blue = new JSlider(JSlider.HORIZONTAL, 0, 255, Cube.sFace_Colors[mColor].getBlue());
+            bPanel.add(blue);
             
             Container container = dialog.getContentPane();
             container.setLayout(new BoxLayout(container, BoxLayout.Y_AXIS));
-            container.add(red);
-            container.add(green);
-            container.add(blue);
+            container.add(rPanel);
+            container.add(gPanel);
+            container.add(bPanel);
             
             JPanel controlButtons = new JPanel();
             JButton ok = new JButton("Ok");
@@ -89,6 +101,7 @@ public class CubeButton extends JButton {
                   dialog.setVisible(false);
                }
             });
+            controlButtons.add(cancel);
             
             container.add(controlButtons);
             
