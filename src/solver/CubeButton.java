@@ -1,26 +1,40 @@
 package solver;
 
 import java.awt.Color;
+import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
+import javax.swing.JDialog;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JSlider;
+import javax.swing.SwingUtilities;
 
 public class CubeButton extends JButton {
    private static final Dimension BUTTON_SIZE = new Dimension(25, 25);
    
-   private Cube.CubeColor mColor;
+   private int mColor;
    
-   public CubeButton(Cube.CubeColor color) {
+   public CubeButton(int color, boolean centerPiece) {
       setMinimumSize(BUTTON_SIZE);
       setPreferredSize(BUTTON_SIZE);
       setMaximumSize(BUTTON_SIZE);
       setSize(BUTTON_SIZE);
       
       mColor = color;
-      setContextMenu();
+      if(centerPiece) {
+         makeColorPicker();
+      } else {
+         setContextMenu();
+      }
    }
    
    private void setContextMenu() {
@@ -35,11 +49,73 @@ public class CubeButton extends JButton {
       });
    }
    
-   public void setCubeColor(Cube.CubeColor color) {
+   private void makeColorPicker() {
+      final CubeButton thisButton = this;
+      addActionListener(new ActionListener() {
+         @Override
+         public void actionPerformed(ActionEvent e) {
+            final JFrame parentWindow = (JFrame)SwingUtilities.getWindowAncestor(thisButton);
+            
+            final JDialog dialog = new JDialog();
+            
+            JPanel rPanel = new JPanel();
+            rPanel.add(new JLabel("R:"));
+            final JSlider red = new JSlider(JSlider.HORIZONTAL, 0, 255, Cube.sFace_Colors[mColor].getRed());
+            rPanel.add(red);
+            
+            JPanel gPanel = new JPanel();
+            gPanel.add(new JLabel("G:"));
+            final JSlider green = new JSlider(JSlider.HORIZONTAL, 0, 255, Cube.sFace_Colors[mColor].getGreen());
+            gPanel.add(green);
+            
+            JPanel bPanel = new JPanel();
+            bPanel.add(new JLabel("B:"));
+            final JSlider blue = new JSlider(JSlider.HORIZONTAL, 0, 255, Cube.sFace_Colors[mColor].getBlue());
+            bPanel.add(blue);
+            
+            Container container = dialog.getContentPane();
+            container.setLayout(new BoxLayout(container, BoxLayout.Y_AXIS));
+            container.add(rPanel);
+            container.add(gPanel);
+            container.add(bPanel);
+            
+            JPanel controlButtons = new JPanel();
+            JButton ok = new JButton("Ok");
+            ok.addActionListener(new ActionListener() {
+               @Override
+               public void actionPerformed(ActionEvent e) {
+                  int r = red.getValue();
+                  int g = green.getValue();
+                  int b = blue.getValue();
+                  Cube.sFace_Colors[mColor] = new Color(r, g, b);
+                  dialog.setVisible(false);
+                  parentWindow.repaint();
+               }
+            });
+            controlButtons.add(ok);
+            
+            JButton cancel = new JButton("Cancel");
+            cancel.addActionListener(new ActionListener() {
+               @Override
+               public void actionPerformed(ActionEvent e) {
+                  dialog.setVisible(false);
+               }
+            });
+            controlButtons.add(cancel);
+            
+            container.add(controlButtons);
+            
+            dialog.pack();
+            dialog.setVisible(true);
+         }
+      });
+   }
+   
+   public void setCubeColor(int color) {
       mColor = color;
    }
    
-   public Cube.CubeColor getCubeColor() {
+   public int getCubeColor() {
       return mColor;
    }
    
@@ -50,14 +126,6 @@ public class CubeButton extends JButton {
    }
    
    private Color getColor() {
-      switch(mColor) {
-      case BLUE: return Color.BLUE;
-      case WHITE: return Color.WHITE;
-      case RED: return Color.RED;
-      case YELLOW: return Color.YELLOW;
-      case ORANGE: return Color.ORANGE;
-      case GREEN: return Color.GREEN;
-      default: return Color.BLACK;
-      }
+      return Cube.sFace_Colors[mColor];
    }
 }

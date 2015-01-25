@@ -1,65 +1,51 @@
 package solver;
 
+import java.awt.Color;
 import java.util.LinkedList;
 import java.util.Random;
 
 import solver.Solver.Move;
 
 
-public class Cube {
+public class Cube {   
+   public static Color sFace_Colors[] = {
+      Color.BLUE, Color.WHITE, Color.RED,
+      Color.YELLOW, Color.ORANGE, Color.GREEN
+   };
 
-   public static enum CubeColor {
-      BLUE,
-      WHITE,
-      RED,
-      YELLOW,
-      ORANGE,
-      GREEN
-   }
-
-   private static final int TOP = 0;
-   private static final int LEFT = 1;
-   private static final int FRONT = 2;
-   private static final int RIGHT = 3;
-   private static final int BACK = 4;
-   private static final int BOTTOM = 5;
+   public static final int TOP = 0;
+   public static final int LEFT = 1;
+   public static final int FRONT = 2;
+   public static final int RIGHT = 3;
+   public static final int BACK = 4;
+   public static final int BOTTOM = 5;
    
-   private CubeColor cube[][];
+   private int cube[][];
    
    public Cube() {
-      cube = new CubeColor[6][];
-      for(int i = 0; i < cube.length; i++) {
-         CubeColor color = null;
-         switch(i) {
-         case LEFT:   color = CubeColor.WHITE;   break;
-         case FRONT:  color = CubeColor.RED;     break;
-         case RIGHT:  color = CubeColor.YELLOW;  break;
-         case BACK:   color = CubeColor.ORANGE;  break;
-         case BOTTOM: color = CubeColor.GREEN;   break;
-         case TOP:    color = CubeColor.BLUE;    break;
-         }
-         
-         cube[i] = new CubeColor[9];
+      cube = new int[6][];
+      for(int i = 0; i < cube.length; i++) {         
+         cube[i] = new int[9];
          for(int j = 0; j < 9; j++) {
-            cube[i][j] = color;
+            cube[i][j] = i;
          }
       }
    }
    
    public Cube(Cube source) {
-      cube = new CubeColor[6][];
+      cube = new int[6][];
       for(int i = 0; i < cube.length; i++) {
-         cube[i] = new CubeColor[9];
+         cube[i] = new int[9];
          for(int j = 0; j < 9; j++) {
             cube[i][j] = source.cube[i][j];
          }
       }
    }
    
-   public Cube(Cube.CubeColor source[][]) {
-      cube = new CubeColor[6][];
+   public Cube(int source[][]) {
+      cube = new int[6][];
       for(int i = 0; i < cube.length; i++) {
-         cube[i] = new CubeColor[9];
+         cube[i] = new int[9];
          for(int j = 0; j < 9; j++) {
             cube[i][j] = source[i][j];
          }
@@ -167,7 +153,7 @@ public class Cube {
    };
    
    private void turnFaceClockwise(int face) {
-      CubeColor old = cube[face][0];
+      int old = cube[face][0];
       cube[face][0] = cube[face][6];
       cube[face][6] = cube[face][8];
       cube[face][8] = cube[face][2];
@@ -181,7 +167,7 @@ public class Cube {
    }
    
    private void turnFaceCounterclockwise(int face) {
-      CubeColor old = cube[face][0];
+      int old = cube[face][0];
       cube[face][0] = cube[face][2];
       cube[face][2] = cube[face][8];
       cube[face][8] = cube[face][6];
@@ -202,7 +188,7 @@ public class Cube {
       else
          turnFaceClockwise(transforms[transformIdx][step++]);
       
-      CubeColor oldColor;
+      int oldColor;
       for(int i = 0; i < 3; i++) {
          oldColor = cube[transforms[transformIdx][1]][ROW_OP_INDICES[transforms[transformIdx][2]][i]];
          
@@ -259,10 +245,10 @@ public class Cube {
       
    }
    
-   public Cube.CubeColor[][] getDescriptor() {
-      Cube.CubeColor descriptor[][] = new Cube.CubeColor[6][];
+   public int[][] getDescriptor() {
+      int descriptor[][] = new int[6][];
       for(int i = 0; i < 6; i++) {
-         descriptor[i] = new Cube.CubeColor[9];
+         descriptor[i] = new int[9];
          for(int j = 0; j < 9; j++) {
             descriptor[i][j] = cube[i][j];
          }
@@ -270,14 +256,14 @@ public class Cube {
       return descriptor;
    }
    
-   private String getColorCharacter(CubeColor color) {
+   private String getColorCharacter(int color) {
       switch(color) {
-      case BLUE: return "B";
-      case WHITE: return "W";
-      case RED: return "R";
-      case YELLOW: return "Y";
-      case ORANGE: return "O";
-      case GREEN: return "G";
+      case TOP: return "U";
+      case LEFT: return "L";
+      case FRONT: return "F";
+      case RIGHT: return "R";
+      case BACK: return "B";
+      case BOTTOM: return "D";
       default: return "I";
       }
    }

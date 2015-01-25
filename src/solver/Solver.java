@@ -89,7 +89,7 @@ public class Solver extends JFrame implements Runnable {
       return new ActionListener() {
          @Override
          public void actionPerformed(ActionEvent e) {
-            Cube.CubeColor descriptor[][] = mCubeInputPanel.getCubeDescriptor();
+            int descriptor[][] = mCubeInputPanel.getCubeDescriptor();
             Cube cube = new Cube(descriptor);
             LinkedList<Move> moves = cube.scramble(25);
             
@@ -105,7 +105,7 @@ public class Solver extends JFrame implements Runnable {
                }
             }
             
-            Cube.CubeColor scrambledDescriptor[][] = cube.getDescriptor();
+            int scrambledDescriptor[][] = cube.getDescriptor();
             mCubeInputPanel.setCubeDescriptor(scrambledDescriptor);
             
             output.setText(movelistString.toString());
@@ -130,7 +130,7 @@ public class Solver extends JFrame implements Runnable {
    }
    
    private void startSolving() {
-      Cube.CubeColor descriptor[][] = mCubeInputPanel.getCubeDescriptor();
+      int descriptor[][] = mCubeInputPanel.getCubeDescriptor();
       mStartingCube = new Cube(descriptor);
       mSolve = true;
    }
