@@ -75,7 +75,7 @@ public class LayerByLayerSolver implements SolvingAlgorithm {
          }
       } while(!nextAlgorithmQueue.isEmpty());
       
-      System.out.println("Edge Permutations Generated.");
+      System.out.println("Edge Permutations Generated: " + permutations.size());
       
       return permutations;
    }
