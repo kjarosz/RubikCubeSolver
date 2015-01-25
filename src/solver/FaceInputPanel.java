@@ -29,7 +29,11 @@ public class FaceInputPanel extends JPanel {
       
       mButtons = new CubeButton[9];
       for(int i = 0; i < 9; i++) {
-         mButtons[i] = new CubeButton(startingColor);
+         if(i == 4) { // Center button
+            mButtons[i] = new CubeButton(startingColor, true);
+         } else { // Other buttons
+            mButtons[i] = new CubeButton(startingColor, false);
+         }
          buttonPanel.add(mButtons[i]);
       }
       
