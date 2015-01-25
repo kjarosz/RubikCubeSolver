@@ -11,6 +11,7 @@ public class SolverFactory {
    private SolverFactory() {
       mAvailableAlgorithms = new HashMap<>();
       mAvailableAlgorithms.put("God's Algorithm", new IDASolver());
+      mAvailableAlgorithms.put("Layer By Layer", new LayerByLayerSolver());
    }
    
    public static SolverFactory getInstance() {
