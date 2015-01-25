@@ -7,7 +7,38 @@ import solver.algorithms.Algorithm.Move;
 
 
 public class Cube {
-
+   private static final int TOP = 0;
+   private static final int LEFT = 1;
+   private static final int FRONT = 2;
+   private static final int RIGHT = 3;
+   private static final int BACK = 4;
+   private static final int BOTTOM = 5;
+   
+   public static enum Edge {
+      UF, UR, UB, UL, 
+      DF, DR, DB, DL,
+      FL, FR, BR, BL,
+      FU, RU, BU, LU,
+      FD, RD, BD, LD,
+      LF, RF, RB, LB
+   }
+   
+   public static String EDGE_STRINGS[] = {
+      "UF", "UR", "UB", "UL", 
+      "DF", "DR", "DB", "DL",
+      "FL", "FR", "BR", "BL",
+      "FU", "RU", "BU", "LU",
+      "FD", "RD", "BD", "LD",
+      "LF", "RF", "RB", "LB"
+   };
+   
+   public final static int EDGE_LOCATIONS[][] = {
+      { TOP, 7, FRONT, 1 },  {TOP, 5, RIGHT, 2}, {TOP, 2, BACK, 2}, {TOP, 3, LEFT, 2},
+      { BOTTOM, 2, FRONT, 7}, {BOTTOM, 5, RIGHT, 7}, {BOTTOM, 7, BACK, 7}, {BOTTOM, 3, BACK, 7},
+      { FRONT, 3, LEFT, 5}, {FRONT, 5, RIGHT, 3}, {BACK, 3, RIGHT, 5}, {BACK, 5, LEFT, 3}
+   };
+   
+   
    public static enum CubeColor {
       BLUE,
       WHITE,
@@ -16,13 +47,6 @@ public class Cube {
       ORANGE,
       GREEN
    }
-
-   private static final int TOP = 0;
-   private static final int LEFT = 1;
-   private static final int FRONT = 2;
-   private static final int RIGHT = 3;
-   private static final int BACK = 4;
-   private static final int BOTTOM = 5;
    
    private CubeColor cube[][];
    
@@ -279,6 +303,87 @@ public class Cube {
       case ORANGE: return "O";
       case GREEN: return "G";
       default: return "I";
+      }
+   }
+   
+   public Edge findEdge(Edge edge) {
+      int indices[] = convertEdgeToIndices(edge);
+      Cube.CubeColor edgeColors[] = getEdgeColors(indices);
+      return findEdgeLocation(edgeColors);
+   }
+   
+   private Cube.CubeColor[] getEdgeColors(int indices[]) {
+      Cube.CubeColor colors[] = new Cube.CubeColor[2];
+      colors[0] = cube[indices[0]][5];
+      colors[1] = cube[indices[1]][5];
+      return colors;
+   }
+   
+   private Edge findEdgeLocation(Cube.CubeColor edgeColors[]) {
+      for(int i = 0; i < EDGE_LOCATIONS.length; i++) {
+         if (edgeMatches(edgeColors, i, false)) {
+            return Edge.values()[i];
+         }
+         if(edgeMatches(edgeColors, i, true)) {
+            return Edge.values()[i+12];
+         }
+      }
+      throw new RuntimeException("Invalid color combination.");
+   }
+   
+   private boolean edgeMatches(Cube.CubeColor colors[], int edge, boolean inverted) {
+      if(!inverted) {
+         return colors[0] == cube[EDGE_LOCATIONS[edge][0]][EDGE_LOCATIONS[edge][1]] 
+                     &&
+             colors[1] == cube[EDGE_LOCATIONS[edge][2]][EDGE_LOCATIONS[edge][3]];
+      } else {
+         return colors[1] == cube[EDGE_LOCATIONS[edge][0]][EDGE_LOCATIONS[edge][1]] 
+                     &&
+             colors[0] == cube[EDGE_LOCATIONS[edge][2]][EDGE_LOCATIONS[edge][3]];
+      }
+   }
+   
+   public int[] convertEdgeToIndices(Edge edge) {
+      int edge_index = edge.ordinal();
+      int indices[] = new int[4];
+      if(edge_index < 12) {
+         for(int i = 0; i < 4; i++) {
+            indices[i] = EDGE_LOCATIONS[edge_index][i];
+         }
+      } else {
+         int i = 0;
+         indices[i++] = EDGE_LOCATIONS[edge_index][2];
+         indices[i++] = EDGE_LOCATIONS[edge_index][3];
+         indices[i++] = EDGE_LOCATIONS[edge_index][0];
+         indices[i++] = EDGE_LOCATIONS[edge_index][1];
+      }
+      return indices;
+   }
+   
+   public Edge convertIndicesToEdge(int indices[]) {
+      for(int i = 0; i < EDGE_LOCATIONS.length; i++) {
+         if(indicesMatch(i, indices, false)) {
+            return Edge.values()[i];
+         }
+         if(indicesMatch(i, indices, true)) {
+            return Edge.values()[i+12];
+         }
+      }
+      throw new RuntimeException("Invalid indices");
+   }
+   
+   private boolean indicesMatch(int edge, int indices[], boolean inverted) {
+      if(!inverted) {
+         for(int i = 0; i < 4; i++) {
+            if(indices[i] != EDGE_LOCATIONS[edge][i])
+               return false;
+         }
+         return true;
+      } else {
+         return indices[0] == EDGE_LOCATIONS[edge][2] &&
+               indices[1] == EDGE_LOCATIONS[edge][3] &&
+               indices[2] == EDGE_LOCATIONS[edge][0] &&
+               indices[3] == EDGE_LOCATIONS[edge][1];
       }
    }
    
