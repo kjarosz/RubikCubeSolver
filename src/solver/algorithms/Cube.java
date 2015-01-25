@@ -347,7 +347,7 @@ public class Cube {
       }
    }
    
-   public int[] convertEdgeToIndices(Edge edge) {
+   private int[] convertEdgeToIndices(Edge edge) {
       int edge_index = edge.ordinal();
       int indices[] = new int[4];
       if(edge_index < 12) {
@@ -356,39 +356,12 @@ public class Cube {
          }
       } else {
          int i = 0;
-         indices[i++] = EDGE_LOCATIONS[edge_index][2];
-         indices[i++] = EDGE_LOCATIONS[edge_index][3];
-         indices[i++] = EDGE_LOCATIONS[edge_index][0];
-         indices[i++] = EDGE_LOCATIONS[edge_index][1];
+         indices[i++] = EDGE_LOCATIONS[edge_index-12][2];
+         indices[i++] = EDGE_LOCATIONS[edge_index-12][3];
+         indices[i++] = EDGE_LOCATIONS[edge_index-12][0];
+         indices[i++] = EDGE_LOCATIONS[edge_index-12][1];
       }
       return indices;
-   }
-   
-   public Edge convertIndicesToEdge(int indices[]) {
-      for(int i = 0; i < EDGE_LOCATIONS.length; i++) {
-         if(indicesMatch(i, indices, false)) {
-            return Edge.values()[i];
-         }
-         if(indicesMatch(i, indices, true)) {
-            return Edge.values()[i+12];
-         }
-      }
-      throw new RuntimeException("Invalid indices");
-   }
-   
-   private boolean indicesMatch(int edge, int indices[], boolean inverted) {
-      if(!inverted) {
-         for(int i = 0; i < 4; i++) {
-            if(indices[i] != EDGE_LOCATIONS[edge][i])
-               return false;
-         }
-         return true;
-      } else {
-         return indices[0] == EDGE_LOCATIONS[edge][2] &&
-               indices[1] == EDGE_LOCATIONS[edge][3] &&
-               indices[2] == EDGE_LOCATIONS[edge][0] &&
-               indices[3] == EDGE_LOCATIONS[edge][1];
-      }
    }
    
    public void printCube() {
