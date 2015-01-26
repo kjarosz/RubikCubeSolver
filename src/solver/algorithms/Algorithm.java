@@ -1,27 +1,27 @@
 package solver.algorithms;
 
+import java.util.Iterator;
 import java.util.LinkedList;
 
 
 public class Algorithm {
-   public static enum Move {
-     L, Li, F, Fi, R, Ri,
-     B, Bi, U, Ui, D, Di;
-   }
+   public static final byte 
+   L = 0, Li = 1, F = 2, Fi = 3, R = 4, Ri = 5,
+   B = 6, Bi = 7, U = 8, Ui = 9, D = 10, Di = 11;
      
    public static final String MOVE_STRINGS[] = {
      "L ", "Li", "F ", "Fi", "R ", "Ri", "B ", "Bi", "U ", "Ui", "D ", "Di"
    };
      
    public Cube cubeState;
-   public LinkedList<Move> moves;
+   public LinkedList<Byte> moves;
    
    public Algorithm(Cube cube) {
       cubeState = new Cube(cube);
       moves = new LinkedList<>();
    }
    
-   public Algorithm(Algorithm algorithm, Move newMove) {
+   public Algorithm(Algorithm algorithm, byte newMove) {
       cubeState = new Cube(algorithm.cubeState);
       cubeState.performTransform(newMove);
       moves = new LinkedList<>(algorithm.moves);
@@ -31,18 +31,17 @@ public class Algorithm {
    public Algorithm getReverseAlgorithm() {
       Algorithm algorithm = new Algorithm(cubeState);
       
-      Move values[] = Move.values();
-      for(Move move: moves) {
-         int ordinal = move.ordinal();
-         if(ordinal % 2 == 0) {
-            algorithm.moves.addFirst(values[ordinal+1]);
+      for(byte move = 0; move < 12; move++) {
+         if(move % 2 == 0) {
+            algorithm.moves.addFirst(move);
          } else {
-            algorithm.moves.addFirst(values[ordinal]);
+            algorithm.moves.addFirst(move);
          }
       }
       
-      for(Move move: algorithm.moves) {
-         algorithm.cubeState.performTransform(move);
+      Iterator<Byte> moveset = algorithm.moves.iterator();
+      while(moveset.hasNext()) {
+         algorithm.cubeState.performTransform(moveset.next().byteValue());
       }
       
       return algorithm;

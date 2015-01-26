@@ -4,39 +4,35 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
 
-import solver.algorithms.Algorithm.Move;
-import solver.algorithms.Cube.Edge;
 import solver.ui.ProgressReporter;
 
 public class LayerByLayerSolver implements SolvingAlgorithm {
 
    private boolean mStop;
    
-   private HashMap<String, Move[]> mFLEPermutations;
+   private HashMap<String, byte[]> mFLEPermutations;
    
    public LayerByLayerSolver() {
       mFLEPermutations = generateFLEPermutations();
    }
    
-   private HashMap<String, Move[]> generateFLEPermutations() {
+   private HashMap<String, byte[]> generateFLEPermutations() {
       System.out.println("Generating Edge Arrangements.");
       
-      HashMap<String, Move[]> permutations = new HashMap<>();
+      HashMap<String, byte[]> permutations = new HashMap<>();
       
       Cube startCube = new Cube();
-      permutations.put(getBottomEdgeArrangement(startCube), new Move[0]);
-      
-      Move moveset[] = Move.values();
+      permutations.put(getBottomEdgeArrangement(startCube), new byte[0]);
       
       Algorithm startAlg = new Algorithm(startCube);
       LinkedList<Algorithm> algorithmQueue = new LinkedList<>();
-      for(int i = 0; i < 12; i++) {
-         Algorithm newAlgorithm = new Algorithm(startAlg, moveset[i]);
+      for(byte i = 0; i < 12; i++) {
+         Algorithm newAlgorithm = new Algorithm(startAlg, i);
          algorithmQueue.add(newAlgorithm);
          
          String arrangement = getBottomEdgeArrangement(newAlgorithm.cubeState);
-         Move move[] = new Move[1];
-         move[0] = moveset[i];
+         byte move[] = new byte[1];
+         move[0] = i;
          permutations.put(arrangement, move);
       }
 
@@ -55,8 +51,8 @@ public class LayerByLayerSolver implements SolvingAlgorithm {
             Algorithm alg = algorithmQueue.removeFirst();
             
             moveLoop:
-            for(int i = 0; i < 12; i++) {
-               Algorithm newAlg = new Algorithm(alg, moveset[i]);
+            for(byte i = 0; i < 12; i++) {
+               Algorithm newAlg = new Algorithm(alg, i);
                
                String arrangement = getBottomEdgeArrangement(newAlg.cubeState);
                if(permutations.containsKey(arrangement)) {
@@ -65,8 +61,8 @@ public class LayerByLayerSolver implements SolvingAlgorithm {
                
                nextAlgorithmQueue.add(newAlg);
                
-               Move moves[] = new Move[newAlg.moves.size()];
-               Iterator<Move> moveIt = newAlg.moves.iterator();
+               byte moves[] = new byte[newAlg.moves.size()];
+               Iterator<Byte> moveIt = newAlg.moves.iterator();
                for(int j = 0; j < moves.length; j++) {
                   moves[j] = moveIt.next();
                }
@@ -82,12 +78,11 @@ public class LayerByLayerSolver implements SolvingAlgorithm {
    }
    
    private String getBottomEdgeArrangement(Cube cube) {
-      final Edge EDGES[] = { Edge.DF, Edge.DR, Edge.DB, Edge.DL };
+      final byte EDGES[] = { Cube.DF, Cube.DR, Cube.DB, Cube.DL };
       
       StringBuilder builder = new StringBuilder();
-      for(Edge edge: EDGES) {
-         Edge edgeLocation = cube.findEdge(edge);
-         builder.append(Cube.EDGE_STRINGS[edgeLocation.ordinal()]);
+      for(byte edge: EDGES) {
+         builder.append(Cube.EDGE_STRINGS[edge]);
       }
       return builder.toString();
    }
@@ -112,9 +107,9 @@ public class LayerByLayerSolver implements SolvingAlgorithm {
    
    private Algorithm solveFirstLayer(Cube startingCube) {
       String arrangement = getBottomEdgeArrangement(startingCube);
-      Move moves[] = (Move[])mFLEPermutations.get(arrangement);
+      byte moves[] = (byte[])mFLEPermutations.get(arrangement);
       Algorithm alg = new Algorithm(startingCube);
-      for(Move move: moves) {
+      for(byte move: moves) {
          alg.cubeState.performTransform(move);
          alg.moves.add(move);
       }

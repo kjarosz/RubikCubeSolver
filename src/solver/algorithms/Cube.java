@@ -3,25 +3,25 @@ package solver.algorithms;
 import java.util.LinkedList;
 import java.util.Random;
 
-import solver.algorithms.Algorithm.Move;
-
 
 public class Cube {
-   private static final int TOP = 0;
-   private static final int LEFT = 1;
-   private static final int FRONT = 2;
-   private static final int RIGHT = 3;
-   private static final int BACK = 4;
-   private static final int BOTTOM = 5;
+   // FACES
+   public static final byte 
+   TOP = 0,
+   LEFT = 1,
+   FRONT = 2,
+   RIGHT = 3,
+   BACK = 4,
+   BOTTOM = 5;
    
-   public static enum Edge {
-      UF, UR, UB, UL, 
-      DF, DR, DB, DL,
-      FL, FR, BR, BL,
-      FU, RU, BU, LU,
-      FD, RD, BD, LD,
-      LF, RF, RB, LB
-   }
+   // EDGES
+   public static final byte 
+   UF = 0, UR = 1, UB = 2, UL = 3,
+   DF = 4, DR = 5, DB = 6, DL = 7,
+   FL = 8, FR = 9, BR = 10, BL = 11,
+   FU = 12, RU = 13, BU = 14, LU = 15,
+   FD = 16, RD = 17, BD = 18, LD = 19,
+   LF = 20, RF = 21, RB = 22, LB = 23;
    
    public static String EDGE_STRINGS[] = {
       "UF", "UR", "UB", "UL", 
@@ -32,58 +32,38 @@ public class Cube {
       "LF", "RF", "RB", "LB"
    };
    
-   public final static int EDGE_LOCATIONS[][] = {
+   public final static byte EDGE_LOCATIONS[][] = {
       { TOP, 7, FRONT, 1 },  {TOP, 5, RIGHT, 1}, {TOP, 1, BACK, 1}, {TOP, 3, LEFT, 1},
       { BOTTOM, 1, FRONT, 7}, {BOTTOM, 5, RIGHT, 7}, {BOTTOM, 7, BACK, 7}, {BOTTOM, 3, LEFT, 7},
       { FRONT, 3, LEFT, 5}, {FRONT, 5, RIGHT, 3}, {BACK, 3, RIGHT, 5}, {BACK, 5, LEFT, 3}
    };
    
-   
-   public static enum CubeColor {
-      BLUE,
-      WHITE,
-      RED,
-      YELLOW,
-      ORANGE,
-      GREEN
-   }
-   
-   private CubeColor cube[][];
+   private byte cube[][];
    
    public Cube() {
-      cube = new CubeColor[6][];
-      for(int i = 0; i < cube.length; i++) {
-         CubeColor color = null;
-         switch(i) {
-         case LEFT:   color = CubeColor.WHITE;   break;
-         case FRONT:  color = CubeColor.RED;     break;
-         case RIGHT:  color = CubeColor.YELLOW;  break;
-         case BACK:   color = CubeColor.ORANGE;  break;
-         case BOTTOM: color = CubeColor.GREEN;   break;
-         case TOP:    color = CubeColor.BLUE;    break;
-         }
-         
-         cube[i] = new CubeColor[9];
+      cube = new byte[6][];
+      for(byte i = 0; i < cube.length; i++) {         
+         cube[i] = new byte[9];
          for(int j = 0; j < 9; j++) {
-            cube[i][j] = color;
+            cube[i][j] = i;
          }
       }
    }
    
    public Cube(Cube source) {
-      cube = new CubeColor[6][];
+      cube = new byte[6][];
       for(int i = 0; i < cube.length; i++) {
-         cube[i] = new CubeColor[9];
+         cube[i] = new byte[9];
          for(int j = 0; j < 9; j++) {
             cube[i][j] = source.cube[i][j];
          }
       }
    }
    
-   public Cube(Cube.CubeColor source[][]) {
-      cube = new CubeColor[6][];
+   public Cube(byte source[][]) {
+      cube = new byte[6][];
       for(int i = 0; i < cube.length; i++) {
-         cube[i] = new CubeColor[9];
+         cube[i] = new byte[9];
          for(int j = 0; j < 9; j++) {
             cube[i][j] = source[i][j];
          }
@@ -102,20 +82,20 @@ public class Cube {
    }
    
    // ROW_OPS
-   private static final int 
+   private static final byte 
    ROW_TOP_LEFT = 0,
    ROW_LEFT_DOWN = 1,
    ROW_BOTTOM_RIGHT = 2,
    ROW_RIGHT_UP = 3;
    
-   private static final int ROW_OP_INDICES[][] = {
+   private static final byte ROW_OP_INDICES[][] = {
       { 2, 1, 0 }, // ROW_TOP_LEFT
       { 0, 3, 6 }, // ROW_LEFT_DOWN
       { 6, 7, 8 }, // ROW_BOTTOM_RIGHT
       { 8, 5, 2 }  // ROW_RIGHT_UP
    };
    
-   private static final int transforms[][] = {
+   private static final byte transforms[][] = {
       // L
       {LEFT, TOP, ROW_LEFT_DOWN,
             BACK, ROW_RIGHT_UP, TOP, ROW_LEFT_DOWN,
@@ -191,7 +171,7 @@ public class Cube {
    };
    
    private void turnFaceClockwise(int face) {
-      CubeColor old = cube[face][0];
+      byte old = cube[face][0];
       cube[face][0] = cube[face][6];
       cube[face][6] = cube[face][8];
       cube[face][8] = cube[face][2];
@@ -205,7 +185,7 @@ public class Cube {
    }
    
    private void turnFaceCounterclockwise(int face) {
-      CubeColor old = cube[face][0];
+      byte old = cube[face][0];
       cube[face][0] = cube[face][2];
       cube[face][2] = cube[face][8];
       cube[face][8] = cube[face][6];
@@ -218,42 +198,39 @@ public class Cube {
       cube[face][3] = old;
    }
    
-   public void performTransform(Move transform) {
-      int transformIdx = transform.ordinal();
+   public void performTransform(byte transform) {
       int step = 0;
-      if(transformIdx % 2 != 0)
-         turnFaceCounterclockwise(transforms[transformIdx][step++]);
+      if(transform % 2 != 0)
+         turnFaceCounterclockwise(transforms[transform][step++]);
       else
-         turnFaceClockwise(transforms[transformIdx][step++]);
+         turnFaceClockwise(transforms[transform][step++]);
       
-      CubeColor oldColor;
+      byte oldColor;
       for(int i = 0; i < 3; i++) {
-         oldColor = cube[transforms[transformIdx][1]][ROW_OP_INDICES[transforms[transformIdx][2]][i]];
+         oldColor = cube[transforms[transform][1]][ROW_OP_INDICES[transforms[transform][2]][i]];
          
-         cube[transforms[transformIdx][5]][ROW_OP_INDICES[transforms[transformIdx][6]][i]] =
-               cube[transforms[transformIdx][3]][ROW_OP_INDICES[transforms[transformIdx][4]][i]];
+         cube[transforms[transform][5]][ROW_OP_INDICES[transforms[transform][6]][i]] =
+               cube[transforms[transform][3]][ROW_OP_INDICES[transforms[transform][4]][i]];
          
-         cube[transforms[transformIdx][9]][ROW_OP_INDICES[transforms[transformIdx][10]][i]] =
-               cube[transforms[transformIdx][7]][ROW_OP_INDICES[transforms[transformIdx][8]][i]];
+         cube[transforms[transform][9]][ROW_OP_INDICES[transforms[transform][10]][i]] =
+               cube[transforms[transform][7]][ROW_OP_INDICES[transforms[transform][8]][i]];
          
-         cube[transforms[transformIdx][13]][ROW_OP_INDICES[transforms[transformIdx][14]][i]] =
-               cube[transforms[transformIdx][11]][ROW_OP_INDICES[transforms[transformIdx][12]][i]];
+         cube[transforms[transform][13]][ROW_OP_INDICES[transforms[transform][14]][i]] =
+               cube[transforms[transform][11]][ROW_OP_INDICES[transforms[transform][12]][i]];
          
-         cube[transforms[transformIdx][15]][ROW_OP_INDICES[transforms[transformIdx][16]][i]] = oldColor;
+         cube[transforms[transform][15]][ROW_OP_INDICES[transforms[transform][16]][i]] = oldColor;
                
          
       }
    }
    
-   public LinkedList<Move> scramble(int moves) {
-      LinkedList<Move> scrambleMoveset = new LinkedList<>();
+   public LinkedList<Byte> scramble(int moves) {
+      LinkedList<Byte> scrambleMoveset = new LinkedList<>();
       
       Random random = new Random();
-      Move moveset[] = Move.values();
-      Move move = null;
-      for(int i = 0; i < moves; i++) {
+      for(byte i = 0, move; i < moves; i++) {
          do {
-            move = moveset[random.nextInt(moveset.length)];
+            move = (byte)random.nextInt(12);
          } while(moveIsStupid(scrambleMoveset, move));
          
          performTransform(move);
@@ -263,30 +240,29 @@ public class Cube {
       return scrambleMoveset;
    }
       
-   private boolean moveIsStupid(LinkedList<Move> scrambleMoveset, Move move) {
+   private boolean moveIsStupid(LinkedList<Byte> scrambleMoveset, byte move) {
       if(scrambleMoveset.isEmpty())
          return false;
       
-      Move lastMove = scrambleMoveset.getLast();
+      byte lastMove = scrambleMoveset.getLast();
       
       // Do not repeat move
       if(move == lastMove)
          return true;
       
       // If move undoes the last one.
-      int moveIdx = move.ordinal();
-      if(moveIdx % 2 == 0) {
-         return lastMove.ordinal() == moveIdx + 1;
+      if(move % 2 == 0) {
+         return lastMove == move + 1;
       } else {
-         return lastMove.ordinal() == moveIdx - 1;
+         return lastMove == move - 1;
       }
       
    }
    
-   public Cube.CubeColor[][] getDescriptor() {
-      Cube.CubeColor descriptor[][] = new Cube.CubeColor[6][];
+   public byte[][] getDescriptor() {
+      byte descriptor[][] = new byte[6][];
       for(int i = 0; i < 6; i++) {
-         descriptor[i] = new Cube.CubeColor[9];
+         descriptor[i] = new byte[9];
          for(int j = 0; j < 9; j++) {
             descriptor[i][j] = cube[i][j];
          }
@@ -294,48 +270,44 @@ public class Cube {
       return descriptor;
    }
    
-   private String getColorCharacter(CubeColor color) {
+   private String getColorCharacter(byte color) {
       switch(color) {
-      case BLUE: return "B";
-      case WHITE: return "W";
-      case RED: return "R";
-      case YELLOW: return "Y";
-      case ORANGE: return "O";
-      case GREEN: return "G";
+      case TOP: return "U";
+      case LEFT: return "L";
+      case FRONT: return "F";
+      case RIGHT: return "R";
+      case BACK: return "B";
+      case BOTTOM: return "D";
       default: return "I";
       }
    }
    
-   public Edge findEdge(Edge edge) {
-      int indices[] = convertEdgeToIndices(edge);
-      Cube.CubeColor edgeColors[] = getEdgeColors(indices);
+   public byte findEdge(byte edge) {
+      byte indices[] = convertEdgeToIndices(edge);
+      byte edgeColors[] = getEdgeColors(indices);
       return findEdgeLocation(edgeColors);
    }
    
-   private Cube.CubeColor[] getEdgeColors(int indices[]) {
-      Cube.CubeColor colors[] = new Cube.CubeColor[2];
+   private byte[] getEdgeColors(byte indices[]) {
+      byte colors[] = new byte[2];
       colors[0] = cube[indices[0]][4];
       colors[1] = cube[indices[2]][4];
       return colors;
    }
    
-   private Edge findEdgeLocation(Cube.CubeColor edgeColors[]) {
-      for(int i = 0; i < EDGE_LOCATIONS.length; i++) {         
+   private byte findEdgeLocation(byte edgeColors[]) {
+      for(byte i = 0; i < EDGE_LOCATIONS.length; i++) {         
          if (edgeMatches(edgeColors, i, false)) {
-            return Edge.values()[i];
+            return i;
          }
          if(edgeMatches(edgeColors, i, true)) {
-            return Edge.values()[i+12];
+            return (byte) (i + 12);
          }
       }
-      int edge = Edge.DL.ordinal();
-      System.out.println(edgeColors[0] + ", " + edgeColors[1]);
-      System.out.println(cube[EDGE_LOCATIONS[edge][0]][EDGE_LOCATIONS[edge][1]]);
-      System.out.println(cube[EDGE_LOCATIONS[edge][2]][EDGE_LOCATIONS[edge][3]]);
       throw new RuntimeException("Invalid color combination.");
    }
    
-   private boolean edgeMatches(Cube.CubeColor colors[], int edge, boolean inverted) {
+   private boolean edgeMatches(byte colors[], int edge, boolean inverted) {
       if(!inverted) {
          return colors[0] == cube[EDGE_LOCATIONS[edge][0]][EDGE_LOCATIONS[edge][1]] 
                      &&
@@ -347,19 +319,18 @@ public class Cube {
       }
    }
    
-   private int[] convertEdgeToIndices(Edge edge) {
-      int edge_index = edge.ordinal();
-      int indices[] = new int[4];
-      if(edge_index < 12) {
-         for(int i = 0; i < 4; i++) {
-            indices[i] = EDGE_LOCATIONS[edge_index][i];
+   private byte[] convertEdgeToIndices(byte edge) {
+      byte indices[] = new byte[4];
+      if(edge < 12) {
+         for(byte i = 0; i < 4; i++) {
+            indices[i] = EDGE_LOCATIONS[edge][i];
          }
       } else {
          int i = 0;
-         indices[i++] = EDGE_LOCATIONS[edge_index-12][2];
-         indices[i++] = EDGE_LOCATIONS[edge_index-12][3];
-         indices[i++] = EDGE_LOCATIONS[edge_index-12][0];
-         indices[i++] = EDGE_LOCATIONS[edge_index-12][1];
+         indices[i++] = EDGE_LOCATIONS[edge-12][2];
+         indices[i++] = EDGE_LOCATIONS[edge-12][3];
+         indices[i++] = EDGE_LOCATIONS[edge-12][0];
+         indices[i++] = EDGE_LOCATIONS[edge-12][1];
       }
       return indices;
    }

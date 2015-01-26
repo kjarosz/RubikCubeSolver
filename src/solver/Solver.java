@@ -14,7 +14,6 @@ import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 
 import solver.algorithms.Algorithm;
-import solver.algorithms.Algorithm.Move;
 import solver.algorithms.Cube;
 import solver.algorithms.SolverFactory;
 import solver.algorithms.SolvingAlgorithm;
@@ -91,14 +90,14 @@ public class Solver extends JFrame implements Runnable, ProgressReporter {
       return new ActionListener() {
          @Override
          public void actionPerformed(ActionEvent e) {
-            Cube.CubeColor descriptor[][] = mCubeInputPanel.getCubeDescriptor();
+            byte descriptor[][] = mCubeInputPanel.getCubeDescriptor();
             Cube cube = new Cube(descriptor);
-            LinkedList<Move> moves = cube.scramble(25);
+            LinkedList<Byte> moves = cube.scramble(25);
             
             StringBuilder movelistString = new StringBuilder();
             int newlineCounter = 0;
-            for(Move move: moves) {
-               String moveStr = Algorithm.MOVE_STRINGS[move.ordinal()];
+            for(Byte move: moves) {
+               String moveStr = Algorithm.MOVE_STRINGS[move];
                movelistString.append(moveStr + " ");
                newlineCounter++;
                if(newlineCounter == 13) {
@@ -107,7 +106,7 @@ public class Solver extends JFrame implements Runnable, ProgressReporter {
                }
             }
             
-            Cube.CubeColor scrambledDescriptor[][] = cube.getDescriptor();
+            byte scrambledDescriptor[][] = cube.getDescriptor();
             mCubeInputPanel.setCubeDescriptor(scrambledDescriptor);
             
             output.setText(movelistString.toString());
@@ -157,7 +156,7 @@ public class Solver extends JFrame implements Runnable, ProgressReporter {
    }
    
    private void solveCube() {
-      Cube.CubeColor descriptor[][] = mCubeInputPanel.getCubeDescriptor();
+      byte descriptor[][] = mCubeInputPanel.getCubeDescriptor();
       Cube startingCube = new Cube(descriptor);
       
       String algorithmName = (String)mAlgorithmSelector.getSelectedItem();
@@ -180,8 +179,8 @@ public class Solver extends JFrame implements Runnable, ProgressReporter {
    
    private void outputSolution(Algorithm solution) {
       final StringBuilder solutionString = new StringBuilder();
-      for(Move move: solution.moves) {
-         solutionString.insert(0, Algorithm.MOVE_STRINGS[move.ordinal()] + " ");
+      for(Byte move: solution.moves) {
+         solutionString.insert(0, Algorithm.MOVE_STRINGS[move] + " ");
       }
       SwingUtilities.invokeLater(new Runnable() {
          @Override

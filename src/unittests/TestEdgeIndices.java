@@ -4,40 +4,39 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import solver.algorithms.Algorithm.Move;
+import solver.algorithms.Algorithm;
 import solver.algorithms.Cube;
-import solver.algorithms.Cube.Edge;
 
 public class TestEdgeIndices {
 
-   final static Move MOVESET[] = {
-      Move.Ri, Move.B, Move.U, Move.F, Move.R, Move.D, Move.Li, 
-      Move.F, Move.Li, Move.Fi, Move.U, Move.D, Move.R,
-      Move.Bi, Move.Ri, Move.D, Move.F, Move.Di, Move.R, Move.Di, 
-      Move.Ui, Move.Ri, Move.Li, Move.Bi, Move.L  
+   final static byte MOVESET[] = {
+      Algorithm.Ri, Algorithm.B, Algorithm.U, Algorithm.F, Algorithm.R, Algorithm.D, Algorithm.Li, 
+      Algorithm.F, Algorithm.Li, Algorithm.Fi, Algorithm.U, Algorithm.D, Algorithm.R,
+      Algorithm.Bi, Algorithm.Ri, Algorithm.D, Algorithm.F, Algorithm.Di, Algorithm.R, Algorithm.Di, 
+      Algorithm.Ui, Algorithm.Ri, Algorithm.Li, Algorithm.Bi, Algorithm.L  
    };
    
-   final static Edge SOLUTIONS[] = {
-      Edge.DL, Edge.BL, Edge.DR, Edge.DB,
-      Edge.BU, Edge.FD, Edge.FL, Edge.UR,
-      Edge.FU, Edge.UL, Edge.RB, Edge.FR,
-      Edge.LD, Edge.LB, Edge.RD, Edge.BD,
-      Edge.UB, Edge.DF, Edge.LF, Edge.RU,
-      Edge.UF, Edge.LU, Edge.BR, Edge.RF
+   final static byte SOLUTIONS[] = {
+      Cube.DL, Cube.BL, Cube.DR, Cube.DB,
+      Cube.BU, Cube.FD, Cube.FL, Cube.UR,
+      Cube.FU, Cube.UL, Cube.RB, Cube.FR,
+      Cube.LD, Cube.LB, Cube.RD, Cube.BD,
+      Cube.UB, Cube.DF, Cube.LF, Cube.RU,
+      Cube.UF, Cube.LU, Cube.BR, Cube.RF
    };
    
    @Test
    public void testEdgeIndices() {
       Cube cube = new Cube();
       
-      for(Move move: MOVESET) {
+      for(byte move: MOVESET) {
          cube.performTransform(move);
       }
       
-      for(Edge edge: Cube.Edge.values()) {
+      for(byte edge = 0; edge < 24; edge++) {
          
-         Edge location = cube.findEdge(edge);
-         assertTrue("Failed at " + edge + ".\n" + SOLUTIONS[edge.ordinal()] + " != " + location, SOLUTIONS[edge.ordinal()] == location);
+         byte location = cube.findEdge(edge);
+         assertTrue("Failed at " + edge + ".\n" + SOLUTIONS[edge] + " != " + location, SOLUTIONS[edge] == location);
       }
    }
 

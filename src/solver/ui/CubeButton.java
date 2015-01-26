@@ -13,9 +13,9 @@ import solver.algorithms.Cube;
 public class CubeButton extends JButton {
    private static final Dimension BUTTON_SIZE = new Dimension(25, 25);
    
-   private Cube.CubeColor mColor;
+   private byte mColor;
    
-   public CubeButton(Cube.CubeColor color) {
+   public CubeButton(byte color) {
       setMinimumSize(BUTTON_SIZE);
       setPreferredSize(BUTTON_SIZE);
       setMaximumSize(BUTTON_SIZE);
@@ -37,11 +37,11 @@ public class CubeButton extends JButton {
       });
    }
    
-   public void setCubeColor(Cube.CubeColor color) {
+   public void setCubeColor(byte color) {
       mColor = color;
    }
    
-   public Cube.CubeColor getCubeColor() {
+   public byte getCubeColor() {
       return mColor;
    }
    
@@ -53,12 +53,12 @@ public class CubeButton extends JButton {
    
    private Color getColor() {
       switch(mColor) {
-      case BLUE: return Color.BLUE;
-      case WHITE: return Color.WHITE;
-      case RED: return Color.RED;
-      case YELLOW: return Color.YELLOW;
-      case ORANGE: return Color.ORANGE;
-      case GREEN: return Color.GREEN;
+      case Cube.TOP: return Color.BLUE;
+      case Cube.LEFT: return Color.WHITE;
+      case Cube.FRONT: return Color.RED;
+      case Cube.RIGHT: return Color.YELLOW;
+      case Cube.BACK: return Color.ORANGE;
+      case Cube.BOTTOM: return Color.GREEN;
       default: return Color.BLACK;
       }
    }

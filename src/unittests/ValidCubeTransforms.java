@@ -3,773 +3,773 @@ package unittests;
 import solver.algorithms.Cube;
 
 public class ValidCubeTransforms {
-   public static Cube.CubeColor TEST_RESULTS[][][] = {
+   public static byte TEST_RESULTS[][][] = {
       { // L 
          { // TOP
-            Cube.CubeColor.ORANGE,          Cube.CubeColor.BLUE,          Cube.CubeColor.BLUE, 
-            Cube.CubeColor.ORANGE,          Cube.CubeColor.BLUE,          Cube.CubeColor.BLUE, 
-            Cube.CubeColor.ORANGE,          Cube.CubeColor.BLUE,          Cube.CubeColor.BLUE
+            Cube.BACK,          Cube.TOP,          Cube.TOP, 
+            Cube.BACK,          Cube.TOP,          Cube.TOP, 
+            Cube.BACK,          Cube.TOP,          Cube.TOP
          },
          { // LEFT
-            Cube.CubeColor.WHITE,          Cube.CubeColor.WHITE,          Cube.CubeColor.WHITE, 
-            Cube.CubeColor.WHITE,          Cube.CubeColor.WHITE,          Cube.CubeColor.WHITE, 
-            Cube.CubeColor.WHITE,          Cube.CubeColor.WHITE,          Cube.CubeColor.WHITE
+            Cube.LEFT,          Cube.LEFT,          Cube.LEFT, 
+            Cube.LEFT,          Cube.LEFT,          Cube.LEFT, 
+            Cube.LEFT,          Cube.LEFT,          Cube.LEFT
          },
          { // FRONT
-            Cube.CubeColor.BLUE,          Cube.CubeColor.RED,          Cube.CubeColor.RED, 
-            Cube.CubeColor.BLUE,          Cube.CubeColor.RED,          Cube.CubeColor.RED, 
-            Cube.CubeColor.BLUE,          Cube.CubeColor.RED,          Cube.CubeColor.RED
+            Cube.TOP,          Cube.FRONT,          Cube.FRONT, 
+            Cube.TOP,          Cube.FRONT,          Cube.FRONT, 
+            Cube.TOP,          Cube.FRONT,          Cube.FRONT
          },
          { // RIGHT
-            Cube.CubeColor.YELLOW,          Cube.CubeColor.YELLOW,          Cube.CubeColor.YELLOW, 
-            Cube.CubeColor.YELLOW,          Cube.CubeColor.YELLOW,          Cube.CubeColor.YELLOW, 
-            Cube.CubeColor.YELLOW,          Cube.CubeColor.YELLOW,          Cube.CubeColor.YELLOW
+            Cube.RIGHT,          Cube.RIGHT,          Cube.RIGHT, 
+            Cube.RIGHT,          Cube.RIGHT,          Cube.RIGHT, 
+            Cube.RIGHT,          Cube.RIGHT,          Cube.RIGHT
          },
          { // BACK
-            Cube.CubeColor.ORANGE,          Cube.CubeColor.ORANGE,          Cube.CubeColor.GREEN, 
-            Cube.CubeColor.ORANGE,          Cube.CubeColor.ORANGE,          Cube.CubeColor.GREEN, 
-            Cube.CubeColor.ORANGE,          Cube.CubeColor.ORANGE,          Cube.CubeColor.GREEN
+            Cube.BACK,          Cube.BACK,          Cube.BOTTOM, 
+            Cube.BACK,          Cube.BACK,          Cube.BOTTOM, 
+            Cube.BACK,          Cube.BACK,          Cube.BOTTOM
          },
          { // BOTTOM
-            Cube.CubeColor.RED,          Cube.CubeColor.GREEN,          Cube.CubeColor.GREEN, 
-            Cube.CubeColor.RED,          Cube.CubeColor.GREEN,          Cube.CubeColor.GREEN, 
-            Cube.CubeColor.RED,          Cube.CubeColor.GREEN,          Cube.CubeColor.GREEN
+            Cube.FRONT,          Cube.BOTTOM,          Cube.BOTTOM, 
+            Cube.FRONT,          Cube.BOTTOM,          Cube.BOTTOM, 
+            Cube.FRONT,          Cube.BOTTOM,          Cube.BOTTOM
          }
       },
       { // F 
          { // TOP
-            Cube.CubeColor.ORANGE,          Cube.CubeColor.BLUE,          Cube.CubeColor.BLUE, 
-            Cube.CubeColor.ORANGE,          Cube.CubeColor.BLUE,          Cube.CubeColor.BLUE, 
-            Cube.CubeColor.WHITE,          Cube.CubeColor.WHITE,          Cube.CubeColor.WHITE
+            Cube.BACK,          Cube.TOP,          Cube.TOP, 
+            Cube.BACK,          Cube.TOP,          Cube.TOP, 
+            Cube.LEFT,          Cube.LEFT,          Cube.LEFT
          },
          { // LEFT
-            Cube.CubeColor.WHITE,          Cube.CubeColor.WHITE,          Cube.CubeColor.RED, 
-            Cube.CubeColor.WHITE,          Cube.CubeColor.WHITE,          Cube.CubeColor.GREEN, 
-            Cube.CubeColor.WHITE,          Cube.CubeColor.WHITE,          Cube.CubeColor.GREEN
+            Cube.LEFT,          Cube.LEFT,          Cube.FRONT, 
+            Cube.LEFT,          Cube.LEFT,          Cube.BOTTOM, 
+            Cube.LEFT,          Cube.LEFT,          Cube.BOTTOM
          },
          { // FRONT
-            Cube.CubeColor.BLUE,          Cube.CubeColor.BLUE,          Cube.CubeColor.BLUE, 
-            Cube.CubeColor.RED,          Cube.CubeColor.RED,          Cube.CubeColor.RED, 
-            Cube.CubeColor.RED,          Cube.CubeColor.RED,          Cube.CubeColor.RED
+            Cube.TOP,          Cube.TOP,          Cube.TOP, 
+            Cube.FRONT,          Cube.FRONT,          Cube.FRONT, 
+            Cube.FRONT,          Cube.FRONT,          Cube.FRONT
          },
          { // RIGHT
-            Cube.CubeColor.ORANGE,          Cube.CubeColor.YELLOW,          Cube.CubeColor.YELLOW, 
-            Cube.CubeColor.BLUE,          Cube.CubeColor.YELLOW,          Cube.CubeColor.YELLOW, 
-            Cube.CubeColor.BLUE,          Cube.CubeColor.YELLOW,          Cube.CubeColor.YELLOW
+            Cube.BACK,          Cube.RIGHT,          Cube.RIGHT, 
+            Cube.TOP,          Cube.RIGHT,          Cube.RIGHT, 
+            Cube.TOP,          Cube.RIGHT,          Cube.RIGHT
          },
          { // BACK
-            Cube.CubeColor.ORANGE,          Cube.CubeColor.ORANGE,          Cube.CubeColor.GREEN, 
-            Cube.CubeColor.ORANGE,          Cube.CubeColor.ORANGE,          Cube.CubeColor.GREEN, 
-            Cube.CubeColor.ORANGE,          Cube.CubeColor.ORANGE,          Cube.CubeColor.GREEN
+            Cube.BACK,          Cube.BACK,          Cube.BOTTOM, 
+            Cube.BACK,          Cube.BACK,          Cube.BOTTOM, 
+            Cube.BACK,          Cube.BACK,          Cube.BOTTOM
          },
          { // BOTTOM
-            Cube.CubeColor.YELLOW,          Cube.CubeColor.YELLOW,          Cube.CubeColor.YELLOW, 
-            Cube.CubeColor.RED,          Cube.CubeColor.GREEN,          Cube.CubeColor.GREEN, 
-            Cube.CubeColor.RED,          Cube.CubeColor.GREEN,          Cube.CubeColor.GREEN
+            Cube.RIGHT,          Cube.RIGHT,          Cube.RIGHT, 
+            Cube.FRONT,          Cube.BOTTOM,          Cube.BOTTOM, 
+            Cube.FRONT,          Cube.BOTTOM,          Cube.BOTTOM
          }
       },
       { // R 
          { // TOP
-            Cube.CubeColor.ORANGE,          Cube.CubeColor.BLUE,          Cube.CubeColor.BLUE, 
-            Cube.CubeColor.ORANGE,          Cube.CubeColor.BLUE,          Cube.CubeColor.RED, 
-            Cube.CubeColor.WHITE,          Cube.CubeColor.WHITE,          Cube.CubeColor.RED
+            Cube.BACK,          Cube.TOP,          Cube.TOP, 
+            Cube.BACK,          Cube.TOP,          Cube.FRONT, 
+            Cube.LEFT,          Cube.LEFT,          Cube.FRONT
          },
          { // LEFT
-            Cube.CubeColor.WHITE,          Cube.CubeColor.WHITE,          Cube.CubeColor.RED, 
-            Cube.CubeColor.WHITE,          Cube.CubeColor.WHITE,          Cube.CubeColor.GREEN, 
-            Cube.CubeColor.WHITE,          Cube.CubeColor.WHITE,          Cube.CubeColor.GREEN
+            Cube.LEFT,          Cube.LEFT,          Cube.FRONT, 
+            Cube.LEFT,          Cube.LEFT,          Cube.BOTTOM, 
+            Cube.LEFT,          Cube.LEFT,          Cube.BOTTOM
          },
          { // FRONT
-            Cube.CubeColor.BLUE,          Cube.CubeColor.BLUE,          Cube.CubeColor.YELLOW, 
-            Cube.CubeColor.RED,          Cube.CubeColor.RED,          Cube.CubeColor.GREEN, 
-            Cube.CubeColor.RED,          Cube.CubeColor.RED,          Cube.CubeColor.GREEN
+            Cube.TOP,          Cube.TOP,          Cube.RIGHT, 
+            Cube.FRONT,          Cube.FRONT,          Cube.BOTTOM, 
+            Cube.FRONT,          Cube.FRONT,          Cube.BOTTOM
          },
          { // RIGHT
-            Cube.CubeColor.BLUE,          Cube.CubeColor.BLUE,          Cube.CubeColor.ORANGE, 
-            Cube.CubeColor.YELLOW,          Cube.CubeColor.YELLOW,          Cube.CubeColor.YELLOW, 
-            Cube.CubeColor.YELLOW,          Cube.CubeColor.YELLOW,          Cube.CubeColor.YELLOW
+            Cube.TOP,          Cube.TOP,          Cube.BACK, 
+            Cube.RIGHT,          Cube.RIGHT,          Cube.RIGHT, 
+            Cube.RIGHT,          Cube.RIGHT,          Cube.RIGHT
          },
          { // BACK
-            Cube.CubeColor.WHITE,          Cube.CubeColor.ORANGE,          Cube.CubeColor.GREEN, 
-            Cube.CubeColor.BLUE,          Cube.CubeColor.ORANGE,          Cube.CubeColor.GREEN, 
-            Cube.CubeColor.BLUE,          Cube.CubeColor.ORANGE,          Cube.CubeColor.GREEN
+            Cube.LEFT,          Cube.BACK,          Cube.BOTTOM, 
+            Cube.TOP,          Cube.BACK,          Cube.BOTTOM, 
+            Cube.TOP,          Cube.BACK,          Cube.BOTTOM
          },
          { // BOTTOM
-            Cube.CubeColor.YELLOW,          Cube.CubeColor.YELLOW,          Cube.CubeColor.ORANGE, 
-            Cube.CubeColor.RED,          Cube.CubeColor.GREEN,          Cube.CubeColor.ORANGE, 
-            Cube.CubeColor.RED,          Cube.CubeColor.GREEN,          Cube.CubeColor.ORANGE
+            Cube.RIGHT,          Cube.RIGHT,          Cube.BACK, 
+            Cube.FRONT,          Cube.BOTTOM,          Cube.BACK, 
+            Cube.FRONT,          Cube.BOTTOM,          Cube.BACK
          }
       },
       { // B 
          { // TOP
-            Cube.CubeColor.ORANGE,          Cube.CubeColor.YELLOW,          Cube.CubeColor.YELLOW, 
-            Cube.CubeColor.ORANGE,          Cube.CubeColor.BLUE,          Cube.CubeColor.RED, 
-            Cube.CubeColor.WHITE,          Cube.CubeColor.WHITE,          Cube.CubeColor.RED
+            Cube.BACK,          Cube.RIGHT,          Cube.RIGHT, 
+            Cube.BACK,          Cube.TOP,          Cube.FRONT, 
+            Cube.LEFT,          Cube.LEFT,          Cube.FRONT
          },
          { // LEFT
-            Cube.CubeColor.BLUE,          Cube.CubeColor.WHITE,          Cube.CubeColor.RED, 
-            Cube.CubeColor.BLUE,          Cube.CubeColor.WHITE,          Cube.CubeColor.GREEN, 
-            Cube.CubeColor.ORANGE,          Cube.CubeColor.WHITE,          Cube.CubeColor.GREEN
+            Cube.TOP,          Cube.LEFT,          Cube.FRONT, 
+            Cube.TOP,          Cube.LEFT,          Cube.BOTTOM, 
+            Cube.BACK,          Cube.LEFT,          Cube.BOTTOM
          },
          { // FRONT
-            Cube.CubeColor.BLUE,          Cube.CubeColor.BLUE,          Cube.CubeColor.YELLOW, 
-            Cube.CubeColor.RED,          Cube.CubeColor.RED,          Cube.CubeColor.GREEN, 
-            Cube.CubeColor.RED,          Cube.CubeColor.RED,          Cube.CubeColor.GREEN
+            Cube.TOP,          Cube.TOP,          Cube.RIGHT, 
+            Cube.FRONT,          Cube.FRONT,          Cube.BOTTOM, 
+            Cube.FRONT,          Cube.FRONT,          Cube.BOTTOM
          },
          { // RIGHT
-            Cube.CubeColor.BLUE,          Cube.CubeColor.BLUE,          Cube.CubeColor.ORANGE, 
-            Cube.CubeColor.YELLOW,          Cube.CubeColor.YELLOW,          Cube.CubeColor.GREEN, 
-            Cube.CubeColor.YELLOW,          Cube.CubeColor.YELLOW,          Cube.CubeColor.RED
+            Cube.TOP,          Cube.TOP,          Cube.BACK, 
+            Cube.RIGHT,          Cube.RIGHT,          Cube.BOTTOM, 
+            Cube.RIGHT,          Cube.RIGHT,          Cube.FRONT
          },
          { // BACK
-            Cube.CubeColor.BLUE,          Cube.CubeColor.BLUE,          Cube.CubeColor.WHITE, 
-            Cube.CubeColor.ORANGE,          Cube.CubeColor.ORANGE,          Cube.CubeColor.ORANGE, 
-            Cube.CubeColor.GREEN,          Cube.CubeColor.GREEN,          Cube.CubeColor.GREEN
+            Cube.TOP,          Cube.TOP,          Cube.LEFT, 
+            Cube.BACK,          Cube.BACK,          Cube.BACK, 
+            Cube.BOTTOM,          Cube.BOTTOM,          Cube.BOTTOM
          },
          { // BOTTOM
-            Cube.CubeColor.YELLOW,          Cube.CubeColor.YELLOW,          Cube.CubeColor.ORANGE, 
-            Cube.CubeColor.RED,          Cube.CubeColor.GREEN,          Cube.CubeColor.ORANGE, 
-            Cube.CubeColor.WHITE,          Cube.CubeColor.WHITE,          Cube.CubeColor.WHITE
+            Cube.RIGHT,          Cube.RIGHT,          Cube.BACK, 
+            Cube.FRONT,          Cube.BOTTOM,          Cube.BACK, 
+            Cube.LEFT,          Cube.LEFT,          Cube.LEFT
          }
       },
       { // U 
          { // TOP
-            Cube.CubeColor.WHITE,          Cube.CubeColor.ORANGE,          Cube.CubeColor.ORANGE, 
-            Cube.CubeColor.WHITE,          Cube.CubeColor.BLUE,          Cube.CubeColor.YELLOW, 
-            Cube.CubeColor.RED,          Cube.CubeColor.RED,          Cube.CubeColor.YELLOW
+            Cube.LEFT,          Cube.BACK,          Cube.BACK, 
+            Cube.LEFT,          Cube.TOP,          Cube.RIGHT, 
+            Cube.FRONT,          Cube.FRONT,          Cube.RIGHT
          },
          { // LEFT
-            Cube.CubeColor.BLUE,          Cube.CubeColor.BLUE,          Cube.CubeColor.YELLOW, 
-            Cube.CubeColor.BLUE,          Cube.CubeColor.WHITE,          Cube.CubeColor.GREEN, 
-            Cube.CubeColor.ORANGE,          Cube.CubeColor.WHITE,          Cube.CubeColor.GREEN
+            Cube.TOP,          Cube.TOP,          Cube.RIGHT, 
+            Cube.TOP,          Cube.LEFT,          Cube.BOTTOM, 
+            Cube.BACK,          Cube.LEFT,          Cube.BOTTOM
          },
          { // FRONT
-            Cube.CubeColor.BLUE,          Cube.CubeColor.BLUE,          Cube.CubeColor.ORANGE, 
-            Cube.CubeColor.RED,          Cube.CubeColor.RED,          Cube.CubeColor.GREEN, 
-            Cube.CubeColor.RED,          Cube.CubeColor.RED,          Cube.CubeColor.GREEN
+            Cube.TOP,          Cube.TOP,          Cube.BACK, 
+            Cube.FRONT,          Cube.FRONT,          Cube.BOTTOM, 
+            Cube.FRONT,          Cube.FRONT,          Cube.BOTTOM
          },
          { // RIGHT
-            Cube.CubeColor.BLUE,          Cube.CubeColor.BLUE,          Cube.CubeColor.WHITE, 
-            Cube.CubeColor.YELLOW,          Cube.CubeColor.YELLOW,          Cube.CubeColor.GREEN, 
-            Cube.CubeColor.YELLOW,          Cube.CubeColor.YELLOW,          Cube.CubeColor.RED
+            Cube.TOP,          Cube.TOP,          Cube.LEFT, 
+            Cube.RIGHT,          Cube.RIGHT,          Cube.BOTTOM, 
+            Cube.RIGHT,          Cube.RIGHT,          Cube.FRONT
          },
          { // BACK
-            Cube.CubeColor.BLUE,          Cube.CubeColor.WHITE,          Cube.CubeColor.RED, 
-            Cube.CubeColor.ORANGE,          Cube.CubeColor.ORANGE,          Cube.CubeColor.ORANGE, 
-            Cube.CubeColor.GREEN,          Cube.CubeColor.GREEN,          Cube.CubeColor.GREEN
+            Cube.TOP,          Cube.LEFT,          Cube.FRONT, 
+            Cube.BACK,          Cube.BACK,          Cube.BACK, 
+            Cube.BOTTOM,          Cube.BOTTOM,          Cube.BOTTOM
          },
          { // BOTTOM
-            Cube.CubeColor.YELLOW,          Cube.CubeColor.YELLOW,          Cube.CubeColor.ORANGE, 
-            Cube.CubeColor.RED,          Cube.CubeColor.GREEN,          Cube.CubeColor.ORANGE, 
-            Cube.CubeColor.WHITE,          Cube.CubeColor.WHITE,          Cube.CubeColor.WHITE
+            Cube.RIGHT,          Cube.RIGHT,          Cube.BACK, 
+            Cube.FRONT,          Cube.BOTTOM,          Cube.BACK, 
+            Cube.LEFT,          Cube.LEFT,          Cube.LEFT
          }
       },
       { // D 
          { // TOP
-            Cube.CubeColor.WHITE,          Cube.CubeColor.ORANGE,          Cube.CubeColor.ORANGE, 
-            Cube.CubeColor.WHITE,          Cube.CubeColor.BLUE,          Cube.CubeColor.YELLOW, 
-            Cube.CubeColor.RED,          Cube.CubeColor.RED,          Cube.CubeColor.YELLOW
+            Cube.LEFT,          Cube.BACK,          Cube.BACK, 
+            Cube.LEFT,          Cube.TOP,          Cube.RIGHT, 
+            Cube.FRONT,          Cube.FRONT,          Cube.RIGHT
          },
          { // LEFT
-            Cube.CubeColor.BLUE,          Cube.CubeColor.BLUE,          Cube.CubeColor.YELLOW, 
-            Cube.CubeColor.BLUE,          Cube.CubeColor.WHITE,          Cube.CubeColor.GREEN, 
-            Cube.CubeColor.GREEN,          Cube.CubeColor.GREEN,          Cube.CubeColor.GREEN
+            Cube.TOP,          Cube.TOP,          Cube.RIGHT, 
+            Cube.TOP,          Cube.LEFT,          Cube.BOTTOM, 
+            Cube.BOTTOM,          Cube.BOTTOM,          Cube.BOTTOM
          },
          { // FRONT
-            Cube.CubeColor.BLUE,          Cube.CubeColor.BLUE,          Cube.CubeColor.ORANGE, 
-            Cube.CubeColor.RED,          Cube.CubeColor.RED,          Cube.CubeColor.GREEN, 
-            Cube.CubeColor.ORANGE,          Cube.CubeColor.WHITE,          Cube.CubeColor.GREEN
+            Cube.TOP,          Cube.TOP,          Cube.BACK, 
+            Cube.FRONT,          Cube.FRONT,          Cube.BOTTOM, 
+            Cube.BACK,          Cube.LEFT,          Cube.BOTTOM
          },
          { // RIGHT
-            Cube.CubeColor.BLUE,          Cube.CubeColor.BLUE,          Cube.CubeColor.WHITE, 
-            Cube.CubeColor.YELLOW,          Cube.CubeColor.YELLOW,          Cube.CubeColor.GREEN, 
-            Cube.CubeColor.RED,          Cube.CubeColor.RED,          Cube.CubeColor.GREEN
+            Cube.TOP,          Cube.TOP,          Cube.LEFT, 
+            Cube.RIGHT,          Cube.RIGHT,          Cube.BOTTOM, 
+            Cube.FRONT,          Cube.FRONT,          Cube.BOTTOM
          },
          { // BACK
-            Cube.CubeColor.BLUE,          Cube.CubeColor.WHITE,          Cube.CubeColor.RED, 
-            Cube.CubeColor.ORANGE,          Cube.CubeColor.ORANGE,          Cube.CubeColor.ORANGE, 
-            Cube.CubeColor.YELLOW,          Cube.CubeColor.YELLOW,          Cube.CubeColor.RED
+            Cube.TOP,          Cube.LEFT,          Cube.FRONT, 
+            Cube.BACK,          Cube.BACK,          Cube.BACK, 
+            Cube.RIGHT,          Cube.RIGHT,          Cube.FRONT
          },
          { // BOTTOM
-            Cube.CubeColor.WHITE,          Cube.CubeColor.RED,          Cube.CubeColor.YELLOW, 
-            Cube.CubeColor.WHITE,          Cube.CubeColor.GREEN,          Cube.CubeColor.YELLOW, 
-            Cube.CubeColor.WHITE,          Cube.CubeColor.ORANGE,          Cube.CubeColor.ORANGE
+            Cube.LEFT,          Cube.FRONT,          Cube.RIGHT, 
+            Cube.LEFT,          Cube.BOTTOM,          Cube.RIGHT, 
+            Cube.LEFT,          Cube.BACK,          Cube.BACK
          }
       },
       { // Li
          { // TOP
-            Cube.CubeColor.BLUE,          Cube.CubeColor.ORANGE,          Cube.CubeColor.ORANGE, 
-            Cube.CubeColor.RED,          Cube.CubeColor.BLUE,          Cube.CubeColor.YELLOW, 
-            Cube.CubeColor.ORANGE,          Cube.CubeColor.RED,          Cube.CubeColor.YELLOW
+            Cube.TOP,          Cube.BACK,          Cube.BACK, 
+            Cube.FRONT,          Cube.TOP,          Cube.RIGHT, 
+            Cube.BACK,          Cube.FRONT,          Cube.RIGHT
          },
          { // LEFT
-            Cube.CubeColor.YELLOW,          Cube.CubeColor.GREEN,          Cube.CubeColor.GREEN, 
-            Cube.CubeColor.BLUE,          Cube.CubeColor.WHITE,          Cube.CubeColor.GREEN, 
-            Cube.CubeColor.BLUE,          Cube.CubeColor.BLUE,          Cube.CubeColor.GREEN
+            Cube.RIGHT,          Cube.BOTTOM,          Cube.BOTTOM, 
+            Cube.TOP,          Cube.LEFT,          Cube.BOTTOM, 
+            Cube.TOP,          Cube.TOP,          Cube.BOTTOM
          },
          { // FRONT
-            Cube.CubeColor.WHITE,          Cube.CubeColor.BLUE,          Cube.CubeColor.ORANGE, 
-            Cube.CubeColor.WHITE,          Cube.CubeColor.RED,          Cube.CubeColor.GREEN, 
-            Cube.CubeColor.WHITE,          Cube.CubeColor.WHITE,          Cube.CubeColor.GREEN
+            Cube.LEFT,          Cube.TOP,          Cube.BACK, 
+            Cube.LEFT,          Cube.FRONT,          Cube.BOTTOM, 
+            Cube.LEFT,          Cube.LEFT,          Cube.BOTTOM
          },
          { // RIGHT
-            Cube.CubeColor.BLUE,          Cube.CubeColor.BLUE,          Cube.CubeColor.WHITE, 
-            Cube.CubeColor.YELLOW,          Cube.CubeColor.YELLOW,          Cube.CubeColor.GREEN, 
-            Cube.CubeColor.RED,          Cube.CubeColor.RED,          Cube.CubeColor.GREEN
+            Cube.TOP,          Cube.TOP,          Cube.LEFT, 
+            Cube.RIGHT,          Cube.RIGHT,          Cube.BOTTOM, 
+            Cube.FRONT,          Cube.FRONT,          Cube.BOTTOM
          },
          { // BACK
-            Cube.CubeColor.BLUE,          Cube.CubeColor.WHITE,          Cube.CubeColor.RED, 
-            Cube.CubeColor.ORANGE,          Cube.CubeColor.ORANGE,          Cube.CubeColor.WHITE, 
-            Cube.CubeColor.YELLOW,          Cube.CubeColor.YELLOW,          Cube.CubeColor.WHITE
+            Cube.TOP,          Cube.LEFT,          Cube.FRONT, 
+            Cube.BACK,          Cube.BACK,          Cube.LEFT, 
+            Cube.RIGHT,          Cube.RIGHT,          Cube.LEFT
          },
          { // BOTTOM
-            Cube.CubeColor.RED,          Cube.CubeColor.RED,          Cube.CubeColor.YELLOW, 
-            Cube.CubeColor.ORANGE,          Cube.CubeColor.GREEN,          Cube.CubeColor.YELLOW, 
-            Cube.CubeColor.RED,          Cube.CubeColor.ORANGE,          Cube.CubeColor.ORANGE
+            Cube.FRONT,          Cube.FRONT,          Cube.RIGHT, 
+            Cube.BACK,          Cube.BOTTOM,          Cube.RIGHT, 
+            Cube.FRONT,          Cube.BACK,          Cube.BACK
          }
       },
       { // Fi
          { // TOP
-            Cube.CubeColor.BLUE,          Cube.CubeColor.ORANGE,          Cube.CubeColor.ORANGE, 
-            Cube.CubeColor.RED,          Cube.CubeColor.BLUE,          Cube.CubeColor.YELLOW, 
-            Cube.CubeColor.BLUE,          Cube.CubeColor.YELLOW,          Cube.CubeColor.RED
+            Cube.TOP,          Cube.BACK,          Cube.BACK, 
+            Cube.FRONT,          Cube.TOP,          Cube.RIGHT, 
+            Cube.TOP,          Cube.RIGHT,          Cube.FRONT
          },
          { // LEFT
-            Cube.CubeColor.YELLOW,          Cube.CubeColor.GREEN,          Cube.CubeColor.YELLOW, 
-            Cube.CubeColor.BLUE,          Cube.CubeColor.WHITE,          Cube.CubeColor.RED, 
-            Cube.CubeColor.BLUE,          Cube.CubeColor.BLUE,          Cube.CubeColor.ORANGE
+            Cube.RIGHT,          Cube.BOTTOM,          Cube.RIGHT, 
+            Cube.TOP,          Cube.LEFT,          Cube.FRONT, 
+            Cube.TOP,          Cube.TOP,          Cube.BACK
          },
          { // FRONT
-            Cube.CubeColor.ORANGE,          Cube.CubeColor.GREEN,          Cube.CubeColor.GREEN, 
-            Cube.CubeColor.BLUE,          Cube.CubeColor.RED,          Cube.CubeColor.WHITE, 
-            Cube.CubeColor.WHITE,          Cube.CubeColor.WHITE,          Cube.CubeColor.WHITE
+            Cube.BACK,          Cube.BOTTOM,          Cube.BOTTOM, 
+            Cube.TOP,          Cube.FRONT,          Cube.LEFT, 
+            Cube.LEFT,          Cube.LEFT,          Cube.LEFT
          },
          { // RIGHT
-            Cube.CubeColor.YELLOW,          Cube.CubeColor.BLUE,          Cube.CubeColor.WHITE, 
-            Cube.CubeColor.RED,          Cube.CubeColor.YELLOW,          Cube.CubeColor.GREEN, 
-            Cube.CubeColor.RED,          Cube.CubeColor.RED,          Cube.CubeColor.GREEN
+            Cube.RIGHT,          Cube.TOP,          Cube.LEFT, 
+            Cube.FRONT,          Cube.RIGHT,          Cube.BOTTOM, 
+            Cube.FRONT,          Cube.FRONT,          Cube.BOTTOM
          },
          { // BACK
-            Cube.CubeColor.BLUE,          Cube.CubeColor.WHITE,          Cube.CubeColor.RED, 
-            Cube.CubeColor.ORANGE,          Cube.CubeColor.ORANGE,          Cube.CubeColor.WHITE, 
-            Cube.CubeColor.YELLOW,          Cube.CubeColor.YELLOW,          Cube.CubeColor.WHITE
+            Cube.TOP,          Cube.LEFT,          Cube.FRONT, 
+            Cube.BACK,          Cube.BACK,          Cube.LEFT, 
+            Cube.RIGHT,          Cube.RIGHT,          Cube.LEFT
          },
          { // BOTTOM
-            Cube.CubeColor.GREEN,          Cube.CubeColor.GREEN,          Cube.CubeColor.GREEN, 
-            Cube.CubeColor.ORANGE,          Cube.CubeColor.GREEN,          Cube.CubeColor.YELLOW, 
-            Cube.CubeColor.RED,          Cube.CubeColor.ORANGE,          Cube.CubeColor.ORANGE
+            Cube.BOTTOM,          Cube.BOTTOM,          Cube.BOTTOM, 
+            Cube.BACK,          Cube.BOTTOM,          Cube.RIGHT, 
+            Cube.FRONT,          Cube.BACK,          Cube.BACK
          }
       },
       { // Ri
          { // TOP
-            Cube.CubeColor.BLUE,          Cube.CubeColor.ORANGE,          Cube.CubeColor.YELLOW, 
-            Cube.CubeColor.RED,          Cube.CubeColor.BLUE,          Cube.CubeColor.ORANGE, 
-            Cube.CubeColor.BLUE,          Cube.CubeColor.YELLOW,          Cube.CubeColor.BLUE
+            Cube.TOP,          Cube.BACK,          Cube.RIGHT, 
+            Cube.FRONT,          Cube.TOP,          Cube.BACK, 
+            Cube.TOP,          Cube.RIGHT,          Cube.TOP
          },
          { // LEFT
-            Cube.CubeColor.YELLOW,          Cube.CubeColor.GREEN,          Cube.CubeColor.YELLOW, 
-            Cube.CubeColor.BLUE,          Cube.CubeColor.WHITE,          Cube.CubeColor.RED, 
-            Cube.CubeColor.BLUE,          Cube.CubeColor.BLUE,          Cube.CubeColor.ORANGE
+            Cube.RIGHT,          Cube.BOTTOM,          Cube.RIGHT, 
+            Cube.TOP,          Cube.LEFT,          Cube.FRONT, 
+            Cube.TOP,          Cube.TOP,          Cube.BACK
          },
          { // FRONT
-            Cube.CubeColor.ORANGE,          Cube.CubeColor.GREEN,          Cube.CubeColor.ORANGE, 
-            Cube.CubeColor.BLUE,          Cube.CubeColor.RED,          Cube.CubeColor.YELLOW, 
-            Cube.CubeColor.WHITE,          Cube.CubeColor.WHITE,          Cube.CubeColor.RED
+            Cube.BACK,          Cube.BOTTOM,          Cube.BACK, 
+            Cube.TOP,          Cube.FRONT,          Cube.RIGHT, 
+            Cube.LEFT,          Cube.LEFT,          Cube.FRONT
          },
          { // RIGHT
-            Cube.CubeColor.WHITE,          Cube.CubeColor.GREEN,          Cube.CubeColor.GREEN, 
-            Cube.CubeColor.BLUE,          Cube.CubeColor.YELLOW,          Cube.CubeColor.RED, 
-            Cube.CubeColor.YELLOW,          Cube.CubeColor.RED,          Cube.CubeColor.RED
+            Cube.LEFT,          Cube.BOTTOM,          Cube.BOTTOM, 
+            Cube.TOP,          Cube.RIGHT,          Cube.FRONT, 
+            Cube.RIGHT,          Cube.FRONT,          Cube.FRONT
          },
          { // BACK
-            Cube.CubeColor.ORANGE,          Cube.CubeColor.WHITE,          Cube.CubeColor.RED, 
-            Cube.CubeColor.YELLOW,          Cube.CubeColor.ORANGE,          Cube.CubeColor.WHITE, 
-            Cube.CubeColor.GREEN,          Cube.CubeColor.YELLOW,          Cube.CubeColor.WHITE
+            Cube.BACK,          Cube.LEFT,          Cube.FRONT, 
+            Cube.RIGHT,          Cube.BACK,          Cube.LEFT, 
+            Cube.BOTTOM,          Cube.RIGHT,          Cube.LEFT
          },
          { // BOTTOM
-            Cube.CubeColor.GREEN,          Cube.CubeColor.GREEN,          Cube.CubeColor.GREEN, 
-            Cube.CubeColor.ORANGE,          Cube.CubeColor.GREEN,          Cube.CubeColor.WHITE, 
-            Cube.CubeColor.RED,          Cube.CubeColor.ORANGE,          Cube.CubeColor.WHITE
+            Cube.BOTTOM,          Cube.BOTTOM,          Cube.BOTTOM, 
+            Cube.BACK,          Cube.BOTTOM,          Cube.LEFT, 
+            Cube.FRONT,          Cube.BACK,          Cube.LEFT
          }
       },
       { // Bi
          { // TOP
-            Cube.CubeColor.BLUE,          Cube.CubeColor.BLUE,          Cube.CubeColor.YELLOW, 
-            Cube.CubeColor.RED,          Cube.CubeColor.BLUE,          Cube.CubeColor.ORANGE, 
-            Cube.CubeColor.BLUE,          Cube.CubeColor.YELLOW,          Cube.CubeColor.BLUE
+            Cube.TOP,          Cube.TOP,          Cube.RIGHT, 
+            Cube.FRONT,          Cube.TOP,          Cube.BACK, 
+            Cube.TOP,          Cube.RIGHT,          Cube.TOP
          },
          { // LEFT
-            Cube.CubeColor.RED,          Cube.CubeColor.GREEN,          Cube.CubeColor.YELLOW, 
-            Cube.CubeColor.ORANGE,          Cube.CubeColor.WHITE,          Cube.CubeColor.RED, 
-            Cube.CubeColor.WHITE,          Cube.CubeColor.BLUE,          Cube.CubeColor.ORANGE
+            Cube.FRONT,          Cube.BOTTOM,          Cube.RIGHT, 
+            Cube.BACK,          Cube.LEFT,          Cube.FRONT, 
+            Cube.LEFT,          Cube.TOP,          Cube.BACK
          },
          { // FRONT
-            Cube.CubeColor.ORANGE,          Cube.CubeColor.GREEN,          Cube.CubeColor.ORANGE, 
-            Cube.CubeColor.BLUE,          Cube.CubeColor.RED,          Cube.CubeColor.YELLOW, 
-            Cube.CubeColor.WHITE,          Cube.CubeColor.WHITE,          Cube.CubeColor.RED
+            Cube.BACK,          Cube.BOTTOM,          Cube.BACK, 
+            Cube.TOP,          Cube.FRONT,          Cube.RIGHT, 
+            Cube.LEFT,          Cube.LEFT,          Cube.FRONT
          },
          { // RIGHT
-            Cube.CubeColor.WHITE,          Cube.CubeColor.GREEN,          Cube.CubeColor.BLUE, 
-            Cube.CubeColor.BLUE,          Cube.CubeColor.YELLOW,          Cube.CubeColor.ORANGE, 
-            Cube.CubeColor.YELLOW,          Cube.CubeColor.RED,          Cube.CubeColor.YELLOW
+            Cube.LEFT,          Cube.BOTTOM,          Cube.TOP, 
+            Cube.TOP,          Cube.RIGHT,          Cube.BACK, 
+            Cube.RIGHT,          Cube.FRONT,          Cube.RIGHT
          },
          { // BACK
-            Cube.CubeColor.RED,          Cube.CubeColor.WHITE,          Cube.CubeColor.WHITE, 
-            Cube.CubeColor.WHITE,          Cube.CubeColor.ORANGE,          Cube.CubeColor.YELLOW, 
-            Cube.CubeColor.ORANGE,          Cube.CubeColor.YELLOW,          Cube.CubeColor.GREEN
+            Cube.FRONT,          Cube.LEFT,          Cube.LEFT, 
+            Cube.LEFT,          Cube.BACK,          Cube.RIGHT, 
+            Cube.BACK,          Cube.RIGHT,          Cube.BOTTOM
          },
          { // BOTTOM
-            Cube.CubeColor.GREEN,          Cube.CubeColor.GREEN,          Cube.CubeColor.GREEN, 
-            Cube.CubeColor.ORANGE,          Cube.CubeColor.GREEN,          Cube.CubeColor.WHITE, 
-            Cube.CubeColor.RED,          Cube.CubeColor.RED,          Cube.CubeColor.GREEN
+            Cube.BOTTOM,          Cube.BOTTOM,          Cube.BOTTOM, 
+            Cube.BACK,          Cube.BOTTOM,          Cube.LEFT, 
+            Cube.FRONT,          Cube.FRONT,          Cube.BOTTOM
          }
       },
       { // Ui
          { // TOP
-            Cube.CubeColor.YELLOW,          Cube.CubeColor.ORANGE,          Cube.CubeColor.BLUE, 
-            Cube.CubeColor.BLUE,          Cube.CubeColor.BLUE,          Cube.CubeColor.YELLOW, 
-            Cube.CubeColor.BLUE,          Cube.CubeColor.RED,          Cube.CubeColor.BLUE
+            Cube.RIGHT,          Cube.BACK,          Cube.TOP, 
+            Cube.TOP,          Cube.TOP,          Cube.RIGHT, 
+            Cube.TOP,          Cube.FRONT,          Cube.TOP
          },
          { // LEFT
-            Cube.CubeColor.RED,          Cube.CubeColor.WHITE,          Cube.CubeColor.WHITE, 
-            Cube.CubeColor.ORANGE,          Cube.CubeColor.WHITE,          Cube.CubeColor.RED, 
-            Cube.CubeColor.WHITE,          Cube.CubeColor.BLUE,          Cube.CubeColor.ORANGE
+            Cube.FRONT,          Cube.LEFT,          Cube.LEFT, 
+            Cube.BACK,          Cube.LEFT,          Cube.FRONT, 
+            Cube.LEFT,          Cube.TOP,          Cube.BACK
          },
          { // FRONT
-            Cube.CubeColor.RED,          Cube.CubeColor.GREEN,          Cube.CubeColor.YELLOW, 
-            Cube.CubeColor.BLUE,          Cube.CubeColor.RED,          Cube.CubeColor.YELLOW, 
-            Cube.CubeColor.WHITE,          Cube.CubeColor.WHITE,          Cube.CubeColor.RED
+            Cube.FRONT,          Cube.BOTTOM,          Cube.RIGHT, 
+            Cube.TOP,          Cube.FRONT,          Cube.RIGHT, 
+            Cube.LEFT,          Cube.LEFT,          Cube.FRONT
          },
          { // RIGHT
-            Cube.CubeColor.ORANGE,          Cube.CubeColor.GREEN,          Cube.CubeColor.ORANGE, 
-            Cube.CubeColor.BLUE,          Cube.CubeColor.YELLOW,          Cube.CubeColor.ORANGE, 
-            Cube.CubeColor.YELLOW,          Cube.CubeColor.RED,          Cube.CubeColor.YELLOW
+            Cube.BACK,          Cube.BOTTOM,          Cube.BACK, 
+            Cube.TOP,          Cube.RIGHT,          Cube.BACK, 
+            Cube.RIGHT,          Cube.FRONT,          Cube.RIGHT
          },
          { // BACK
-            Cube.CubeColor.WHITE,          Cube.CubeColor.GREEN,          Cube.CubeColor.BLUE, 
-            Cube.CubeColor.WHITE,          Cube.CubeColor.ORANGE,          Cube.CubeColor.YELLOW, 
-            Cube.CubeColor.ORANGE,          Cube.CubeColor.YELLOW,          Cube.CubeColor.GREEN
+            Cube.LEFT,          Cube.BOTTOM,          Cube.TOP, 
+            Cube.LEFT,          Cube.BACK,          Cube.RIGHT, 
+            Cube.BACK,          Cube.RIGHT,          Cube.BOTTOM
          },
          { // BOTTOM
-            Cube.CubeColor.GREEN,          Cube.CubeColor.GREEN,          Cube.CubeColor.GREEN, 
-            Cube.CubeColor.ORANGE,          Cube.CubeColor.GREEN,          Cube.CubeColor.WHITE, 
-            Cube.CubeColor.RED,          Cube.CubeColor.RED,          Cube.CubeColor.GREEN
+            Cube.BOTTOM,          Cube.BOTTOM,          Cube.BOTTOM, 
+            Cube.BACK,          Cube.BOTTOM,          Cube.LEFT, 
+            Cube.FRONT,          Cube.FRONT,          Cube.BOTTOM
          }
       },
       { // Di
          { // TOP
-            Cube.CubeColor.YELLOW,          Cube.CubeColor.ORANGE,          Cube.CubeColor.BLUE, 
-            Cube.CubeColor.BLUE,          Cube.CubeColor.BLUE,          Cube.CubeColor.YELLOW, 
-            Cube.CubeColor.BLUE,          Cube.CubeColor.RED,          Cube.CubeColor.BLUE
+            Cube.RIGHT,          Cube.BACK,          Cube.TOP, 
+            Cube.TOP,          Cube.TOP,          Cube.RIGHT, 
+            Cube.TOP,          Cube.FRONT,          Cube.TOP
          },
          { // LEFT
-            Cube.CubeColor.RED,          Cube.CubeColor.WHITE,          Cube.CubeColor.WHITE, 
-            Cube.CubeColor.ORANGE,          Cube.CubeColor.WHITE,          Cube.CubeColor.RED, 
-            Cube.CubeColor.WHITE,          Cube.CubeColor.WHITE,          Cube.CubeColor.RED
+            Cube.FRONT,          Cube.LEFT,          Cube.LEFT, 
+            Cube.BACK,          Cube.LEFT,          Cube.FRONT, 
+            Cube.LEFT,          Cube.LEFT,          Cube.FRONT
          },
          { // FRONT
-            Cube.CubeColor.RED,          Cube.CubeColor.GREEN,          Cube.CubeColor.YELLOW, 
-            Cube.CubeColor.BLUE,          Cube.CubeColor.RED,          Cube.CubeColor.YELLOW, 
-            Cube.CubeColor.YELLOW,          Cube.CubeColor.RED,          Cube.CubeColor.YELLOW
+            Cube.FRONT,          Cube.BOTTOM,          Cube.RIGHT, 
+            Cube.TOP,          Cube.FRONT,          Cube.RIGHT, 
+            Cube.RIGHT,          Cube.FRONT,          Cube.RIGHT
          },
          { // RIGHT
-            Cube.CubeColor.ORANGE,          Cube.CubeColor.GREEN,          Cube.CubeColor.ORANGE, 
-            Cube.CubeColor.BLUE,          Cube.CubeColor.YELLOW,          Cube.CubeColor.ORANGE, 
-            Cube.CubeColor.ORANGE,          Cube.CubeColor.YELLOW,          Cube.CubeColor.GREEN
+            Cube.BACK,          Cube.BOTTOM,          Cube.BACK, 
+            Cube.TOP,          Cube.RIGHT,          Cube.BACK, 
+            Cube.BACK,          Cube.RIGHT,          Cube.BOTTOM
          },
          { // BACK
-            Cube.CubeColor.WHITE,          Cube.CubeColor.GREEN,          Cube.CubeColor.BLUE, 
-            Cube.CubeColor.WHITE,          Cube.CubeColor.ORANGE,          Cube.CubeColor.YELLOW, 
-            Cube.CubeColor.WHITE,          Cube.CubeColor.BLUE,          Cube.CubeColor.ORANGE
+            Cube.LEFT,          Cube.BOTTOM,          Cube.TOP, 
+            Cube.LEFT,          Cube.BACK,          Cube.RIGHT, 
+            Cube.LEFT,          Cube.TOP,          Cube.BACK
          },
          { // BOTTOM
-            Cube.CubeColor.GREEN,          Cube.CubeColor.WHITE,          Cube.CubeColor.GREEN, 
-            Cube.CubeColor.GREEN,          Cube.CubeColor.GREEN,          Cube.CubeColor.RED, 
-            Cube.CubeColor.GREEN,          Cube.CubeColor.ORANGE,          Cube.CubeColor.RED
+            Cube.BOTTOM,          Cube.LEFT,          Cube.BOTTOM, 
+            Cube.BOTTOM,          Cube.BOTTOM,          Cube.FRONT, 
+            Cube.BOTTOM,          Cube.BACK,          Cube.FRONT
          }
       },
       { // Li
          { // TOP
-            Cube.CubeColor.RED,          Cube.CubeColor.ORANGE,          Cube.CubeColor.BLUE, 
-            Cube.CubeColor.BLUE,          Cube.CubeColor.BLUE,          Cube.CubeColor.YELLOW, 
-            Cube.CubeColor.YELLOW,          Cube.CubeColor.RED,          Cube.CubeColor.BLUE
+            Cube.FRONT,          Cube.BACK,          Cube.TOP, 
+            Cube.TOP,          Cube.TOP,          Cube.RIGHT, 
+            Cube.RIGHT,          Cube.FRONT,          Cube.TOP
          },
          { // LEFT
-            Cube.CubeColor.WHITE,          Cube.CubeColor.RED,          Cube.CubeColor.RED, 
-            Cube.CubeColor.WHITE,          Cube.CubeColor.WHITE,          Cube.CubeColor.WHITE, 
-            Cube.CubeColor.RED,          Cube.CubeColor.ORANGE,          Cube.CubeColor.WHITE
+            Cube.LEFT,          Cube.FRONT,          Cube.FRONT, 
+            Cube.LEFT,          Cube.LEFT,          Cube.LEFT, 
+            Cube.FRONT,          Cube.BACK,          Cube.LEFT
          },
          { // FRONT
-            Cube.CubeColor.GREEN,          Cube.CubeColor.GREEN,          Cube.CubeColor.YELLOW, 
-            Cube.CubeColor.GREEN,          Cube.CubeColor.RED,          Cube.CubeColor.YELLOW, 
-            Cube.CubeColor.GREEN,          Cube.CubeColor.RED,          Cube.CubeColor.YELLOW
+            Cube.BOTTOM,          Cube.BOTTOM,          Cube.RIGHT, 
+            Cube.BOTTOM,          Cube.FRONT,          Cube.RIGHT, 
+            Cube.BOTTOM,          Cube.FRONT,          Cube.RIGHT
          },
          { // RIGHT
-            Cube.CubeColor.ORANGE,          Cube.CubeColor.GREEN,          Cube.CubeColor.ORANGE, 
-            Cube.CubeColor.BLUE,          Cube.CubeColor.YELLOW,          Cube.CubeColor.ORANGE, 
-            Cube.CubeColor.ORANGE,          Cube.CubeColor.YELLOW,          Cube.CubeColor.GREEN
+            Cube.BACK,          Cube.BOTTOM,          Cube.BACK, 
+            Cube.TOP,          Cube.RIGHT,          Cube.BACK, 
+            Cube.BACK,          Cube.RIGHT,          Cube.BOTTOM
          },
          { // BACK
-            Cube.CubeColor.WHITE,          Cube.CubeColor.GREEN,          Cube.CubeColor.BLUE, 
-            Cube.CubeColor.WHITE,          Cube.CubeColor.ORANGE,          Cube.CubeColor.BLUE, 
-            Cube.CubeColor.WHITE,          Cube.CubeColor.BLUE,          Cube.CubeColor.YELLOW
+            Cube.LEFT,          Cube.BOTTOM,          Cube.TOP, 
+            Cube.LEFT,          Cube.BACK,          Cube.TOP, 
+            Cube.LEFT,          Cube.TOP,          Cube.RIGHT
          },
          { // BOTTOM
-            Cube.CubeColor.ORANGE,          Cube.CubeColor.WHITE,          Cube.CubeColor.GREEN, 
-            Cube.CubeColor.YELLOW,          Cube.CubeColor.GREEN,          Cube.CubeColor.RED, 
-            Cube.CubeColor.BLUE,          Cube.CubeColor.ORANGE,          Cube.CubeColor.RED
+            Cube.BACK,          Cube.LEFT,          Cube.BOTTOM, 
+            Cube.RIGHT,          Cube.BOTTOM,          Cube.FRONT, 
+            Cube.TOP,          Cube.BACK,          Cube.FRONT
          }
       },
       { // Fi
          { // TOP
-            Cube.CubeColor.RED,          Cube.CubeColor.ORANGE,          Cube.CubeColor.BLUE, 
-            Cube.CubeColor.BLUE,          Cube.CubeColor.BLUE,          Cube.CubeColor.YELLOW, 
-            Cube.CubeColor.ORANGE,          Cube.CubeColor.BLUE,          Cube.CubeColor.ORANGE
+            Cube.FRONT,          Cube.BACK,          Cube.TOP, 
+            Cube.TOP,          Cube.TOP,          Cube.RIGHT, 
+            Cube.BACK,          Cube.TOP,          Cube.BACK
          },
          { // LEFT
-            Cube.CubeColor.WHITE,          Cube.CubeColor.RED,          Cube.CubeColor.BLUE, 
-            Cube.CubeColor.WHITE,          Cube.CubeColor.WHITE,          Cube.CubeColor.RED, 
-            Cube.CubeColor.RED,          Cube.CubeColor.ORANGE,          Cube.CubeColor.YELLOW
+            Cube.LEFT,          Cube.FRONT,          Cube.TOP, 
+            Cube.LEFT,          Cube.LEFT,          Cube.FRONT, 
+            Cube.FRONT,          Cube.BACK,          Cube.RIGHT
          },
          { // FRONT
-            Cube.CubeColor.YELLOW,          Cube.CubeColor.YELLOW,          Cube.CubeColor.YELLOW, 
-            Cube.CubeColor.GREEN,          Cube.CubeColor.RED,          Cube.CubeColor.RED, 
-            Cube.CubeColor.GREEN,          Cube.CubeColor.GREEN,          Cube.CubeColor.GREEN
+            Cube.RIGHT,          Cube.RIGHT,          Cube.RIGHT, 
+            Cube.BOTTOM,          Cube.FRONT,          Cube.FRONT, 
+            Cube.BOTTOM,          Cube.BOTTOM,          Cube.BOTTOM
          },
          { // RIGHT
-            Cube.CubeColor.GREEN,          Cube.CubeColor.GREEN,          Cube.CubeColor.ORANGE, 
-            Cube.CubeColor.WHITE,          Cube.CubeColor.YELLOW,          Cube.CubeColor.ORANGE, 
-            Cube.CubeColor.ORANGE,          Cube.CubeColor.YELLOW,          Cube.CubeColor.GREEN
+            Cube.BOTTOM,          Cube.BOTTOM,          Cube.BACK, 
+            Cube.LEFT,          Cube.RIGHT,          Cube.BACK, 
+            Cube.BACK,          Cube.RIGHT,          Cube.BOTTOM
          },
          { // BACK
-            Cube.CubeColor.WHITE,          Cube.CubeColor.GREEN,          Cube.CubeColor.BLUE, 
-            Cube.CubeColor.WHITE,          Cube.CubeColor.ORANGE,          Cube.CubeColor.BLUE, 
-            Cube.CubeColor.WHITE,          Cube.CubeColor.BLUE,          Cube.CubeColor.YELLOW
+            Cube.LEFT,          Cube.BOTTOM,          Cube.TOP, 
+            Cube.LEFT,          Cube.BACK,          Cube.TOP, 
+            Cube.LEFT,          Cube.TOP,          Cube.RIGHT
          },
          { // BOTTOM
-            Cube.CubeColor.RED,          Cube.CubeColor.WHITE,          Cube.CubeColor.WHITE, 
-            Cube.CubeColor.YELLOW,          Cube.CubeColor.GREEN,          Cube.CubeColor.RED, 
-            Cube.CubeColor.BLUE,          Cube.CubeColor.ORANGE,          Cube.CubeColor.RED
+            Cube.FRONT,          Cube.LEFT,          Cube.LEFT, 
+            Cube.RIGHT,          Cube.BOTTOM,          Cube.FRONT, 
+            Cube.TOP,          Cube.BACK,          Cube.FRONT
          }
       },
       { // Ri
          { // TOP
-            Cube.CubeColor.RED,          Cube.CubeColor.ORANGE,          Cube.CubeColor.WHITE, 
-            Cube.CubeColor.BLUE,          Cube.CubeColor.BLUE,          Cube.CubeColor.WHITE, 
-            Cube.CubeColor.ORANGE,          Cube.CubeColor.BLUE,          Cube.CubeColor.WHITE
+            Cube.FRONT,          Cube.BACK,          Cube.LEFT, 
+            Cube.TOP,          Cube.TOP,          Cube.LEFT, 
+            Cube.BACK,          Cube.TOP,          Cube.LEFT
          },
          { // LEFT
-            Cube.CubeColor.WHITE,          Cube.CubeColor.RED,          Cube.CubeColor.BLUE, 
-            Cube.CubeColor.WHITE,          Cube.CubeColor.WHITE,          Cube.CubeColor.RED, 
-            Cube.CubeColor.RED,          Cube.CubeColor.ORANGE,          Cube.CubeColor.YELLOW
+            Cube.LEFT,          Cube.FRONT,          Cube.TOP, 
+            Cube.LEFT,          Cube.LEFT,          Cube.FRONT, 
+            Cube.FRONT,          Cube.BACK,          Cube.RIGHT
          },
          { // FRONT
-            Cube.CubeColor.YELLOW,          Cube.CubeColor.YELLOW,          Cube.CubeColor.BLUE, 
-            Cube.CubeColor.GREEN,          Cube.CubeColor.RED,          Cube.CubeColor.YELLOW, 
-            Cube.CubeColor.GREEN,          Cube.CubeColor.GREEN,          Cube.CubeColor.ORANGE
+            Cube.RIGHT,          Cube.RIGHT,          Cube.TOP, 
+            Cube.BOTTOM,          Cube.FRONT,          Cube.RIGHT, 
+            Cube.BOTTOM,          Cube.BOTTOM,          Cube.BACK
          },
          { // RIGHT
-            Cube.CubeColor.ORANGE,          Cube.CubeColor.ORANGE,          Cube.CubeColor.GREEN, 
-            Cube.CubeColor.GREEN,          Cube.CubeColor.YELLOW,          Cube.CubeColor.YELLOW, 
-            Cube.CubeColor.GREEN,          Cube.CubeColor.WHITE,          Cube.CubeColor.ORANGE
+            Cube.BACK,          Cube.BACK,          Cube.BOTTOM, 
+            Cube.BOTTOM,          Cube.RIGHT,          Cube.RIGHT, 
+            Cube.BOTTOM,          Cube.LEFT,          Cube.BACK
          },
          { // BACK
-            Cube.CubeColor.RED,          Cube.CubeColor.GREEN,          Cube.CubeColor.BLUE, 
-            Cube.CubeColor.RED,          Cube.CubeColor.ORANGE,          Cube.CubeColor.BLUE, 
-            Cube.CubeColor.WHITE,          Cube.CubeColor.BLUE,          Cube.CubeColor.YELLOW
+            Cube.FRONT,          Cube.BOTTOM,          Cube.TOP, 
+            Cube.FRONT,          Cube.BACK,          Cube.TOP, 
+            Cube.LEFT,          Cube.TOP,          Cube.RIGHT
          },
          { // BOTTOM
-            Cube.CubeColor.RED,          Cube.CubeColor.WHITE,          Cube.CubeColor.YELLOW, 
-            Cube.CubeColor.YELLOW,          Cube.CubeColor.GREEN,          Cube.CubeColor.RED, 
-            Cube.CubeColor.BLUE,          Cube.CubeColor.ORANGE,          Cube.CubeColor.GREEN
+            Cube.FRONT,          Cube.LEFT,          Cube.RIGHT, 
+            Cube.RIGHT,          Cube.BOTTOM,          Cube.FRONT, 
+            Cube.TOP,          Cube.BACK,          Cube.BOTTOM
          }
       },
       { // Bi
          { // TOP
-            Cube.CubeColor.RED,          Cube.CubeColor.WHITE,          Cube.CubeColor.WHITE, 
-            Cube.CubeColor.BLUE,          Cube.CubeColor.BLUE,          Cube.CubeColor.WHITE, 
-            Cube.CubeColor.ORANGE,          Cube.CubeColor.BLUE,          Cube.CubeColor.WHITE
+            Cube.FRONT,          Cube.LEFT,          Cube.LEFT, 
+            Cube.TOP,          Cube.TOP,          Cube.LEFT, 
+            Cube.BACK,          Cube.TOP,          Cube.LEFT
          },
          { // LEFT
-            Cube.CubeColor.BLUE,          Cube.CubeColor.RED,          Cube.CubeColor.BLUE, 
-            Cube.CubeColor.ORANGE,          Cube.CubeColor.WHITE,          Cube.CubeColor.RED, 
-            Cube.CubeColor.GREEN,          Cube.CubeColor.ORANGE,          Cube.CubeColor.YELLOW
+            Cube.TOP,          Cube.FRONT,          Cube.TOP, 
+            Cube.BACK,          Cube.LEFT,          Cube.FRONT, 
+            Cube.BOTTOM,          Cube.BACK,          Cube.RIGHT
          },
          { // FRONT
-            Cube.CubeColor.YELLOW,          Cube.CubeColor.YELLOW,          Cube.CubeColor.BLUE, 
-            Cube.CubeColor.GREEN,          Cube.CubeColor.RED,          Cube.CubeColor.YELLOW, 
-            Cube.CubeColor.GREEN,          Cube.CubeColor.GREEN,          Cube.CubeColor.ORANGE
+            Cube.RIGHT,          Cube.RIGHT,          Cube.TOP, 
+            Cube.BOTTOM,          Cube.FRONT,          Cube.RIGHT, 
+            Cube.BOTTOM,          Cube.BOTTOM,          Cube.BACK
          },
          { // RIGHT
-            Cube.CubeColor.ORANGE,          Cube.CubeColor.ORANGE,          Cube.CubeColor.RED, 
-            Cube.CubeColor.GREEN,          Cube.CubeColor.YELLOW,          Cube.CubeColor.ORANGE, 
-            Cube.CubeColor.GREEN,          Cube.CubeColor.WHITE,          Cube.CubeColor.WHITE
+            Cube.BACK,          Cube.BACK,          Cube.FRONT, 
+            Cube.BOTTOM,          Cube.RIGHT,          Cube.BACK, 
+            Cube.BOTTOM,          Cube.LEFT,          Cube.LEFT
          },
          { // BACK
-            Cube.CubeColor.BLUE,          Cube.CubeColor.BLUE,          Cube.CubeColor.YELLOW, 
-            Cube.CubeColor.GREEN,          Cube.CubeColor.ORANGE,          Cube.CubeColor.BLUE, 
-            Cube.CubeColor.RED,          Cube.CubeColor.RED,          Cube.CubeColor.WHITE
+            Cube.TOP,          Cube.TOP,          Cube.RIGHT, 
+            Cube.BOTTOM,          Cube.BACK,          Cube.TOP, 
+            Cube.FRONT,          Cube.FRONT,          Cube.LEFT
          },
          { // BOTTOM
-            Cube.CubeColor.RED,          Cube.CubeColor.WHITE,          Cube.CubeColor.YELLOW, 
-            Cube.CubeColor.YELLOW,          Cube.CubeColor.GREEN,          Cube.CubeColor.RED, 
-            Cube.CubeColor.ORANGE,          Cube.CubeColor.YELLOW,          Cube.CubeColor.GREEN
+            Cube.FRONT,          Cube.LEFT,          Cube.RIGHT, 
+            Cube.RIGHT,          Cube.BOTTOM,          Cube.FRONT, 
+            Cube.BACK,          Cube.RIGHT,          Cube.BOTTOM
          }
       },
       { // Ui
          { // TOP
-            Cube.CubeColor.WHITE,          Cube.CubeColor.WHITE,          Cube.CubeColor.WHITE, 
-            Cube.CubeColor.WHITE,          Cube.CubeColor.BLUE,          Cube.CubeColor.BLUE, 
-            Cube.CubeColor.RED,          Cube.CubeColor.BLUE,          Cube.CubeColor.ORANGE
+            Cube.LEFT,          Cube.LEFT,          Cube.LEFT, 
+            Cube.LEFT,          Cube.TOP,          Cube.TOP, 
+            Cube.FRONT,          Cube.TOP,          Cube.BACK
          },
          { // LEFT
-            Cube.CubeColor.BLUE,          Cube.CubeColor.BLUE,          Cube.CubeColor.YELLOW, 
-            Cube.CubeColor.ORANGE,          Cube.CubeColor.WHITE,          Cube.CubeColor.RED, 
-            Cube.CubeColor.GREEN,          Cube.CubeColor.ORANGE,          Cube.CubeColor.YELLOW
+            Cube.TOP,          Cube.TOP,          Cube.RIGHT, 
+            Cube.BACK,          Cube.LEFT,          Cube.FRONT, 
+            Cube.BOTTOM,          Cube.BACK,          Cube.RIGHT
          },
          { // FRONT
-            Cube.CubeColor.BLUE,          Cube.CubeColor.RED,          Cube.CubeColor.BLUE, 
-            Cube.CubeColor.GREEN,          Cube.CubeColor.RED,          Cube.CubeColor.YELLOW, 
-            Cube.CubeColor.GREEN,          Cube.CubeColor.GREEN,          Cube.CubeColor.ORANGE
+            Cube.TOP,          Cube.FRONT,          Cube.TOP, 
+            Cube.BOTTOM,          Cube.FRONT,          Cube.RIGHT, 
+            Cube.BOTTOM,          Cube.BOTTOM,          Cube.BACK
          },
          { // RIGHT
-            Cube.CubeColor.YELLOW,          Cube.CubeColor.YELLOW,          Cube.CubeColor.BLUE, 
-            Cube.CubeColor.GREEN,          Cube.CubeColor.YELLOW,          Cube.CubeColor.ORANGE, 
-            Cube.CubeColor.GREEN,          Cube.CubeColor.WHITE,          Cube.CubeColor.WHITE
+            Cube.RIGHT,          Cube.RIGHT,          Cube.TOP, 
+            Cube.BOTTOM,          Cube.RIGHT,          Cube.BACK, 
+            Cube.BOTTOM,          Cube.LEFT,          Cube.LEFT
          },
          { // BACK
-            Cube.CubeColor.ORANGE,          Cube.CubeColor.ORANGE,          Cube.CubeColor.RED, 
-            Cube.CubeColor.GREEN,          Cube.CubeColor.ORANGE,          Cube.CubeColor.BLUE, 
-            Cube.CubeColor.RED,          Cube.CubeColor.RED,          Cube.CubeColor.WHITE
+            Cube.BACK,          Cube.BACK,          Cube.FRONT, 
+            Cube.BOTTOM,          Cube.BACK,          Cube.TOP, 
+            Cube.FRONT,          Cube.FRONT,          Cube.LEFT
          },
          { // BOTTOM
-            Cube.CubeColor.RED,          Cube.CubeColor.WHITE,          Cube.CubeColor.YELLOW, 
-            Cube.CubeColor.YELLOW,          Cube.CubeColor.GREEN,          Cube.CubeColor.RED, 
-            Cube.CubeColor.ORANGE,          Cube.CubeColor.YELLOW,          Cube.CubeColor.GREEN
+            Cube.FRONT,          Cube.LEFT,          Cube.RIGHT, 
+            Cube.RIGHT,          Cube.BOTTOM,          Cube.FRONT, 
+            Cube.BACK,          Cube.RIGHT,          Cube.BOTTOM
          }
       },
       { // Di
          { // TOP
-            Cube.CubeColor.WHITE,          Cube.CubeColor.WHITE,          Cube.CubeColor.WHITE, 
-            Cube.CubeColor.WHITE,          Cube.CubeColor.BLUE,          Cube.CubeColor.BLUE, 
-            Cube.CubeColor.RED,          Cube.CubeColor.BLUE,          Cube.CubeColor.ORANGE
+            Cube.LEFT,          Cube.LEFT,          Cube.LEFT, 
+            Cube.LEFT,          Cube.TOP,          Cube.TOP, 
+            Cube.FRONT,          Cube.TOP,          Cube.BACK
          },
          { // LEFT
-            Cube.CubeColor.BLUE,          Cube.CubeColor.BLUE,          Cube.CubeColor.YELLOW, 
-            Cube.CubeColor.ORANGE,          Cube.CubeColor.WHITE,          Cube.CubeColor.RED, 
-            Cube.CubeColor.GREEN,          Cube.CubeColor.GREEN,          Cube.CubeColor.ORANGE
+            Cube.TOP,          Cube.TOP,          Cube.RIGHT, 
+            Cube.BACK,          Cube.LEFT,          Cube.FRONT, 
+            Cube.BOTTOM,          Cube.BOTTOM,          Cube.BACK
          },
          { // FRONT
-            Cube.CubeColor.BLUE,          Cube.CubeColor.RED,          Cube.CubeColor.BLUE, 
-            Cube.CubeColor.GREEN,          Cube.CubeColor.RED,          Cube.CubeColor.YELLOW, 
-            Cube.CubeColor.GREEN,          Cube.CubeColor.WHITE,          Cube.CubeColor.WHITE
+            Cube.TOP,          Cube.FRONT,          Cube.TOP, 
+            Cube.BOTTOM,          Cube.FRONT,          Cube.RIGHT, 
+            Cube.BOTTOM,          Cube.LEFT,          Cube.LEFT
          },
          { // RIGHT
-            Cube.CubeColor.YELLOW,          Cube.CubeColor.YELLOW,          Cube.CubeColor.BLUE, 
-            Cube.CubeColor.GREEN,          Cube.CubeColor.YELLOW,          Cube.CubeColor.ORANGE, 
-            Cube.CubeColor.RED,          Cube.CubeColor.RED,          Cube.CubeColor.WHITE
+            Cube.RIGHT,          Cube.RIGHT,          Cube.TOP, 
+            Cube.BOTTOM,          Cube.RIGHT,          Cube.BACK, 
+            Cube.FRONT,          Cube.FRONT,          Cube.LEFT
          },
          { // BACK
-            Cube.CubeColor.ORANGE,          Cube.CubeColor.ORANGE,          Cube.CubeColor.RED, 
-            Cube.CubeColor.GREEN,          Cube.CubeColor.ORANGE,          Cube.CubeColor.BLUE, 
-            Cube.CubeColor.GREEN,          Cube.CubeColor.ORANGE,          Cube.CubeColor.YELLOW
+            Cube.BACK,          Cube.BACK,          Cube.FRONT, 
+            Cube.BOTTOM,          Cube.BACK,          Cube.TOP, 
+            Cube.BOTTOM,          Cube.BACK,          Cube.RIGHT
          },
          { // BOTTOM
-            Cube.CubeColor.YELLOW,          Cube.CubeColor.RED,          Cube.CubeColor.GREEN, 
-            Cube.CubeColor.WHITE,          Cube.CubeColor.GREEN,          Cube.CubeColor.YELLOW, 
-            Cube.CubeColor.RED,          Cube.CubeColor.YELLOW,          Cube.CubeColor.ORANGE
+            Cube.RIGHT,          Cube.FRONT,          Cube.BOTTOM, 
+            Cube.LEFT,          Cube.BOTTOM,          Cube.RIGHT, 
+            Cube.FRONT,          Cube.RIGHT,          Cube.BACK
          }
       },
       { // L 
          { // TOP
-            Cube.CubeColor.YELLOW,          Cube.CubeColor.WHITE,          Cube.CubeColor.WHITE, 
-            Cube.CubeColor.BLUE,          Cube.CubeColor.BLUE,          Cube.CubeColor.BLUE, 
-            Cube.CubeColor.RED,          Cube.CubeColor.BLUE,          Cube.CubeColor.ORANGE
+            Cube.RIGHT,          Cube.LEFT,          Cube.LEFT, 
+            Cube.TOP,          Cube.TOP,          Cube.TOP, 
+            Cube.FRONT,          Cube.TOP,          Cube.BACK
          },
          { // LEFT
-            Cube.CubeColor.GREEN,          Cube.CubeColor.ORANGE,          Cube.CubeColor.BLUE, 
-            Cube.CubeColor.GREEN,          Cube.CubeColor.WHITE,          Cube.CubeColor.BLUE, 
-            Cube.CubeColor.ORANGE,          Cube.CubeColor.RED,          Cube.CubeColor.YELLOW
+            Cube.BOTTOM,          Cube.BACK,          Cube.TOP, 
+            Cube.BOTTOM,          Cube.LEFT,          Cube.TOP, 
+            Cube.BACK,          Cube.FRONT,          Cube.RIGHT
          },
          { // FRONT
-            Cube.CubeColor.WHITE,          Cube.CubeColor.RED,          Cube.CubeColor.BLUE, 
-            Cube.CubeColor.WHITE,          Cube.CubeColor.RED,          Cube.CubeColor.YELLOW, 
-            Cube.CubeColor.RED,          Cube.CubeColor.WHITE,          Cube.CubeColor.WHITE
+            Cube.LEFT,          Cube.FRONT,          Cube.TOP, 
+            Cube.LEFT,          Cube.FRONT,          Cube.RIGHT, 
+            Cube.FRONT,          Cube.LEFT,          Cube.LEFT
          },
          { // RIGHT
-            Cube.CubeColor.YELLOW,          Cube.CubeColor.YELLOW,          Cube.CubeColor.BLUE, 
-            Cube.CubeColor.GREEN,          Cube.CubeColor.YELLOW,          Cube.CubeColor.ORANGE, 
-            Cube.CubeColor.RED,          Cube.CubeColor.RED,          Cube.CubeColor.WHITE
+            Cube.RIGHT,          Cube.RIGHT,          Cube.TOP, 
+            Cube.BOTTOM,          Cube.RIGHT,          Cube.BACK, 
+            Cube.FRONT,          Cube.FRONT,          Cube.LEFT
          },
          { // BACK
-            Cube.CubeColor.ORANGE,          Cube.CubeColor.ORANGE,          Cube.CubeColor.RED, 
-            Cube.CubeColor.GREEN,          Cube.CubeColor.ORANGE,          Cube.CubeColor.WHITE, 
-            Cube.CubeColor.GREEN,          Cube.CubeColor.ORANGE,          Cube.CubeColor.YELLOW
+            Cube.BACK,          Cube.BACK,          Cube.FRONT, 
+            Cube.BOTTOM,          Cube.BACK,          Cube.LEFT, 
+            Cube.BOTTOM,          Cube.BACK,          Cube.RIGHT
          },
          { // BOTTOM
-            Cube.CubeColor.BLUE,          Cube.CubeColor.RED,          Cube.CubeColor.GREEN, 
-            Cube.CubeColor.GREEN,          Cube.CubeColor.GREEN,          Cube.CubeColor.YELLOW, 
-            Cube.CubeColor.GREEN,          Cube.CubeColor.YELLOW,          Cube.CubeColor.ORANGE
+            Cube.TOP,          Cube.FRONT,          Cube.BOTTOM, 
+            Cube.BOTTOM,          Cube.BOTTOM,          Cube.RIGHT, 
+            Cube.BOTTOM,          Cube.RIGHT,          Cube.BACK
          }
       },
       { // F 
          { // TOP
-            Cube.CubeColor.YELLOW,          Cube.CubeColor.WHITE,          Cube.CubeColor.WHITE, 
-            Cube.CubeColor.BLUE,          Cube.CubeColor.BLUE,          Cube.CubeColor.BLUE, 
-            Cube.CubeColor.YELLOW,          Cube.CubeColor.BLUE,          Cube.CubeColor.BLUE
+            Cube.RIGHT,          Cube.LEFT,          Cube.LEFT, 
+            Cube.TOP,          Cube.TOP,          Cube.TOP, 
+            Cube.RIGHT,          Cube.TOP,          Cube.TOP
          },
          { // LEFT
-            Cube.CubeColor.GREEN,          Cube.CubeColor.ORANGE,          Cube.CubeColor.BLUE, 
-            Cube.CubeColor.GREEN,          Cube.CubeColor.WHITE,          Cube.CubeColor.RED, 
-            Cube.CubeColor.ORANGE,          Cube.CubeColor.RED,          Cube.CubeColor.GREEN
+            Cube.BOTTOM,          Cube.BACK,          Cube.TOP, 
+            Cube.BOTTOM,          Cube.LEFT,          Cube.FRONT, 
+            Cube.BACK,          Cube.FRONT,          Cube.BOTTOM
          },
          { // FRONT
-            Cube.CubeColor.RED,          Cube.CubeColor.WHITE,          Cube.CubeColor.WHITE, 
-            Cube.CubeColor.WHITE,          Cube.CubeColor.RED,          Cube.CubeColor.RED, 
-            Cube.CubeColor.WHITE,          Cube.CubeColor.YELLOW,          Cube.CubeColor.BLUE
+            Cube.FRONT,          Cube.LEFT,          Cube.LEFT, 
+            Cube.LEFT,          Cube.FRONT,          Cube.FRONT, 
+            Cube.LEFT,          Cube.RIGHT,          Cube.TOP
          },
          { // RIGHT
-            Cube.CubeColor.RED,          Cube.CubeColor.YELLOW,          Cube.CubeColor.BLUE, 
-            Cube.CubeColor.BLUE,          Cube.CubeColor.YELLOW,          Cube.CubeColor.ORANGE, 
-            Cube.CubeColor.ORANGE,          Cube.CubeColor.RED,          Cube.CubeColor.WHITE
+            Cube.FRONT,          Cube.RIGHT,          Cube.TOP, 
+            Cube.TOP,          Cube.RIGHT,          Cube.BACK, 
+            Cube.BACK,          Cube.FRONT,          Cube.LEFT
          },
          { // BACK
-            Cube.CubeColor.ORANGE,          Cube.CubeColor.ORANGE,          Cube.CubeColor.RED, 
-            Cube.CubeColor.GREEN,          Cube.CubeColor.ORANGE,          Cube.CubeColor.WHITE, 
-            Cube.CubeColor.GREEN,          Cube.CubeColor.ORANGE,          Cube.CubeColor.YELLOW
+            Cube.BACK,          Cube.BACK,          Cube.FRONT, 
+            Cube.BOTTOM,          Cube.BACK,          Cube.LEFT, 
+            Cube.BOTTOM,          Cube.BACK,          Cube.RIGHT
          },
          { // BOTTOM
-            Cube.CubeColor.RED,          Cube.CubeColor.GREEN,          Cube.CubeColor.YELLOW, 
-            Cube.CubeColor.GREEN,          Cube.CubeColor.GREEN,          Cube.CubeColor.YELLOW, 
-            Cube.CubeColor.GREEN,          Cube.CubeColor.YELLOW,          Cube.CubeColor.ORANGE
+            Cube.FRONT,          Cube.BOTTOM,          Cube.RIGHT, 
+            Cube.BOTTOM,          Cube.BOTTOM,          Cube.RIGHT, 
+            Cube.BOTTOM,          Cube.RIGHT,          Cube.BACK
          }
       },
       { // R 
          { // TOP
-            Cube.CubeColor.YELLOW,          Cube.CubeColor.WHITE,          Cube.CubeColor.WHITE, 
-            Cube.CubeColor.BLUE,          Cube.CubeColor.BLUE,          Cube.CubeColor.RED, 
-            Cube.CubeColor.YELLOW,          Cube.CubeColor.BLUE,          Cube.CubeColor.BLUE
+            Cube.RIGHT,          Cube.LEFT,          Cube.LEFT, 
+            Cube.TOP,          Cube.TOP,          Cube.FRONT, 
+            Cube.RIGHT,          Cube.TOP,          Cube.TOP
          },
          { // LEFT
-            Cube.CubeColor.GREEN,          Cube.CubeColor.ORANGE,          Cube.CubeColor.BLUE, 
-            Cube.CubeColor.GREEN,          Cube.CubeColor.WHITE,          Cube.CubeColor.RED, 
-            Cube.CubeColor.ORANGE,          Cube.CubeColor.RED,          Cube.CubeColor.GREEN
+            Cube.BOTTOM,          Cube.BACK,          Cube.TOP, 
+            Cube.BOTTOM,          Cube.LEFT,          Cube.FRONT, 
+            Cube.BACK,          Cube.FRONT,          Cube.BOTTOM
          },
          { // FRONT
-            Cube.CubeColor.RED,          Cube.CubeColor.WHITE,          Cube.CubeColor.YELLOW, 
-            Cube.CubeColor.WHITE,          Cube.CubeColor.RED,          Cube.CubeColor.YELLOW, 
-            Cube.CubeColor.WHITE,          Cube.CubeColor.YELLOW,          Cube.CubeColor.ORANGE
+            Cube.FRONT,          Cube.LEFT,          Cube.RIGHT, 
+            Cube.LEFT,          Cube.FRONT,          Cube.RIGHT, 
+            Cube.LEFT,          Cube.RIGHT,          Cube.BACK
          },
          { // RIGHT
-            Cube.CubeColor.ORANGE,          Cube.CubeColor.BLUE,          Cube.CubeColor.RED, 
-            Cube.CubeColor.RED,          Cube.CubeColor.YELLOW,          Cube.CubeColor.YELLOW, 
-            Cube.CubeColor.WHITE,          Cube.CubeColor.ORANGE,          Cube.CubeColor.BLUE
+            Cube.BACK,          Cube.TOP,          Cube.FRONT, 
+            Cube.FRONT,          Cube.RIGHT,          Cube.RIGHT, 
+            Cube.LEFT,          Cube.BACK,          Cube.TOP
          },
          { // BACK
-            Cube.CubeColor.BLUE,          Cube.CubeColor.ORANGE,          Cube.CubeColor.RED, 
-            Cube.CubeColor.BLUE,          Cube.CubeColor.ORANGE,          Cube.CubeColor.WHITE, 
-            Cube.CubeColor.WHITE,          Cube.CubeColor.ORANGE,          Cube.CubeColor.YELLOW
+            Cube.TOP,          Cube.BACK,          Cube.FRONT, 
+            Cube.TOP,          Cube.BACK,          Cube.LEFT, 
+            Cube.LEFT,          Cube.BACK,          Cube.RIGHT
          },
          { // BOTTOM
-            Cube.CubeColor.RED,          Cube.CubeColor.GREEN,          Cube.CubeColor.GREEN, 
-            Cube.CubeColor.GREEN,          Cube.CubeColor.GREEN,          Cube.CubeColor.GREEN, 
-            Cube.CubeColor.GREEN,          Cube.CubeColor.YELLOW,          Cube.CubeColor.ORANGE
+            Cube.FRONT,          Cube.BOTTOM,          Cube.BOTTOM, 
+            Cube.BOTTOM,          Cube.BOTTOM,          Cube.BOTTOM, 
+            Cube.BOTTOM,          Cube.RIGHT,          Cube.BACK
          }
       },
       { // B 
          { // TOP
-            Cube.CubeColor.RED,          Cube.CubeColor.YELLOW,          Cube.CubeColor.BLUE, 
-            Cube.CubeColor.BLUE,          Cube.CubeColor.BLUE,          Cube.CubeColor.RED, 
-            Cube.CubeColor.YELLOW,          Cube.CubeColor.BLUE,          Cube.CubeColor.BLUE
+            Cube.FRONT,          Cube.RIGHT,          Cube.TOP, 
+            Cube.TOP,          Cube.TOP,          Cube.FRONT, 
+            Cube.RIGHT,          Cube.TOP,          Cube.TOP
          },
          { // LEFT
-            Cube.CubeColor.WHITE,          Cube.CubeColor.ORANGE,          Cube.CubeColor.BLUE, 
-            Cube.CubeColor.WHITE,          Cube.CubeColor.WHITE,          Cube.CubeColor.RED, 
-            Cube.CubeColor.YELLOW,          Cube.CubeColor.RED,          Cube.CubeColor.GREEN
+            Cube.LEFT,          Cube.BACK,          Cube.TOP, 
+            Cube.LEFT,          Cube.LEFT,          Cube.FRONT, 
+            Cube.RIGHT,          Cube.FRONT,          Cube.BOTTOM
          },
          { // FRONT
-            Cube.CubeColor.RED,          Cube.CubeColor.WHITE,          Cube.CubeColor.YELLOW, 
-            Cube.CubeColor.WHITE,          Cube.CubeColor.RED,          Cube.CubeColor.YELLOW, 
-            Cube.CubeColor.WHITE,          Cube.CubeColor.YELLOW,          Cube.CubeColor.ORANGE
+            Cube.FRONT,          Cube.LEFT,          Cube.RIGHT, 
+            Cube.LEFT,          Cube.FRONT,          Cube.RIGHT, 
+            Cube.LEFT,          Cube.RIGHT,          Cube.BACK
          },
          { // RIGHT
-            Cube.CubeColor.ORANGE,          Cube.CubeColor.BLUE,          Cube.CubeColor.ORANGE, 
-            Cube.CubeColor.RED,          Cube.CubeColor.YELLOW,          Cube.CubeColor.YELLOW, 
-            Cube.CubeColor.WHITE,          Cube.CubeColor.ORANGE,          Cube.CubeColor.GREEN
+            Cube.BACK,          Cube.TOP,          Cube.BACK, 
+            Cube.FRONT,          Cube.RIGHT,          Cube.RIGHT, 
+            Cube.LEFT,          Cube.BACK,          Cube.BOTTOM
          },
          { // BACK
-            Cube.CubeColor.WHITE,          Cube.CubeColor.BLUE,          Cube.CubeColor.BLUE, 
-            Cube.CubeColor.ORANGE,          Cube.CubeColor.ORANGE,          Cube.CubeColor.ORANGE, 
-            Cube.CubeColor.YELLOW,          Cube.CubeColor.WHITE,          Cube.CubeColor.RED
+            Cube.LEFT,          Cube.TOP,          Cube.TOP, 
+            Cube.BACK,          Cube.BACK,          Cube.BACK, 
+            Cube.RIGHT,          Cube.LEFT,          Cube.FRONT
          },
          { // BOTTOM
-            Cube.CubeColor.RED,          Cube.CubeColor.GREEN,          Cube.CubeColor.GREEN, 
-            Cube.CubeColor.GREEN,          Cube.CubeColor.GREEN,          Cube.CubeColor.GREEN, 
-            Cube.CubeColor.GREEN,          Cube.CubeColor.GREEN,          Cube.CubeColor.ORANGE
+            Cube.FRONT,          Cube.BOTTOM,          Cube.BOTTOM, 
+            Cube.BOTTOM,          Cube.BOTTOM,          Cube.BOTTOM, 
+            Cube.BOTTOM,          Cube.BOTTOM,          Cube.BACK
          }
       },
       { // U 
          { // TOP
-            Cube.CubeColor.YELLOW,          Cube.CubeColor.BLUE,          Cube.CubeColor.RED, 
-            Cube.CubeColor.BLUE,          Cube.CubeColor.BLUE,          Cube.CubeColor.YELLOW, 
-            Cube.CubeColor.BLUE,          Cube.CubeColor.RED,          Cube.CubeColor.BLUE
+            Cube.RIGHT,          Cube.TOP,          Cube.FRONT, 
+            Cube.TOP,          Cube.TOP,          Cube.RIGHT, 
+            Cube.TOP,          Cube.FRONT,          Cube.TOP
          },
          { // LEFT
-            Cube.CubeColor.RED,          Cube.CubeColor.WHITE,          Cube.CubeColor.YELLOW, 
-            Cube.CubeColor.WHITE,          Cube.CubeColor.WHITE,          Cube.CubeColor.RED, 
-            Cube.CubeColor.YELLOW,          Cube.CubeColor.RED,          Cube.CubeColor.GREEN
+            Cube.FRONT,          Cube.LEFT,          Cube.RIGHT, 
+            Cube.LEFT,          Cube.LEFT,          Cube.FRONT, 
+            Cube.RIGHT,          Cube.FRONT,          Cube.BOTTOM
          },
          { // FRONT
-            Cube.CubeColor.ORANGE,          Cube.CubeColor.BLUE,          Cube.CubeColor.ORANGE, 
-            Cube.CubeColor.WHITE,          Cube.CubeColor.RED,          Cube.CubeColor.YELLOW, 
-            Cube.CubeColor.WHITE,          Cube.CubeColor.YELLOW,          Cube.CubeColor.ORANGE
+            Cube.BACK,          Cube.TOP,          Cube.BACK, 
+            Cube.LEFT,          Cube.FRONT,          Cube.RIGHT, 
+            Cube.LEFT,          Cube.RIGHT,          Cube.BACK
          },
          { // RIGHT
-            Cube.CubeColor.WHITE,          Cube.CubeColor.BLUE,          Cube.CubeColor.BLUE, 
-            Cube.CubeColor.RED,          Cube.CubeColor.YELLOW,          Cube.CubeColor.YELLOW, 
-            Cube.CubeColor.WHITE,          Cube.CubeColor.ORANGE,          Cube.CubeColor.GREEN
+            Cube.LEFT,          Cube.TOP,          Cube.TOP, 
+            Cube.FRONT,          Cube.RIGHT,          Cube.RIGHT, 
+            Cube.LEFT,          Cube.BACK,          Cube.BOTTOM
          },
          { // BACK
-            Cube.CubeColor.WHITE,          Cube.CubeColor.ORANGE,          Cube.CubeColor.BLUE, 
-            Cube.CubeColor.ORANGE,          Cube.CubeColor.ORANGE,          Cube.CubeColor.ORANGE, 
-            Cube.CubeColor.YELLOW,          Cube.CubeColor.WHITE,          Cube.CubeColor.RED
+            Cube.LEFT,          Cube.BACK,          Cube.TOP, 
+            Cube.BACK,          Cube.BACK,          Cube.BACK, 
+            Cube.RIGHT,          Cube.LEFT,          Cube.FRONT
          },
          { // BOTTOM
-            Cube.CubeColor.RED,          Cube.CubeColor.GREEN,          Cube.CubeColor.GREEN, 
-            Cube.CubeColor.GREEN,          Cube.CubeColor.GREEN,          Cube.CubeColor.GREEN, 
-            Cube.CubeColor.GREEN,          Cube.CubeColor.GREEN,          Cube.CubeColor.ORANGE
+            Cube.FRONT,          Cube.BOTTOM,          Cube.BOTTOM, 
+            Cube.BOTTOM,          Cube.BOTTOM,          Cube.BOTTOM, 
+            Cube.BOTTOM,          Cube.BOTTOM,          Cube.BACK
          }
       },
       { // D 
          { // TOP
-            Cube.CubeColor.YELLOW,          Cube.CubeColor.BLUE,          Cube.CubeColor.RED, 
-            Cube.CubeColor.BLUE,          Cube.CubeColor.BLUE,          Cube.CubeColor.YELLOW, 
-            Cube.CubeColor.BLUE,          Cube.CubeColor.RED,          Cube.CubeColor.BLUE
+            Cube.RIGHT,          Cube.TOP,          Cube.FRONT, 
+            Cube.TOP,          Cube.TOP,          Cube.RIGHT, 
+            Cube.TOP,          Cube.FRONT,          Cube.TOP
          },
          { // LEFT
-            Cube.CubeColor.RED,          Cube.CubeColor.WHITE,          Cube.CubeColor.YELLOW, 
-            Cube.CubeColor.WHITE,          Cube.CubeColor.WHITE,          Cube.CubeColor.RED, 
-            Cube.CubeColor.YELLOW,          Cube.CubeColor.WHITE,          Cube.CubeColor.RED
+            Cube.FRONT,          Cube.LEFT,          Cube.RIGHT, 
+            Cube.LEFT,          Cube.LEFT,          Cube.FRONT, 
+            Cube.RIGHT,          Cube.LEFT,          Cube.FRONT
          },
          { // FRONT
-            Cube.CubeColor.ORANGE,          Cube.CubeColor.BLUE,          Cube.CubeColor.ORANGE, 
-            Cube.CubeColor.WHITE,          Cube.CubeColor.RED,          Cube.CubeColor.YELLOW, 
-            Cube.CubeColor.YELLOW,          Cube.CubeColor.RED,          Cube.CubeColor.GREEN
+            Cube.BACK,          Cube.TOP,          Cube.BACK, 
+            Cube.LEFT,          Cube.FRONT,          Cube.RIGHT, 
+            Cube.RIGHT,          Cube.FRONT,          Cube.BOTTOM
          },
          { // RIGHT
-            Cube.CubeColor.WHITE,          Cube.CubeColor.BLUE,          Cube.CubeColor.BLUE, 
-            Cube.CubeColor.RED,          Cube.CubeColor.YELLOW,          Cube.CubeColor.YELLOW, 
-            Cube.CubeColor.WHITE,          Cube.CubeColor.YELLOW,          Cube.CubeColor.ORANGE
+            Cube.LEFT,          Cube.TOP,          Cube.TOP, 
+            Cube.FRONT,          Cube.RIGHT,          Cube.RIGHT, 
+            Cube.LEFT,          Cube.RIGHT,          Cube.BACK
          },
          { // BACK
-            Cube.CubeColor.WHITE,          Cube.CubeColor.ORANGE,          Cube.CubeColor.BLUE, 
-            Cube.CubeColor.ORANGE,          Cube.CubeColor.ORANGE,          Cube.CubeColor.ORANGE, 
-            Cube.CubeColor.WHITE,          Cube.CubeColor.ORANGE,          Cube.CubeColor.GREEN
+            Cube.LEFT,          Cube.BACK,          Cube.TOP, 
+            Cube.BACK,          Cube.BACK,          Cube.BACK, 
+            Cube.LEFT,          Cube.BACK,          Cube.BOTTOM
          },
          { // BOTTOM
-            Cube.CubeColor.GREEN,          Cube.CubeColor.GREEN,          Cube.CubeColor.RED, 
-            Cube.CubeColor.GREEN,          Cube.CubeColor.GREEN,          Cube.CubeColor.GREEN, 
-            Cube.CubeColor.ORANGE,          Cube.CubeColor.GREEN,          Cube.CubeColor.GREEN
+            Cube.BOTTOM,          Cube.BOTTOM,          Cube.FRONT, 
+            Cube.BOTTOM,          Cube.BOTTOM,          Cube.BOTTOM, 
+            Cube.BACK,          Cube.BOTTOM,          Cube.BOTTOM
          }
       }
    };

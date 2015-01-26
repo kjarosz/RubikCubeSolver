@@ -17,9 +17,9 @@ public class ColorPicker extends JPopupMenu {
    private static class PickerButton extends JButton {
       private static final Dimension PICKER_BUTTON_SIZE = new Dimension(25, 25);
       
-      private Cube.CubeColor color;
+      private byte color;
       
-      public PickerButton(final ColorPicker picker, final CubeButton cubeButton, final Cube.CubeColor color) {
+      public PickerButton(final ColorPicker picker, final CubeButton cubeButton, final byte color) {
          setMinimumSize(PICKER_BUTTON_SIZE);
          setPreferredSize(PICKER_BUTTON_SIZE);
          setMaximumSize(PICKER_BUTTON_SIZE);
@@ -42,12 +42,12 @@ public class ColorPicker extends JPopupMenu {
 
       private Color getColor() {
          switch(color) {
-         case BLUE: return Color.BLUE;
-         case WHITE: return Color.WHITE;
-         case RED: return Color.RED;
-         case YELLOW: return Color.YELLOW;
-         case ORANGE: return Color.ORANGE;
-         case GREEN: return Color.GREEN;
+         case Cube.TOP: return Color.BLUE;
+         case Cube.LEFT: return Color.WHITE;
+         case Cube.FRONT: return Color.RED;
+         case Cube.RIGHT: return Color.YELLOW;
+         case Cube.BACK: return Color.ORANGE;
+         case Cube.BOTTOM: return Color.GREEN;
          default: return Color.BLACK;
          }
       }
@@ -60,8 +60,8 @@ public class ColorPicker extends JPopupMenu {
    private void createWidgets(CubeButton button) {
       setLayout(new GridLayout(2, 3));
       
-      for(int i = 0; i < 6; i++) {
-         add(new PickerButton(this, button, Cube.CubeColor.values()[i]));
+      for(byte i = 0; i < 6; i++) {
+         add(new PickerButton(this, button, i));
       }
    }
    

@@ -1,6 +1,5 @@
 package solver.algorithms;
 
-import solver.algorithms.Algorithm.Move;
 import solver.ui.ProgressReporter;
 
 public class IDASolver implements SolvingAlgorithm {
@@ -15,12 +14,10 @@ public class IDASolver implements SolvingAlgorithm {
          mStop = true;
          return new Algorithm(startingCube);
       }
-            
-      final Move moveset[] = Move.values();
-      
+                 
       Algorithm levelAlgorithm[] = new Algorithm[20];
-      int levelIndices[] = new int[20];
-      for(int i = 0; i < 20; i++) {
+      byte levelIndices[] = new byte[20];
+      for(byte i = 0; i < 20; i++) {
          levelIndices[i] = 0;
       }
       
@@ -28,7 +25,7 @@ public class IDASolver implements SolvingAlgorithm {
       
       boolean solutionFound = false;
       Algorithm solution = null;
-      int depth = -1;
+      byte depth = -1;
       
       MainLoop:
       while(!solutionFound) {
@@ -46,9 +43,9 @@ public class IDASolver implements SolvingAlgorithm {
                   continue MainLoop;
                }
                
-               if(levelIndices[level] < moveset.length) {
-                  if(!moveIsStupid(levelAlgorithm[level], moveset[levelIndices[level]])) {
-                     levelAlgorithm[level+1] = new Algorithm(levelAlgorithm[level], moveset[levelIndices[level]]);
+               if(levelIndices[level] < 12) {
+                  if(!moveIsStupid(levelAlgorithm[level], levelIndices[level])) {
+                     levelAlgorithm[level+1] = new Algorithm(levelAlgorithm[level], levelIndices[level]);
                      levelIndices[level]++;
                      level++;
                      levelIndices[level] = 0;
@@ -60,11 +57,11 @@ public class IDASolver implements SolvingAlgorithm {
                }
             }
             
-            for(int i = 0; i < moveset.length; i++) {
-               if(moveIsStupid(levelAlgorithm[level], moveset[i]))
+            for(byte i = 0; i < 12; i++) {
+               if(moveIsStupid(levelAlgorithm[level], i))
                   continue;
                
-               Algorithm newAlgorithm = new Algorithm(levelAlgorithm[level], moveset[i]);
+               Algorithm newAlgorithm = new Algorithm(levelAlgorithm[level], i);
                if(newAlgorithm.cubeState.cubeSolved()) {
                   solutionFound = true;
                   solution = newAlgorithm;
@@ -87,16 +84,16 @@ public class IDASolver implements SolvingAlgorithm {
       reporter.updateProgress("Working level: " + (level+1));
    }
    
-   private boolean moveIsStupid(Algorithm algorithm, Move move) {
+   private boolean moveIsStupid(Algorithm algorithm, byte move) {
       if(algorithm.moves.isEmpty()) {
          return false;
       }
       
-      Move lastMove = algorithm.moves.getLast();
+      byte lastMove = algorithm.moves.getLast();
       
       // Do not repeat move
       if(move == lastMove && algorithm.moves.size() > 1) {
-         Move secondToLast = algorithm.moves.get(algorithm.moves.size() - 2);
+         byte secondToLast = algorithm.moves.get(algorithm.moves.size() - 2);
          if(secondToLast == move)
             return true;
          else
@@ -105,21 +102,21 @@ public class IDASolver implements SolvingAlgorithm {
       
       // Commutative moves
       switch(move) {
-      case D:
-      case Di:
-         if(lastMove == Move.F || lastMove == Move.Fi) {
+      case Algorithm.D:
+      case Algorithm.Di:
+         if(lastMove == Algorithm.F || lastMove == Algorithm.Fi) {
             return true;
          }
          break;
-      case R:
-      case Ri:
-         if(lastMove == Move.L || lastMove == Move.Li) {
+      case Algorithm.R:
+      case Algorithm.Ri:
+         if(lastMove == Algorithm.L || lastMove == Algorithm.Li) {
             return true;
          }
          break;
-      case B:
-      case Bi:
-         if(lastMove == Move.F || lastMove == Move.Fi) {
+      case Algorithm.B:
+      case Algorithm.Bi:
+         if(lastMove == Algorithm.F || lastMove == Algorithm.Fi) {
             return true;
          }
          break;
@@ -128,11 +125,10 @@ public class IDASolver implements SolvingAlgorithm {
       }
       
       // If move undoes the last one.
-      int moveIdx = move.ordinal();
-      if(moveIdx % 2 == 0) {
-         return lastMove.ordinal() == moveIdx + 1;
+      if(move % 2 == 0) {
+         return lastMove == move + 1;
       } else {
-         return lastMove.ordinal() == moveIdx - 1;
+         return lastMove == move - 1;
       }
    }
     
