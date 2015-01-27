@@ -31,11 +31,13 @@ public class Algorithm {
    public Algorithm getReverseAlgorithm() {
       Algorithm algorithm = new Algorithm(cubeState);
       
-      for(byte move = 0; move < 12; move++) {
+      Iterator<Byte> iterator = moves.descendingIterator();
+      while(iterator.hasNext()) {
+         byte move = iterator.next();
          if(move % 2 == 0) {
-            algorithm.moves.addFirst(move);
+            algorithm.moves.addFirst((byte)(move+1));
          } else {
-            algorithm.moves.addFirst(move);
+            algorithm.moves.addFirst((byte)(move-1));
          }
       }
       
