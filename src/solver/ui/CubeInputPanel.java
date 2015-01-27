@@ -44,7 +44,7 @@ public class CubeInputPanel extends JPanel {
       
       add(new JPanel());
       
-      mFaces[5] = new FaceInputPanel("Bottom", Cube.BOTTOM);
+      mFaces[5] = new FaceInputPanel("DOWN", Cube.DOWN);
       add(mFaces[5]);
       
       add(new JPanel());

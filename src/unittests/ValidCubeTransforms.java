@@ -26,14 +26,14 @@ public class ValidCubeTransforms {
             Cube.RIGHT,          Cube.RIGHT,          Cube.RIGHT
          },
          { // BACK
-            Cube.BACK,          Cube.BACK,          Cube.BOTTOM, 
-            Cube.BACK,          Cube.BACK,          Cube.BOTTOM, 
-            Cube.BACK,          Cube.BACK,          Cube.BOTTOM
+            Cube.BACK,          Cube.BACK,          Cube.DOWN, 
+            Cube.BACK,          Cube.BACK,          Cube.DOWN, 
+            Cube.BACK,          Cube.BACK,          Cube.DOWN
          },
-         { // BOTTOM
-            Cube.FRONT,          Cube.BOTTOM,          Cube.BOTTOM, 
-            Cube.FRONT,          Cube.BOTTOM,          Cube.BOTTOM, 
-            Cube.FRONT,          Cube.BOTTOM,          Cube.BOTTOM
+         { // DOWN
+            Cube.FRONT,          Cube.DOWN,          Cube.DOWN, 
+            Cube.FRONT,          Cube.DOWN,          Cube.DOWN, 
+            Cube.FRONT,          Cube.DOWN,          Cube.DOWN
          }
       },
       { // F 
@@ -44,8 +44,8 @@ public class ValidCubeTransforms {
          },
          { // LEFT
             Cube.LEFT,          Cube.LEFT,          Cube.FRONT, 
-            Cube.LEFT,          Cube.LEFT,          Cube.BOTTOM, 
-            Cube.LEFT,          Cube.LEFT,          Cube.BOTTOM
+            Cube.LEFT,          Cube.LEFT,          Cube.DOWN, 
+            Cube.LEFT,          Cube.LEFT,          Cube.DOWN
          },
          { // FRONT
             Cube.TOP,          Cube.TOP,          Cube.TOP, 
@@ -58,14 +58,14 @@ public class ValidCubeTransforms {
             Cube.TOP,          Cube.RIGHT,          Cube.RIGHT
          },
          { // BACK
-            Cube.BACK,          Cube.BACK,          Cube.BOTTOM, 
-            Cube.BACK,          Cube.BACK,          Cube.BOTTOM, 
-            Cube.BACK,          Cube.BACK,          Cube.BOTTOM
+            Cube.BACK,          Cube.BACK,          Cube.DOWN, 
+            Cube.BACK,          Cube.BACK,          Cube.DOWN, 
+            Cube.BACK,          Cube.BACK,          Cube.DOWN
          },
-         { // BOTTOM
+         { // DOWN
             Cube.RIGHT,          Cube.RIGHT,          Cube.RIGHT, 
-            Cube.FRONT,          Cube.BOTTOM,          Cube.BOTTOM, 
-            Cube.FRONT,          Cube.BOTTOM,          Cube.BOTTOM
+            Cube.FRONT,          Cube.DOWN,          Cube.DOWN, 
+            Cube.FRONT,          Cube.DOWN,          Cube.DOWN
          }
       },
       { // R 
@@ -76,13 +76,13 @@ public class ValidCubeTransforms {
          },
          { // LEFT
             Cube.LEFT,          Cube.LEFT,          Cube.FRONT, 
-            Cube.LEFT,          Cube.LEFT,          Cube.BOTTOM, 
-            Cube.LEFT,          Cube.LEFT,          Cube.BOTTOM
+            Cube.LEFT,          Cube.LEFT,          Cube.DOWN, 
+            Cube.LEFT,          Cube.LEFT,          Cube.DOWN
          },
          { // FRONT
             Cube.TOP,          Cube.TOP,          Cube.RIGHT, 
-            Cube.FRONT,          Cube.FRONT,          Cube.BOTTOM, 
-            Cube.FRONT,          Cube.FRONT,          Cube.BOTTOM
+            Cube.FRONT,          Cube.FRONT,          Cube.DOWN, 
+            Cube.FRONT,          Cube.FRONT,          Cube.DOWN
          },
          { // RIGHT
             Cube.TOP,          Cube.TOP,          Cube.BACK, 
@@ -90,14 +90,14 @@ public class ValidCubeTransforms {
             Cube.RIGHT,          Cube.RIGHT,          Cube.RIGHT
          },
          { // BACK
-            Cube.LEFT,          Cube.BACK,          Cube.BOTTOM, 
-            Cube.TOP,          Cube.BACK,          Cube.BOTTOM, 
-            Cube.TOP,          Cube.BACK,          Cube.BOTTOM
+            Cube.LEFT,          Cube.BACK,          Cube.DOWN, 
+            Cube.TOP,          Cube.BACK,          Cube.DOWN, 
+            Cube.TOP,          Cube.BACK,          Cube.DOWN
          },
-         { // BOTTOM
+         { // DOWN
             Cube.RIGHT,          Cube.RIGHT,          Cube.BACK, 
-            Cube.FRONT,          Cube.BOTTOM,          Cube.BACK, 
-            Cube.FRONT,          Cube.BOTTOM,          Cube.BACK
+            Cube.FRONT,          Cube.DOWN,          Cube.BACK, 
+            Cube.FRONT,          Cube.DOWN,          Cube.BACK
          }
       },
       { // B 
@@ -108,27 +108,27 @@ public class ValidCubeTransforms {
          },
          { // LEFT
             Cube.TOP,          Cube.LEFT,          Cube.FRONT, 
-            Cube.TOP,          Cube.LEFT,          Cube.BOTTOM, 
-            Cube.BACK,          Cube.LEFT,          Cube.BOTTOM
+            Cube.TOP,          Cube.LEFT,          Cube.DOWN, 
+            Cube.BACK,          Cube.LEFT,          Cube.DOWN
          },
          { // FRONT
             Cube.TOP,          Cube.TOP,          Cube.RIGHT, 
-            Cube.FRONT,          Cube.FRONT,          Cube.BOTTOM, 
-            Cube.FRONT,          Cube.FRONT,          Cube.BOTTOM
+            Cube.FRONT,          Cube.FRONT,          Cube.DOWN, 
+            Cube.FRONT,          Cube.FRONT,          Cube.DOWN
          },
          { // RIGHT
             Cube.TOP,          Cube.TOP,          Cube.BACK, 
-            Cube.RIGHT,          Cube.RIGHT,          Cube.BOTTOM, 
+            Cube.RIGHT,          Cube.RIGHT,          Cube.DOWN, 
             Cube.RIGHT,          Cube.RIGHT,          Cube.FRONT
          },
          { // BACK
             Cube.TOP,          Cube.TOP,          Cube.LEFT, 
             Cube.BACK,          Cube.BACK,          Cube.BACK, 
-            Cube.BOTTOM,          Cube.BOTTOM,          Cube.BOTTOM
+            Cube.DOWN,          Cube.DOWN,          Cube.DOWN
          },
-         { // BOTTOM
+         { // DOWN
             Cube.RIGHT,          Cube.RIGHT,          Cube.BACK, 
-            Cube.FRONT,          Cube.BOTTOM,          Cube.BACK, 
+            Cube.FRONT,          Cube.DOWN,          Cube.BACK, 
             Cube.LEFT,          Cube.LEFT,          Cube.LEFT
          }
       },
@@ -140,27 +140,27 @@ public class ValidCubeTransforms {
          },
          { // LEFT
             Cube.TOP,          Cube.TOP,          Cube.RIGHT, 
-            Cube.TOP,          Cube.LEFT,          Cube.BOTTOM, 
-            Cube.BACK,          Cube.LEFT,          Cube.BOTTOM
+            Cube.TOP,          Cube.LEFT,          Cube.DOWN, 
+            Cube.BACK,          Cube.LEFT,          Cube.DOWN
          },
          { // FRONT
             Cube.TOP,          Cube.TOP,          Cube.BACK, 
-            Cube.FRONT,          Cube.FRONT,          Cube.BOTTOM, 
-            Cube.FRONT,          Cube.FRONT,          Cube.BOTTOM
+            Cube.FRONT,          Cube.FRONT,          Cube.DOWN, 
+            Cube.FRONT,          Cube.FRONT,          Cube.DOWN
          },
          { // RIGHT
             Cube.TOP,          Cube.TOP,          Cube.LEFT, 
-            Cube.RIGHT,          Cube.RIGHT,          Cube.BOTTOM, 
+            Cube.RIGHT,          Cube.RIGHT,          Cube.DOWN, 
             Cube.RIGHT,          Cube.RIGHT,          Cube.FRONT
          },
          { // BACK
             Cube.TOP,          Cube.LEFT,          Cube.FRONT, 
             Cube.BACK,          Cube.BACK,          Cube.BACK, 
-            Cube.BOTTOM,          Cube.BOTTOM,          Cube.BOTTOM
+            Cube.DOWN,          Cube.DOWN,          Cube.DOWN
          },
-         { // BOTTOM
+         { // DOWN
             Cube.RIGHT,          Cube.RIGHT,          Cube.BACK, 
-            Cube.FRONT,          Cube.BOTTOM,          Cube.BACK, 
+            Cube.FRONT,          Cube.DOWN,          Cube.BACK, 
             Cube.LEFT,          Cube.LEFT,          Cube.LEFT
          }
       },
@@ -172,27 +172,27 @@ public class ValidCubeTransforms {
          },
          { // LEFT
             Cube.TOP,          Cube.TOP,          Cube.RIGHT, 
-            Cube.TOP,          Cube.LEFT,          Cube.BOTTOM, 
-            Cube.BOTTOM,          Cube.BOTTOM,          Cube.BOTTOM
+            Cube.TOP,          Cube.LEFT,          Cube.DOWN, 
+            Cube.DOWN,          Cube.DOWN,          Cube.DOWN
          },
          { // FRONT
             Cube.TOP,          Cube.TOP,          Cube.BACK, 
-            Cube.FRONT,          Cube.FRONT,          Cube.BOTTOM, 
-            Cube.BACK,          Cube.LEFT,          Cube.BOTTOM
+            Cube.FRONT,          Cube.FRONT,          Cube.DOWN, 
+            Cube.BACK,          Cube.LEFT,          Cube.DOWN
          },
          { // RIGHT
             Cube.TOP,          Cube.TOP,          Cube.LEFT, 
-            Cube.RIGHT,          Cube.RIGHT,          Cube.BOTTOM, 
-            Cube.FRONT,          Cube.FRONT,          Cube.BOTTOM
+            Cube.RIGHT,          Cube.RIGHT,          Cube.DOWN, 
+            Cube.FRONT,          Cube.FRONT,          Cube.DOWN
          },
          { // BACK
             Cube.TOP,          Cube.LEFT,          Cube.FRONT, 
             Cube.BACK,          Cube.BACK,          Cube.BACK, 
             Cube.RIGHT,          Cube.RIGHT,          Cube.FRONT
          },
-         { // BOTTOM
+         { // DOWN
             Cube.LEFT,          Cube.FRONT,          Cube.RIGHT, 
-            Cube.LEFT,          Cube.BOTTOM,          Cube.RIGHT, 
+            Cube.LEFT,          Cube.DOWN,          Cube.RIGHT, 
             Cube.LEFT,          Cube.BACK,          Cube.BACK
          }
       },
@@ -203,28 +203,28 @@ public class ValidCubeTransforms {
             Cube.BACK,          Cube.FRONT,          Cube.RIGHT
          },
          { // LEFT
-            Cube.RIGHT,          Cube.BOTTOM,          Cube.BOTTOM, 
-            Cube.TOP,          Cube.LEFT,          Cube.BOTTOM, 
-            Cube.TOP,          Cube.TOP,          Cube.BOTTOM
+            Cube.RIGHT,          Cube.DOWN,          Cube.DOWN, 
+            Cube.TOP,          Cube.LEFT,          Cube.DOWN, 
+            Cube.TOP,          Cube.TOP,          Cube.DOWN
          },
          { // FRONT
             Cube.LEFT,          Cube.TOP,          Cube.BACK, 
-            Cube.LEFT,          Cube.FRONT,          Cube.BOTTOM, 
-            Cube.LEFT,          Cube.LEFT,          Cube.BOTTOM
+            Cube.LEFT,          Cube.FRONT,          Cube.DOWN, 
+            Cube.LEFT,          Cube.LEFT,          Cube.DOWN
          },
          { // RIGHT
             Cube.TOP,          Cube.TOP,          Cube.LEFT, 
-            Cube.RIGHT,          Cube.RIGHT,          Cube.BOTTOM, 
-            Cube.FRONT,          Cube.FRONT,          Cube.BOTTOM
+            Cube.RIGHT,          Cube.RIGHT,          Cube.DOWN, 
+            Cube.FRONT,          Cube.FRONT,          Cube.DOWN
          },
          { // BACK
             Cube.TOP,          Cube.LEFT,          Cube.FRONT, 
             Cube.BACK,          Cube.BACK,          Cube.LEFT, 
             Cube.RIGHT,          Cube.RIGHT,          Cube.LEFT
          },
-         { // BOTTOM
+         { // DOWN
             Cube.FRONT,          Cube.FRONT,          Cube.RIGHT, 
-            Cube.BACK,          Cube.BOTTOM,          Cube.RIGHT, 
+            Cube.BACK,          Cube.DOWN,          Cube.RIGHT, 
             Cube.FRONT,          Cube.BACK,          Cube.BACK
          }
       },
@@ -235,28 +235,28 @@ public class ValidCubeTransforms {
             Cube.TOP,          Cube.RIGHT,          Cube.FRONT
          },
          { // LEFT
-            Cube.RIGHT,          Cube.BOTTOM,          Cube.RIGHT, 
+            Cube.RIGHT,          Cube.DOWN,          Cube.RIGHT, 
             Cube.TOP,          Cube.LEFT,          Cube.FRONT, 
             Cube.TOP,          Cube.TOP,          Cube.BACK
          },
          { // FRONT
-            Cube.BACK,          Cube.BOTTOM,          Cube.BOTTOM, 
+            Cube.BACK,          Cube.DOWN,          Cube.DOWN, 
             Cube.TOP,          Cube.FRONT,          Cube.LEFT, 
             Cube.LEFT,          Cube.LEFT,          Cube.LEFT
          },
          { // RIGHT
             Cube.RIGHT,          Cube.TOP,          Cube.LEFT, 
-            Cube.FRONT,          Cube.RIGHT,          Cube.BOTTOM, 
-            Cube.FRONT,          Cube.FRONT,          Cube.BOTTOM
+            Cube.FRONT,          Cube.RIGHT,          Cube.DOWN, 
+            Cube.FRONT,          Cube.FRONT,          Cube.DOWN
          },
          { // BACK
             Cube.TOP,          Cube.LEFT,          Cube.FRONT, 
             Cube.BACK,          Cube.BACK,          Cube.LEFT, 
             Cube.RIGHT,          Cube.RIGHT,          Cube.LEFT
          },
-         { // BOTTOM
-            Cube.BOTTOM,          Cube.BOTTOM,          Cube.BOTTOM, 
-            Cube.BACK,          Cube.BOTTOM,          Cube.RIGHT, 
+         { // DOWN
+            Cube.DOWN,          Cube.DOWN,          Cube.DOWN, 
+            Cube.BACK,          Cube.DOWN,          Cube.RIGHT, 
             Cube.FRONT,          Cube.BACK,          Cube.BACK
          }
       },
@@ -267,28 +267,28 @@ public class ValidCubeTransforms {
             Cube.TOP,          Cube.RIGHT,          Cube.TOP
          },
          { // LEFT
-            Cube.RIGHT,          Cube.BOTTOM,          Cube.RIGHT, 
+            Cube.RIGHT,          Cube.DOWN,          Cube.RIGHT, 
             Cube.TOP,          Cube.LEFT,          Cube.FRONT, 
             Cube.TOP,          Cube.TOP,          Cube.BACK
          },
          { // FRONT
-            Cube.BACK,          Cube.BOTTOM,          Cube.BACK, 
+            Cube.BACK,          Cube.DOWN,          Cube.BACK, 
             Cube.TOP,          Cube.FRONT,          Cube.RIGHT, 
             Cube.LEFT,          Cube.LEFT,          Cube.FRONT
          },
          { // RIGHT
-            Cube.LEFT,          Cube.BOTTOM,          Cube.BOTTOM, 
+            Cube.LEFT,          Cube.DOWN,          Cube.DOWN, 
             Cube.TOP,          Cube.RIGHT,          Cube.FRONT, 
             Cube.RIGHT,          Cube.FRONT,          Cube.FRONT
          },
          { // BACK
             Cube.BACK,          Cube.LEFT,          Cube.FRONT, 
             Cube.RIGHT,          Cube.BACK,          Cube.LEFT, 
-            Cube.BOTTOM,          Cube.RIGHT,          Cube.LEFT
+            Cube.DOWN,          Cube.RIGHT,          Cube.LEFT
          },
-         { // BOTTOM
-            Cube.BOTTOM,          Cube.BOTTOM,          Cube.BOTTOM, 
-            Cube.BACK,          Cube.BOTTOM,          Cube.LEFT, 
+         { // DOWN
+            Cube.DOWN,          Cube.DOWN,          Cube.DOWN, 
+            Cube.BACK,          Cube.DOWN,          Cube.LEFT, 
             Cube.FRONT,          Cube.BACK,          Cube.LEFT
          }
       },
@@ -299,29 +299,29 @@ public class ValidCubeTransforms {
             Cube.TOP,          Cube.RIGHT,          Cube.TOP
          },
          { // LEFT
-            Cube.FRONT,          Cube.BOTTOM,          Cube.RIGHT, 
+            Cube.FRONT,          Cube.DOWN,          Cube.RIGHT, 
             Cube.BACK,          Cube.LEFT,          Cube.FRONT, 
             Cube.LEFT,          Cube.TOP,          Cube.BACK
          },
          { // FRONT
-            Cube.BACK,          Cube.BOTTOM,          Cube.BACK, 
+            Cube.BACK,          Cube.DOWN,          Cube.BACK, 
             Cube.TOP,          Cube.FRONT,          Cube.RIGHT, 
             Cube.LEFT,          Cube.LEFT,          Cube.FRONT
          },
          { // RIGHT
-            Cube.LEFT,          Cube.BOTTOM,          Cube.TOP, 
+            Cube.LEFT,          Cube.DOWN,          Cube.TOP, 
             Cube.TOP,          Cube.RIGHT,          Cube.BACK, 
             Cube.RIGHT,          Cube.FRONT,          Cube.RIGHT
          },
          { // BACK
             Cube.FRONT,          Cube.LEFT,          Cube.LEFT, 
             Cube.LEFT,          Cube.BACK,          Cube.RIGHT, 
-            Cube.BACK,          Cube.RIGHT,          Cube.BOTTOM
+            Cube.BACK,          Cube.RIGHT,          Cube.DOWN
          },
-         { // BOTTOM
-            Cube.BOTTOM,          Cube.BOTTOM,          Cube.BOTTOM, 
-            Cube.BACK,          Cube.BOTTOM,          Cube.LEFT, 
-            Cube.FRONT,          Cube.FRONT,          Cube.BOTTOM
+         { // DOWN
+            Cube.DOWN,          Cube.DOWN,          Cube.DOWN, 
+            Cube.BACK,          Cube.DOWN,          Cube.LEFT, 
+            Cube.FRONT,          Cube.FRONT,          Cube.DOWN
          }
       },
       { // Ui
@@ -336,24 +336,24 @@ public class ValidCubeTransforms {
             Cube.LEFT,          Cube.TOP,          Cube.BACK
          },
          { // FRONT
-            Cube.FRONT,          Cube.BOTTOM,          Cube.RIGHT, 
+            Cube.FRONT,          Cube.DOWN,          Cube.RIGHT, 
             Cube.TOP,          Cube.FRONT,          Cube.RIGHT, 
             Cube.LEFT,          Cube.LEFT,          Cube.FRONT
          },
          { // RIGHT
-            Cube.BACK,          Cube.BOTTOM,          Cube.BACK, 
+            Cube.BACK,          Cube.DOWN,          Cube.BACK, 
             Cube.TOP,          Cube.RIGHT,          Cube.BACK, 
             Cube.RIGHT,          Cube.FRONT,          Cube.RIGHT
          },
          { // BACK
-            Cube.LEFT,          Cube.BOTTOM,          Cube.TOP, 
+            Cube.LEFT,          Cube.DOWN,          Cube.TOP, 
             Cube.LEFT,          Cube.BACK,          Cube.RIGHT, 
-            Cube.BACK,          Cube.RIGHT,          Cube.BOTTOM
+            Cube.BACK,          Cube.RIGHT,          Cube.DOWN
          },
-         { // BOTTOM
-            Cube.BOTTOM,          Cube.BOTTOM,          Cube.BOTTOM, 
-            Cube.BACK,          Cube.BOTTOM,          Cube.LEFT, 
-            Cube.FRONT,          Cube.FRONT,          Cube.BOTTOM
+         { // DOWN
+            Cube.DOWN,          Cube.DOWN,          Cube.DOWN, 
+            Cube.BACK,          Cube.DOWN,          Cube.LEFT, 
+            Cube.FRONT,          Cube.FRONT,          Cube.DOWN
          }
       },
       { // Di
@@ -368,24 +368,24 @@ public class ValidCubeTransforms {
             Cube.LEFT,          Cube.LEFT,          Cube.FRONT
          },
          { // FRONT
-            Cube.FRONT,          Cube.BOTTOM,          Cube.RIGHT, 
+            Cube.FRONT,          Cube.DOWN,          Cube.RIGHT, 
             Cube.TOP,          Cube.FRONT,          Cube.RIGHT, 
             Cube.RIGHT,          Cube.FRONT,          Cube.RIGHT
          },
          { // RIGHT
-            Cube.BACK,          Cube.BOTTOM,          Cube.BACK, 
+            Cube.BACK,          Cube.DOWN,          Cube.BACK, 
             Cube.TOP,          Cube.RIGHT,          Cube.BACK, 
-            Cube.BACK,          Cube.RIGHT,          Cube.BOTTOM
+            Cube.BACK,          Cube.RIGHT,          Cube.DOWN
          },
          { // BACK
-            Cube.LEFT,          Cube.BOTTOM,          Cube.TOP, 
+            Cube.LEFT,          Cube.DOWN,          Cube.TOP, 
             Cube.LEFT,          Cube.BACK,          Cube.RIGHT, 
             Cube.LEFT,          Cube.TOP,          Cube.BACK
          },
-         { // BOTTOM
-            Cube.BOTTOM,          Cube.LEFT,          Cube.BOTTOM, 
-            Cube.BOTTOM,          Cube.BOTTOM,          Cube.FRONT, 
-            Cube.BOTTOM,          Cube.BACK,          Cube.FRONT
+         { // DOWN
+            Cube.DOWN,          Cube.LEFT,          Cube.DOWN, 
+            Cube.DOWN,          Cube.DOWN,          Cube.FRONT, 
+            Cube.DOWN,          Cube.BACK,          Cube.FRONT
          }
       },
       { // Li
@@ -400,23 +400,23 @@ public class ValidCubeTransforms {
             Cube.FRONT,          Cube.BACK,          Cube.LEFT
          },
          { // FRONT
-            Cube.BOTTOM,          Cube.BOTTOM,          Cube.RIGHT, 
-            Cube.BOTTOM,          Cube.FRONT,          Cube.RIGHT, 
-            Cube.BOTTOM,          Cube.FRONT,          Cube.RIGHT
+            Cube.DOWN,          Cube.DOWN,          Cube.RIGHT, 
+            Cube.DOWN,          Cube.FRONT,          Cube.RIGHT, 
+            Cube.DOWN,          Cube.FRONT,          Cube.RIGHT
          },
          { // RIGHT
-            Cube.BACK,          Cube.BOTTOM,          Cube.BACK, 
+            Cube.BACK,          Cube.DOWN,          Cube.BACK, 
             Cube.TOP,          Cube.RIGHT,          Cube.BACK, 
-            Cube.BACK,          Cube.RIGHT,          Cube.BOTTOM
+            Cube.BACK,          Cube.RIGHT,          Cube.DOWN
          },
          { // BACK
-            Cube.LEFT,          Cube.BOTTOM,          Cube.TOP, 
+            Cube.LEFT,          Cube.DOWN,          Cube.TOP, 
             Cube.LEFT,          Cube.BACK,          Cube.TOP, 
             Cube.LEFT,          Cube.TOP,          Cube.RIGHT
          },
-         { // BOTTOM
-            Cube.BACK,          Cube.LEFT,          Cube.BOTTOM, 
-            Cube.RIGHT,          Cube.BOTTOM,          Cube.FRONT, 
+         { // DOWN
+            Cube.BACK,          Cube.LEFT,          Cube.DOWN, 
+            Cube.RIGHT,          Cube.DOWN,          Cube.FRONT, 
             Cube.TOP,          Cube.BACK,          Cube.FRONT
          }
       },
@@ -433,22 +433,22 @@ public class ValidCubeTransforms {
          },
          { // FRONT
             Cube.RIGHT,          Cube.RIGHT,          Cube.RIGHT, 
-            Cube.BOTTOM,          Cube.FRONT,          Cube.FRONT, 
-            Cube.BOTTOM,          Cube.BOTTOM,          Cube.BOTTOM
+            Cube.DOWN,          Cube.FRONT,          Cube.FRONT, 
+            Cube.DOWN,          Cube.DOWN,          Cube.DOWN
          },
          { // RIGHT
-            Cube.BOTTOM,          Cube.BOTTOM,          Cube.BACK, 
+            Cube.DOWN,          Cube.DOWN,          Cube.BACK, 
             Cube.LEFT,          Cube.RIGHT,          Cube.BACK, 
-            Cube.BACK,          Cube.RIGHT,          Cube.BOTTOM
+            Cube.BACK,          Cube.RIGHT,          Cube.DOWN
          },
          { // BACK
-            Cube.LEFT,          Cube.BOTTOM,          Cube.TOP, 
+            Cube.LEFT,          Cube.DOWN,          Cube.TOP, 
             Cube.LEFT,          Cube.BACK,          Cube.TOP, 
             Cube.LEFT,          Cube.TOP,          Cube.RIGHT
          },
-         { // BOTTOM
+         { // DOWN
             Cube.FRONT,          Cube.LEFT,          Cube.LEFT, 
-            Cube.RIGHT,          Cube.BOTTOM,          Cube.FRONT, 
+            Cube.RIGHT,          Cube.DOWN,          Cube.FRONT, 
             Cube.TOP,          Cube.BACK,          Cube.FRONT
          }
       },
@@ -465,23 +465,23 @@ public class ValidCubeTransforms {
          },
          { // FRONT
             Cube.RIGHT,          Cube.RIGHT,          Cube.TOP, 
-            Cube.BOTTOM,          Cube.FRONT,          Cube.RIGHT, 
-            Cube.BOTTOM,          Cube.BOTTOM,          Cube.BACK
+            Cube.DOWN,          Cube.FRONT,          Cube.RIGHT, 
+            Cube.DOWN,          Cube.DOWN,          Cube.BACK
          },
          { // RIGHT
-            Cube.BACK,          Cube.BACK,          Cube.BOTTOM, 
-            Cube.BOTTOM,          Cube.RIGHT,          Cube.RIGHT, 
-            Cube.BOTTOM,          Cube.LEFT,          Cube.BACK
+            Cube.BACK,          Cube.BACK,          Cube.DOWN, 
+            Cube.DOWN,          Cube.RIGHT,          Cube.RIGHT, 
+            Cube.DOWN,          Cube.LEFT,          Cube.BACK
          },
          { // BACK
-            Cube.FRONT,          Cube.BOTTOM,          Cube.TOP, 
+            Cube.FRONT,          Cube.DOWN,          Cube.TOP, 
             Cube.FRONT,          Cube.BACK,          Cube.TOP, 
             Cube.LEFT,          Cube.TOP,          Cube.RIGHT
          },
-         { // BOTTOM
+         { // DOWN
             Cube.FRONT,          Cube.LEFT,          Cube.RIGHT, 
-            Cube.RIGHT,          Cube.BOTTOM,          Cube.FRONT, 
-            Cube.TOP,          Cube.BACK,          Cube.BOTTOM
+            Cube.RIGHT,          Cube.DOWN,          Cube.FRONT, 
+            Cube.TOP,          Cube.BACK,          Cube.DOWN
          }
       },
       { // Bi
@@ -493,27 +493,27 @@ public class ValidCubeTransforms {
          { // LEFT
             Cube.TOP,          Cube.FRONT,          Cube.TOP, 
             Cube.BACK,          Cube.LEFT,          Cube.FRONT, 
-            Cube.BOTTOM,          Cube.BACK,          Cube.RIGHT
+            Cube.DOWN,          Cube.BACK,          Cube.RIGHT
          },
          { // FRONT
             Cube.RIGHT,          Cube.RIGHT,          Cube.TOP, 
-            Cube.BOTTOM,          Cube.FRONT,          Cube.RIGHT, 
-            Cube.BOTTOM,          Cube.BOTTOM,          Cube.BACK
+            Cube.DOWN,          Cube.FRONT,          Cube.RIGHT, 
+            Cube.DOWN,          Cube.DOWN,          Cube.BACK
          },
          { // RIGHT
             Cube.BACK,          Cube.BACK,          Cube.FRONT, 
-            Cube.BOTTOM,          Cube.RIGHT,          Cube.BACK, 
-            Cube.BOTTOM,          Cube.LEFT,          Cube.LEFT
+            Cube.DOWN,          Cube.RIGHT,          Cube.BACK, 
+            Cube.DOWN,          Cube.LEFT,          Cube.LEFT
          },
          { // BACK
             Cube.TOP,          Cube.TOP,          Cube.RIGHT, 
-            Cube.BOTTOM,          Cube.BACK,          Cube.TOP, 
+            Cube.DOWN,          Cube.BACK,          Cube.TOP, 
             Cube.FRONT,          Cube.FRONT,          Cube.LEFT
          },
-         { // BOTTOM
+         { // DOWN
             Cube.FRONT,          Cube.LEFT,          Cube.RIGHT, 
-            Cube.RIGHT,          Cube.BOTTOM,          Cube.FRONT, 
-            Cube.BACK,          Cube.RIGHT,          Cube.BOTTOM
+            Cube.RIGHT,          Cube.DOWN,          Cube.FRONT, 
+            Cube.BACK,          Cube.RIGHT,          Cube.DOWN
          }
       },
       { // Ui
@@ -525,27 +525,27 @@ public class ValidCubeTransforms {
          { // LEFT
             Cube.TOP,          Cube.TOP,          Cube.RIGHT, 
             Cube.BACK,          Cube.LEFT,          Cube.FRONT, 
-            Cube.BOTTOM,          Cube.BACK,          Cube.RIGHT
+            Cube.DOWN,          Cube.BACK,          Cube.RIGHT
          },
          { // FRONT
             Cube.TOP,          Cube.FRONT,          Cube.TOP, 
-            Cube.BOTTOM,          Cube.FRONT,          Cube.RIGHT, 
-            Cube.BOTTOM,          Cube.BOTTOM,          Cube.BACK
+            Cube.DOWN,          Cube.FRONT,          Cube.RIGHT, 
+            Cube.DOWN,          Cube.DOWN,          Cube.BACK
          },
          { // RIGHT
             Cube.RIGHT,          Cube.RIGHT,          Cube.TOP, 
-            Cube.BOTTOM,          Cube.RIGHT,          Cube.BACK, 
-            Cube.BOTTOM,          Cube.LEFT,          Cube.LEFT
+            Cube.DOWN,          Cube.RIGHT,          Cube.BACK, 
+            Cube.DOWN,          Cube.LEFT,          Cube.LEFT
          },
          { // BACK
             Cube.BACK,          Cube.BACK,          Cube.FRONT, 
-            Cube.BOTTOM,          Cube.BACK,          Cube.TOP, 
+            Cube.DOWN,          Cube.BACK,          Cube.TOP, 
             Cube.FRONT,          Cube.FRONT,          Cube.LEFT
          },
-         { // BOTTOM
+         { // DOWN
             Cube.FRONT,          Cube.LEFT,          Cube.RIGHT, 
-            Cube.RIGHT,          Cube.BOTTOM,          Cube.FRONT, 
-            Cube.BACK,          Cube.RIGHT,          Cube.BOTTOM
+            Cube.RIGHT,          Cube.DOWN,          Cube.FRONT, 
+            Cube.BACK,          Cube.RIGHT,          Cube.DOWN
          }
       },
       { // Di
@@ -557,26 +557,26 @@ public class ValidCubeTransforms {
          { // LEFT
             Cube.TOP,          Cube.TOP,          Cube.RIGHT, 
             Cube.BACK,          Cube.LEFT,          Cube.FRONT, 
-            Cube.BOTTOM,          Cube.BOTTOM,          Cube.BACK
+            Cube.DOWN,          Cube.DOWN,          Cube.BACK
          },
          { // FRONT
             Cube.TOP,          Cube.FRONT,          Cube.TOP, 
-            Cube.BOTTOM,          Cube.FRONT,          Cube.RIGHT, 
-            Cube.BOTTOM,          Cube.LEFT,          Cube.LEFT
+            Cube.DOWN,          Cube.FRONT,          Cube.RIGHT, 
+            Cube.DOWN,          Cube.LEFT,          Cube.LEFT
          },
          { // RIGHT
             Cube.RIGHT,          Cube.RIGHT,          Cube.TOP, 
-            Cube.BOTTOM,          Cube.RIGHT,          Cube.BACK, 
+            Cube.DOWN,          Cube.RIGHT,          Cube.BACK, 
             Cube.FRONT,          Cube.FRONT,          Cube.LEFT
          },
          { // BACK
             Cube.BACK,          Cube.BACK,          Cube.FRONT, 
-            Cube.BOTTOM,          Cube.BACK,          Cube.TOP, 
-            Cube.BOTTOM,          Cube.BACK,          Cube.RIGHT
+            Cube.DOWN,          Cube.BACK,          Cube.TOP, 
+            Cube.DOWN,          Cube.BACK,          Cube.RIGHT
          },
-         { // BOTTOM
-            Cube.RIGHT,          Cube.FRONT,          Cube.BOTTOM, 
-            Cube.LEFT,          Cube.BOTTOM,          Cube.RIGHT, 
+         { // DOWN
+            Cube.RIGHT,          Cube.FRONT,          Cube.DOWN, 
+            Cube.LEFT,          Cube.DOWN,          Cube.RIGHT, 
             Cube.FRONT,          Cube.RIGHT,          Cube.BACK
          }
       },
@@ -587,8 +587,8 @@ public class ValidCubeTransforms {
             Cube.FRONT,          Cube.TOP,          Cube.BACK
          },
          { // LEFT
-            Cube.BOTTOM,          Cube.BACK,          Cube.TOP, 
-            Cube.BOTTOM,          Cube.LEFT,          Cube.TOP, 
+            Cube.DOWN,          Cube.BACK,          Cube.TOP, 
+            Cube.DOWN,          Cube.LEFT,          Cube.TOP, 
             Cube.BACK,          Cube.FRONT,          Cube.RIGHT
          },
          { // FRONT
@@ -598,18 +598,18 @@ public class ValidCubeTransforms {
          },
          { // RIGHT
             Cube.RIGHT,          Cube.RIGHT,          Cube.TOP, 
-            Cube.BOTTOM,          Cube.RIGHT,          Cube.BACK, 
+            Cube.DOWN,          Cube.RIGHT,          Cube.BACK, 
             Cube.FRONT,          Cube.FRONT,          Cube.LEFT
          },
          { // BACK
             Cube.BACK,          Cube.BACK,          Cube.FRONT, 
-            Cube.BOTTOM,          Cube.BACK,          Cube.LEFT, 
-            Cube.BOTTOM,          Cube.BACK,          Cube.RIGHT
+            Cube.DOWN,          Cube.BACK,          Cube.LEFT, 
+            Cube.DOWN,          Cube.BACK,          Cube.RIGHT
          },
-         { // BOTTOM
-            Cube.TOP,          Cube.FRONT,          Cube.BOTTOM, 
-            Cube.BOTTOM,          Cube.BOTTOM,          Cube.RIGHT, 
-            Cube.BOTTOM,          Cube.RIGHT,          Cube.BACK
+         { // DOWN
+            Cube.TOP,          Cube.FRONT,          Cube.DOWN, 
+            Cube.DOWN,          Cube.DOWN,          Cube.RIGHT, 
+            Cube.DOWN,          Cube.RIGHT,          Cube.BACK
          }
       },
       { // F 
@@ -619,9 +619,9 @@ public class ValidCubeTransforms {
             Cube.RIGHT,          Cube.TOP,          Cube.TOP
          },
          { // LEFT
-            Cube.BOTTOM,          Cube.BACK,          Cube.TOP, 
-            Cube.BOTTOM,          Cube.LEFT,          Cube.FRONT, 
-            Cube.BACK,          Cube.FRONT,          Cube.BOTTOM
+            Cube.DOWN,          Cube.BACK,          Cube.TOP, 
+            Cube.DOWN,          Cube.LEFT,          Cube.FRONT, 
+            Cube.BACK,          Cube.FRONT,          Cube.DOWN
          },
          { // FRONT
             Cube.FRONT,          Cube.LEFT,          Cube.LEFT, 
@@ -635,13 +635,13 @@ public class ValidCubeTransforms {
          },
          { // BACK
             Cube.BACK,          Cube.BACK,          Cube.FRONT, 
-            Cube.BOTTOM,          Cube.BACK,          Cube.LEFT, 
-            Cube.BOTTOM,          Cube.BACK,          Cube.RIGHT
+            Cube.DOWN,          Cube.BACK,          Cube.LEFT, 
+            Cube.DOWN,          Cube.BACK,          Cube.RIGHT
          },
-         { // BOTTOM
-            Cube.FRONT,          Cube.BOTTOM,          Cube.RIGHT, 
-            Cube.BOTTOM,          Cube.BOTTOM,          Cube.RIGHT, 
-            Cube.BOTTOM,          Cube.RIGHT,          Cube.BACK
+         { // DOWN
+            Cube.FRONT,          Cube.DOWN,          Cube.RIGHT, 
+            Cube.DOWN,          Cube.DOWN,          Cube.RIGHT, 
+            Cube.DOWN,          Cube.RIGHT,          Cube.BACK
          }
       },
       { // R 
@@ -651,9 +651,9 @@ public class ValidCubeTransforms {
             Cube.RIGHT,          Cube.TOP,          Cube.TOP
          },
          { // LEFT
-            Cube.BOTTOM,          Cube.BACK,          Cube.TOP, 
-            Cube.BOTTOM,          Cube.LEFT,          Cube.FRONT, 
-            Cube.BACK,          Cube.FRONT,          Cube.BOTTOM
+            Cube.DOWN,          Cube.BACK,          Cube.TOP, 
+            Cube.DOWN,          Cube.LEFT,          Cube.FRONT, 
+            Cube.BACK,          Cube.FRONT,          Cube.DOWN
          },
          { // FRONT
             Cube.FRONT,          Cube.LEFT,          Cube.RIGHT, 
@@ -670,10 +670,10 @@ public class ValidCubeTransforms {
             Cube.TOP,          Cube.BACK,          Cube.LEFT, 
             Cube.LEFT,          Cube.BACK,          Cube.RIGHT
          },
-         { // BOTTOM
-            Cube.FRONT,          Cube.BOTTOM,          Cube.BOTTOM, 
-            Cube.BOTTOM,          Cube.BOTTOM,          Cube.BOTTOM, 
-            Cube.BOTTOM,          Cube.RIGHT,          Cube.BACK
+         { // DOWN
+            Cube.FRONT,          Cube.DOWN,          Cube.DOWN, 
+            Cube.DOWN,          Cube.DOWN,          Cube.DOWN, 
+            Cube.DOWN,          Cube.RIGHT,          Cube.BACK
          }
       },
       { // B 
@@ -685,7 +685,7 @@ public class ValidCubeTransforms {
          { // LEFT
             Cube.LEFT,          Cube.BACK,          Cube.TOP, 
             Cube.LEFT,          Cube.LEFT,          Cube.FRONT, 
-            Cube.RIGHT,          Cube.FRONT,          Cube.BOTTOM
+            Cube.RIGHT,          Cube.FRONT,          Cube.DOWN
          },
          { // FRONT
             Cube.FRONT,          Cube.LEFT,          Cube.RIGHT, 
@@ -695,17 +695,17 @@ public class ValidCubeTransforms {
          { // RIGHT
             Cube.BACK,          Cube.TOP,          Cube.BACK, 
             Cube.FRONT,          Cube.RIGHT,          Cube.RIGHT, 
-            Cube.LEFT,          Cube.BACK,          Cube.BOTTOM
+            Cube.LEFT,          Cube.BACK,          Cube.DOWN
          },
          { // BACK
             Cube.LEFT,          Cube.TOP,          Cube.TOP, 
             Cube.BACK,          Cube.BACK,          Cube.BACK, 
             Cube.RIGHT,          Cube.LEFT,          Cube.FRONT
          },
-         { // BOTTOM
-            Cube.FRONT,          Cube.BOTTOM,          Cube.BOTTOM, 
-            Cube.BOTTOM,          Cube.BOTTOM,          Cube.BOTTOM, 
-            Cube.BOTTOM,          Cube.BOTTOM,          Cube.BACK
+         { // DOWN
+            Cube.FRONT,          Cube.DOWN,          Cube.DOWN, 
+            Cube.DOWN,          Cube.DOWN,          Cube.DOWN, 
+            Cube.DOWN,          Cube.DOWN,          Cube.BACK
          }
       },
       { // U 
@@ -717,7 +717,7 @@ public class ValidCubeTransforms {
          { // LEFT
             Cube.FRONT,          Cube.LEFT,          Cube.RIGHT, 
             Cube.LEFT,          Cube.LEFT,          Cube.FRONT, 
-            Cube.RIGHT,          Cube.FRONT,          Cube.BOTTOM
+            Cube.RIGHT,          Cube.FRONT,          Cube.DOWN
          },
          { // FRONT
             Cube.BACK,          Cube.TOP,          Cube.BACK, 
@@ -727,17 +727,17 @@ public class ValidCubeTransforms {
          { // RIGHT
             Cube.LEFT,          Cube.TOP,          Cube.TOP, 
             Cube.FRONT,          Cube.RIGHT,          Cube.RIGHT, 
-            Cube.LEFT,          Cube.BACK,          Cube.BOTTOM
+            Cube.LEFT,          Cube.BACK,          Cube.DOWN
          },
          { // BACK
             Cube.LEFT,          Cube.BACK,          Cube.TOP, 
             Cube.BACK,          Cube.BACK,          Cube.BACK, 
             Cube.RIGHT,          Cube.LEFT,          Cube.FRONT
          },
-         { // BOTTOM
-            Cube.FRONT,          Cube.BOTTOM,          Cube.BOTTOM, 
-            Cube.BOTTOM,          Cube.BOTTOM,          Cube.BOTTOM, 
-            Cube.BOTTOM,          Cube.BOTTOM,          Cube.BACK
+         { // DOWN
+            Cube.FRONT,          Cube.DOWN,          Cube.DOWN, 
+            Cube.DOWN,          Cube.DOWN,          Cube.DOWN, 
+            Cube.DOWN,          Cube.DOWN,          Cube.BACK
          }
       },
       { // D 
@@ -754,7 +754,7 @@ public class ValidCubeTransforms {
          { // FRONT
             Cube.BACK,          Cube.TOP,          Cube.BACK, 
             Cube.LEFT,          Cube.FRONT,          Cube.RIGHT, 
-            Cube.RIGHT,          Cube.FRONT,          Cube.BOTTOM
+            Cube.RIGHT,          Cube.FRONT,          Cube.DOWN
          },
          { // RIGHT
             Cube.LEFT,          Cube.TOP,          Cube.TOP, 
@@ -764,12 +764,12 @@ public class ValidCubeTransforms {
          { // BACK
             Cube.LEFT,          Cube.BACK,          Cube.TOP, 
             Cube.BACK,          Cube.BACK,          Cube.BACK, 
-            Cube.LEFT,          Cube.BACK,          Cube.BOTTOM
+            Cube.LEFT,          Cube.BACK,          Cube.DOWN
          },
-         { // BOTTOM
-            Cube.BOTTOM,          Cube.BOTTOM,          Cube.FRONT, 
-            Cube.BOTTOM,          Cube.BOTTOM,          Cube.BOTTOM, 
-            Cube.BACK,          Cube.BOTTOM,          Cube.BOTTOM
+         { // DOWN
+            Cube.DOWN,          Cube.DOWN,          Cube.FRONT, 
+            Cube.DOWN,          Cube.DOWN,          Cube.DOWN, 
+            Cube.BACK,          Cube.DOWN,          Cube.DOWN
          }
       }
    };

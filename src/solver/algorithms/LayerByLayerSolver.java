@@ -98,6 +98,7 @@ public class LayerByLayerSolver implements SolvingAlgorithm {
    
    private Algorithm solveFirstLayer(Cube startingCube) {
       Algorithm algorithm = solveBottomCross(startingCube);
+      algorithm = solveBottomCorners(algorithm);
       
       return algorithm;
    }
@@ -105,6 +106,7 @@ public class LayerByLayerSolver implements SolvingAlgorithm {
    private Algorithm solveBottomCross(Cube startingCube) {
       String arrangement = getBottomEdgeArrangement(startingCube);
       byte moves[] = (byte[])mFLEPermutations.get(arrangement);
+      
       Algorithm alg = new Algorithm(startingCube);
       for(byte i = 0 ; i < moves.length; i++) {
          if(moves[i] % 2 == 0) {
@@ -117,6 +119,16 @@ public class LayerByLayerSolver implements SolvingAlgorithm {
       }
       
       return alg;
+   }
+   
+   private Algorithm solveBottomCorners(Algorithm algorithm) {
+      final byte CORNERS[] = {Cube.DRF, Cube.DFL, Cube.DLB, Cube.DBR};
+      
+      for(int i = 0; i < CORNERS.length; i++) {
+         byte location = algorithm.cubeState.findCorner(CORNERS[i]);
+      }
+      
+      return algorithm;
    }
 
    @Override

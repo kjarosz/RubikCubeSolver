@@ -58,7 +58,7 @@ public class CubeButton extends JButton {
       case Cube.FRONT: return Color.RED;
       case Cube.RIGHT: return Color.YELLOW;
       case Cube.BACK: return Color.ORANGE;
-      case Cube.BOTTOM: return Color.GREEN;
+      case Cube.DOWN: return Color.GREEN;
       default: return Color.BLACK;
       }
    }

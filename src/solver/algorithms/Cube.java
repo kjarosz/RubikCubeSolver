@@ -12,7 +12,7 @@ public class Cube {
    FRONT = 2,
    RIGHT = 3,
    BACK = 4,
-   BOTTOM = 5;
+   DOWN = 5;
    
    // EDGES
    public static final byte 
@@ -34,8 +34,29 @@ public class Cube {
    
    public final static byte EDGE_LOCATIONS[][] = {
       { TOP, 7, FRONT, 1 },  {TOP, 5, RIGHT, 1}, {TOP, 1, BACK, 1}, {TOP, 3, LEFT, 1},
-      { BOTTOM, 1, FRONT, 7}, {BOTTOM, 5, RIGHT, 7}, {BOTTOM, 7, BACK, 7}, {BOTTOM, 3, LEFT, 7},
+      { DOWN, 1, FRONT, 7}, {DOWN, 5, RIGHT, 7}, {DOWN, 7, BACK, 7}, {DOWN, 3, LEFT, 7},
       { FRONT, 3, LEFT, 5}, {FRONT, 5, RIGHT, 3}, {BACK, 3, RIGHT, 5}, {BACK, 5, LEFT, 3}
+   };
+   
+   // CORNERS
+   public static final byte
+   UFR = 0, URB = 1, UBL = 2, ULF =  3, DRF =  4, DFL =  5, DLB =  6, DBR =  7,
+   
+   FRU =  8, RBU =  9, BLU = 10, LFU = 11, RFD = 12, FLD = 13, LBD = 14, BRD = 15,
+
+   RUF = 16, BUR = 17, LUB = 18, FUL = 19, FDR = 20, LDF = 21, BDL = 22, RDB = 23;
+   
+   public static String CORNER_STRINGS[] = {
+      "UFR", "URB", "UBL", "ULF", "DRF", "DFL", "DLB", "DBR",
+      "FRU", "RBU", "BLU", "LFU", "RFD", "FLD", "LBD", "BRD",
+      "RUF", "BUR", "LUB", "FUL", "FDR", "LDF", "BDL", "RDB"
+   };
+   
+   public final static byte CORNER_LOCATIONS[][] = {
+      {TOP, 8, FRONT, 2, RIGHT, 0}, {TOP, 2, RIGHT, 2, BACK, 0},
+      {TOP, 0, BACK, 2, LEFT, 0}, {TOP, 6, LEFT, 2, FRONT, 0},
+      {DOWN, 2, RIGHT, 6, FRONT, 8}, {DOWN, 0, FRONT, 6, LEFT, 8},
+      {DOWN, 6, LEFT, 6, BACK, 8}, {DOWN, 8, BACK, 6, RIGHT, 8}
    };
    
    private byte cube[][];
@@ -99,50 +120,50 @@ public class Cube {
       // L
       {LEFT, TOP, ROW_LEFT_DOWN,
             BACK, ROW_RIGHT_UP, TOP, ROW_LEFT_DOWN,
-            BOTTOM, ROW_LEFT_DOWN, BACK, ROW_RIGHT_UP,
-            FRONT, ROW_LEFT_DOWN, BOTTOM, ROW_LEFT_DOWN,
+            DOWN, ROW_LEFT_DOWN, BACK, ROW_RIGHT_UP,
+            FRONT, ROW_LEFT_DOWN, DOWN, ROW_LEFT_DOWN,
             FRONT, ROW_LEFT_DOWN},
       // Li
       {LEFT, TOP, ROW_LEFT_DOWN,
             FRONT, ROW_LEFT_DOWN, TOP, ROW_LEFT_DOWN,
-            BOTTOM, ROW_LEFT_DOWN, FRONT, ROW_LEFT_DOWN,
-            BACK, ROW_RIGHT_UP, BOTTOM, ROW_LEFT_DOWN,
+            DOWN, ROW_LEFT_DOWN, FRONT, ROW_LEFT_DOWN,
+            BACK, ROW_RIGHT_UP, DOWN, ROW_LEFT_DOWN,
             BACK, ROW_RIGHT_UP},
       // F
       {FRONT, TOP, ROW_BOTTOM_RIGHT,
             LEFT, ROW_RIGHT_UP, TOP, ROW_BOTTOM_RIGHT,
-            BOTTOM, ROW_TOP_LEFT, LEFT, ROW_RIGHT_UP,
-            RIGHT, ROW_LEFT_DOWN, BOTTOM, ROW_TOP_LEFT,
+            DOWN, ROW_TOP_LEFT, LEFT, ROW_RIGHT_UP,
+            RIGHT, ROW_LEFT_DOWN, DOWN, ROW_TOP_LEFT,
             RIGHT, ROW_LEFT_DOWN},
       // Fi
       {FRONT, TOP, ROW_BOTTOM_RIGHT,
             RIGHT, ROW_LEFT_DOWN, TOP, ROW_BOTTOM_RIGHT,
-            BOTTOM, ROW_TOP_LEFT, RIGHT, ROW_LEFT_DOWN,
-            LEFT, ROW_RIGHT_UP, BOTTOM, ROW_TOP_LEFT,
+            DOWN, ROW_TOP_LEFT, RIGHT, ROW_LEFT_DOWN,
+            LEFT, ROW_RIGHT_UP, DOWN, ROW_TOP_LEFT,
             LEFT, ROW_RIGHT_UP},
       // R
       {RIGHT, TOP, ROW_RIGHT_UP,
             FRONT, ROW_RIGHT_UP, TOP, ROW_RIGHT_UP,
-            BOTTOM, ROW_RIGHT_UP, FRONT, ROW_RIGHT_UP,
-            BACK, ROW_LEFT_DOWN, BOTTOM, ROW_RIGHT_UP,
+            DOWN, ROW_RIGHT_UP, FRONT, ROW_RIGHT_UP,
+            BACK, ROW_LEFT_DOWN, DOWN, ROW_RIGHT_UP,
             BACK, ROW_LEFT_DOWN},
       // Ri
       {RIGHT, TOP, ROW_RIGHT_UP,
             BACK, ROW_LEFT_DOWN, TOP, ROW_RIGHT_UP,
-            BOTTOM, ROW_RIGHT_UP, BACK, ROW_LEFT_DOWN,
-            FRONT, ROW_RIGHT_UP, BOTTOM, ROW_RIGHT_UP,
+            DOWN, ROW_RIGHT_UP, BACK, ROW_LEFT_DOWN,
+            FRONT, ROW_RIGHT_UP, DOWN, ROW_RIGHT_UP,
             FRONT, ROW_RIGHT_UP},
       // B
       {BACK, TOP, ROW_TOP_LEFT,
             RIGHT, ROW_RIGHT_UP, TOP, ROW_TOP_LEFT,
-            BOTTOM, ROW_BOTTOM_RIGHT, RIGHT, ROW_RIGHT_UP,
-            LEFT, ROW_LEFT_DOWN, BOTTOM, ROW_BOTTOM_RIGHT,
+            DOWN, ROW_BOTTOM_RIGHT, RIGHT, ROW_RIGHT_UP,
+            LEFT, ROW_LEFT_DOWN, DOWN, ROW_BOTTOM_RIGHT,
             LEFT, ROW_LEFT_DOWN},
       // Bi
       {BACK, TOP, ROW_TOP_LEFT,
             LEFT, ROW_LEFT_DOWN, TOP, ROW_TOP_LEFT,
-            BOTTOM, ROW_BOTTOM_RIGHT, LEFT, ROW_LEFT_DOWN,
-            RIGHT, ROW_RIGHT_UP, BOTTOM, ROW_BOTTOM_RIGHT,
+            DOWN, ROW_BOTTOM_RIGHT, LEFT, ROW_LEFT_DOWN,
+            RIGHT, ROW_RIGHT_UP, DOWN, ROW_BOTTOM_RIGHT,
             RIGHT, ROW_RIGHT_UP},
       // U
       {TOP, LEFT, ROW_TOP_LEFT,
@@ -157,13 +178,13 @@ public class Cube {
             FRONT, ROW_TOP_LEFT, RIGHT, ROW_TOP_LEFT,
             FRONT, ROW_TOP_LEFT},
       // D
-      {BOTTOM, FRONT, ROW_BOTTOM_RIGHT,
+      {DOWN, FRONT, ROW_BOTTOM_RIGHT,
             LEFT, ROW_BOTTOM_RIGHT, FRONT, ROW_BOTTOM_RIGHT,
             BACK, ROW_BOTTOM_RIGHT, LEFT, ROW_BOTTOM_RIGHT,
             RIGHT, ROW_BOTTOM_RIGHT, BACK, ROW_BOTTOM_RIGHT,
             RIGHT, ROW_BOTTOM_RIGHT},
       // Di
-      {BOTTOM, FRONT, ROW_BOTTOM_RIGHT,
+      {DOWN, FRONT, ROW_BOTTOM_RIGHT,
             RIGHT, ROW_BOTTOM_RIGHT, FRONT, ROW_BOTTOM_RIGHT,
             BACK, ROW_BOTTOM_RIGHT, RIGHT, ROW_BOTTOM_RIGHT,
             LEFT, ROW_BOTTOM_RIGHT, BACK, ROW_BOTTOM_RIGHT,
@@ -219,8 +240,6 @@ public class Cube {
                cube[transforms[transform][11]][ROW_OP_INDICES[transforms[transform][12]][i]];
          
          cube[transforms[transform][15]][ROW_OP_INDICES[transforms[transform][16]][i]] = oldColor;
-               
-         
       }
    }
    
@@ -277,7 +296,7 @@ public class Cube {
       case FRONT: return "F";
       case RIGHT: return "R";
       case BACK: return "B";
-      case BOTTOM: return "D";
+      case DOWN: return "D";
       default: return "I";
       }
    }
@@ -286,6 +305,22 @@ public class Cube {
       byte indices[] = convertEdgeToIndices(edge);
       byte edgeColors[] = getEdgeColors(indices);
       return findEdgeLocation(edgeColors);
+   }
+   
+   private byte[] convertEdgeToIndices(byte edge) {
+      byte indices[] = new byte[4];
+      if(edge < 12) {
+         for(byte i = 0; i < 4; i++) {
+            indices[i] = EDGE_LOCATIONS[edge][i];
+         }
+      } else {
+         int i = 0;
+         indices[i++] = EDGE_LOCATIONS[edge-12][2];
+         indices[i++] = EDGE_LOCATIONS[edge-12][3];
+         indices[i++] = EDGE_LOCATIONS[edge-12][0];
+         indices[i++] = EDGE_LOCATIONS[edge-12][1];
+      }
+      return indices;
    }
    
    private byte[] getEdgeColors(byte indices[]) {
@@ -319,20 +354,59 @@ public class Cube {
       }
    }
    
-   private byte[] convertEdgeToIndices(byte edge) {
-      byte indices[] = new byte[4];
-      if(edge < 12) {
-         for(byte i = 0; i < 4; i++) {
-            indices[i] = EDGE_LOCATIONS[edge][i];
+   public byte findCorner(byte corner) {
+      byte indices[] = convertCornerToIndices(corner);
+      byte colors[] = getCornerColors(indices);
+      return findCornerLocations(colors);
+   }
+   
+   private byte[] convertCornerToIndices(byte corner) {
+      int idx = corner % 8;
+      int permutation = (corner - idx)/8;
+      byte indices[] = new byte[6];
+      for(int i = 0, offset = permutation; i < 3; i++, offset++) {
+         if(offset == 3) {
+            offset = 0;
          }
-      } else {
-         int i = 0;
-         indices[i++] = EDGE_LOCATIONS[edge-12][2];
-         indices[i++] = EDGE_LOCATIONS[edge-12][3];
-         indices[i++] = EDGE_LOCATIONS[edge-12][0];
-         indices[i++] = EDGE_LOCATIONS[edge-12][1];
+         indices[i*2] = CORNER_LOCATIONS[idx][offset*2];
+         indices[i*2 + 1] = CORNER_LOCATIONS[idx][offset*2 + 1];
       }
       return indices;
+   }
+   
+   private byte[] getCornerColors(byte indices[]) {
+      byte colors[] = new byte[3];
+      for(int i = 0; i < 3; i++) {
+         colors[i] = cube[indices[i*2]][4];
+      }
+      return colors;
+   }
+   
+   private byte findCornerLocations(byte colors[]) {
+      for(int i = 0; i < 3; i++) {
+         for(int j = 0; j < 8; j++) {
+            if(cornerMatches(colors, i, j)) {
+               return (byte)(i*8 + j);
+            }
+         }
+      }
+      throw new RuntimeException("Invalid color combination");
+   }
+   
+   private boolean cornerMatches(byte colors[], int permutation, int index) {
+      int face, loc;
+      
+      for(int i = 0, off = permutation; i < 3; i++, off++) {
+         if(off == 3) {
+            off = 0;
+         }
+         face = CORNER_LOCATIONS[index][off*2];
+         loc = CORNER_LOCATIONS[index][off*2 + 1];
+         
+         if(colors[i] != cube[face][loc])
+            return false;
+      }
+      return true;
    }
    
    public void printCube() {
@@ -369,7 +443,7 @@ public class Cube {
       for(int i = 0; i < 3; i++) {
          System.out.print("    ");
          for(int j = 0; j < 3; j++) {
-            System.out.print(getColorCharacter(cube[BOTTOM][i*3 + j]));
+            System.out.print(getColorCharacter(cube[DOWN][i*3 + j]));
          }
          System.out.println("        ");
       }
