@@ -24,27 +24,18 @@ public class LayerByLayerSolver implements SolvingAlgorithm {
       Cube startCube = new Cube();
       permutations.put(getBottomEdgeArrangement(startCube), new byte[0]);
       
-      Algorithm startAlg = new Algorithm(startCube);
-      LinkedList<Algorithm> algorithmQueue = new LinkedList<>();
-      for(byte i = 0; i < 12; i++) {
-         Algorithm newAlgorithm = new Algorithm(startAlg, i);
-         algorithmQueue.add(newAlgorithm);
-         
-         String arrangement = getBottomEdgeArrangement(newAlgorithm.cubeState);
-         byte move[] = new byte[1];
-         move[0] = i;
-         permutations.put(arrangement, move);
-      }
-
       // For progress tracking.
       int level = 0;
       
+      LinkedList<Algorithm> algorithmQueue = new LinkedList<>();
       LinkedList<Algorithm> nextAlgorithmQueue = new LinkedList<>();
-      do {
-         if(!nextAlgorithmQueue.isEmpty()) {
-            algorithmQueue.addAll(nextAlgorithmQueue);
-            nextAlgorithmQueue.clear();
-         }
+
+      Algorithm startAlg = new Algorithm(startCube);
+      nextAlgorithmQueue.add(startAlg);
+      
+      while (!nextAlgorithmQueue.isEmpty()) {
+         algorithmQueue.addAll(nextAlgorithmQueue);
+         nextAlgorithmQueue.clear();
          
          System.out.println("Current level: " + (++level));
          while(!algorithmQueue.isEmpty()) {
@@ -70,7 +61,7 @@ public class LayerByLayerSolver implements SolvingAlgorithm {
                permutations.put(arrangement, moves);
             }
          }
-      } while(!nextAlgorithmQueue.isEmpty());
+      }
       
       System.out.println("Edge Permutations Generated: " + permutations.size());
       
@@ -82,7 +73,7 @@ public class LayerByLayerSolver implements SolvingAlgorithm {
       
       StringBuilder builder = new StringBuilder();
       for(byte edge: EDGES) {
-         builder.append(Cube.EDGE_STRINGS[edge]);
+         builder.append(Cube.EDGE_STRINGS[cube.findEdge(edge)]);
       }
       return builder.toString();
    }
@@ -106,13 +97,25 @@ public class LayerByLayerSolver implements SolvingAlgorithm {
    }
    
    private Algorithm solveFirstLayer(Cube startingCube) {
+      Algorithm algorithm = solveBottomCross(startingCube);
+      
+      return algorithm;
+   }
+   
+   private Algorithm solveBottomCross(Cube startingCube) {
       String arrangement = getBottomEdgeArrangement(startingCube);
       byte moves[] = (byte[])mFLEPermutations.get(arrangement);
       Algorithm alg = new Algorithm(startingCube);
-      for(byte move: moves) {
-         alg.cubeState.performTransform(move);
-         alg.moves.add(move);
+      for(byte i = 0 ; i < moves.length; i++) {
+         if(moves[i] % 2 == 0) {
+            alg.cubeState.performTransform((byte)(moves[i]+1));
+            alg.moves.addFirst((byte)(moves[i]+1));
+         } else {
+            alg.cubeState.performTransform((byte)(moves[i]-1));
+            alg.moves.addFirst((byte)(moves[i]-1));
+         }
       }
+      
       return alg;
    }
 
