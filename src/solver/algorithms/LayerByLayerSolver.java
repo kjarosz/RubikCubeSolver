@@ -122,12 +122,38 @@ public class LayerByLayerSolver implements SolvingAlgorithm {
    }
    
    private Algorithm solveBottomCorners(Algorithm algorithm) {
-      final byte CORNERS[] = {Cube.DRF, Cube.DFL, Cube.DLB, Cube.DBR};
+      algorithm = solveDRF(algorithm);
+      algorithm = solveDFL(algorithm);
+      algorithm = solveDLB(algorithm);
+      algorithm = solveDBR(algorithm);
+      return algorithm;
+   }
+   
+   private boolean cornerIsOnBottom(byte location) {
+      return (location % 8) >= 4 && (location % 8) < 8;
+   }
+   
+   private Algorithm solveDRF(Algorithm algorithm) {
+      byte cornerLocation = algorithm.cubeState.findCorner(Cube.DRF);
+      if(cornerLocation == Cube.DRF)
+         return algorithm;
       
-      for(int i = 0; i < CORNERS.length; i++) {
-         byte location = algorithm.cubeState.findCorner(CORNERS[i]);
+      if(cornerIsOnBottom(cornerLocation)) {
+         
       }
       
+      return algorithm;
+   }
+   
+   private Algorithm solveDFL(Algorithm algorithm) {
+      return algorithm;
+   }
+   
+   private Algorithm solveDLB(Algorithm algorithm) {
+      return algorithm;
+   }
+   
+   private Algorithm solveDBR(Algorithm algorithm) {
       return algorithm;
    }
 
