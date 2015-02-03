@@ -180,7 +180,7 @@ public class Solver extends JFrame implements Runnable, ProgressReporter {
    private void outputSolution(Algorithm solution) {
       final StringBuilder solutionString = new StringBuilder();
       for(Byte move: solution.moves) {
-         solutionString.insert(0, Algorithm.MOVE_STRINGS[move] + " ");
+         solutionString.append(Algorithm.MOVE_STRINGS[move] + " ");
       }
       SwingUtilities.invokeLater(new Runnable() {
          @Override

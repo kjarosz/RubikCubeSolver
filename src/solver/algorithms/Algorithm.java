@@ -1,7 +1,5 @@
 package solver.algorithms;
 
-import java.util.Iterator;
-import java.util.LinkedList;
 
 
 public class Algorithm {
@@ -14,38 +12,62 @@ public class Algorithm {
    };
      
    public Cube cubeState;
-   public LinkedList<Byte> moves;
+   public byte moves[];
    
    public Algorithm(Cube cube) {
       cubeState = new Cube(cube);
-      moves = new LinkedList<>();
+      moves = new byte[0];
    }
    
    public Algorithm(Algorithm algorithm, byte newMove) {
       cubeState = new Cube(algorithm.cubeState);
       cubeState.performTransform(newMove);
-      moves = new LinkedList<>(algorithm.moves);
-      moves.addFirst(newMove);
+      moves = new byte[algorithm.moves.length+1];
+      for(int i = 0; i < algorithm.moves.length; i++) {
+         moves[i] = algorithm.moves[i];
+      }
+      moves[moves.length - 1] = newMove;
+   }
+   
+   public Algorithm(Algorithm algorithm, byte moveset[]) {
+      cubeState = new Cube(algorithm.cubeState);
+      moves = new byte[algorithm.moves.length + moveset.length];
+      for(int i = 0; i < algorithm.moves.length; i++) {
+         moves[i] = algorithm.moves[i];
+      }
+      for(int i = 0; i < moveset.length; i++) {
+         moves[i + algorithm.moves.length] = moveset[i];
+         cubeState.performTransform(moveset[i]);
+      }
+   }
+   
+   public Algorithm(Cube cube, byte moveset[]) {
+      cubeState = new Cube(cube);
+      moves = new byte[moveset.length];
+      for(int i = 0; i < moves.length; i++) {
+         moves[i] = moveset[i];
+         cubeState.performTransform(moves[i]);
+      }
    }
    
    public Algorithm getReverseAlgorithm() {
+      return getReverseAlgorithm(cubeState, moves);
+   }
+   
+   public static Algorithm getReverseAlgorithm(Cube cubeState, byte[] moves) {
       Algorithm algorithm = new Algorithm(cubeState);
       
-      Iterator<Byte> iterator = moves.descendingIterator();
-      while(iterator.hasNext()) {
-         byte move = iterator.next();
-         if(move % 2 == 0) {
-            algorithm.moves.addFirst((byte)(move+1));
+      algorithm.moves = new byte[moves.length];
+      for(int i = 0; i < moves.length; i++) {
+         if(moves[moves.length - 1 - i] % 2 == 0) {
+            algorithm.moves[i] =
+                  (byte)(moves[moves.length-1-i] + 1);
          } else {
-            algorithm.moves.addFirst((byte)(move-1));
+            algorithm.moves[i] =
+                  (byte)(moves[moves.length-1-i] - 1);
          }
+         algorithm.cubeState.performTransform(algorithm.moves[i]);
       }
-      
-      Iterator<Byte> moveset = algorithm.moves.iterator();
-      while(moveset.hasNext()) {
-         algorithm.cubeState.performTransform(moveset.next().byteValue());
-      }
-      
       return algorithm;
    }
 }

@@ -85,15 +85,15 @@ public class IDASolver implements SolvingAlgorithm {
    }
    
    private boolean moveIsStupid(Algorithm algorithm, byte move) {
-      if(algorithm.moves.isEmpty()) {
+      if(algorithm.moves.length == 0) {
          return false;
       }
       
-      byte lastMove = algorithm.moves.getLast();
+      byte lastMove = algorithm.moves[algorithm.moves.length-1];
       
       // Do not repeat move
-      if(move == lastMove && algorithm.moves.size() > 1) {
-         byte secondToLast = algorithm.moves.get(algorithm.moves.size() - 2);
+      if(move == lastMove && algorithm.moves.length > 1) {
+         byte secondToLast = algorithm.moves[algorithm.moves.length - 2];
          if(secondToLast == move)
             return true;
          else

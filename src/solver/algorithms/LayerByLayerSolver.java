@@ -1,7 +1,6 @@
 package solver.algorithms;
 
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.LinkedList;
 
 import solver.ui.ProgressReporter;
@@ -52,13 +51,7 @@ public class LayerByLayerSolver implements SolvingAlgorithm {
                
                nextAlgorithmQueue.add(newAlg);
                
-               byte moves[] = new byte[newAlg.moves.size()];
-               Iterator<Byte> moveIt = newAlg.moves.iterator();
-               for(int j = 0; j < moves.length; j++) {
-                  moves[j] = moveIt.next();
-               }
-               
-               permutations.put(arrangement, moves);
+               permutations.put(arrangement, newAlg.moves);
             }
          }
       }
@@ -106,19 +99,8 @@ public class LayerByLayerSolver implements SolvingAlgorithm {
    private Algorithm solveBottomCross(Cube startingCube) {
       String arrangement = getBottomEdgeArrangement(startingCube);
       byte moves[] = (byte[])mFLEPermutations.get(arrangement);
-      
-      Algorithm alg = new Algorithm(startingCube);
-      for(byte i = 0 ; i < moves.length; i++) {
-         if(moves[i] % 2 == 0) {
-            alg.cubeState.performTransform((byte)(moves[i]+1));
-            alg.moves.addFirst((byte)(moves[i]+1));
-         } else {
-            alg.cubeState.performTransform((byte)(moves[i]-1));
-            alg.moves.addFirst((byte)(moves[i]-1));
-         }
-      }
-      
-      return alg;
+      printMoves(moves);
+      return Algorithm.getReverseAlgorithm(startingCube, moves);
    }
    
    private Algorithm solveBottomCorners(Algorithm algorithm) {
@@ -157,6 +139,14 @@ public class LayerByLayerSolver implements SolvingAlgorithm {
       return algorithm;
    }
 
+   private void printMoves(byte moves[]) {
+      for(byte move: moves) {
+         System.out.print(Algorithm.MOVE_STRINGS[move] + " ");
+         
+      }
+      System.out.println();
+   }
+   
    @Override
    public void stop() {
       mStop = true;
