@@ -59,15 +59,29 @@ public class Algorithm {
       
       algorithm.moves = new byte[moves.length];
       for(int i = 0; i < moves.length; i++) {
-         if(moves[moves.length - 1 - i] % 2 == 0) {
-            algorithm.moves[i] =
-                  (byte)(moves[moves.length-1-i] + 1);
-         } else {
-            algorithm.moves[i] =
-                  (byte)(moves[moves.length-1-i] - 1);
-         }
+         algorithm.moves[i] = invertMove(moves[moves.length - 1 - i]);
          algorithm.cubeState.performTransform(algorithm.moves[i]);
       }
       return algorithm;
+   }
+   
+   public void addReverseMoveset(byte[] moveset) {
+      byte newMoves[] = new byte[moves.length + moveset.length];
+      for(int i = 0; i < moves.length; i++) {
+         newMoves[i] = moves[i];
+      }
+      for(int i = 0; i < moveset.length; i++) {
+         newMoves[moves.length + i] = invertMove(moveset[moveset.length-1-i]);
+         cubeState.performTransform(newMoves[moves.length + i]);
+      }
+      moves = newMoves;
+   }
+   
+   private static byte invertMove(byte move) {
+      if(move % 2 == 0) {
+         return (byte)(move + 1);
+      } else {
+         return (byte)(move - 1);
+      }
    }
 }
