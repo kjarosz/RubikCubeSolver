@@ -1,6 +1,7 @@
 package solver.algorithms;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -9,6 +10,20 @@ import solver.ui.ProgressReporter;
 public class LayerByLayerSolver implements SolvingAlgorithm {
 
    private boolean mStop;
+   
+   // Bottom Cross 
+   private static final byte BOTTOM_CROSS_EDGES[] = {
+      Cube.DF, Cube.DR, Cube.DB, Cube.DL
+   };
+   
+   // F2L
+   private static final byte F2L_EDGES[] = {
+      Cube.FL, Cube.FR, Cube.BR, Cube.BL
+   };
+   
+   private static final byte F2L_CORNERS[] = {
+      Cube.DFL, Cube.DRF, Cube.DBR, Cube.DLB 
+   };
    
    private HashMap<String, byte[]> mFLEPermutations;
    private HashMap<String, byte[]> mF2LPermutations;
@@ -32,7 +47,7 @@ public class LayerByLayerSolver implements SolvingAlgorithm {
       Queue<Algorithm> nextAlgorithmQueue = new LinkedList<>();
 
       Cube startCube = new Cube();
-      permutations.put(getBottomCrossArrangement(startCube), new byte[0]);
+      permutations.put(getEdgeArrangement(startCube, BOTTOM_CROSS_EDGES), new byte[0]);
       
       Algorithm startAlg = new Algorithm(startCube);
       nextAlgorithmQueue.add(startAlg);
@@ -49,14 +64,13 @@ public class LayerByLayerSolver implements SolvingAlgorithm {
             for(byte i = 0; i < 12; i++) {
                Algorithm newAlg = new Algorithm(alg, i);
                
-               String arrangement = getBottomCrossArrangement(newAlg.cubeState);
+               String arrangement = getEdgeArrangement(newAlg.cubeState, BOTTOM_CROSS_EDGES);
                if(permutations.containsKey(arrangement)) {
                   continue moveLoop;
                }
+               permutations.put(arrangement, newAlg.moves);
                
                nextAlgorithmQueue.add(newAlg);
-               
-               permutations.put(arrangement, newAlg.moves);
             }
          }
       }
@@ -66,14 +80,24 @@ public class LayerByLayerSolver implements SolvingAlgorithm {
       return permutations;
    }
    
-   private String getBottomCrossArrangement(Cube cube) {
-      final byte EDGES[] = { Cube.DF, Cube.DR, Cube.DB, Cube.DL };
-      
+   private String getEdgeArrangement(Cube cube, byte edges[]) {
       StringBuilder builder = new StringBuilder();
-      for(byte edge: EDGES) {
+      getEdgeArrangement(cube, edges, builder);
+      return builder.toString();
+   }
+   
+   private StringBuilder getEdgeArrangement(Cube cube, byte edges[], StringBuilder builder) {
+      for(byte edge: edges) {
          builder.append(Cube.EDGE_STRINGS[cube.findEdge(edge)]);
       }
-      return builder.toString();
+      return builder;
+   }
+   
+   private StringBuilder getCornerArrangement(Cube cube, byte corners[], StringBuilder builder) {
+      for(byte corner: corners) {
+         builder.append(Cube.CORNER_STRINGS[cube.findEdge(corner)]);
+      }
+      return builder;
    }
    
    private HashMap<String, byte[]> generateF2LPermutations() {
@@ -89,8 +113,46 @@ public class LayerByLayerSolver implements SolvingAlgorithm {
       Queue<Algorithm> nextLevelQueue = new LinkedList<>();
       
       Cube solvedCube = new Cube();
-      permutations.insert(getF2LArrangement(solvedCube), new byte[0]);
+      permutations.put(getF2LArrangement(solvedCube), new byte[0]);
       
+      nextLevelQueue.add(new Algorithm(solvedCube));
+      
+      HashSet<String> visitedPermutations = new HashSet<>();
+      
+      while(!nextLevelQueue.isEmpty()) {
+         algorithmQueue.addAll(nextLevelQueue);
+         nextLevelQueue.clear();
+         
+         System.out.println("Current level: " + (++level));
+         if(level > 20) {
+            throw new RuntimeException("Level should not go above 20!");
+         }
+         
+         while(!algorithmQueue.isEmpty()) {
+            Algorithm alg = algorithmQueue.remove();
+            
+            moveLoop:
+            for(byte i = 0; i < 12; i++) {
+               Algorithm newAlg = new Algorithm(alg, i);
+               
+               String permutation = getF2LArrangement(newAlg.cubeState);
+               if(visitedPermutations.contains(permutation)) {
+                  continue moveLoop;
+               } else {
+                  visitedPermutations.add(permutation);
+               }
+               
+               if(crossSolved(newAlg.cubeState)) {
+                  if(permutations.containsKey(permutation)) {
+                     permutations.put(permutation, newAlg.moves);
+                     continue moveLoop;
+                  }
+               }
+               
+               nextLevelQueue.add(newAlg);
+            }
+         }
+      }
       
       System.out.println("F2L Permutations Generated: " + permutations.size());
       
@@ -98,18 +160,22 @@ public class LayerByLayerSolver implements SolvingAlgorithm {
    }
    
    private String getF2LArrangement(Cube cube) {
-      final byte EDGES[] = { 
-            Cube.FL, Cube.FR, Cube.BR, Cube.BL,
-            Cube.DFL, Cube.DRF, Cube.DBR, Cube.DLB 
-      };
-      final byte CORNERS[] = {
-            
-      };
-      
       StringBuilder arrangement = new StringBuilder();
-      for(byte cubie: CUBIES) {
-         builder.append(Cube.)
+      arrangement = getEdgeArrangement(cube, F2L_EDGES, arrangement);
+      arrangement = getCornerArrangement(cube, F2L_CORNERS, arrangement);
+      return arrangement.toString();
+   }
+   
+   private boolean verifyEdgeArrangement(Cube cube, byte edges[]) {
+      for(byte edge: edges) {
+         if(cube.findEdge(edge) != edge)
+            return false;
       }
+      return true;
+   }
+   
+   private boolean crossSolved(Cube cube) {
+      return verifyEdgeArrangement(cube, BOTTOM_CROSS_EDGES);
    }
    
    @Override
@@ -138,13 +204,19 @@ public class LayerByLayerSolver implements SolvingAlgorithm {
    }
    
    private Algorithm solveBottomCross(Cube startingCube) {
-      String arrangement = getBottomCrossArrangement(startingCube);
+      String arrangement = getEdgeArrangement(startingCube, BOTTOM_CROSS_EDGES);
       byte moves[] = (byte[])mFLEPermutations.get(arrangement);
-      printMoves(moves);
       return Algorithm.getReverseAlgorithm(startingCube, moves);
    }
    
    private Algorithm solveF2L(Algorithm algorithm) {
+      if(!crossSolved(algorithm.cubeState)) {
+         throw new RuntimeException("Cross was not solved before F2L!");
+      }
+      
+      String arrangement = getF2LArrangement(algorithm.cubeState);
+      byte moves[] = (byte[])mF2LPermutations.get(arrangement);
+      algorithm.addReverseMoveset(moves);
       return algorithm;
    }
 
