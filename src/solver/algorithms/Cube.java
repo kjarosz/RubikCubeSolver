@@ -124,6 +124,49 @@ public class Cube {
       }
    }
    
+   public Cube(byte descriptor[][]) {
+      cube = new byte[20];
+      loadEdges(descriptor);
+      loadCorners(descriptor);
+      printCube();
+   }
+   
+   private void loadEdges(byte descriptor[][]) {
+      for(int i = 0; i < 12; i++) {
+         int c1 = descriptor[EDGE_LOCATIONS[i][0]][EDGE_LOCATIONS[i][1]];
+         int c2 = descriptor[EDGE_LOCATIONS[i][2]][EDGE_LOCATIONS[i][3]];
+         
+         cubieSearch:
+         for(int j = 0; j < 12; j++) {
+            if(c1 == EDGE_LOCATIONS[j][0] && EDGE_LOCATIONS[j][2] == c2) {
+               cube[i] = (byte)j;
+               break cubieSearch;
+            } else if(c1 == EDGE_LOCATIONS[j][2] && EDGE_LOCATIONS[j][0] == c2) {
+               cube[i] = (byte)(j + 12);
+               break cubieSearch;
+            } 
+         }
+      }
+   }
+   
+   private void loadCorners(byte descriptor[][]) {
+      for(int i = 0; i < 8; i++) {
+         int c1 = descriptor[CORNER_LOCATIONS[i][0]][CORNER_LOCATIONS[i][1]];
+         int c2 = descriptor[CORNER_LOCATIONS[i][2]][CORNER_LOCATIONS[i][3]];
+         int c3 = descriptor[CORNER_LOCATIONS[i][4]][CORNER_LOCATIONS[i][5]];
+         
+         for(int j = 0; j < 3; j++) {
+            for(int k = 0; k < 8; k++) {
+               if(c1 == CORNER_LOCATIONS[k][j*2] &&
+                  c2 == CORNER_LOCATIONS[k][(j*2 + 2) % 6] &&
+                  c3 == CORNER_LOCATIONS[k][(j*2 + 4) % 6]) {
+                  cube[12 + i] = (byte)(j*8 + k);
+               }
+            }
+         }
+      }
+   }
+   
    public boolean cubeSolved() {
       for(byte i = 0; i < 12; i++) {
          if(cube[i] != i) {
@@ -165,21 +208,13 @@ public class Cube {
       byte cubie;
       for(byte i = 1; i < 4; i++) {
          cubie = (byte)(cube[12 + transform[i]] + 8*transform[i-1+4]);
-         if(cubie >= 24) {
-            cubie -= 24;
-         } else if(cubie < 0) {
-            cubie += 24;
-         }
+         cubie = (byte)(cubie % 24);
          
          cube[12 + transform[i-1]] = cubie;
       }
       
       cubie = (byte)(temp + 8*transform[7]);
-      if(cubie >= 24) {
-         cubie -= 24;
-      } else if(cubie < 0) {
-         cubie += 24;
-      }
+      cubie = (byte)(cubie % 24);
       cube[12 + transform[3]] = cubie;
    }
    
@@ -223,18 +258,83 @@ public class Cube {
       } else {
          return lastMove == move - 1;
       }
-      
    }
    
    public byte[][] getDescriptor() {
-      return new byte[0][0];
+      byte descriptor[][] = new byte[6][];
+      for(int i = 0; i < descriptor.length; i++) {
+         descriptor[i] = new byte[9];
+         for(int j = 0; j < descriptor[i].length; j++) {
+            descriptor[i][j] = (byte)i;
+         }
+      }
+      
+      fillEdges(descriptor);
+      fillCorners(descriptor);
+      
+      return descriptor;
+   }
+   
+   private void fillEdges(byte descriptor[][]) {
+      for(int i = 0; i < 12; i++) {
+         byte edge = cube[i];
+         
+         int offset = edge / 12;
+         byte c1, c2;
+         c1 = EDGE_LOCATIONS[edge % 12][offset*2];
+         c2 = EDGE_LOCATIONS[edge % 12][(offset*2 + 2) % 4];
+         
+         descriptor[EDGE_LOCATIONS[i][0]][EDGE_LOCATIONS[i][1]] = c1;
+         descriptor[EDGE_LOCATIONS[i][2]][EDGE_LOCATIONS[i][3]] = c2;
+      }
+   }
+   
+   private void fillCorners(byte descriptor[][]) {
+      for(int i = 0; i < 8; i++) {
+         byte corner = cube[i+12];
+         
+         int offset = corner / 8;
+         byte c1 = CORNER_LOCATIONS[corner % 8][offset*2];
+         byte c2 = CORNER_LOCATIONS[corner % 8][(offset*2 + 2) % 6];
+         byte c3 = CORNER_LOCATIONS[corner % 8][(offset*2 + 4) % 6];
+         
+         descriptor[CORNER_LOCATIONS[i][0]][CORNER_LOCATIONS[i][1]] = c1;
+         descriptor[CORNER_LOCATIONS[i][2]][CORNER_LOCATIONS[i][3]] = c2;
+         descriptor[CORNER_LOCATIONS[i][4]][CORNER_LOCATIONS[i][5]] = c3;
+      }
    }
    
    public byte[] getCube() {
       return cube;
    }
    
-   private String getColorCharacter(byte color) {
+   public byte findEdge(byte edge) {
+      for(int i = 0; i < 12; i++) {
+         if(cube[i] == edge) {
+            return (byte)i;
+         } else if ((cube[i] + 12)%24 == edge) {
+            return (byte)((i + 12)%24);
+         }
+      }
+      System.out.println(EDGE_STRINGS[edge]);
+      printCube();
+      throw new RuntimeException("Invalid cube configuration.");
+   }
+   
+   public byte findCorner(byte corner) {
+      for(int i = 0; i < 8; i++) {
+         if(cube[i] == corner) {
+            return (byte)i;
+         } else if((cube[i] + 8)%24 == corner) {
+            return (byte)((i + 8)%24);
+         } else if((cube[i] + 16)%24 == corner) {
+            return (byte)((i + 16)%24);
+         }
+      }
+      throw new RuntimeException("Invalid cube configuration.");
+   }
+   
+   private String getColorCharacter(int color) {
       switch(color) {
       case TOP: return "U";
       case LEFT: return "L";
@@ -246,14 +346,54 @@ public class Cube {
       }
    }
    
-   public byte findEdge(byte edge) {
-      return 0;
-   }
-   
-   public byte findCorner(byte corner) {
-      return 0;
-   }
-   
    public void printCube() {
+      byte descriptor[][] = getDescriptor();
+      
+      for(int i = 0; i < 3; i++) {
+         System.out.print("    ");
+         for(int j = 0; j < 3; j++) {
+            System.out.print(getColorCharacter(descriptor[TOP][i*3 + j]));
+         }
+         System.out.println("        ");
+      }
+      
+      for(int i = 0; i < 3; i++) {
+         for(int j = 0; j < 3; j++) {
+            System.out.print(getColorCharacter(descriptor[LEFT][i*3 + j]));
+         }
+         System.out.print(" ");
+
+         for(int j = 0; j < 3; j++) {
+            System.out.print(getColorCharacter(descriptor[FRONT][i*3 + j]));
+         }
+         System.out.print(" ");
+
+         for(int j = 0; j < 3; j++) {
+            System.out.print(getColorCharacter(descriptor[RIGHT][i*3 + j]));
+         }
+         System.out.print(" ");
+
+         for(int j = 0; j < 3; j++) {
+            System.out.print(getColorCharacter(descriptor[BACK][i*3 + j]));
+         }
+         System.out.println();
+      }
+      
+      for(int i = 0; i < 3; i++) {
+         System.out.print("    ");
+         for(int j = 0; j < 3; j++) {
+            System.out.print(getColorCharacter(descriptor[DOWN][i*3 + j]));
+         }
+         System.out.println("        ");
+      }
+      
+      System.out.println();
+      
+      for(int i = 0 ; i < 12; i++) {
+         System.out.print(EDGE_STRINGS[cube[i]] + " ");
+      }
+      for(int i = 0; i < 8; i++) {
+         System.out.print(CORNER_STRINGS[cube[i+12]] + " ");
+      }
    }
 }
