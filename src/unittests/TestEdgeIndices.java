@@ -36,7 +36,8 @@ public class TestEdgeIndices {
       for(byte edge = 0; edge < 24; edge++) {
          
          byte location = cube.findEdge(edge);
-         assertTrue("Failed at " + edge + ".\n" + SOLUTIONS[edge] + " != " + location, SOLUTIONS[edge] == location);
+         assertTrue("\nFailed at " + Cube.EDGE_STRINGS[edge] + ".\n" 
+         + Cube.EDGE_STRINGS[SOLUTIONS[edge]] + " != " + Cube.EDGE_STRINGS[location], SOLUTIONS[edge] == location);
       }
    }
 
