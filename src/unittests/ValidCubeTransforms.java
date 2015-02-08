@@ -3,774 +3,102 @@ package unittests;
 import solver.algorithms.Cube;
 
 public class ValidCubeTransforms {
-   public static byte TEST_RESULTS[][][] = {
-      { // L 
-         { // TOP
-            Cube.BACK,          Cube.TOP,          Cube.TOP, 
-            Cube.BACK,          Cube.TOP,          Cube.TOP, 
-            Cube.BACK,          Cube.TOP,          Cube.TOP
-         },
-         { // LEFT
-            Cube.LEFT,          Cube.LEFT,          Cube.LEFT, 
-            Cube.LEFT,          Cube.LEFT,          Cube.LEFT, 
-            Cube.LEFT,          Cube.LEFT,          Cube.LEFT
-         },
-         { // FRONT
-            Cube.TOP,          Cube.FRONT,          Cube.FRONT, 
-            Cube.TOP,          Cube.FRONT,          Cube.FRONT, 
-            Cube.TOP,          Cube.FRONT,          Cube.FRONT
-         },
-         { // RIGHT
-            Cube.RIGHT,          Cube.RIGHT,          Cube.RIGHT, 
-            Cube.RIGHT,          Cube.RIGHT,          Cube.RIGHT, 
-            Cube.RIGHT,          Cube.RIGHT,          Cube.RIGHT
-         },
-         { // BACK
-            Cube.BACK,          Cube.BACK,          Cube.DOWN, 
-            Cube.BACK,          Cube.BACK,          Cube.DOWN, 
-            Cube.BACK,          Cube.BACK,          Cube.DOWN
-         },
-         { // DOWN
-            Cube.FRONT,          Cube.DOWN,          Cube.DOWN, 
-            Cube.FRONT,          Cube.DOWN,          Cube.DOWN, 
-            Cube.FRONT,          Cube.DOWN,          Cube.DOWN
-         }
-      },
-      { // F 
-         { // TOP
-            Cube.BACK,          Cube.TOP,          Cube.TOP, 
-            Cube.BACK,          Cube.TOP,          Cube.TOP, 
-            Cube.LEFT,          Cube.LEFT,          Cube.LEFT
-         },
-         { // LEFT
-            Cube.LEFT,          Cube.LEFT,          Cube.FRONT, 
-            Cube.LEFT,          Cube.LEFT,          Cube.DOWN, 
-            Cube.LEFT,          Cube.LEFT,          Cube.DOWN
-         },
-         { // FRONT
-            Cube.TOP,          Cube.TOP,          Cube.TOP, 
-            Cube.FRONT,          Cube.FRONT,          Cube.FRONT, 
-            Cube.FRONT,          Cube.FRONT,          Cube.FRONT
-         },
-         { // RIGHT
-            Cube.BACK,          Cube.RIGHT,          Cube.RIGHT, 
-            Cube.TOP,          Cube.RIGHT,          Cube.RIGHT, 
-            Cube.TOP,          Cube.RIGHT,          Cube.RIGHT
-         },
-         { // BACK
-            Cube.BACK,          Cube.BACK,          Cube.DOWN, 
-            Cube.BACK,          Cube.BACK,          Cube.DOWN, 
-            Cube.BACK,          Cube.BACK,          Cube.DOWN
-         },
-         { // DOWN
-            Cube.RIGHT,          Cube.RIGHT,          Cube.RIGHT, 
-            Cube.FRONT,          Cube.DOWN,          Cube.DOWN, 
-            Cube.FRONT,          Cube.DOWN,          Cube.DOWN
-         }
-      },
-      { // R 
-         { // TOP
-            Cube.BACK,          Cube.TOP,          Cube.TOP, 
-            Cube.BACK,          Cube.TOP,          Cube.FRONT, 
-            Cube.LEFT,          Cube.LEFT,          Cube.FRONT
-         },
-         { // LEFT
-            Cube.LEFT,          Cube.LEFT,          Cube.FRONT, 
-            Cube.LEFT,          Cube.LEFT,          Cube.DOWN, 
-            Cube.LEFT,          Cube.LEFT,          Cube.DOWN
-         },
-         { // FRONT
-            Cube.TOP,          Cube.TOP,          Cube.RIGHT, 
-            Cube.FRONT,          Cube.FRONT,          Cube.DOWN, 
-            Cube.FRONT,          Cube.FRONT,          Cube.DOWN
-         },
-         { // RIGHT
-            Cube.TOP,          Cube.TOP,          Cube.BACK, 
-            Cube.RIGHT,          Cube.RIGHT,          Cube.RIGHT, 
-            Cube.RIGHT,          Cube.RIGHT,          Cube.RIGHT
-         },
-         { // BACK
-            Cube.LEFT,          Cube.BACK,          Cube.DOWN, 
-            Cube.TOP,          Cube.BACK,          Cube.DOWN, 
-            Cube.TOP,          Cube.BACK,          Cube.DOWN
-         },
-         { // DOWN
-            Cube.RIGHT,          Cube.RIGHT,          Cube.BACK, 
-            Cube.FRONT,          Cube.DOWN,          Cube.BACK, 
-            Cube.FRONT,          Cube.DOWN,          Cube.BACK
-         }
-      },
-      { // B 
-         { // TOP
-            Cube.BACK,          Cube.RIGHT,          Cube.RIGHT, 
-            Cube.BACK,          Cube.TOP,          Cube.FRONT, 
-            Cube.LEFT,          Cube.LEFT,          Cube.FRONT
-         },
-         { // LEFT
-            Cube.TOP,          Cube.LEFT,          Cube.FRONT, 
-            Cube.TOP,          Cube.LEFT,          Cube.DOWN, 
-            Cube.BACK,          Cube.LEFT,          Cube.DOWN
-         },
-         { // FRONT
-            Cube.TOP,          Cube.TOP,          Cube.RIGHT, 
-            Cube.FRONT,          Cube.FRONT,          Cube.DOWN, 
-            Cube.FRONT,          Cube.FRONT,          Cube.DOWN
-         },
-         { // RIGHT
-            Cube.TOP,          Cube.TOP,          Cube.BACK, 
-            Cube.RIGHT,          Cube.RIGHT,          Cube.DOWN, 
-            Cube.RIGHT,          Cube.RIGHT,          Cube.FRONT
-         },
-         { // BACK
-            Cube.TOP,          Cube.TOP,          Cube.LEFT, 
-            Cube.BACK,          Cube.BACK,          Cube.BACK, 
-            Cube.DOWN,          Cube.DOWN,          Cube.DOWN
-         },
-         { // DOWN
-            Cube.RIGHT,          Cube.RIGHT,          Cube.BACK, 
-            Cube.FRONT,          Cube.DOWN,          Cube.BACK, 
-            Cube.LEFT,          Cube.LEFT,          Cube.LEFT
-         }
-      },
-      { // U 
-         { // TOP
-            Cube.LEFT,          Cube.BACK,          Cube.BACK, 
-            Cube.LEFT,          Cube.TOP,          Cube.RIGHT, 
-            Cube.FRONT,          Cube.FRONT,          Cube.RIGHT
-         },
-         { // LEFT
-            Cube.TOP,          Cube.TOP,          Cube.RIGHT, 
-            Cube.TOP,          Cube.LEFT,          Cube.DOWN, 
-            Cube.BACK,          Cube.LEFT,          Cube.DOWN
-         },
-         { // FRONT
-            Cube.TOP,          Cube.TOP,          Cube.BACK, 
-            Cube.FRONT,          Cube.FRONT,          Cube.DOWN, 
-            Cube.FRONT,          Cube.FRONT,          Cube.DOWN
-         },
-         { // RIGHT
-            Cube.TOP,          Cube.TOP,          Cube.LEFT, 
-            Cube.RIGHT,          Cube.RIGHT,          Cube.DOWN, 
-            Cube.RIGHT,          Cube.RIGHT,          Cube.FRONT
-         },
-         { // BACK
-            Cube.TOP,          Cube.LEFT,          Cube.FRONT, 
-            Cube.BACK,          Cube.BACK,          Cube.BACK, 
-            Cube.DOWN,          Cube.DOWN,          Cube.DOWN
-         },
-         { // DOWN
-            Cube.RIGHT,          Cube.RIGHT,          Cube.BACK, 
-            Cube.FRONT,          Cube.DOWN,          Cube.BACK, 
-            Cube.LEFT,          Cube.LEFT,          Cube.LEFT
-         }
-      },
-      { // D 
-         { // TOP
-            Cube.LEFT,          Cube.BACK,          Cube.BACK, 
-            Cube.LEFT,          Cube.TOP,          Cube.RIGHT, 
-            Cube.FRONT,          Cube.FRONT,          Cube.RIGHT
-         },
-         { // LEFT
-            Cube.TOP,          Cube.TOP,          Cube.RIGHT, 
-            Cube.TOP,          Cube.LEFT,          Cube.DOWN, 
-            Cube.DOWN,          Cube.DOWN,          Cube.DOWN
-         },
-         { // FRONT
-            Cube.TOP,          Cube.TOP,          Cube.BACK, 
-            Cube.FRONT,          Cube.FRONT,          Cube.DOWN, 
-            Cube.BACK,          Cube.LEFT,          Cube.DOWN
-         },
-         { // RIGHT
-            Cube.TOP,          Cube.TOP,          Cube.LEFT, 
-            Cube.RIGHT,          Cube.RIGHT,          Cube.DOWN, 
-            Cube.FRONT,          Cube.FRONT,          Cube.DOWN
-         },
-         { // BACK
-            Cube.TOP,          Cube.LEFT,          Cube.FRONT, 
-            Cube.BACK,          Cube.BACK,          Cube.BACK, 
-            Cube.RIGHT,          Cube.RIGHT,          Cube.FRONT
-         },
-         { // DOWN
-            Cube.LEFT,          Cube.FRONT,          Cube.RIGHT, 
-            Cube.LEFT,          Cube.DOWN,          Cube.RIGHT, 
-            Cube.LEFT,          Cube.BACK,          Cube.BACK
-         }
-      },
-      { // Li
-         { // TOP
-            Cube.TOP,          Cube.BACK,          Cube.BACK, 
-            Cube.FRONT,          Cube.TOP,          Cube.RIGHT, 
-            Cube.BACK,          Cube.FRONT,          Cube.RIGHT
-         },
-         { // LEFT
-            Cube.RIGHT,          Cube.DOWN,          Cube.DOWN, 
-            Cube.TOP,          Cube.LEFT,          Cube.DOWN, 
-            Cube.TOP,          Cube.TOP,          Cube.DOWN
-         },
-         { // FRONT
-            Cube.LEFT,          Cube.TOP,          Cube.BACK, 
-            Cube.LEFT,          Cube.FRONT,          Cube.DOWN, 
-            Cube.LEFT,          Cube.LEFT,          Cube.DOWN
-         },
-         { // RIGHT
-            Cube.TOP,          Cube.TOP,          Cube.LEFT, 
-            Cube.RIGHT,          Cube.RIGHT,          Cube.DOWN, 
-            Cube.FRONT,          Cube.FRONT,          Cube.DOWN
-         },
-         { // BACK
-            Cube.TOP,          Cube.LEFT,          Cube.FRONT, 
-            Cube.BACK,          Cube.BACK,          Cube.LEFT, 
-            Cube.RIGHT,          Cube.RIGHT,          Cube.LEFT
-         },
-         { // DOWN
-            Cube.FRONT,          Cube.FRONT,          Cube.RIGHT, 
-            Cube.BACK,          Cube.DOWN,          Cube.RIGHT, 
-            Cube.FRONT,          Cube.BACK,          Cube.BACK
-         }
-      },
-      { // Fi
-         { // TOP
-            Cube.TOP,          Cube.BACK,          Cube.BACK, 
-            Cube.FRONT,          Cube.TOP,          Cube.RIGHT, 
-            Cube.TOP,          Cube.RIGHT,          Cube.FRONT
-         },
-         { // LEFT
-            Cube.RIGHT,          Cube.DOWN,          Cube.RIGHT, 
-            Cube.TOP,          Cube.LEFT,          Cube.FRONT, 
-            Cube.TOP,          Cube.TOP,          Cube.BACK
-         },
-         { // FRONT
-            Cube.BACK,          Cube.DOWN,          Cube.DOWN, 
-            Cube.TOP,          Cube.FRONT,          Cube.LEFT, 
-            Cube.LEFT,          Cube.LEFT,          Cube.LEFT
-         },
-         { // RIGHT
-            Cube.RIGHT,          Cube.TOP,          Cube.LEFT, 
-            Cube.FRONT,          Cube.RIGHT,          Cube.DOWN, 
-            Cube.FRONT,          Cube.FRONT,          Cube.DOWN
-         },
-         { // BACK
-            Cube.TOP,          Cube.LEFT,          Cube.FRONT, 
-            Cube.BACK,          Cube.BACK,          Cube.LEFT, 
-            Cube.RIGHT,          Cube.RIGHT,          Cube.LEFT
-         },
-         { // DOWN
-            Cube.DOWN,          Cube.DOWN,          Cube.DOWN, 
-            Cube.BACK,          Cube.DOWN,          Cube.RIGHT, 
-            Cube.FRONT,          Cube.BACK,          Cube.BACK
-         }
-      },
-      { // Ri
-         { // TOP
-            Cube.TOP,          Cube.BACK,          Cube.RIGHT, 
-            Cube.FRONT,          Cube.TOP,          Cube.BACK, 
-            Cube.TOP,          Cube.RIGHT,          Cube.TOP
-         },
-         { // LEFT
-            Cube.RIGHT,          Cube.DOWN,          Cube.RIGHT, 
-            Cube.TOP,          Cube.LEFT,          Cube.FRONT, 
-            Cube.TOP,          Cube.TOP,          Cube.BACK
-         },
-         { // FRONT
-            Cube.BACK,          Cube.DOWN,          Cube.BACK, 
-            Cube.TOP,          Cube.FRONT,          Cube.RIGHT, 
-            Cube.LEFT,          Cube.LEFT,          Cube.FRONT
-         },
-         { // RIGHT
-            Cube.LEFT,          Cube.DOWN,          Cube.DOWN, 
-            Cube.TOP,          Cube.RIGHT,          Cube.FRONT, 
-            Cube.RIGHT,          Cube.FRONT,          Cube.FRONT
-         },
-         { // BACK
-            Cube.BACK,          Cube.LEFT,          Cube.FRONT, 
-            Cube.RIGHT,          Cube.BACK,          Cube.LEFT, 
-            Cube.DOWN,          Cube.RIGHT,          Cube.LEFT
-         },
-         { // DOWN
-            Cube.DOWN,          Cube.DOWN,          Cube.DOWN, 
-            Cube.BACK,          Cube.DOWN,          Cube.LEFT, 
-            Cube.FRONT,          Cube.BACK,          Cube.LEFT
-         }
-      },
-      { // Bi
-         { // TOP
-            Cube.TOP,          Cube.TOP,          Cube.RIGHT, 
-            Cube.FRONT,          Cube.TOP,          Cube.BACK, 
-            Cube.TOP,          Cube.RIGHT,          Cube.TOP
-         },
-         { // LEFT
-            Cube.FRONT,          Cube.DOWN,          Cube.RIGHT, 
-            Cube.BACK,          Cube.LEFT,          Cube.FRONT, 
-            Cube.LEFT,          Cube.TOP,          Cube.BACK
-         },
-         { // FRONT
-            Cube.BACK,          Cube.DOWN,          Cube.BACK, 
-            Cube.TOP,          Cube.FRONT,          Cube.RIGHT, 
-            Cube.LEFT,          Cube.LEFT,          Cube.FRONT
-         },
-         { // RIGHT
-            Cube.LEFT,          Cube.DOWN,          Cube.TOP, 
-            Cube.TOP,          Cube.RIGHT,          Cube.BACK, 
-            Cube.RIGHT,          Cube.FRONT,          Cube.RIGHT
-         },
-         { // BACK
-            Cube.FRONT,          Cube.LEFT,          Cube.LEFT, 
-            Cube.LEFT,          Cube.BACK,          Cube.RIGHT, 
-            Cube.BACK,          Cube.RIGHT,          Cube.DOWN
-         },
-         { // DOWN
-            Cube.DOWN,          Cube.DOWN,          Cube.DOWN, 
-            Cube.BACK,          Cube.DOWN,          Cube.LEFT, 
-            Cube.FRONT,          Cube.FRONT,          Cube.DOWN
-         }
-      },
-      { // Ui
-         { // TOP
-            Cube.RIGHT,          Cube.BACK,          Cube.TOP, 
-            Cube.TOP,          Cube.TOP,          Cube.RIGHT, 
-            Cube.TOP,          Cube.FRONT,          Cube.TOP
-         },
-         { // LEFT
-            Cube.FRONT,          Cube.LEFT,          Cube.LEFT, 
-            Cube.BACK,          Cube.LEFT,          Cube.FRONT, 
-            Cube.LEFT,          Cube.TOP,          Cube.BACK
-         },
-         { // FRONT
-            Cube.FRONT,          Cube.DOWN,          Cube.RIGHT, 
-            Cube.TOP,          Cube.FRONT,          Cube.RIGHT, 
-            Cube.LEFT,          Cube.LEFT,          Cube.FRONT
-         },
-         { // RIGHT
-            Cube.BACK,          Cube.DOWN,          Cube.BACK, 
-            Cube.TOP,          Cube.RIGHT,          Cube.BACK, 
-            Cube.RIGHT,          Cube.FRONT,          Cube.RIGHT
-         },
-         { // BACK
-            Cube.LEFT,          Cube.DOWN,          Cube.TOP, 
-            Cube.LEFT,          Cube.BACK,          Cube.RIGHT, 
-            Cube.BACK,          Cube.RIGHT,          Cube.DOWN
-         },
-         { // DOWN
-            Cube.DOWN,          Cube.DOWN,          Cube.DOWN, 
-            Cube.BACK,          Cube.DOWN,          Cube.LEFT, 
-            Cube.FRONT,          Cube.FRONT,          Cube.DOWN
-         }
-      },
-      { // Di
-         { // TOP
-            Cube.RIGHT,          Cube.BACK,          Cube.TOP, 
-            Cube.TOP,          Cube.TOP,          Cube.RIGHT, 
-            Cube.TOP,          Cube.FRONT,          Cube.TOP
-         },
-         { // LEFT
-            Cube.FRONT,          Cube.LEFT,          Cube.LEFT, 
-            Cube.BACK,          Cube.LEFT,          Cube.FRONT, 
-            Cube.LEFT,          Cube.LEFT,          Cube.FRONT
-         },
-         { // FRONT
-            Cube.FRONT,          Cube.DOWN,          Cube.RIGHT, 
-            Cube.TOP,          Cube.FRONT,          Cube.RIGHT, 
-            Cube.RIGHT,          Cube.FRONT,          Cube.RIGHT
-         },
-         { // RIGHT
-            Cube.BACK,          Cube.DOWN,          Cube.BACK, 
-            Cube.TOP,          Cube.RIGHT,          Cube.BACK, 
-            Cube.BACK,          Cube.RIGHT,          Cube.DOWN
-         },
-         { // BACK
-            Cube.LEFT,          Cube.DOWN,          Cube.TOP, 
-            Cube.LEFT,          Cube.BACK,          Cube.RIGHT, 
-            Cube.LEFT,          Cube.TOP,          Cube.BACK
-         },
-         { // DOWN
-            Cube.DOWN,          Cube.LEFT,          Cube.DOWN, 
-            Cube.DOWN,          Cube.DOWN,          Cube.FRONT, 
-            Cube.DOWN,          Cube.BACK,          Cube.FRONT
-         }
-      },
-      { // Li
-         { // TOP
-            Cube.FRONT,          Cube.BACK,          Cube.TOP, 
-            Cube.TOP,          Cube.TOP,          Cube.RIGHT, 
-            Cube.RIGHT,          Cube.FRONT,          Cube.TOP
-         },
-         { // LEFT
-            Cube.LEFT,          Cube.FRONT,          Cube.FRONT, 
-            Cube.LEFT,          Cube.LEFT,          Cube.LEFT, 
-            Cube.FRONT,          Cube.BACK,          Cube.LEFT
-         },
-         { // FRONT
-            Cube.DOWN,          Cube.DOWN,          Cube.RIGHT, 
-            Cube.DOWN,          Cube.FRONT,          Cube.RIGHT, 
-            Cube.DOWN,          Cube.FRONT,          Cube.RIGHT
-         },
-         { // RIGHT
-            Cube.BACK,          Cube.DOWN,          Cube.BACK, 
-            Cube.TOP,          Cube.RIGHT,          Cube.BACK, 
-            Cube.BACK,          Cube.RIGHT,          Cube.DOWN
-         },
-         { // BACK
-            Cube.LEFT,          Cube.DOWN,          Cube.TOP, 
-            Cube.LEFT,          Cube.BACK,          Cube.TOP, 
-            Cube.LEFT,          Cube.TOP,          Cube.RIGHT
-         },
-         { // DOWN
-            Cube.BACK,          Cube.LEFT,          Cube.DOWN, 
-            Cube.RIGHT,          Cube.DOWN,          Cube.FRONT, 
-            Cube.TOP,          Cube.BACK,          Cube.FRONT
-         }
-      },
-      { // Fi
-         { // TOP
-            Cube.FRONT,          Cube.BACK,          Cube.TOP, 
-            Cube.TOP,          Cube.TOP,          Cube.RIGHT, 
-            Cube.BACK,          Cube.TOP,          Cube.BACK
-         },
-         { // LEFT
-            Cube.LEFT,          Cube.FRONT,          Cube.TOP, 
-            Cube.LEFT,          Cube.LEFT,          Cube.FRONT, 
-            Cube.FRONT,          Cube.BACK,          Cube.RIGHT
-         },
-         { // FRONT
-            Cube.RIGHT,          Cube.RIGHT,          Cube.RIGHT, 
-            Cube.DOWN,          Cube.FRONT,          Cube.FRONT, 
-            Cube.DOWN,          Cube.DOWN,          Cube.DOWN
-         },
-         { // RIGHT
-            Cube.DOWN,          Cube.DOWN,          Cube.BACK, 
-            Cube.LEFT,          Cube.RIGHT,          Cube.BACK, 
-            Cube.BACK,          Cube.RIGHT,          Cube.DOWN
-         },
-         { // BACK
-            Cube.LEFT,          Cube.DOWN,          Cube.TOP, 
-            Cube.LEFT,          Cube.BACK,          Cube.TOP, 
-            Cube.LEFT,          Cube.TOP,          Cube.RIGHT
-         },
-         { // DOWN
-            Cube.FRONT,          Cube.LEFT,          Cube.LEFT, 
-            Cube.RIGHT,          Cube.DOWN,          Cube.FRONT, 
-            Cube.TOP,          Cube.BACK,          Cube.FRONT
-         }
-      },
-      { // Ri
-         { // TOP
-            Cube.FRONT,          Cube.BACK,          Cube.LEFT, 
-            Cube.TOP,          Cube.TOP,          Cube.LEFT, 
-            Cube.BACK,          Cube.TOP,          Cube.LEFT
-         },
-         { // LEFT
-            Cube.LEFT,          Cube.FRONT,          Cube.TOP, 
-            Cube.LEFT,          Cube.LEFT,          Cube.FRONT, 
-            Cube.FRONT,          Cube.BACK,          Cube.RIGHT
-         },
-         { // FRONT
-            Cube.RIGHT,          Cube.RIGHT,          Cube.TOP, 
-            Cube.DOWN,          Cube.FRONT,          Cube.RIGHT, 
-            Cube.DOWN,          Cube.DOWN,          Cube.BACK
-         },
-         { // RIGHT
-            Cube.BACK,          Cube.BACK,          Cube.DOWN, 
-            Cube.DOWN,          Cube.RIGHT,          Cube.RIGHT, 
-            Cube.DOWN,          Cube.LEFT,          Cube.BACK
-         },
-         { // BACK
-            Cube.FRONT,          Cube.DOWN,          Cube.TOP, 
-            Cube.FRONT,          Cube.BACK,          Cube.TOP, 
-            Cube.LEFT,          Cube.TOP,          Cube.RIGHT
-         },
-         { // DOWN
-            Cube.FRONT,          Cube.LEFT,          Cube.RIGHT, 
-            Cube.RIGHT,          Cube.DOWN,          Cube.FRONT, 
-            Cube.TOP,          Cube.BACK,          Cube.DOWN
-         }
-      },
-      { // Bi
-         { // TOP
-            Cube.FRONT,          Cube.LEFT,          Cube.LEFT, 
-            Cube.TOP,          Cube.TOP,          Cube.LEFT, 
-            Cube.BACK,          Cube.TOP,          Cube.LEFT
-         },
-         { // LEFT
-            Cube.TOP,          Cube.FRONT,          Cube.TOP, 
-            Cube.BACK,          Cube.LEFT,          Cube.FRONT, 
-            Cube.DOWN,          Cube.BACK,          Cube.RIGHT
-         },
-         { // FRONT
-            Cube.RIGHT,          Cube.RIGHT,          Cube.TOP, 
-            Cube.DOWN,          Cube.FRONT,          Cube.RIGHT, 
-            Cube.DOWN,          Cube.DOWN,          Cube.BACK
-         },
-         { // RIGHT
-            Cube.BACK,          Cube.BACK,          Cube.FRONT, 
-            Cube.DOWN,          Cube.RIGHT,          Cube.BACK, 
-            Cube.DOWN,          Cube.LEFT,          Cube.LEFT
-         },
-         { // BACK
-            Cube.TOP,          Cube.TOP,          Cube.RIGHT, 
-            Cube.DOWN,          Cube.BACK,          Cube.TOP, 
-            Cube.FRONT,          Cube.FRONT,          Cube.LEFT
-         },
-         { // DOWN
-            Cube.FRONT,          Cube.LEFT,          Cube.RIGHT, 
-            Cube.RIGHT,          Cube.DOWN,          Cube.FRONT, 
-            Cube.BACK,          Cube.RIGHT,          Cube.DOWN
-         }
-      },
-      { // Ui
-         { // TOP
-            Cube.LEFT,          Cube.LEFT,          Cube.LEFT, 
-            Cube.LEFT,          Cube.TOP,          Cube.TOP, 
-            Cube.FRONT,          Cube.TOP,          Cube.BACK
-         },
-         { // LEFT
-            Cube.TOP,          Cube.TOP,          Cube.RIGHT, 
-            Cube.BACK,          Cube.LEFT,          Cube.FRONT, 
-            Cube.DOWN,          Cube.BACK,          Cube.RIGHT
-         },
-         { // FRONT
-            Cube.TOP,          Cube.FRONT,          Cube.TOP, 
-            Cube.DOWN,          Cube.FRONT,          Cube.RIGHT, 
-            Cube.DOWN,          Cube.DOWN,          Cube.BACK
-         },
-         { // RIGHT
-            Cube.RIGHT,          Cube.RIGHT,          Cube.TOP, 
-            Cube.DOWN,          Cube.RIGHT,          Cube.BACK, 
-            Cube.DOWN,          Cube.LEFT,          Cube.LEFT
-         },
-         { // BACK
-            Cube.BACK,          Cube.BACK,          Cube.FRONT, 
-            Cube.DOWN,          Cube.BACK,          Cube.TOP, 
-            Cube.FRONT,          Cube.FRONT,          Cube.LEFT
-         },
-         { // DOWN
-            Cube.FRONT,          Cube.LEFT,          Cube.RIGHT, 
-            Cube.RIGHT,          Cube.DOWN,          Cube.FRONT, 
-            Cube.BACK,          Cube.RIGHT,          Cube.DOWN
-         }
-      },
-      { // Di
-         { // TOP
-            Cube.LEFT,          Cube.LEFT,          Cube.LEFT, 
-            Cube.LEFT,          Cube.TOP,          Cube.TOP, 
-            Cube.FRONT,          Cube.TOP,          Cube.BACK
-         },
-         { // LEFT
-            Cube.TOP,          Cube.TOP,          Cube.RIGHT, 
-            Cube.BACK,          Cube.LEFT,          Cube.FRONT, 
-            Cube.DOWN,          Cube.DOWN,          Cube.BACK
-         },
-         { // FRONT
-            Cube.TOP,          Cube.FRONT,          Cube.TOP, 
-            Cube.DOWN,          Cube.FRONT,          Cube.RIGHT, 
-            Cube.DOWN,          Cube.LEFT,          Cube.LEFT
-         },
-         { // RIGHT
-            Cube.RIGHT,          Cube.RIGHT,          Cube.TOP, 
-            Cube.DOWN,          Cube.RIGHT,          Cube.BACK, 
-            Cube.FRONT,          Cube.FRONT,          Cube.LEFT
-         },
-         { // BACK
-            Cube.BACK,          Cube.BACK,          Cube.FRONT, 
-            Cube.DOWN,          Cube.BACK,          Cube.TOP, 
-            Cube.DOWN,          Cube.BACK,          Cube.RIGHT
-         },
-         { // DOWN
-            Cube.RIGHT,          Cube.FRONT,          Cube.DOWN, 
-            Cube.LEFT,          Cube.DOWN,          Cube.RIGHT, 
-            Cube.FRONT,          Cube.RIGHT,          Cube.BACK
-         }
-      },
-      { // L 
-         { // TOP
-            Cube.RIGHT,          Cube.LEFT,          Cube.LEFT, 
-            Cube.TOP,          Cube.TOP,          Cube.TOP, 
-            Cube.FRONT,          Cube.TOP,          Cube.BACK
-         },
-         { // LEFT
-            Cube.DOWN,          Cube.BACK,          Cube.TOP, 
-            Cube.DOWN,          Cube.LEFT,          Cube.TOP, 
-            Cube.BACK,          Cube.FRONT,          Cube.RIGHT
-         },
-         { // FRONT
-            Cube.LEFT,          Cube.FRONT,          Cube.TOP, 
-            Cube.LEFT,          Cube.FRONT,          Cube.RIGHT, 
-            Cube.FRONT,          Cube.LEFT,          Cube.LEFT
-         },
-         { // RIGHT
-            Cube.RIGHT,          Cube.RIGHT,          Cube.TOP, 
-            Cube.DOWN,          Cube.RIGHT,          Cube.BACK, 
-            Cube.FRONT,          Cube.FRONT,          Cube.LEFT
-         },
-         { // BACK
-            Cube.BACK,          Cube.BACK,          Cube.FRONT, 
-            Cube.DOWN,          Cube.BACK,          Cube.LEFT, 
-            Cube.DOWN,          Cube.BACK,          Cube.RIGHT
-         },
-         { // DOWN
-            Cube.TOP,          Cube.FRONT,          Cube.DOWN, 
-            Cube.DOWN,          Cube.DOWN,          Cube.RIGHT, 
-            Cube.DOWN,          Cube.RIGHT,          Cube.BACK
-         }
-      },
-      { // F 
-         { // TOP
-            Cube.RIGHT,          Cube.LEFT,          Cube.LEFT, 
-            Cube.TOP,          Cube.TOP,          Cube.TOP, 
-            Cube.RIGHT,          Cube.TOP,          Cube.TOP
-         },
-         { // LEFT
-            Cube.DOWN,          Cube.BACK,          Cube.TOP, 
-            Cube.DOWN,          Cube.LEFT,          Cube.FRONT, 
-            Cube.BACK,          Cube.FRONT,          Cube.DOWN
-         },
-         { // FRONT
-            Cube.FRONT,          Cube.LEFT,          Cube.LEFT, 
-            Cube.LEFT,          Cube.FRONT,          Cube.FRONT, 
-            Cube.LEFT,          Cube.RIGHT,          Cube.TOP
-         },
-         { // RIGHT
-            Cube.FRONT,          Cube.RIGHT,          Cube.TOP, 
-            Cube.TOP,          Cube.RIGHT,          Cube.BACK, 
-            Cube.BACK,          Cube.FRONT,          Cube.LEFT
-         },
-         { // BACK
-            Cube.BACK,          Cube.BACK,          Cube.FRONT, 
-            Cube.DOWN,          Cube.BACK,          Cube.LEFT, 
-            Cube.DOWN,          Cube.BACK,          Cube.RIGHT
-         },
-         { // DOWN
-            Cube.FRONT,          Cube.DOWN,          Cube.RIGHT, 
-            Cube.DOWN,          Cube.DOWN,          Cube.RIGHT, 
-            Cube.DOWN,          Cube.RIGHT,          Cube.BACK
-         }
-      },
-      { // R 
-         { // TOP
-            Cube.RIGHT,          Cube.LEFT,          Cube.LEFT, 
-            Cube.TOP,          Cube.TOP,          Cube.FRONT, 
-            Cube.RIGHT,          Cube.TOP,          Cube.TOP
-         },
-         { // LEFT
-            Cube.DOWN,          Cube.BACK,          Cube.TOP, 
-            Cube.DOWN,          Cube.LEFT,          Cube.FRONT, 
-            Cube.BACK,          Cube.FRONT,          Cube.DOWN
-         },
-         { // FRONT
-            Cube.FRONT,          Cube.LEFT,          Cube.RIGHT, 
-            Cube.LEFT,          Cube.FRONT,          Cube.RIGHT, 
-            Cube.LEFT,          Cube.RIGHT,          Cube.BACK
-         },
-         { // RIGHT
-            Cube.BACK,          Cube.TOP,          Cube.FRONT, 
-            Cube.FRONT,          Cube.RIGHT,          Cube.RIGHT, 
-            Cube.LEFT,          Cube.BACK,          Cube.TOP
-         },
-         { // BACK
-            Cube.TOP,          Cube.BACK,          Cube.FRONT, 
-            Cube.TOP,          Cube.BACK,          Cube.LEFT, 
-            Cube.LEFT,          Cube.BACK,          Cube.RIGHT
-         },
-         { // DOWN
-            Cube.FRONT,          Cube.DOWN,          Cube.DOWN, 
-            Cube.DOWN,          Cube.DOWN,          Cube.DOWN, 
-            Cube.DOWN,          Cube.RIGHT,          Cube.BACK
-         }
-      },
-      { // B 
-         { // TOP
-            Cube.FRONT,          Cube.RIGHT,          Cube.TOP, 
-            Cube.TOP,          Cube.TOP,          Cube.FRONT, 
-            Cube.RIGHT,          Cube.TOP,          Cube.TOP
-         },
-         { // LEFT
-            Cube.LEFT,          Cube.BACK,          Cube.TOP, 
-            Cube.LEFT,          Cube.LEFT,          Cube.FRONT, 
-            Cube.RIGHT,          Cube.FRONT,          Cube.DOWN
-         },
-         { // FRONT
-            Cube.FRONT,          Cube.LEFT,          Cube.RIGHT, 
-            Cube.LEFT,          Cube.FRONT,          Cube.RIGHT, 
-            Cube.LEFT,          Cube.RIGHT,          Cube.BACK
-         },
-         { // RIGHT
-            Cube.BACK,          Cube.TOP,          Cube.BACK, 
-            Cube.FRONT,          Cube.RIGHT,          Cube.RIGHT, 
-            Cube.LEFT,          Cube.BACK,          Cube.DOWN
-         },
-         { // BACK
-            Cube.LEFT,          Cube.TOP,          Cube.TOP, 
-            Cube.BACK,          Cube.BACK,          Cube.BACK, 
-            Cube.RIGHT,          Cube.LEFT,          Cube.FRONT
-         },
-         { // DOWN
-            Cube.FRONT,          Cube.DOWN,          Cube.DOWN, 
-            Cube.DOWN,          Cube.DOWN,          Cube.DOWN, 
-            Cube.DOWN,          Cube.DOWN,          Cube.BACK
-         }
-      },
-      { // U 
-         { // TOP
-            Cube.RIGHT,          Cube.TOP,          Cube.FRONT, 
-            Cube.TOP,          Cube.TOP,          Cube.RIGHT, 
-            Cube.TOP,          Cube.FRONT,          Cube.TOP
-         },
-         { // LEFT
-            Cube.FRONT,          Cube.LEFT,          Cube.RIGHT, 
-            Cube.LEFT,          Cube.LEFT,          Cube.FRONT, 
-            Cube.RIGHT,          Cube.FRONT,          Cube.DOWN
-         },
-         { // FRONT
-            Cube.BACK,          Cube.TOP,          Cube.BACK, 
-            Cube.LEFT,          Cube.FRONT,          Cube.RIGHT, 
-            Cube.LEFT,          Cube.RIGHT,          Cube.BACK
-         },
-         { // RIGHT
-            Cube.LEFT,          Cube.TOP,          Cube.TOP, 
-            Cube.FRONT,          Cube.RIGHT,          Cube.RIGHT, 
-            Cube.LEFT,          Cube.BACK,          Cube.DOWN
-         },
-         { // BACK
-            Cube.LEFT,          Cube.BACK,          Cube.TOP, 
-            Cube.BACK,          Cube.BACK,          Cube.BACK, 
-            Cube.RIGHT,          Cube.LEFT,          Cube.FRONT
-         },
-         { // DOWN
-            Cube.FRONT,          Cube.DOWN,          Cube.DOWN, 
-            Cube.DOWN,          Cube.DOWN,          Cube.DOWN, 
-            Cube.DOWN,          Cube.DOWN,          Cube.BACK
-         }
-      },
-      { // D 
-         { // TOP
-            Cube.RIGHT,          Cube.TOP,          Cube.FRONT, 
-            Cube.TOP,          Cube.TOP,          Cube.RIGHT, 
-            Cube.TOP,          Cube.FRONT,          Cube.TOP
-         },
-         { // LEFT
-            Cube.FRONT,          Cube.LEFT,          Cube.RIGHT, 
-            Cube.LEFT,          Cube.LEFT,          Cube.FRONT, 
-            Cube.RIGHT,          Cube.LEFT,          Cube.FRONT
-         },
-         { // FRONT
-            Cube.BACK,          Cube.TOP,          Cube.BACK, 
-            Cube.LEFT,          Cube.FRONT,          Cube.RIGHT, 
-            Cube.RIGHT,          Cube.FRONT,          Cube.DOWN
-         },
-         { // RIGHT
-            Cube.LEFT,          Cube.TOP,          Cube.TOP, 
-            Cube.FRONT,          Cube.RIGHT,          Cube.RIGHT, 
-            Cube.LEFT,          Cube.RIGHT,          Cube.BACK
-         },
-         { // BACK
-            Cube.LEFT,          Cube.BACK,          Cube.TOP, 
-            Cube.BACK,          Cube.BACK,          Cube.BACK, 
-            Cube.LEFT,          Cube.BACK,          Cube.DOWN
-         },
-         { // DOWN
-            Cube.DOWN,          Cube.DOWN,          Cube.FRONT, 
-            Cube.DOWN,          Cube.DOWN,          Cube.DOWN, 
-            Cube.BACK,          Cube.DOWN,          Cube.DOWN
-         }
-      }
-   };
+   public static byte TEST_RESULTS[][] = {
+   { // L 
+      Cube.UF, Cube.UR, Cube.UB, Cube.BL, Cube.DF, Cube.DR, Cube.DB, Cube.FL, Cube.UL, Cube.FR, Cube.BR, Cube.DL, 
+      Cube.UFR, Cube.URB, Cube.BDL, Cube.BLU, Cube.DRF, Cube.FUL, Cube.FLD, Cube.DBR
+   },
+   { // F 
+      Cube.LU, Cube.UR, Cube.UB, Cube.BL, Cube.RF, Cube.DR, Cube.DB, Cube.FL, Cube.FD, Cube.FU, Cube.BR, Cube.DL, 
+      Cube.LUB, Cube.URB, Cube.BDL, Cube.LFU, Cube.RUF, Cube.RFD, Cube.FLD, Cube.DBR
+   },
+   { // R 
+      Cube.LU, Cube.FU, Cube.UB, Cube.BL, Cube.RF, Cube.BR, Cube.DB, Cube.FL, Cube.FD, Cube.DR, Cube.UR, Cube.DL, 
+      Cube.FRU, Cube.UBL, Cube.BDL, Cube.LFU, Cube.BRD, Cube.RFD, Cube.FLD, Cube.BUR
+   },
+   { // B 
+      Cube.LU, Cube.FU, Cube.RU, Cube.BL, Cube.RF, Cube.BR, Cube.LD, Cube.FL, Cube.FD, Cube.DR, Cube.BD, Cube.BU, 
+      Cube.FRU, Cube.RBU, Cube.BLU, Cube.LFU, Cube.BRD, Cube.RFD, Cube.LBD, Cube.LDF
+   },
+   { // U 
+      Cube.FU, Cube.RU, Cube.BL, Cube.LU, Cube.RF, Cube.BR, Cube.LD, Cube.FL, Cube.FD, Cube.DR, Cube.BD, Cube.BU, 
+      Cube.RBU, Cube.BLU, Cube.LFU, Cube.FRU, Cube.BRD, Cube.RFD, Cube.LBD, Cube.LDF
+   },
+   { // D 
+      Cube.FU, Cube.RU, Cube.BL, Cube.LU, Cube.FL, Cube.RF, Cube.BR, Cube.LD, Cube.FD, Cube.DR, Cube.BD, Cube.BU, 
+      Cube.RBU, Cube.BLU, Cube.LFU, Cube.FRU, Cube.RFD, Cube.LBD, Cube.LDF, Cube.BRD
+   },
+   { // Li
+      Cube.FU, Cube.RU, Cube.BL, Cube.FD, Cube.FL, Cube.RF, Cube.BR, Cube.BU, Cube.LD, Cube.DR, Cube.BD, Cube.LU, 
+      Cube.RBU, Cube.BLU, Cube.UFR, Cube.BDL, Cube.RFD, Cube.FLD, Cube.FUL, Cube.BRD
+   },
+   { // Fi
+      Cube.RD, Cube.RU, Cube.BL, Cube.FD, Cube.DL, Cube.RF, Cube.BR, Cube.BU, Cube.UF, Cube.LF, Cube.BD, Cube.LU, 
+      Cube.FDR, Cube.BLU, Cube.UFR, Cube.URB, Cube.DFL, Cube.DLB, Cube.FUL, Cube.BRD
+   },
+   { // Ri
+      Cube.RD, Cube.BD, Cube.BL, Cube.FD, Cube.DL, Cube.LF, Cube.BR, Cube.BU, Cube.UF, Cube.RU, Cube.RF, Cube.LU, 
+      Cube.UBL, Cube.RDB, Cube.UFR, Cube.URB, Cube.DRF, Cube.DLB, Cube.FUL, Cube.LDF
+   },
+   { // Bi
+      Cube.RD, Cube.BD, Cube.UL, Cube.FD, Cube.DL, Cube.LF, Cube.FR, Cube.BU, Cube.UF, Cube.RU, Cube.LB, Cube.RB, 
+      Cube.UBL, Cube.RUF, Cube.ULF, Cube.URB, Cube.DRF, Cube.DLB, Cube.FLD, Cube.DBR
+   },
+   { // Ui
+      Cube.FD, Cube.RD, Cube.BD, Cube.UL, Cube.DL, Cube.LF, Cube.FR, Cube.BU, Cube.UF, Cube.RU, Cube.LB, Cube.RB, 
+      Cube.URB, Cube.UBL, Cube.RUF, Cube.ULF, Cube.DRF, Cube.DLB, Cube.FLD, Cube.DBR
+   },
+   { // Di
+      Cube.FD, Cube.RD, Cube.BD, Cube.UL, Cube.LF, Cube.FR, Cube.BU, Cube.DL, Cube.UF, Cube.RU, Cube.LB, Cube.RB, 
+      Cube.URB, Cube.UBL, Cube.RUF, Cube.ULF, Cube.DBR, Cube.DRF, Cube.DLB, Cube.FLD
+   },
+   { // Li
+      Cube.FD, Cube.RD, Cube.BD, Cube.UF, Cube.LF, Cube.FR, Cube.BU, Cube.RB, Cube.DL, Cube.RU, Cube.LB, Cube.UL, 
+      Cube.URB, Cube.UBL, Cube.FUL, Cube.RFD, Cube.DBR, Cube.BDL, Cube.UFR, Cube.FLD
+   },
+   { // Fi
+      Cube.UR, Cube.RD, Cube.BD, Cube.UF, Cube.LD, Cube.FR, Cube.BU, Cube.RB, Cube.DF, Cube.FL, Cube.LB, Cube.UL, 
+      Cube.BRD, Cube.UBL, Cube.FUL, Cube.BUR, Cube.LBD, Cube.FDR, Cube.UFR, Cube.FLD
+   },
+   { // Ri
+      Cube.UR, Cube.LB, Cube.BD, Cube.UF, Cube.LD, Cube.FL, Cube.BU, Cube.RB, Cube.DF, Cube.RD, Cube.FR, Cube.UL, 
+      Cube.LUB, Cube.LDF, Cube.FUL, Cube.BUR, Cube.RDB, Cube.FDR, Cube.UFR, Cube.DLB
+   },
+   { // Bi
+      Cube.UR, Cube.LB, Cube.LU, Cube.UF, Cube.LD, Cube.FL, Cube.RF, Cube.RB, Cube.DF, Cube.RD, Cube.DB, Cube.UB, 
+      Cube.LUB, Cube.LFU, Cube.FRU, Cube.BUR, Cube.RDB, Cube.FDR, Cube.BDL, Cube.DFL
+   },
+   { // Ui
+      Cube.UF, Cube.UR, Cube.LB, Cube.LU, Cube.LD, Cube.FL, Cube.RF, Cube.RB, Cube.DF, Cube.RD, Cube.DB, Cube.UB, 
+      Cube.BUR, Cube.LUB, Cube.LFU, Cube.FRU, Cube.RDB, Cube.FDR, Cube.BDL, Cube.DFL
+   },
+   { // Di
+      Cube.UF, Cube.UR, Cube.LB, Cube.LU, Cube.FL, Cube.RF, Cube.RB, Cube.LD, Cube.DF, Cube.RD, Cube.DB, Cube.UB, 
+      Cube.BUR, Cube.LUB, Cube.LFU, Cube.FRU, Cube.DFL, Cube.RDB, Cube.FDR, Cube.BDL
+   },
+   { // L 
+      Cube.UF, Cube.UR, Cube.LB, Cube.UB, Cube.FL, Cube.RF, Cube.RB, Cube.DF, Cube.LU, Cube.RD, Cube.DB, Cube.LD, 
+      Cube.BUR, Cube.LUB, Cube.RFD, Cube.FUL, Cube.DFL, Cube.UFR, Cube.DBR, Cube.BDL
+   },
+   { // F 
+      Cube.UL, Cube.UR, Cube.LB, Cube.UB, Cube.DR, Cube.RF, Cube.RB, Cube.DF, Cube.LF, Cube.FU, Cube.DB, Cube.LD, 
+      Cube.ULF, Cube.LUB, Cube.RFD, Cube.RUF, Cube.RBU, Cube.FLD, Cube.DBR, Cube.BDL
+   },
+   { // R 
+      Cube.UL, Cube.FU, Cube.LB, Cube.UB, Cube.DR, Cube.DB, Cube.RB, Cube.DF, Cube.LF, Cube.RF, Cube.UR, Cube.LD, 
+      Cube.URB, Cube.LFU, Cube.RFD, Cube.RUF, Cube.DLB, Cube.FLD, Cube.DBR, Cube.BLU
+   },
+   { // B 
+      Cube.UL, Cube.FU, Cube.RU, Cube.UB, Cube.DR, Cube.DB, Cube.DL, Cube.DF, Cube.LF, Cube.RF, Cube.BR, Cube.BL, 
+      Cube.URB, Cube.UBL, Cube.FUL, Cube.RUF, Cube.DLB, Cube.FLD, Cube.DRF, Cube.BRD
+   },
+   { // U 
+      Cube.FU, Cube.RU, Cube.UB, Cube.UL, Cube.DR, Cube.DB, Cube.DL, Cube.DF, Cube.LF, Cube.RF, Cube.BR, Cube.BL, 
+      Cube.UBL, Cube.FUL, Cube.RUF, Cube.URB, Cube.DLB, Cube.FLD, Cube.DRF, Cube.BRD
+   },
+   { // D 
+      Cube.FU, Cube.RU, Cube.UB, Cube.UL, Cube.DF, Cube.DR, Cube.DB, Cube.DL, Cube.LF, Cube.RF, Cube.BR, Cube.BL, 
+      Cube.UBL, Cube.FUL, Cube.RUF, Cube.URB, Cube.FLD, Cube.DRF, Cube.BRD, Cube.DLB
+   }
+};
 }

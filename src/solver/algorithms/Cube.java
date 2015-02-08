@@ -45,7 +45,46 @@ public class Cube {
    FRU =  8, RBU =  9, BLU = 10, LFU = 11, RFD = 12, FLD = 13, LBD = 14, BRD = 15,
 
    RUF = 16, BUR = 17, LUB = 18, FUL = 19, FDR = 20, LDF = 21, BDL = 22, RDB = 23;
+
    
+   private static final byte transforms[][][] = {
+      // L
+      {  {BL, DL, FL, UL, 0, 0, 0, 0},
+          {UBL, DLB, DFL, ULF, 2, 1, 2, 1} },
+      // Li
+      {  {FL, DL, BL, UL, 0, 0, 0, 0},
+          {DFL, DLB, UBL, ULF, 2, 1, 2, 1} },
+      // F
+      {  {FL, DF, FR, UF, 1, 1, 1, 1},
+          {ULF, DFL, DRF, UFR, 2, 1, 2, 1} },
+      // Fi
+       {  {FR, DF, FL, UF, 1, 1, 1, 1},
+          {DRF, DFL, ULF, UFR, 2, 1, 2, 1} },
+      // R
+      {  {FR, DR, BR, UR, 0, 0, 0, 0},
+          {UFR, DRF, DBR, URB, 2, 1, 2, 1} },
+      // Ri
+       {  {BR, DR, FR, UR, 0, 0, 0, 0},
+          {DBR, DRF, UFR, URB, 2, 1, 2, 1} },
+      // B
+      {  {BR, DB, BL, UB, 1, 1, 1, 1},
+          {URB, DBR, DLB, UBL, 2, 1, 2, 1} },
+      // Bi
+       {  {BL, DB, BR, UB, 1, 1, 1, 1},
+          {DLB, DBR, URB, UBL, 2, 1, 2, 1} },
+      // U
+      { {UB, UL, UF, UR, 0, 0, 0, 0},
+         {URB, UBL, ULF, UFR, 0, 0, 0, 0} },
+      // Ui
+      { {UF, UL, UB, UR, 0, 0, 0, 0},
+         {ULF, UBL, URB, UFR, 0, 0, 0, 0} },
+      // D
+      { {DF, DL, DB, DR, 0, 0, 0, 0},
+         {DFL, DLB, DBR, DRF, 0, 0, 0, 0} },
+      // Di
+      { {DB, DL, DF, DR, 0, 0, 0, 0},
+         {DBR, DLB, DFL, DRF, 0, 0, 0, 0} }
+   };
    public static String CORNER_STRINGS[] = {
       "UFR", "URB", "UBL", "ULF", "DRF", "DFL", "DLB", "DBR",
       "FRU", "RBU", "BLU", "LFU", "RFD", "FLD", "LBD", "BRD",
@@ -59,188 +98,97 @@ public class Cube {
       {DOWN, 6, LEFT, 6, BACK, 8}, {DOWN, 8, BACK, 6, RIGHT, 8}
    };
    
-   private byte cube[][];
+   private byte cube[];
    
    public Cube() {
-      cube = new byte[6][];
-      for(byte i = 0; i < cube.length; i++) {         
-         cube[i] = new byte[9];
-         for(int j = 0; j < 9; j++) {
-            cube[i][j] = i;
-         }
+      cube = new byte[20];
+      for(byte i = 0; i < 12; i++) {
+         cube[i] = i;
+      }
+      for(byte i = 0; i < 8; i++) {
+         cube[12 + i] = i;
       }
    }
    
    public Cube(Cube source) {
-      cube = new byte[6][];
+      cube = new byte[20];
       for(int i = 0; i < cube.length; i++) {
-         cube[i] = new byte[9];
-         for(int j = 0; j < 9; j++) {
-            cube[i][j] = source.cube[i][j];
-         }
+         cube[i] = source.cube[i];
       }
    }
    
-   public Cube(byte source[][]) {
-      cube = new byte[6][];
+   public Cube(byte source[]) {
+      cube = new byte[20];
       for(int i = 0; i < cube.length; i++) {
-         cube[i] = new byte[9];
-         for(int j = 0; j < 9; j++) {
-            cube[i][j] = source[i][j];
-         }
+         cube[i] = source[i];
       }
    }
    
    public boolean cubeSolved() {
-      for(int i = 0; i < 6; i++) {
-         for(int j = 0; j < 9; j++) {
-            if(cube[i][j] != cube[i][4]) {
-               return false;
-            }
+      for(byte i = 0; i < 12; i++) {
+         if(cube[i] != i) {
+            return false;
+         }
+         
+      }
+      for(byte i = 0; i < 8; i++) {
+         if(cube[i+12] != i) {
+            return false;
          }
       }
       return true;
    }
    
-   // ROW_OPS
-   private static final byte 
-   ROW_TOP_LEFT = 0,
-   ROW_LEFT_DOWN = 1,
-   ROW_BOTTOM_RIGHT = 2,
-   ROW_RIGHT_UP = 3;
-   
-   private static final byte ROW_OP_INDICES[][] = {
-      { 2, 1, 0 }, // ROW_TOP_LEFT
-      { 0, 3, 6 }, // ROW_LEFT_DOWN
-      { 6, 7, 8 }, // ROW_BOTTOM_RIGHT
-      { 8, 5, 2 }  // ROW_RIGHT_UP
-   };
-   
-   private static final byte transforms[][] = {
-      // L
-      {LEFT, TOP, ROW_LEFT_DOWN,
-            BACK, ROW_RIGHT_UP, TOP, ROW_LEFT_DOWN,
-            DOWN, ROW_LEFT_DOWN, BACK, ROW_RIGHT_UP,
-            FRONT, ROW_LEFT_DOWN, DOWN, ROW_LEFT_DOWN,
-            FRONT, ROW_LEFT_DOWN},
-      // Li
-      {LEFT, TOP, ROW_LEFT_DOWN,
-            FRONT, ROW_LEFT_DOWN, TOP, ROW_LEFT_DOWN,
-            DOWN, ROW_LEFT_DOWN, FRONT, ROW_LEFT_DOWN,
-            BACK, ROW_RIGHT_UP, DOWN, ROW_LEFT_DOWN,
-            BACK, ROW_RIGHT_UP},
-      // F
-      {FRONT, TOP, ROW_BOTTOM_RIGHT,
-            LEFT, ROW_RIGHT_UP, TOP, ROW_BOTTOM_RIGHT,
-            DOWN, ROW_TOP_LEFT, LEFT, ROW_RIGHT_UP,
-            RIGHT, ROW_LEFT_DOWN, DOWN, ROW_TOP_LEFT,
-            RIGHT, ROW_LEFT_DOWN},
-      // Fi
-      {FRONT, TOP, ROW_BOTTOM_RIGHT,
-            RIGHT, ROW_LEFT_DOWN, TOP, ROW_BOTTOM_RIGHT,
-            DOWN, ROW_TOP_LEFT, RIGHT, ROW_LEFT_DOWN,
-            LEFT, ROW_RIGHT_UP, DOWN, ROW_TOP_LEFT,
-            LEFT, ROW_RIGHT_UP},
-      // R
-      {RIGHT, TOP, ROW_RIGHT_UP,
-            FRONT, ROW_RIGHT_UP, TOP, ROW_RIGHT_UP,
-            DOWN, ROW_RIGHT_UP, FRONT, ROW_RIGHT_UP,
-            BACK, ROW_LEFT_DOWN, DOWN, ROW_RIGHT_UP,
-            BACK, ROW_LEFT_DOWN},
-      // Ri
-      {RIGHT, TOP, ROW_RIGHT_UP,
-            BACK, ROW_LEFT_DOWN, TOP, ROW_RIGHT_UP,
-            DOWN, ROW_RIGHT_UP, BACK, ROW_LEFT_DOWN,
-            FRONT, ROW_RIGHT_UP, DOWN, ROW_RIGHT_UP,
-            FRONT, ROW_RIGHT_UP},
-      // B
-      {BACK, TOP, ROW_TOP_LEFT,
-            RIGHT, ROW_RIGHT_UP, TOP, ROW_TOP_LEFT,
-            DOWN, ROW_BOTTOM_RIGHT, RIGHT, ROW_RIGHT_UP,
-            LEFT, ROW_LEFT_DOWN, DOWN, ROW_BOTTOM_RIGHT,
-            LEFT, ROW_LEFT_DOWN},
-      // Bi
-      {BACK, TOP, ROW_TOP_LEFT,
-            LEFT, ROW_LEFT_DOWN, TOP, ROW_TOP_LEFT,
-            DOWN, ROW_BOTTOM_RIGHT, LEFT, ROW_LEFT_DOWN,
-            RIGHT, ROW_RIGHT_UP, DOWN, ROW_BOTTOM_RIGHT,
-            RIGHT, ROW_RIGHT_UP},
-      // U
-      {TOP, LEFT, ROW_TOP_LEFT,
-            FRONT, ROW_TOP_LEFT, LEFT, ROW_TOP_LEFT,
-            RIGHT, ROW_TOP_LEFT, FRONT, ROW_TOP_LEFT,
-            BACK, ROW_TOP_LEFT, RIGHT, ROW_TOP_LEFT,
-            BACK, ROW_TOP_LEFT},
-      // Ui
-      {TOP, LEFT, ROW_TOP_LEFT,
-            BACK, ROW_TOP_LEFT, LEFT, ROW_TOP_LEFT,
-            RIGHT, ROW_TOP_LEFT, BACK, ROW_TOP_LEFT,
-            FRONT, ROW_TOP_LEFT, RIGHT, ROW_TOP_LEFT,
-            FRONT, ROW_TOP_LEFT},
-      // D
-      {DOWN, FRONT, ROW_BOTTOM_RIGHT,
-            LEFT, ROW_BOTTOM_RIGHT, FRONT, ROW_BOTTOM_RIGHT,
-            BACK, ROW_BOTTOM_RIGHT, LEFT, ROW_BOTTOM_RIGHT,
-            RIGHT, ROW_BOTTOM_RIGHT, BACK, ROW_BOTTOM_RIGHT,
-            RIGHT, ROW_BOTTOM_RIGHT},
-      // Di
-      {DOWN, FRONT, ROW_BOTTOM_RIGHT,
-            RIGHT, ROW_BOTTOM_RIGHT, FRONT, ROW_BOTTOM_RIGHT,
-            BACK, ROW_BOTTOM_RIGHT, RIGHT, ROW_BOTTOM_RIGHT,
-            LEFT, ROW_BOTTOM_RIGHT, BACK, ROW_BOTTOM_RIGHT,
-            LEFT, ROW_BOTTOM_RIGHT}
-   };
-   
-   private void turnFaceClockwise(int face) {
-      byte old = cube[face][0];
-      cube[face][0] = cube[face][6];
-      cube[face][6] = cube[face][8];
-      cube[face][8] = cube[face][2];
-      cube[face][2] = old;
+   public void rotateEdges(byte transform[]) {
+      byte temp = cube[transform[0]];
       
-      old = cube[face][1];
-      cube[face][1] = cube[face][3];
-      cube[face][3] = cube[face][7];
-      cube[face][7] = cube[face][5];
-      cube[face][5] = old;
+      byte cubie;
+      for(byte i = 1; i < 4; i++) {
+         cubie = (byte)(cube[transform[i]] + 12*transform[i-1+4]);
+         if(cubie >= 24) {
+            cubie -= 24;
+         }
+         
+         cube[transform[i-1]] = cubie;
+      }
+      
+      cubie = (byte)(temp + 12*transform[7]);
+      if(cubie >= 24) {
+         cubie -= 24;
+      }
+      cube[transform[3]] = cubie;
    }
    
-   private void turnFaceCounterclockwise(int face) {
-      byte old = cube[face][0];
-      cube[face][0] = cube[face][2];
-      cube[face][2] = cube[face][8];
-      cube[face][8] = cube[face][6];
-      cube[face][6] = old;
+   public void rotateCorners(byte transform[]) {
+      byte temp = cube[12 + transform[0]];
       
-      old = cube[face][1];
-      cube[face][1] = cube[face][5];
-      cube[face][5] = cube[face][7];
-      cube[face][7] = cube[face][3];
-      cube[face][3] = old;
+      byte cubie;
+      for(byte i = 1; i < 4; i++) {
+         cubie = (byte)(cube[12 + transform[i]] + 8*transform[i-1+4]);
+         if(cubie >= 24) {
+            cubie -= 24;
+         } else if(cubie < 0) {
+            cubie += 24;
+         }
+         
+         cube[12 + transform[i-1]] = cubie;
+      }
+      
+      cubie = (byte)(temp + 8*transform[7]);
+      if(cubie >= 24) {
+         cubie -= 24;
+      } else if(cubie < 0) {
+         cubie += 24;
+      }
+      cube[12 + transform[3]] = cubie;
    }
    
    public void performTransform(byte transform) {
-      int step = 0;
-      if(transform % 2 != 0)
-         turnFaceCounterclockwise(transforms[transform][step++]);
-      else
-         turnFaceClockwise(transforms[transform][step++]);
+      if(transforms[transform][0].length <= 0)
+         return;
       
-      byte oldColor;
-      for(int i = 0; i < 3; i++) {
-         oldColor = cube[transforms[transform][1]][ROW_OP_INDICES[transforms[transform][2]][i]];
-         
-         cube[transforms[transform][5]][ROW_OP_INDICES[transforms[transform][6]][i]] =
-               cube[transforms[transform][3]][ROW_OP_INDICES[transforms[transform][4]][i]];
-         
-         cube[transforms[transform][9]][ROW_OP_INDICES[transforms[transform][10]][i]] =
-               cube[transforms[transform][7]][ROW_OP_INDICES[transforms[transform][8]][i]];
-         
-         cube[transforms[transform][13]][ROW_OP_INDICES[transforms[transform][14]][i]] =
-               cube[transforms[transform][11]][ROW_OP_INDICES[transforms[transform][12]][i]];
-         
-         cube[transforms[transform][15]][ROW_OP_INDICES[transforms[transform][16]][i]] = oldColor;
-      }
+      rotateEdges(transforms[transform][0]);
+      rotateCorners(transforms[transform][1]);
    }
    
    public LinkedList<Byte> scramble(int moves) {
@@ -279,14 +227,11 @@ public class Cube {
    }
    
    public byte[][] getDescriptor() {
-      byte descriptor[][] = new byte[6][];
-      for(int i = 0; i < 6; i++) {
-         descriptor[i] = new byte[9];
-         for(int j = 0; j < 9; j++) {
-            descriptor[i][j] = cube[i][j];
-         }
-      }
-      return descriptor;
+      return new byte[0][0];
+   }
+   
+   public byte[] getCube() {
+      return cube;
    }
    
    private String getColorCharacter(byte color) {
@@ -302,150 +247,13 @@ public class Cube {
    }
    
    public byte findEdge(byte edge) {
-      byte indices[] = convertEdgeToIndices(edge);
-      byte edgeColors[] = getEdgeColors(indices);
-      return findEdgeLocation(edgeColors);
-   }
-   
-   private byte[] convertEdgeToIndices(byte edge) {
-      byte indices[] = new byte[4];
-      if(edge < 12) {
-         for(byte i = 0; i < 4; i++) {
-            indices[i] = EDGE_LOCATIONS[edge][i];
-         }
-      } else {
-         int i = 0;
-         indices[i++] = EDGE_LOCATIONS[edge-12][2];
-         indices[i++] = EDGE_LOCATIONS[edge-12][3];
-         indices[i++] = EDGE_LOCATIONS[edge-12][0];
-         indices[i++] = EDGE_LOCATIONS[edge-12][1];
-      }
-      return indices;
-   }
-   
-   private byte[] getEdgeColors(byte indices[]) {
-      byte colors[] = new byte[2];
-      colors[0] = cube[indices[0]][4];
-      colors[1] = cube[indices[2]][4];
-      return colors;
-   }
-   
-   private byte findEdgeLocation(byte edgeColors[]) {
-      for(byte i = 0; i < EDGE_LOCATIONS.length; i++) {         
-         if (edgeMatches(edgeColors, i, false)) {
-            return i;
-         }
-         if(edgeMatches(edgeColors, i, true)) {
-            return (byte) (i + 12);
-         }
-      }
-      throw new RuntimeException("Invalid color combination.");
-   }
-   
-   private boolean edgeMatches(byte colors[], int edge, boolean inverted) {
-      if(!inverted) {
-         return colors[0] == cube[EDGE_LOCATIONS[edge][0]][EDGE_LOCATIONS[edge][1]] 
-                     &&
-             colors[1] == cube[EDGE_LOCATIONS[edge][2]][EDGE_LOCATIONS[edge][3]];
-      } else {
-         return colors[1] == cube[EDGE_LOCATIONS[edge][0]][EDGE_LOCATIONS[edge][1]] 
-                     &&
-             colors[0] == cube[EDGE_LOCATIONS[edge][2]][EDGE_LOCATIONS[edge][3]];
-      }
+      return 0;
    }
    
    public byte findCorner(byte corner) {
-      byte indices[] = convertCornerToIndices(corner);
-      byte colors[] = getCornerColors(indices);
-      return findCornerLocations(colors);
-   }
-   
-   private byte[] convertCornerToIndices(byte corner) {
-      int idx = corner % 8;
-      int permutation = (corner - idx)/8;
-      byte indices[] = new byte[6];
-      for(int i = 0, offset = permutation; i < 3; i++, offset++) {
-         if(offset == 3) {
-            offset = 0;
-         }
-         indices[i*2] = CORNER_LOCATIONS[idx][offset*2];
-         indices[i*2 + 1] = CORNER_LOCATIONS[idx][offset*2 + 1];
-      }
-      return indices;
-   }
-   
-   private byte[] getCornerColors(byte indices[]) {
-      byte colors[] = new byte[3];
-      for(int i = 0; i < 3; i++) {
-         colors[i] = cube[indices[i*2]][4];
-      }
-      return colors;
-   }
-   
-   private byte findCornerLocations(byte colors[]) {
-      for(int i = 0; i < 3; i++) {
-         for(int j = 0; j < 8; j++) {
-            if(cornerMatches(colors, i, j)) {
-               return (byte)(i*8 + j);
-            }
-         }
-      }
-      throw new RuntimeException("Invalid color combination");
-   }
-   
-   private boolean cornerMatches(byte colors[], int permutation, int index) {
-      int face, loc;
-      
-      for(int i = 0, off = permutation; i < 3; i++, off++) {
-         if(off == 3) {
-            off = 0;
-         }
-         face = CORNER_LOCATIONS[index][off*2];
-         loc = CORNER_LOCATIONS[index][off*2 + 1];
-         
-         if(colors[i] != cube[face][loc])
-            return false;
-      }
-      return true;
+      return 0;
    }
    
    public void printCube() {
-      for(int i = 0; i < 3; i++) {
-         System.out.print("    ");
-         for(int j = 0; j < 3; j++) {
-            System.out.print(getColorCharacter(cube[TOP][i*3 + j]));
-         }
-         System.out.println("        ");
-      }
-      
-      for(int i = 0; i < 3; i++) {
-         for(int j = 0; j < 3; j++) {
-            System.out.print(getColorCharacter(cube[LEFT][i*3 + j]));
-         }
-         System.out.print(" ");
-
-         for(int j = 0; j < 3; j++) {
-            System.out.print(getColorCharacter(cube[FRONT][i*3 + j]));
-         }
-         System.out.print(" ");
-
-         for(int j = 0; j < 3; j++) {
-            System.out.print(getColorCharacter(cube[RIGHT][i*3 + j]));
-         }
-         System.out.print(" ");
-
-         for(int j = 0; j < 3; j++) {
-            System.out.print(getColorCharacter(cube[BACK][i*3 + j]));
-         }
-         System.out.println();
-      }
-      
-      for(int i = 0; i < 3; i++) {
-         System.out.print("    ");
-         for(int j = 0; j < 3; j++) {
-            System.out.print(getColorCharacter(cube[DOWN][i*3 + j]));
-         }
-         System.out.println("        ");
-      }
    }
 }

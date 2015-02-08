@@ -21,21 +21,30 @@ public class TestCubeTransforms {
       Cube testCube = new Cube();
       for(byte i = 0; i < TEST_MOVES.length; i++) {
          testCube.performTransform(TEST_MOVES[i]);
-         byte descriptor[][] = testCube.getDescriptor();
          assertTrue(
                "Move " + Algorithm.MOVE_STRINGS[TEST_MOVES[i]] + " is invalid.", 
-               transformIsValid(i, descriptor));
+               transformIsValid(i, testCube.getCube()));
       }
    }
    
-   private boolean transformIsValid(int index, byte descriptor[][]) {
-      for(byte i = 0; i < 6; i++) {
-         for(byte j = 0; j < 9; j++) {
-            if(descriptor[i][j] != ValidCubeTransforms.TEST_RESULTS[index][i][j])
-               return false;
+   private boolean transformIsValid(int index, byte descriptor[]) {
+      for(byte i = 0; i < (12+8); i++) {
+         if(descriptor[i] != ValidCubeTransforms.TEST_RESULTS[index][i]) {
+            printCube(descriptor);
+            printCube(ValidCubeTransforms.TEST_RESULTS[index]);
+            return false;
          }
       }
       return true;
    }
 
+   private void printCube(byte descriptor[]) {
+      for(int i = 0; i < 12; i++) {
+         System.out.print(Cube.EDGE_STRINGS[descriptor[i]] + " ");
+      }
+      for(int i = 0; i < 8; i++) {
+         System.out.print(Cube.CORNER_STRINGS[descriptor[i+12]] + " ");
+      }
+      System.out.println();
+   }
 }
