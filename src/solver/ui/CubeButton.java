@@ -1,4 +1,4 @@
-package solver;
+package solver.ui;
 
 import java.awt.Color;
 import java.awt.Container;
@@ -18,12 +18,14 @@ import javax.swing.JPanel;
 import javax.swing.JSlider;
 import javax.swing.SwingUtilities;
 
+import solver.algorithms.Cube;
+
 public class CubeButton extends JButton {
    private static final Dimension BUTTON_SIZE = new Dimension(25, 25);
    
-   private int mColor;
+   private byte mColor;
    
-   public CubeButton(int color, boolean centerPiece) {
+   public CubeButton(byte color, boolean centerPiece) {
       setMinimumSize(BUTTON_SIZE);
       setPreferredSize(BUTTON_SIZE);
       setMaximumSize(BUTTON_SIZE);
@@ -111,11 +113,11 @@ public class CubeButton extends JButton {
       });
    }
    
-   public void setCubeColor(int color) {
+   public void setCubeColor(byte color) {
       mColor = color;
    }
    
-   public int getCubeColor() {
+   public byte getCubeColor() {
       return mColor;
    }
    

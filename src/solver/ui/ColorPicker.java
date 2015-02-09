@@ -1,4 +1,4 @@
-package solver;
+package solver.ui;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -10,14 +10,16 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JPopupMenu;
 
+import solver.algorithms.Cube;
+
 public class ColorPicker extends JPopupMenu {
    
    private static class PickerButton extends JButton {
       private static final Dimension PICKER_BUTTON_SIZE = new Dimension(25, 25);
       
-      private int color;
+      private byte color;
       
-      public PickerButton(final ColorPicker picker, final CubeButton cubeButton, final int color) {
+      public PickerButton(final ColorPicker picker, final CubeButton cubeButton, final byte color) {
          setMinimumSize(PICKER_BUTTON_SIZE);
          setPreferredSize(PICKER_BUTTON_SIZE);
          setMaximumSize(PICKER_BUTTON_SIZE);
@@ -40,7 +42,6 @@ public class ColorPicker extends JPopupMenu {
 
       private Color getColor() {
          return Cube.sFace_Colors[color];
-         
       }
    }
    
@@ -50,8 +51,8 @@ public class ColorPicker extends JPopupMenu {
    
    private void createWidgets(CubeButton button) {
       setLayout(new GridLayout(2, 3));
-      
-      for(int i = 0; i < 6; i++) {
+
+      for(byte i = 0; i < 6; i++) {
          add(new PickerButton(this, button, i));
       }
    }

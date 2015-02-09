@@ -1,8 +1,10 @@
-package solver;
+package solver.ui;
 
 import java.awt.GridLayout;
 
 import javax.swing.JPanel;
+
+import solver.algorithms.Cube;
 
 public class CubeInputPanel extends JPanel {
    private FaceInputPanel mFaces[];
@@ -42,20 +44,20 @@ public class CubeInputPanel extends JPanel {
       
       add(new JPanel());
       
-      mFaces[5] = new FaceInputPanel("Bottom", Cube.BOTTOM);
+      mFaces[5] = new FaceInputPanel("Down", Cube.DOWN);
       add(mFaces[5]);
       
       add(new JPanel());
       add(new JPanel());
    }
    
-   public int[][] getCubeDescriptor() {
-      int descriptor[][] = new int[6][];
+   public byte[][] getCubeDescriptor() {
+      byte descriptor[][] = new byte[6][];
       
-      for(int i = 0; i < 6; i++) {
-         descriptor[i] = new int[9];
-         int face[] = mFaces[i].getColors();
-         for(int j = 0; j < 9; j++) {
+      for(byte i = 0; i < 6; i++) {
+         descriptor[i] = new byte[9];
+         byte face[] = mFaces[i].getColors();
+         for(byte j = 0; j < 9; j++) {
             descriptor[i][j] = face[j];
          }
       }
@@ -63,8 +65,8 @@ public class CubeInputPanel extends JPanel {
       return descriptor;
    }
    
-   public void setCubeDescriptor(int descriptor[][]) {
-      for(int i = 0; i < 6; i++) {
+   public void setCubeDescriptor(byte descriptor[][]) {
+      for(byte i = 0; i < 6; i++) {
          mFaces[i].setColors(descriptor[i]);
       }
    }

@@ -1,4 +1,4 @@
-package solver;
+package solver.ui;
 
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
@@ -9,11 +9,11 @@ import javax.swing.JPanel;
 public class FaceInputPanel extends JPanel {
    private CubeButton mButtons[];
    
-   public FaceInputPanel(String face, int startingColor) {
+   public FaceInputPanel(String face, byte startingColor) {
       createWidgets(face, startingColor);
    }
    
-   private void createWidgets(String face, int startingColor) {
+   private void createWidgets(String face, byte startingColor) {
       setLayout(new BorderLayout());
       addFaceTitle(face);
       addInputButtons(startingColor);
@@ -23,7 +23,7 @@ public class FaceInputPanel extends JPanel {
       add(new JLabel(face), BorderLayout.NORTH);
    }
    
-   private void addInputButtons(int startingColor) {
+   private void addInputButtons(byte startingColor) {
       JPanel buttonPanel = new JPanel();
       buttonPanel.setLayout(new GridLayout(3, 3));
       
@@ -40,15 +40,15 @@ public class FaceInputPanel extends JPanel {
       add(buttonPanel, BorderLayout.CENTER);
    }
    
-   public int[] getColors() {
-      int colors[] = new int[9];
+   public byte[] getColors() {
+      byte colors[] = new byte[9];
       for(int i = 0; i < 9; i++) {
-         colors[i] = mButtons[i].getCubeColor();
+         colors[i] = (byte)mButtons[i].getCubeColor();
       }
       return colors;
    }
    
-   public void setColors(int colors[]) {
+   public void setColors(byte colors[]) {
       for(int i = 0; i < 9; i++) {
          mButtons[i].setCubeColor(colors[i]);
       }
