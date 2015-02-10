@@ -9,7 +9,6 @@ import solver.ui.ProgressReporter;
 
 public class LayerByLayerSolver implements SolvingAlgorithm {
 
-   private boolean mStop;
    
    // Bottom Cross 
    private static final byte BOTTOM_CROSS_EDGES[] = {
@@ -28,9 +27,22 @@ public class LayerByLayerSolver implements SolvingAlgorithm {
    private HashMap<String, byte[]> mFLEPermutations;
    private HashMap<String, byte[]> mF2LPermutations;
    
+   private boolean mPermutationsComputed;
+   private boolean mStop;
+   
    public LayerByLayerSolver() {
+      mPermutationsComputed = false;
+      mStop = false;
+   }
+   
+   public void computePermutations() {
+      if(mStop)
+         return;
       mFLEPermutations = generateFLEPermutations();
-      //mF2LPermutations = generateF2LPermutations();
+      
+      if(mStop)
+         return;
+      mF2LPermutations = generateF2LPermutations();
    }
    
    // Generates all cases for the First Layer Edges (bottom cross)
@@ -59,6 +71,9 @@ public class LayerByLayerSolver implements SolvingAlgorithm {
          System.out.println("Current level: " + (++level));
          while(!algorithmQueue.isEmpty()) {
             Algorithm alg = algorithmQueue.remove();
+            
+            if(mStop)
+               return null;
             
             moveLoop:
             for(byte i = 0; i < 12; i++) {
@@ -131,6 +146,9 @@ public class LayerByLayerSolver implements SolvingAlgorithm {
          while(!algorithmQueue.isEmpty()) {
             Algorithm alg = algorithmQueue.remove();
             
+            if(mStop)
+               return null;
+            
             moveLoop:
             for(byte i = 0; i < 12; i++) {
                Algorithm newAlg = new Algorithm(alg, i);
@@ -186,6 +204,14 @@ public class LayerByLayerSolver implements SolvingAlgorithm {
       if(startingCube.cubeSolved()) {
          mStop = true;
          return new Algorithm(startingCube);
+      }
+      
+      if(!mPermutationsComputed) {
+         computePermutations();
+      }
+      
+      if(mStop) {
+         return null;
       }
       
       Algorithm firstLayerSolved = solveFirstLayer(startingCube);
