@@ -57,67 +57,45 @@ public class IDAHeuristic {
       mRunning = false;
    }
    
-   private void computeCornerHeuristic(ProgressReporter reporter) {      
-      Cube levelCube[] = new Cube[10];
-      byte levelIndices[] = new byte[11];
-      for(byte i = 0; i < 10; i++) {
-         levelIndices[i] = 0;
-      }
-
+   private void computeCornerHeuristic(ProgressReporter reporter) {
       Cube goal = new Cube();
-      levelCube[0] = goal;
-      
       mCorners.put(getCornerArrangement(goal), (byte)0);
       
-      byte depth = -1;
+      byte moves[] = new byte[11];
       
-      MainLoop:
-      while(depth <= 9) {
-         reportProgress(reporter, depth+2);
+      byte depth = 0;
+      while(depth < 11 && !mStop) {
+         reportProgress(reporter, depth);
          
-         int level = 0;
-         levelIndices[0] = 0;
-         while(true) {
-            if(mStop) {
-               break MainLoop;
+         findCornerHeuristics(0, depth, goal, moves);
+         
+         depth++;
+      }
+   }
+
+   private void findCornerHeuristics(int level, int depth, Cube cube, byte moves[]) {
+      if(mStop) {
+         return;
+      }
+      
+      for(byte i = 0; i < 12; i++) {
+         moves[level] = i;
+         
+         if(moveIsStupid(level, moves)) {
+            continue;
+         }
+         
+         Cube newCube = new Cube(cube);
+         newCube.performTransform(i);
+         
+         if(level < depth) {
+            findCornerHeuristics(level+1, depth, newCube, moves);
+         } else {
+            String cornerArr = getCornerArrangement(newCube);
+            if(mCorners.containsKey(cornerArr)) {
+               continue;
             }
-            
-            while(level < depth) {
-               if(level < 0) {
-                  depth++;
-                  continue MainLoop;
-               }
-               
-               if(levelIndices[level] < 12) {
-                  if(moveIsStupid(level, levelIndices)) {
-                     Cube newCube = new Cube(levelCube[level]);
-                     newCube.performTransform(levelIndices[level]);
-                     levelCube[level+1] = newCube;
-                     levelIndices[level]++;
-                     level++;
-                     levelIndices[level] = 0;
-                  } else {
-                     levelIndices[level]++;
-                  }
-               } else {
-                  level--;
-               }
-            }
-            
-            for(levelIndices[level+1] = 0; levelIndices[level+1] < 12; levelIndices[level+1]++) {
-               if(moveIsStupid(level+1, levelIndices))
-                  continue;
-               
-               Cube cube = new Cube(levelCube[level]);
-               cube.performTransform(levelIndices[level+1]);
-               
-               String cornerArr = getCornerArrangement(cube);
-               if(mCorners.containsKey(cornerArr)) {
-                  continue;
-               }
-               mCorners.put(cornerArr, depth);
-            }
-            level--;
+            mCorners.put(cornerArr, (byte)(depth+1));
          }
       }
    }
