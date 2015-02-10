@@ -325,14 +325,15 @@ public class Cube {
    
    public byte findCorner(byte corner) {
       for(int i = 0; i < 8; i++) {
-         if(cube[i] == corner) {
+         if(cube[i+12] == corner) {
             return (byte)i;
-         } else if((cube[i] + 8)%24 == corner) {
+         } else if((cube[i+12] + 8)%24 == corner) {
             return (byte)((i + 8)%24);
-         } else if((cube[i] + 16)%24 == corner) {
+         } else if((cube[i+12] + 16)%24 == corner) {
             return (byte)((i + 16)%24);
          }
       }
+      printCube();
       throw new RuntimeException("Invalid cube configuration.");
    }
    
