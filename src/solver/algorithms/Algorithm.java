@@ -84,4 +84,56 @@ public class Algorithm {
          return (byte)(move - 1);
       }
    }
+   
+   public boolean moveIsStupid(byte move) {
+      if(moves.length == 0) {
+         return false;
+      }
+      
+      byte lastMove = moves[moves.length-1];
+      byte secondLastMove = -1;
+      
+      if(moves.length > 1)
+         secondLastMove = moves[moves.length - 2];
+      
+      return moveIsStupid(secondLastMove, lastMove, move);
+   }
+   
+   public static boolean moveIsStupid(byte secondLastMove, byte lastMove, byte move) {
+      // Do not repeat move
+      if(move == lastMove && secondLastMove == move) {
+            return true;
+      }
+      
+      // Commutative moves
+      switch(move) {
+      case Algorithm.D:
+      case Algorithm.Di:
+         if(lastMove == Algorithm.U || lastMove == Algorithm.Ui) {
+            return true;
+         }
+         break;
+      case Algorithm.L:
+      case Algorithm.Li:
+         if(lastMove == Algorithm.R || lastMove == Algorithm.Ri) {
+            return true;
+         }
+         break;
+      case Algorithm.B:
+      case Algorithm.Bi:
+         if(lastMove == Algorithm.F || lastMove == Algorithm.Fi) {
+            return true;
+         }
+         break;
+      default:
+         break;
+      }
+      
+      // If move undoes the last one.
+      if(move % 2 == 0) {
+         return lastMove == move + 1;
+      } else {
+         return lastMove == move - 1;
+      }
+   }
 }

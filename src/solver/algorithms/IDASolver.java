@@ -4,7 +4,13 @@ import solver.ui.ProgressReporter;
 
 public class IDASolver implements SolvingAlgorithm {
    
+   private IDAHeuristic mHeuristic;
+   
    private boolean mStop;
+   
+   public IDASolver() {
+      mHeuristic = new IDAHeuristic();
+   }
    
    @Override
    public Algorithm solveCube(Cube startingCube, ProgressReporter progressReporter) {
@@ -14,122 +20,93 @@ public class IDASolver implements SolvingAlgorithm {
          mStop = true;
          return new Algorithm(startingCube);
       }
-                 
-      Algorithm levelAlgorithm[] = new Algorithm[20];
-      byte levelIndices[] = new byte[20];
-      for(byte i = 0; i < 20; i++) {
-         levelIndices[i] = 0;
+      
+      if(!mHeuristic.isComputed()) {
+         mHeuristic.computeHeuristics(progressReporter);
+         if(mStop)
+            return null;
       }
       
-      levelAlgorithm[0] = new Algorithm(startingCube);
-      
-      boolean solutionFound = false;
-      Algorithm solution = null;
-      byte depth = -1;
-      
-      MainLoop:
-      while(!solutionFound) {
-         updateLevel(progressReporter, ++depth);
+      byte depth = 0;
+      byte moves[] = new byte[20];
+      while(depth < 20) {
+         updateLevel(progressReporter, depth);
          
-         int level = 0;
-         levelIndices[0] = 0;
-         while(true) {
-            if(mStop) {
-               break MainLoop;
+         Algorithm solution = findSolution(0, depth, startingCube, moves);
+         if(solution != null) {
+            return solution;
+         }
+         
+         if(mStop)
+            break;
+         
+         depth++;
+      }
+      
+      return null;
+   }
+   
+   private Algorithm findSolution(int level, int depth, Cube cube, byte moves[]) {
+      if(mStop) {
+         return null;
+      }
+      
+      for(byte i = 0; i < 12; i++) {
+         moves[level] = i;
+         
+         if(moveIsStupid(level, moves)) {
+            continue;
+         }
+         
+         Cube nextLevelCube = new Cube(cube);
+         nextLevelCube.performTransform(i);
+         
+         if(level < depth) {
+            Algorithm solution = findSolution(level+1, depth, nextLevelCube, moves);
+            if(solution != null) {
+               solution.moves[level] = i;
+               return solution;
             }
-            
-            while(level < depth) {
-               if(level < 0) {
-                  continue MainLoop;
-               }
-               
-               if(levelIndices[level] < 12) {
-                  if(!moveIsStupid(levelAlgorithm[level], levelIndices[level])) {
-                     levelAlgorithm[level+1] = new Algorithm(levelAlgorithm[level], levelIndices[level]);
-                     levelIndices[level]++;
-                     level++;
-                     levelIndices[level] = 0;
-                  } else {
-                     levelIndices[level]++;
-                  }
-               } else {
-                  level--;
-               }
+         } else {
+            if(nextLevelCube.cubeSolved()) {
+               Algorithm solution = new Algorithm(nextLevelCube);
+               solution.moves = new byte[level+1];
+               solution.moves[level] = i;
+               return solution;
             }
-            
-            for(byte i = 0; i < 12; i++) {
-               if(moveIsStupid(levelAlgorithm[level], i))
-                  continue;
-               
-               Algorithm newAlgorithm = new Algorithm(levelAlgorithm[level], i);
-               if(newAlgorithm.cubeState.cubeSolved()) {
-                  solutionFound = true;
-                  solution = newAlgorithm;
-                  break MainLoop;
-               }
-            }
-            level--;
          }
       }
       
-      return solution;
+      return null;
+   }
+   
+   private boolean moveIsStupid(int level, byte indices[]) {
+      if(level == 0)
+         return false;
+      
+      if(level == 1)
+         return Algorithm.moveIsStupid((byte)-1, 
+               indices[level-1], 
+               indices[level]);
+      
+      if(level > 1)
+         return Algorithm.moveIsStupid(indices[level-2], 
+               indices[level-1], 
+               indices[level]);
+      
+      return false;
    }
    
    @Override
    public void stop() {
       mStop = true;
+      
+      if(mHeuristic.isRunning())
+         mHeuristic.stop();
    }
    
    private void updateLevel(ProgressReporter reporter, final int level) {
       reporter.updateProgress("Working level: " + (level+1));
-   }
-   
-   private boolean moveIsStupid(Algorithm algorithm, byte move) {
-      if(algorithm.moves.length == 0) {
-         return false;
-      }
-      
-      byte lastMove = algorithm.moves[algorithm.moves.length-1];
-      
-      // Do not repeat move
-      if(move == lastMove && algorithm.moves.length > 1) {
-         byte secondToLast = algorithm.moves[algorithm.moves.length - 2];
-         if(secondToLast == move)
-            return true;
-         else
-            return false;
-      }
-      
-      // Commutative moves
-      switch(move) {
-      case Algorithm.D:
-      case Algorithm.Di:
-         if(lastMove == Algorithm.F || lastMove == Algorithm.Fi) {
-            return true;
-         }
-         break;
-      case Algorithm.R:
-      case Algorithm.Ri:
-         if(lastMove == Algorithm.L || lastMove == Algorithm.Li) {
-            return true;
-         }
-         break;
-      case Algorithm.B:
-      case Algorithm.Bi:
-         if(lastMove == Algorithm.F || lastMove == Algorithm.Fi) {
-            return true;
-         }
-         break;
-      default:
-         break;
-      }
-      
-      // If move undoes the last one.
-      if(move % 2 == 0) {
-         return lastMove == move + 1;
-      } else {
-         return lastMove == move - 1;
-      }
    }
     
     
