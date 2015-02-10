@@ -10,7 +10,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JPopupMenu;
 
-import solver.algorithms.Cube;
+import solver.algorithms.CubeConstants;
 
 public class ColorPicker extends JPopupMenu {
    
@@ -41,7 +41,7 @@ public class ColorPicker extends JPopupMenu {
       }
 
       private Color getColor() {
-         return Cube.sFace_Colors[color];
+         return CubeConstants.sFace_Colors[color];
       }
    }
    

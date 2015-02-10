@@ -18,7 +18,7 @@ import javax.swing.JPanel;
 import javax.swing.JSlider;
 import javax.swing.SwingUtilities;
 
-import solver.algorithms.Cube;
+import solver.algorithms.CubeConstants;
 
 public class CubeButton extends JButton {
    private static final Dimension BUTTON_SIZE = new Dimension(25, 25);
@@ -62,17 +62,17 @@ public class CubeButton extends JButton {
             
             JPanel rPanel = new JPanel();
             rPanel.add(new JLabel("R:"));
-            final JSlider red = new JSlider(JSlider.HORIZONTAL, 0, 255, Cube.sFace_Colors[mColor].getRed());
+            final JSlider red = new JSlider(JSlider.HORIZONTAL, 0, 255, CubeConstants.sFace_Colors[mColor].getRed());
             rPanel.add(red);
             
             JPanel gPanel = new JPanel();
             gPanel.add(new JLabel("G:"));
-            final JSlider green = new JSlider(JSlider.HORIZONTAL, 0, 255, Cube.sFace_Colors[mColor].getGreen());
+            final JSlider green = new JSlider(JSlider.HORIZONTAL, 0, 255, CubeConstants.sFace_Colors[mColor].getGreen());
             gPanel.add(green);
             
             JPanel bPanel = new JPanel();
             bPanel.add(new JLabel("B:"));
-            final JSlider blue = new JSlider(JSlider.HORIZONTAL, 0, 255, Cube.sFace_Colors[mColor].getBlue());
+            final JSlider blue = new JSlider(JSlider.HORIZONTAL, 0, 255, CubeConstants.sFace_Colors[mColor].getBlue());
             bPanel.add(blue);
             
             Container container = dialog.getContentPane();
@@ -89,7 +89,7 @@ public class CubeButton extends JButton {
                   int r = red.getValue();
                   int g = green.getValue();
                   int b = blue.getValue();
-                  Cube.sFace_Colors[mColor] = new Color(r, g, b);
+                  CubeConstants.sFace_Colors[mColor] = new Color(r, g, b);
                   dialog.setVisible(false);
                   parentWindow.repaint();
                }
@@ -128,6 +128,6 @@ public class CubeButton extends JButton {
    }
    
    private Color getColor() {
-      return Cube.sFace_Colors[mColor];
+      return CubeConstants.sFace_Colors[mColor];
    }
 }

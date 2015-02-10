@@ -4,7 +4,7 @@ import java.awt.GridLayout;
 
 import javax.swing.JPanel;
 
-import solver.algorithms.Cube;
+import solver.algorithms.CubeConstants;
 
 public class CubeInputPanel extends JPanel {
    private FaceInputPanel mFaces[];
@@ -27,16 +27,16 @@ public class CubeInputPanel extends JPanel {
       
       add(new JPanel());
       
-      mFaces[0] = new FaceInputPanel("Top", Cube.TOP);
+      mFaces[0] = new FaceInputPanel("Top", CubeConstants.TOP);
       add(mFaces[0]);
       
       add(new JPanel());
       add(new JPanel());
       
-      mFaces[1] = new FaceInputPanel("Left", Cube.LEFT);
-      mFaces[2] = new FaceInputPanel("Front", Cube.FRONT);
-      mFaces[3] = new FaceInputPanel("Right", Cube.RIGHT);
-      mFaces[4] = new FaceInputPanel("Back", Cube.BACK);
+      mFaces[1] = new FaceInputPanel("Left", CubeConstants.LEFT);
+      mFaces[2] = new FaceInputPanel("Front", CubeConstants.FRONT);
+      mFaces[3] = new FaceInputPanel("Right", CubeConstants.RIGHT);
+      mFaces[4] = new FaceInputPanel("Back", CubeConstants.BACK);
       
       for(int i = 1; i < 5; i++) {
          add(mFaces[i]);
@@ -44,7 +44,7 @@ public class CubeInputPanel extends JPanel {
       
       add(new JPanel());
       
-      mFaces[5] = new FaceInputPanel("Down", Cube.DOWN);
+      mFaces[5] = new FaceInputPanel("Down", CubeConstants.DOWN);
       add(mFaces[5]);
       
       add(new JPanel());

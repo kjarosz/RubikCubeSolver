@@ -1,775 +1,775 @@
 package unittests;
 
-import solver.algorithms.Cube;
+import solver.algorithms.CubeConstants;
 
 public class ValidCubeTransforms {
    public static byte TEST_RESULTS[][][] = {
       { // L 
          { // TOP
-            Cube.BACK,          Cube.TOP,          Cube.TOP, 
-            Cube.BACK,          Cube.TOP,          Cube.TOP, 
-            Cube.BACK,          Cube.TOP,          Cube.TOP
+            CubeConstants.BACK,          CubeConstants.TOP,          CubeConstants.TOP, 
+            CubeConstants.BACK,          CubeConstants.TOP,          CubeConstants.TOP, 
+            CubeConstants.BACK,          CubeConstants.TOP,          CubeConstants.TOP
          },
          { // LEFT
-            Cube.LEFT,          Cube.LEFT,          Cube.LEFT, 
-            Cube.LEFT,          Cube.LEFT,          Cube.LEFT, 
-            Cube.LEFT,          Cube.LEFT,          Cube.LEFT
+            CubeConstants.LEFT,          CubeConstants.LEFT,          CubeConstants.LEFT, 
+            CubeConstants.LEFT,          CubeConstants.LEFT,          CubeConstants.LEFT, 
+            CubeConstants.LEFT,          CubeConstants.LEFT,          CubeConstants.LEFT
          },
          { // FRONT
-            Cube.TOP,          Cube.FRONT,          Cube.FRONT, 
-            Cube.TOP,          Cube.FRONT,          Cube.FRONT, 
-            Cube.TOP,          Cube.FRONT,          Cube.FRONT
+            CubeConstants.TOP,          CubeConstants.FRONT,          CubeConstants.FRONT, 
+            CubeConstants.TOP,          CubeConstants.FRONT,          CubeConstants.FRONT, 
+            CubeConstants.TOP,          CubeConstants.FRONT,          CubeConstants.FRONT
          },
          { // RIGHT
-            Cube.RIGHT,          Cube.RIGHT,          Cube.RIGHT, 
-            Cube.RIGHT,          Cube.RIGHT,          Cube.RIGHT, 
-            Cube.RIGHT,          Cube.RIGHT,          Cube.RIGHT
+            CubeConstants.RIGHT,          CubeConstants.RIGHT,          CubeConstants.RIGHT, 
+            CubeConstants.RIGHT,          CubeConstants.RIGHT,          CubeConstants.RIGHT, 
+            CubeConstants.RIGHT,          CubeConstants.RIGHT,          CubeConstants.RIGHT
          },
          { // BACK
-            Cube.BACK,          Cube.BACK,          Cube.DOWN, 
-            Cube.BACK,          Cube.BACK,          Cube.DOWN, 
-            Cube.BACK,          Cube.BACK,          Cube.DOWN
+            CubeConstants.BACK,          CubeConstants.BACK,          CubeConstants.DOWN, 
+            CubeConstants.BACK,          CubeConstants.BACK,          CubeConstants.DOWN, 
+            CubeConstants.BACK,          CubeConstants.BACK,          CubeConstants.DOWN
          },
          { // DOWN
-            Cube.FRONT,          Cube.DOWN,          Cube.DOWN, 
-            Cube.FRONT,          Cube.DOWN,          Cube.DOWN, 
-            Cube.FRONT,          Cube.DOWN,          Cube.DOWN
+            CubeConstants.FRONT,          CubeConstants.DOWN,          CubeConstants.DOWN, 
+            CubeConstants.FRONT,          CubeConstants.DOWN,          CubeConstants.DOWN, 
+            CubeConstants.FRONT,          CubeConstants.DOWN,          CubeConstants.DOWN
          }
       },
       { // F 
          { // TOP
-            Cube.BACK,          Cube.TOP,          Cube.TOP, 
-            Cube.BACK,          Cube.TOP,          Cube.TOP, 
-            Cube.LEFT,          Cube.LEFT,          Cube.LEFT
+            CubeConstants.BACK,          CubeConstants.TOP,          CubeConstants.TOP, 
+            CubeConstants.BACK,          CubeConstants.TOP,          CubeConstants.TOP, 
+            CubeConstants.LEFT,          CubeConstants.LEFT,          CubeConstants.LEFT
          },
          { // LEFT
-            Cube.LEFT,          Cube.LEFT,          Cube.FRONT, 
-            Cube.LEFT,          Cube.LEFT,          Cube.DOWN, 
-            Cube.LEFT,          Cube.LEFT,          Cube.DOWN
+            CubeConstants.LEFT,          CubeConstants.LEFT,          CubeConstants.FRONT, 
+            CubeConstants.LEFT,          CubeConstants.LEFT,          CubeConstants.DOWN, 
+            CubeConstants.LEFT,          CubeConstants.LEFT,          CubeConstants.DOWN
          },
          { // FRONT
-            Cube.TOP,          Cube.TOP,          Cube.TOP, 
-            Cube.FRONT,          Cube.FRONT,          Cube.FRONT, 
-            Cube.FRONT,          Cube.FRONT,          Cube.FRONT
+            CubeConstants.TOP,          CubeConstants.TOP,          CubeConstants.TOP, 
+            CubeConstants.FRONT,          CubeConstants.FRONT,          CubeConstants.FRONT, 
+            CubeConstants.FRONT,          CubeConstants.FRONT,          CubeConstants.FRONT
          },
          { // RIGHT
-            Cube.BACK,          Cube.RIGHT,          Cube.RIGHT, 
-            Cube.TOP,          Cube.RIGHT,          Cube.RIGHT, 
-            Cube.TOP,          Cube.RIGHT,          Cube.RIGHT
+            CubeConstants.BACK,          CubeConstants.RIGHT,          CubeConstants.RIGHT, 
+            CubeConstants.TOP,          CubeConstants.RIGHT,          CubeConstants.RIGHT, 
+            CubeConstants.TOP,          CubeConstants.RIGHT,          CubeConstants.RIGHT
          },
          { // BACK
-            Cube.BACK,          Cube.BACK,          Cube.DOWN, 
-            Cube.BACK,          Cube.BACK,          Cube.DOWN, 
-            Cube.BACK,          Cube.BACK,          Cube.DOWN
+            CubeConstants.BACK,          CubeConstants.BACK,          CubeConstants.DOWN, 
+            CubeConstants.BACK,          CubeConstants.BACK,          CubeConstants.DOWN, 
+            CubeConstants.BACK,          CubeConstants.BACK,          CubeConstants.DOWN
          },
          { // DOWN
-            Cube.RIGHT,          Cube.RIGHT,          Cube.RIGHT, 
-            Cube.FRONT,          Cube.DOWN,          Cube.DOWN, 
-            Cube.FRONT,          Cube.DOWN,          Cube.DOWN
+            CubeConstants.RIGHT,          CubeConstants.RIGHT,          CubeConstants.RIGHT, 
+            CubeConstants.FRONT,          CubeConstants.DOWN,          CubeConstants.DOWN, 
+            CubeConstants.FRONT,          CubeConstants.DOWN,          CubeConstants.DOWN
          }
       },
       { // R 
          { // TOP
-            Cube.BACK,          Cube.TOP,          Cube.TOP, 
-            Cube.BACK,          Cube.TOP,          Cube.FRONT, 
-            Cube.LEFT,          Cube.LEFT,          Cube.FRONT
+            CubeConstants.BACK,          CubeConstants.TOP,          CubeConstants.TOP, 
+            CubeConstants.BACK,          CubeConstants.TOP,          CubeConstants.FRONT, 
+            CubeConstants.LEFT,          CubeConstants.LEFT,          CubeConstants.FRONT
          },
          { // LEFT
-            Cube.LEFT,          Cube.LEFT,          Cube.FRONT, 
-            Cube.LEFT,          Cube.LEFT,          Cube.DOWN, 
-            Cube.LEFT,          Cube.LEFT,          Cube.DOWN
+            CubeConstants.LEFT,          CubeConstants.LEFT,          CubeConstants.FRONT, 
+            CubeConstants.LEFT,          CubeConstants.LEFT,          CubeConstants.DOWN, 
+            CubeConstants.LEFT,          CubeConstants.LEFT,          CubeConstants.DOWN
          },
          { // FRONT
-            Cube.TOP,          Cube.TOP,          Cube.RIGHT, 
-            Cube.FRONT,          Cube.FRONT,          Cube.DOWN, 
-            Cube.FRONT,          Cube.FRONT,          Cube.DOWN
+            CubeConstants.TOP,          CubeConstants.TOP,          CubeConstants.RIGHT, 
+            CubeConstants.FRONT,          CubeConstants.FRONT,          CubeConstants.DOWN, 
+            CubeConstants.FRONT,          CubeConstants.FRONT,          CubeConstants.DOWN
          },
          { // RIGHT
-            Cube.TOP,          Cube.TOP,          Cube.BACK, 
-            Cube.RIGHT,          Cube.RIGHT,          Cube.RIGHT, 
-            Cube.RIGHT,          Cube.RIGHT,          Cube.RIGHT
+            CubeConstants.TOP,          CubeConstants.TOP,          CubeConstants.BACK, 
+            CubeConstants.RIGHT,          CubeConstants.RIGHT,          CubeConstants.RIGHT, 
+            CubeConstants.RIGHT,          CubeConstants.RIGHT,          CubeConstants.RIGHT
          },
          { // BACK
-            Cube.LEFT,          Cube.BACK,          Cube.DOWN, 
-            Cube.TOP,          Cube.BACK,          Cube.DOWN, 
-            Cube.TOP,          Cube.BACK,          Cube.DOWN
+            CubeConstants.LEFT,          CubeConstants.BACK,          CubeConstants.DOWN, 
+            CubeConstants.TOP,          CubeConstants.BACK,          CubeConstants.DOWN, 
+            CubeConstants.TOP,          CubeConstants.BACK,          CubeConstants.DOWN
          },
          { // DOWN
-            Cube.RIGHT,          Cube.RIGHT,          Cube.BACK, 
-            Cube.FRONT,          Cube.DOWN,          Cube.BACK, 
-            Cube.FRONT,          Cube.DOWN,          Cube.BACK
+            CubeConstants.RIGHT,          CubeConstants.RIGHT,          CubeConstants.BACK, 
+            CubeConstants.FRONT,          CubeConstants.DOWN,          CubeConstants.BACK, 
+            CubeConstants.FRONT,          CubeConstants.DOWN,          CubeConstants.BACK
          }
       },
       { // B 
          { // TOP
-            Cube.BACK,          Cube.RIGHT,          Cube.RIGHT, 
-            Cube.BACK,          Cube.TOP,          Cube.FRONT, 
-            Cube.LEFT,          Cube.LEFT,          Cube.FRONT
+            CubeConstants.BACK,          CubeConstants.RIGHT,          CubeConstants.RIGHT, 
+            CubeConstants.BACK,          CubeConstants.TOP,          CubeConstants.FRONT, 
+            CubeConstants.LEFT,          CubeConstants.LEFT,          CubeConstants.FRONT
          },
          { // LEFT
-            Cube.TOP,          Cube.LEFT,          Cube.FRONT, 
-            Cube.TOP,          Cube.LEFT,          Cube.DOWN, 
-            Cube.BACK,          Cube.LEFT,          Cube.DOWN
+            CubeConstants.TOP,          CubeConstants.LEFT,          CubeConstants.FRONT, 
+            CubeConstants.TOP,          CubeConstants.LEFT,          CubeConstants.DOWN, 
+            CubeConstants.BACK,          CubeConstants.LEFT,          CubeConstants.DOWN
          },
          { // FRONT
-            Cube.TOP,          Cube.TOP,          Cube.RIGHT, 
-            Cube.FRONT,          Cube.FRONT,          Cube.DOWN, 
-            Cube.FRONT,          Cube.FRONT,          Cube.DOWN
+            CubeConstants.TOP,          CubeConstants.TOP,          CubeConstants.RIGHT, 
+            CubeConstants.FRONT,          CubeConstants.FRONT,          CubeConstants.DOWN, 
+            CubeConstants.FRONT,          CubeConstants.FRONT,          CubeConstants.DOWN
          },
          { // RIGHT
-            Cube.TOP,          Cube.TOP,          Cube.BACK, 
-            Cube.RIGHT,          Cube.RIGHT,          Cube.DOWN, 
-            Cube.RIGHT,          Cube.RIGHT,          Cube.FRONT
+            CubeConstants.TOP,          CubeConstants.TOP,          CubeConstants.BACK, 
+            CubeConstants.RIGHT,          CubeConstants.RIGHT,          CubeConstants.DOWN, 
+            CubeConstants.RIGHT,          CubeConstants.RIGHT,          CubeConstants.FRONT
          },
          { // BACK
-            Cube.TOP,          Cube.TOP,          Cube.LEFT, 
-            Cube.BACK,          Cube.BACK,          Cube.BACK, 
-            Cube.DOWN,          Cube.DOWN,          Cube.DOWN
+            CubeConstants.TOP,          CubeConstants.TOP,          CubeConstants.LEFT, 
+            CubeConstants.BACK,          CubeConstants.BACK,          CubeConstants.BACK, 
+            CubeConstants.DOWN,          CubeConstants.DOWN,          CubeConstants.DOWN
          },
          { // DOWN
-            Cube.RIGHT,          Cube.RIGHT,          Cube.BACK, 
-            Cube.FRONT,          Cube.DOWN,          Cube.BACK, 
-            Cube.LEFT,          Cube.LEFT,          Cube.LEFT
+            CubeConstants.RIGHT,          CubeConstants.RIGHT,          CubeConstants.BACK, 
+            CubeConstants.FRONT,          CubeConstants.DOWN,          CubeConstants.BACK, 
+            CubeConstants.LEFT,          CubeConstants.LEFT,          CubeConstants.LEFT
          }
       },
       { // U 
          { // TOP
-            Cube.LEFT,          Cube.BACK,          Cube.BACK, 
-            Cube.LEFT,          Cube.TOP,          Cube.RIGHT, 
-            Cube.FRONT,          Cube.FRONT,          Cube.RIGHT
+            CubeConstants.LEFT,          CubeConstants.BACK,          CubeConstants.BACK, 
+            CubeConstants.LEFT,          CubeConstants.TOP,          CubeConstants.RIGHT, 
+            CubeConstants.FRONT,          CubeConstants.FRONT,          CubeConstants.RIGHT
          },
          { // LEFT
-            Cube.TOP,          Cube.TOP,          Cube.RIGHT, 
-            Cube.TOP,          Cube.LEFT,          Cube.DOWN, 
-            Cube.BACK,          Cube.LEFT,          Cube.DOWN
+            CubeConstants.TOP,          CubeConstants.TOP,          CubeConstants.RIGHT, 
+            CubeConstants.TOP,          CubeConstants.LEFT,          CubeConstants.DOWN, 
+            CubeConstants.BACK,          CubeConstants.LEFT,          CubeConstants.DOWN
          },
          { // FRONT
-            Cube.TOP,          Cube.TOP,          Cube.BACK, 
-            Cube.FRONT,          Cube.FRONT,          Cube.DOWN, 
-            Cube.FRONT,          Cube.FRONT,          Cube.DOWN
+            CubeConstants.TOP,          CubeConstants.TOP,          CubeConstants.BACK, 
+            CubeConstants.FRONT,          CubeConstants.FRONT,          CubeConstants.DOWN, 
+            CubeConstants.FRONT,          CubeConstants.FRONT,          CubeConstants.DOWN
          },
          { // RIGHT
-            Cube.TOP,          Cube.TOP,          Cube.LEFT, 
-            Cube.RIGHT,          Cube.RIGHT,          Cube.DOWN, 
-            Cube.RIGHT,          Cube.RIGHT,          Cube.FRONT
+            CubeConstants.TOP,          CubeConstants.TOP,          CubeConstants.LEFT, 
+            CubeConstants.RIGHT,          CubeConstants.RIGHT,          CubeConstants.DOWN, 
+            CubeConstants.RIGHT,          CubeConstants.RIGHT,          CubeConstants.FRONT
          },
          { // BACK
-            Cube.TOP,          Cube.LEFT,          Cube.FRONT, 
-            Cube.BACK,          Cube.BACK,          Cube.BACK, 
-            Cube.DOWN,          Cube.DOWN,          Cube.DOWN
+            CubeConstants.TOP,          CubeConstants.LEFT,          CubeConstants.FRONT, 
+            CubeConstants.BACK,          CubeConstants.BACK,          CubeConstants.BACK, 
+            CubeConstants.DOWN,          CubeConstants.DOWN,          CubeConstants.DOWN
          },
          { // DOWN
-            Cube.RIGHT,          Cube.RIGHT,          Cube.BACK, 
-            Cube.FRONT,          Cube.DOWN,          Cube.BACK, 
-            Cube.LEFT,          Cube.LEFT,          Cube.LEFT
+            CubeConstants.RIGHT,          CubeConstants.RIGHT,          CubeConstants.BACK, 
+            CubeConstants.FRONT,          CubeConstants.DOWN,          CubeConstants.BACK, 
+            CubeConstants.LEFT,          CubeConstants.LEFT,          CubeConstants.LEFT
          }
       },
       { // D 
          { // TOP
-            Cube.LEFT,          Cube.BACK,          Cube.BACK, 
-            Cube.LEFT,          Cube.TOP,          Cube.RIGHT, 
-            Cube.FRONT,          Cube.FRONT,          Cube.RIGHT
+            CubeConstants.LEFT,          CubeConstants.BACK,          CubeConstants.BACK, 
+            CubeConstants.LEFT,          CubeConstants.TOP,          CubeConstants.RIGHT, 
+            CubeConstants.FRONT,          CubeConstants.FRONT,          CubeConstants.RIGHT
          },
          { // LEFT
-            Cube.TOP,          Cube.TOP,          Cube.RIGHT, 
-            Cube.TOP,          Cube.LEFT,          Cube.DOWN, 
-            Cube.DOWN,          Cube.DOWN,          Cube.DOWN
+            CubeConstants.TOP,          CubeConstants.TOP,          CubeConstants.RIGHT, 
+            CubeConstants.TOP,          CubeConstants.LEFT,          CubeConstants.DOWN, 
+            CubeConstants.DOWN,          CubeConstants.DOWN,          CubeConstants.DOWN
          },
          { // FRONT
-            Cube.TOP,          Cube.TOP,          Cube.BACK, 
-            Cube.FRONT,          Cube.FRONT,          Cube.DOWN, 
-            Cube.BACK,          Cube.LEFT,          Cube.DOWN
+            CubeConstants.TOP,          CubeConstants.TOP,          CubeConstants.BACK, 
+            CubeConstants.FRONT,          CubeConstants.FRONT,          CubeConstants.DOWN, 
+            CubeConstants.BACK,          CubeConstants.LEFT,          CubeConstants.DOWN
          },
          { // RIGHT
-            Cube.TOP,          Cube.TOP,          Cube.LEFT, 
-            Cube.RIGHT,          Cube.RIGHT,          Cube.DOWN, 
-            Cube.FRONT,          Cube.FRONT,          Cube.DOWN
+            CubeConstants.TOP,          CubeConstants.TOP,          CubeConstants.LEFT, 
+            CubeConstants.RIGHT,          CubeConstants.RIGHT,          CubeConstants.DOWN, 
+            CubeConstants.FRONT,          CubeConstants.FRONT,          CubeConstants.DOWN
          },
          { // BACK
-            Cube.TOP,          Cube.LEFT,          Cube.FRONT, 
-            Cube.BACK,          Cube.BACK,          Cube.BACK, 
-            Cube.RIGHT,          Cube.RIGHT,          Cube.FRONT
+            CubeConstants.TOP,          CubeConstants.LEFT,          CubeConstants.FRONT, 
+            CubeConstants.BACK,          CubeConstants.BACK,          CubeConstants.BACK, 
+            CubeConstants.RIGHT,          CubeConstants.RIGHT,          CubeConstants.FRONT
          },
          { // DOWN
-            Cube.LEFT,          Cube.FRONT,          Cube.RIGHT, 
-            Cube.LEFT,          Cube.DOWN,          Cube.RIGHT, 
-            Cube.LEFT,          Cube.BACK,          Cube.BACK
+            CubeConstants.LEFT,          CubeConstants.FRONT,          CubeConstants.RIGHT, 
+            CubeConstants.LEFT,          CubeConstants.DOWN,          CubeConstants.RIGHT, 
+            CubeConstants.LEFT,          CubeConstants.BACK,          CubeConstants.BACK
          }
       },
       { // Li
          { // TOP
-            Cube.TOP,          Cube.BACK,          Cube.BACK, 
-            Cube.FRONT,          Cube.TOP,          Cube.RIGHT, 
-            Cube.BACK,          Cube.FRONT,          Cube.RIGHT
+            CubeConstants.TOP,          CubeConstants.BACK,          CubeConstants.BACK, 
+            CubeConstants.FRONT,          CubeConstants.TOP,          CubeConstants.RIGHT, 
+            CubeConstants.BACK,          CubeConstants.FRONT,          CubeConstants.RIGHT
          },
          { // LEFT
-            Cube.RIGHT,          Cube.DOWN,          Cube.DOWN, 
-            Cube.TOP,          Cube.LEFT,          Cube.DOWN, 
-            Cube.TOP,          Cube.TOP,          Cube.DOWN
+            CubeConstants.RIGHT,          CubeConstants.DOWN,          CubeConstants.DOWN, 
+            CubeConstants.TOP,          CubeConstants.LEFT,          CubeConstants.DOWN, 
+            CubeConstants.TOP,          CubeConstants.TOP,          CubeConstants.DOWN
          },
          { // FRONT
-            Cube.LEFT,          Cube.TOP,          Cube.BACK, 
-            Cube.LEFT,          Cube.FRONT,          Cube.DOWN, 
-            Cube.LEFT,          Cube.LEFT,          Cube.DOWN
+            CubeConstants.LEFT,          CubeConstants.TOP,          CubeConstants.BACK, 
+            CubeConstants.LEFT,          CubeConstants.FRONT,          CubeConstants.DOWN, 
+            CubeConstants.LEFT,          CubeConstants.LEFT,          CubeConstants.DOWN
          },
          { // RIGHT
-            Cube.TOP,          Cube.TOP,          Cube.LEFT, 
-            Cube.RIGHT,          Cube.RIGHT,          Cube.DOWN, 
-            Cube.FRONT,          Cube.FRONT,          Cube.DOWN
+            CubeConstants.TOP,          CubeConstants.TOP,          CubeConstants.LEFT, 
+            CubeConstants.RIGHT,          CubeConstants.RIGHT,          CubeConstants.DOWN, 
+            CubeConstants.FRONT,          CubeConstants.FRONT,          CubeConstants.DOWN
          },
          { // BACK
-            Cube.TOP,          Cube.LEFT,          Cube.FRONT, 
-            Cube.BACK,          Cube.BACK,          Cube.LEFT, 
-            Cube.RIGHT,          Cube.RIGHT,          Cube.LEFT
+            CubeConstants.TOP,          CubeConstants.LEFT,          CubeConstants.FRONT, 
+            CubeConstants.BACK,          CubeConstants.BACK,          CubeConstants.LEFT, 
+            CubeConstants.RIGHT,          CubeConstants.RIGHT,          CubeConstants.LEFT
          },
          { // DOWN
-            Cube.FRONT,          Cube.FRONT,          Cube.RIGHT, 
-            Cube.BACK,          Cube.DOWN,          Cube.RIGHT, 
-            Cube.FRONT,          Cube.BACK,          Cube.BACK
+            CubeConstants.FRONT,          CubeConstants.FRONT,          CubeConstants.RIGHT, 
+            CubeConstants.BACK,          CubeConstants.DOWN,          CubeConstants.RIGHT, 
+            CubeConstants.FRONT,          CubeConstants.BACK,          CubeConstants.BACK
          }
       },
       { // Fi
          { // TOP
-            Cube.TOP,          Cube.BACK,          Cube.BACK, 
-            Cube.FRONT,          Cube.TOP,          Cube.RIGHT, 
-            Cube.TOP,          Cube.RIGHT,          Cube.FRONT
+            CubeConstants.TOP,          CubeConstants.BACK,          CubeConstants.BACK, 
+            CubeConstants.FRONT,          CubeConstants.TOP,          CubeConstants.RIGHT, 
+            CubeConstants.TOP,          CubeConstants.RIGHT,          CubeConstants.FRONT
          },
          { // LEFT
-            Cube.RIGHT,          Cube.DOWN,          Cube.RIGHT, 
-            Cube.TOP,          Cube.LEFT,          Cube.FRONT, 
-            Cube.TOP,          Cube.TOP,          Cube.BACK
+            CubeConstants.RIGHT,          CubeConstants.DOWN,          CubeConstants.RIGHT, 
+            CubeConstants.TOP,          CubeConstants.LEFT,          CubeConstants.FRONT, 
+            CubeConstants.TOP,          CubeConstants.TOP,          CubeConstants.BACK
          },
          { // FRONT
-            Cube.BACK,          Cube.DOWN,          Cube.DOWN, 
-            Cube.TOP,          Cube.FRONT,          Cube.LEFT, 
-            Cube.LEFT,          Cube.LEFT,          Cube.LEFT
+            CubeConstants.BACK,          CubeConstants.DOWN,          CubeConstants.DOWN, 
+            CubeConstants.TOP,          CubeConstants.FRONT,          CubeConstants.LEFT, 
+            CubeConstants.LEFT,          CubeConstants.LEFT,          CubeConstants.LEFT
          },
          { // RIGHT
-            Cube.RIGHT,          Cube.TOP,          Cube.LEFT, 
-            Cube.FRONT,          Cube.RIGHT,          Cube.DOWN, 
-            Cube.FRONT,          Cube.FRONT,          Cube.DOWN
+            CubeConstants.RIGHT,          CubeConstants.TOP,          CubeConstants.LEFT, 
+            CubeConstants.FRONT,          CubeConstants.RIGHT,          CubeConstants.DOWN, 
+            CubeConstants.FRONT,          CubeConstants.FRONT,          CubeConstants.DOWN
          },
          { // BACK
-            Cube.TOP,          Cube.LEFT,          Cube.FRONT, 
-            Cube.BACK,          Cube.BACK,          Cube.LEFT, 
-            Cube.RIGHT,          Cube.RIGHT,          Cube.LEFT
+            CubeConstants.TOP,          CubeConstants.LEFT,          CubeConstants.FRONT, 
+            CubeConstants.BACK,          CubeConstants.BACK,          CubeConstants.LEFT, 
+            CubeConstants.RIGHT,          CubeConstants.RIGHT,          CubeConstants.LEFT
          },
          { // DOWN
-            Cube.DOWN,          Cube.DOWN,          Cube.DOWN, 
-            Cube.BACK,          Cube.DOWN,          Cube.RIGHT, 
-            Cube.FRONT,          Cube.BACK,          Cube.BACK
+            CubeConstants.DOWN,          CubeConstants.DOWN,          CubeConstants.DOWN, 
+            CubeConstants.BACK,          CubeConstants.DOWN,          CubeConstants.RIGHT, 
+            CubeConstants.FRONT,          CubeConstants.BACK,          CubeConstants.BACK
          }
       },
       { // Ri
          { // TOP
-            Cube.TOP,          Cube.BACK,          Cube.RIGHT, 
-            Cube.FRONT,          Cube.TOP,          Cube.BACK, 
-            Cube.TOP,          Cube.RIGHT,          Cube.TOP
+            CubeConstants.TOP,          CubeConstants.BACK,          CubeConstants.RIGHT, 
+            CubeConstants.FRONT,          CubeConstants.TOP,          CubeConstants.BACK, 
+            CubeConstants.TOP,          CubeConstants.RIGHT,          CubeConstants.TOP
          },
          { // LEFT
-            Cube.RIGHT,          Cube.DOWN,          Cube.RIGHT, 
-            Cube.TOP,          Cube.LEFT,          Cube.FRONT, 
-            Cube.TOP,          Cube.TOP,          Cube.BACK
+            CubeConstants.RIGHT,          CubeConstants.DOWN,          CubeConstants.RIGHT, 
+            CubeConstants.TOP,          CubeConstants.LEFT,          CubeConstants.FRONT, 
+            CubeConstants.TOP,          CubeConstants.TOP,          CubeConstants.BACK
          },
          { // FRONT
-            Cube.BACK,          Cube.DOWN,          Cube.BACK, 
-            Cube.TOP,          Cube.FRONT,          Cube.RIGHT, 
-            Cube.LEFT,          Cube.LEFT,          Cube.FRONT
+            CubeConstants.BACK,          CubeConstants.DOWN,          CubeConstants.BACK, 
+            CubeConstants.TOP,          CubeConstants.FRONT,          CubeConstants.RIGHT, 
+            CubeConstants.LEFT,          CubeConstants.LEFT,          CubeConstants.FRONT
          },
          { // RIGHT
-            Cube.LEFT,          Cube.DOWN,          Cube.DOWN, 
-            Cube.TOP,          Cube.RIGHT,          Cube.FRONT, 
-            Cube.RIGHT,          Cube.FRONT,          Cube.FRONT
+            CubeConstants.LEFT,          CubeConstants.DOWN,          CubeConstants.DOWN, 
+            CubeConstants.TOP,          CubeConstants.RIGHT,          CubeConstants.FRONT, 
+            CubeConstants.RIGHT,          CubeConstants.FRONT,          CubeConstants.FRONT
          },
          { // BACK
-            Cube.BACK,          Cube.LEFT,          Cube.FRONT, 
-            Cube.RIGHT,          Cube.BACK,          Cube.LEFT, 
-            Cube.DOWN,          Cube.RIGHT,          Cube.LEFT
+            CubeConstants.BACK,          CubeConstants.LEFT,          CubeConstants.FRONT, 
+            CubeConstants.RIGHT,          CubeConstants.BACK,          CubeConstants.LEFT, 
+            CubeConstants.DOWN,          CubeConstants.RIGHT,          CubeConstants.LEFT
          },
          { // DOWN
-            Cube.DOWN,          Cube.DOWN,          Cube.DOWN, 
-            Cube.BACK,          Cube.DOWN,          Cube.LEFT, 
-            Cube.FRONT,          Cube.BACK,          Cube.LEFT
+            CubeConstants.DOWN,          CubeConstants.DOWN,          CubeConstants.DOWN, 
+            CubeConstants.BACK,          CubeConstants.DOWN,          CubeConstants.LEFT, 
+            CubeConstants.FRONT,          CubeConstants.BACK,          CubeConstants.LEFT
          }
       },
       { // Bi
          { // TOP
-            Cube.TOP,          Cube.TOP,          Cube.RIGHT, 
-            Cube.FRONT,          Cube.TOP,          Cube.BACK, 
-            Cube.TOP,          Cube.RIGHT,          Cube.TOP
+            CubeConstants.TOP,          CubeConstants.TOP,          CubeConstants.RIGHT, 
+            CubeConstants.FRONT,          CubeConstants.TOP,          CubeConstants.BACK, 
+            CubeConstants.TOP,          CubeConstants.RIGHT,          CubeConstants.TOP
          },
          { // LEFT
-            Cube.FRONT,          Cube.DOWN,          Cube.RIGHT, 
-            Cube.BACK,          Cube.LEFT,          Cube.FRONT, 
-            Cube.LEFT,          Cube.TOP,          Cube.BACK
+            CubeConstants.FRONT,          CubeConstants.DOWN,          CubeConstants.RIGHT, 
+            CubeConstants.BACK,          CubeConstants.LEFT,          CubeConstants.FRONT, 
+            CubeConstants.LEFT,          CubeConstants.TOP,          CubeConstants.BACK
          },
          { // FRONT
-            Cube.BACK,          Cube.DOWN,          Cube.BACK, 
-            Cube.TOP,          Cube.FRONT,          Cube.RIGHT, 
-            Cube.LEFT,          Cube.LEFT,          Cube.FRONT
+            CubeConstants.BACK,          CubeConstants.DOWN,          CubeConstants.BACK, 
+            CubeConstants.TOP,          CubeConstants.FRONT,          CubeConstants.RIGHT, 
+            CubeConstants.LEFT,          CubeConstants.LEFT,          CubeConstants.FRONT
          },
          { // RIGHT
-            Cube.LEFT,          Cube.DOWN,          Cube.TOP, 
-            Cube.TOP,          Cube.RIGHT,          Cube.BACK, 
-            Cube.RIGHT,          Cube.FRONT,          Cube.RIGHT
+            CubeConstants.LEFT,          CubeConstants.DOWN,          CubeConstants.TOP, 
+            CubeConstants.TOP,          CubeConstants.RIGHT,          CubeConstants.BACK, 
+            CubeConstants.RIGHT,          CubeConstants.FRONT,          CubeConstants.RIGHT
          },
          { // BACK
-            Cube.FRONT,          Cube.LEFT,          Cube.LEFT, 
-            Cube.LEFT,          Cube.BACK,          Cube.RIGHT, 
-            Cube.BACK,          Cube.RIGHT,          Cube.DOWN
+            CubeConstants.FRONT,          CubeConstants.LEFT,          CubeConstants.LEFT, 
+            CubeConstants.LEFT,          CubeConstants.BACK,          CubeConstants.RIGHT, 
+            CubeConstants.BACK,          CubeConstants.RIGHT,          CubeConstants.DOWN
          },
          { // DOWN
-            Cube.DOWN,          Cube.DOWN,          Cube.DOWN, 
-            Cube.BACK,          Cube.DOWN,          Cube.LEFT, 
-            Cube.FRONT,          Cube.FRONT,          Cube.DOWN
+            CubeConstants.DOWN,          CubeConstants.DOWN,          CubeConstants.DOWN, 
+            CubeConstants.BACK,          CubeConstants.DOWN,          CubeConstants.LEFT, 
+            CubeConstants.FRONT,          CubeConstants.FRONT,          CubeConstants.DOWN
          }
       },
       { // Ui
          { // TOP
-            Cube.RIGHT,          Cube.BACK,          Cube.TOP, 
-            Cube.TOP,          Cube.TOP,          Cube.RIGHT, 
-            Cube.TOP,          Cube.FRONT,          Cube.TOP
+            CubeConstants.RIGHT,          CubeConstants.BACK,          CubeConstants.TOP, 
+            CubeConstants.TOP,          CubeConstants.TOP,          CubeConstants.RIGHT, 
+            CubeConstants.TOP,          CubeConstants.FRONT,          CubeConstants.TOP
          },
          { // LEFT
-            Cube.FRONT,          Cube.LEFT,          Cube.LEFT, 
-            Cube.BACK,          Cube.LEFT,          Cube.FRONT, 
-            Cube.LEFT,          Cube.TOP,          Cube.BACK
+            CubeConstants.FRONT,          CubeConstants.LEFT,          CubeConstants.LEFT, 
+            CubeConstants.BACK,          CubeConstants.LEFT,          CubeConstants.FRONT, 
+            CubeConstants.LEFT,          CubeConstants.TOP,          CubeConstants.BACK
          },
          { // FRONT
-            Cube.FRONT,          Cube.DOWN,          Cube.RIGHT, 
-            Cube.TOP,          Cube.FRONT,          Cube.RIGHT, 
-            Cube.LEFT,          Cube.LEFT,          Cube.FRONT
+            CubeConstants.FRONT,          CubeConstants.DOWN,          CubeConstants.RIGHT, 
+            CubeConstants.TOP,          CubeConstants.FRONT,          CubeConstants.RIGHT, 
+            CubeConstants.LEFT,          CubeConstants.LEFT,          CubeConstants.FRONT
          },
          { // RIGHT
-            Cube.BACK,          Cube.DOWN,          Cube.BACK, 
-            Cube.TOP,          Cube.RIGHT,          Cube.BACK, 
-            Cube.RIGHT,          Cube.FRONT,          Cube.RIGHT
+            CubeConstants.BACK,          CubeConstants.DOWN,          CubeConstants.BACK, 
+            CubeConstants.TOP,          CubeConstants.RIGHT,          CubeConstants.BACK, 
+            CubeConstants.RIGHT,          CubeConstants.FRONT,          CubeConstants.RIGHT
          },
          { // BACK
-            Cube.LEFT,          Cube.DOWN,          Cube.TOP, 
-            Cube.LEFT,          Cube.BACK,          Cube.RIGHT, 
-            Cube.BACK,          Cube.RIGHT,          Cube.DOWN
+            CubeConstants.LEFT,          CubeConstants.DOWN,          CubeConstants.TOP, 
+            CubeConstants.LEFT,          CubeConstants.BACK,          CubeConstants.RIGHT, 
+            CubeConstants.BACK,          CubeConstants.RIGHT,          CubeConstants.DOWN
          },
          { // DOWN
-            Cube.DOWN,          Cube.DOWN,          Cube.DOWN, 
-            Cube.BACK,          Cube.DOWN,          Cube.LEFT, 
-            Cube.FRONT,          Cube.FRONT,          Cube.DOWN
+            CubeConstants.DOWN,          CubeConstants.DOWN,          CubeConstants.DOWN, 
+            CubeConstants.BACK,          CubeConstants.DOWN,          CubeConstants.LEFT, 
+            CubeConstants.FRONT,          CubeConstants.FRONT,          CubeConstants.DOWN
          }
       },
       { // Di
          { // TOP
-            Cube.RIGHT,          Cube.BACK,          Cube.TOP, 
-            Cube.TOP,          Cube.TOP,          Cube.RIGHT, 
-            Cube.TOP,          Cube.FRONT,          Cube.TOP
+            CubeConstants.RIGHT,          CubeConstants.BACK,          CubeConstants.TOP, 
+            CubeConstants.TOP,          CubeConstants.TOP,          CubeConstants.RIGHT, 
+            CubeConstants.TOP,          CubeConstants.FRONT,          CubeConstants.TOP
          },
          { // LEFT
-            Cube.FRONT,          Cube.LEFT,          Cube.LEFT, 
-            Cube.BACK,          Cube.LEFT,          Cube.FRONT, 
-            Cube.LEFT,          Cube.LEFT,          Cube.FRONT
+            CubeConstants.FRONT,          CubeConstants.LEFT,          CubeConstants.LEFT, 
+            CubeConstants.BACK,          CubeConstants.LEFT,          CubeConstants.FRONT, 
+            CubeConstants.LEFT,          CubeConstants.LEFT,          CubeConstants.FRONT
          },
          { // FRONT
-            Cube.FRONT,          Cube.DOWN,          Cube.RIGHT, 
-            Cube.TOP,          Cube.FRONT,          Cube.RIGHT, 
-            Cube.RIGHT,          Cube.FRONT,          Cube.RIGHT
+            CubeConstants.FRONT,          CubeConstants.DOWN,          CubeConstants.RIGHT, 
+            CubeConstants.TOP,          CubeConstants.FRONT,          CubeConstants.RIGHT, 
+            CubeConstants.RIGHT,          CubeConstants.FRONT,          CubeConstants.RIGHT
          },
          { // RIGHT
-            Cube.BACK,          Cube.DOWN,          Cube.BACK, 
-            Cube.TOP,          Cube.RIGHT,          Cube.BACK, 
-            Cube.BACK,          Cube.RIGHT,          Cube.DOWN
+            CubeConstants.BACK,          CubeConstants.DOWN,          CubeConstants.BACK, 
+            CubeConstants.TOP,          CubeConstants.RIGHT,          CubeConstants.BACK, 
+            CubeConstants.BACK,          CubeConstants.RIGHT,          CubeConstants.DOWN
          },
          { // BACK
-            Cube.LEFT,          Cube.DOWN,          Cube.TOP, 
-            Cube.LEFT,          Cube.BACK,          Cube.RIGHT, 
-            Cube.LEFT,          Cube.TOP,          Cube.BACK
+            CubeConstants.LEFT,          CubeConstants.DOWN,          CubeConstants.TOP, 
+            CubeConstants.LEFT,          CubeConstants.BACK,          CubeConstants.RIGHT, 
+            CubeConstants.LEFT,          CubeConstants.TOP,          CubeConstants.BACK
          },
          { // DOWN
-            Cube.DOWN,          Cube.LEFT,          Cube.DOWN, 
-            Cube.DOWN,          Cube.DOWN,          Cube.FRONT, 
-            Cube.DOWN,          Cube.BACK,          Cube.FRONT
+            CubeConstants.DOWN,          CubeConstants.LEFT,          CubeConstants.DOWN, 
+            CubeConstants.DOWN,          CubeConstants.DOWN,          CubeConstants.FRONT, 
+            CubeConstants.DOWN,          CubeConstants.BACK,          CubeConstants.FRONT
          }
       },
       { // Li
          { // TOP
-            Cube.FRONT,          Cube.BACK,          Cube.TOP, 
-            Cube.TOP,          Cube.TOP,          Cube.RIGHT, 
-            Cube.RIGHT,          Cube.FRONT,          Cube.TOP
+            CubeConstants.FRONT,          CubeConstants.BACK,          CubeConstants.TOP, 
+            CubeConstants.TOP,          CubeConstants.TOP,          CubeConstants.RIGHT, 
+            CubeConstants.RIGHT,          CubeConstants.FRONT,          CubeConstants.TOP
          },
          { // LEFT
-            Cube.LEFT,          Cube.FRONT,          Cube.FRONT, 
-            Cube.LEFT,          Cube.LEFT,          Cube.LEFT, 
-            Cube.FRONT,          Cube.BACK,          Cube.LEFT
+            CubeConstants.LEFT,          CubeConstants.FRONT,          CubeConstants.FRONT, 
+            CubeConstants.LEFT,          CubeConstants.LEFT,          CubeConstants.LEFT, 
+            CubeConstants.FRONT,          CubeConstants.BACK,          CubeConstants.LEFT
          },
          { // FRONT
-            Cube.DOWN,          Cube.DOWN,          Cube.RIGHT, 
-            Cube.DOWN,          Cube.FRONT,          Cube.RIGHT, 
-            Cube.DOWN,          Cube.FRONT,          Cube.RIGHT
+            CubeConstants.DOWN,          CubeConstants.DOWN,          CubeConstants.RIGHT, 
+            CubeConstants.DOWN,          CubeConstants.FRONT,          CubeConstants.RIGHT, 
+            CubeConstants.DOWN,          CubeConstants.FRONT,          CubeConstants.RIGHT
          },
          { // RIGHT
-            Cube.BACK,          Cube.DOWN,          Cube.BACK, 
-            Cube.TOP,          Cube.RIGHT,          Cube.BACK, 
-            Cube.BACK,          Cube.RIGHT,          Cube.DOWN
+            CubeConstants.BACK,          CubeConstants.DOWN,          CubeConstants.BACK, 
+            CubeConstants.TOP,          CubeConstants.RIGHT,          CubeConstants.BACK, 
+            CubeConstants.BACK,          CubeConstants.RIGHT,          CubeConstants.DOWN
          },
          { // BACK
-            Cube.LEFT,          Cube.DOWN,          Cube.TOP, 
-            Cube.LEFT,          Cube.BACK,          Cube.TOP, 
-            Cube.LEFT,          Cube.TOP,          Cube.RIGHT
+            CubeConstants.LEFT,          CubeConstants.DOWN,          CubeConstants.TOP, 
+            CubeConstants.LEFT,          CubeConstants.BACK,          CubeConstants.TOP, 
+            CubeConstants.LEFT,          CubeConstants.TOP,          CubeConstants.RIGHT
          },
          { // DOWN
-            Cube.BACK,          Cube.LEFT,          Cube.DOWN, 
-            Cube.RIGHT,          Cube.DOWN,          Cube.FRONT, 
-            Cube.TOP,          Cube.BACK,          Cube.FRONT
+            CubeConstants.BACK,          CubeConstants.LEFT,          CubeConstants.DOWN, 
+            CubeConstants.RIGHT,          CubeConstants.DOWN,          CubeConstants.FRONT, 
+            CubeConstants.TOP,          CubeConstants.BACK,          CubeConstants.FRONT
          }
       },
       { // Fi
          { // TOP
-            Cube.FRONT,          Cube.BACK,          Cube.TOP, 
-            Cube.TOP,          Cube.TOP,          Cube.RIGHT, 
-            Cube.BACK,          Cube.TOP,          Cube.BACK
+            CubeConstants.FRONT,          CubeConstants.BACK,          CubeConstants.TOP, 
+            CubeConstants.TOP,          CubeConstants.TOP,          CubeConstants.RIGHT, 
+            CubeConstants.BACK,          CubeConstants.TOP,          CubeConstants.BACK
          },
          { // LEFT
-            Cube.LEFT,          Cube.FRONT,          Cube.TOP, 
-            Cube.LEFT,          Cube.LEFT,          Cube.FRONT, 
-            Cube.FRONT,          Cube.BACK,          Cube.RIGHT
+            CubeConstants.LEFT,          CubeConstants.FRONT,          CubeConstants.TOP, 
+            CubeConstants.LEFT,          CubeConstants.LEFT,          CubeConstants.FRONT, 
+            CubeConstants.FRONT,          CubeConstants.BACK,          CubeConstants.RIGHT
          },
          { // FRONT
-            Cube.RIGHT,          Cube.RIGHT,          Cube.RIGHT, 
-            Cube.DOWN,          Cube.FRONT,          Cube.FRONT, 
-            Cube.DOWN,          Cube.DOWN,          Cube.DOWN
+            CubeConstants.RIGHT,          CubeConstants.RIGHT,          CubeConstants.RIGHT, 
+            CubeConstants.DOWN,          CubeConstants.FRONT,          CubeConstants.FRONT, 
+            CubeConstants.DOWN,          CubeConstants.DOWN,          CubeConstants.DOWN
          },
          { // RIGHT
-            Cube.DOWN,          Cube.DOWN,          Cube.BACK, 
-            Cube.LEFT,          Cube.RIGHT,          Cube.BACK, 
-            Cube.BACK,          Cube.RIGHT,          Cube.DOWN
+            CubeConstants.DOWN,          CubeConstants.DOWN,          CubeConstants.BACK, 
+            CubeConstants.LEFT,          CubeConstants.RIGHT,          CubeConstants.BACK, 
+            CubeConstants.BACK,          CubeConstants.RIGHT,          CubeConstants.DOWN
          },
          { // BACK
-            Cube.LEFT,          Cube.DOWN,          Cube.TOP, 
-            Cube.LEFT,          Cube.BACK,          Cube.TOP, 
-            Cube.LEFT,          Cube.TOP,          Cube.RIGHT
+            CubeConstants.LEFT,          CubeConstants.DOWN,          CubeConstants.TOP, 
+            CubeConstants.LEFT,          CubeConstants.BACK,          CubeConstants.TOP, 
+            CubeConstants.LEFT,          CubeConstants.TOP,          CubeConstants.RIGHT
          },
          { // DOWN
-            Cube.FRONT,          Cube.LEFT,          Cube.LEFT, 
-            Cube.RIGHT,          Cube.DOWN,          Cube.FRONT, 
-            Cube.TOP,          Cube.BACK,          Cube.FRONT
+            CubeConstants.FRONT,          CubeConstants.LEFT,          CubeConstants.LEFT, 
+            CubeConstants.RIGHT,          CubeConstants.DOWN,          CubeConstants.FRONT, 
+            CubeConstants.TOP,          CubeConstants.BACK,          CubeConstants.FRONT
          }
       },
       { // Ri
          { // TOP
-            Cube.FRONT,          Cube.BACK,          Cube.LEFT, 
-            Cube.TOP,          Cube.TOP,          Cube.LEFT, 
-            Cube.BACK,          Cube.TOP,          Cube.LEFT
+            CubeConstants.FRONT,          CubeConstants.BACK,          CubeConstants.LEFT, 
+            CubeConstants.TOP,          CubeConstants.TOP,          CubeConstants.LEFT, 
+            CubeConstants.BACK,          CubeConstants.TOP,          CubeConstants.LEFT
          },
          { // LEFT
-            Cube.LEFT,          Cube.FRONT,          Cube.TOP, 
-            Cube.LEFT,          Cube.LEFT,          Cube.FRONT, 
-            Cube.FRONT,          Cube.BACK,          Cube.RIGHT
+            CubeConstants.LEFT,          CubeConstants.FRONT,          CubeConstants.TOP, 
+            CubeConstants.LEFT,          CubeConstants.LEFT,          CubeConstants.FRONT, 
+            CubeConstants.FRONT,          CubeConstants.BACK,          CubeConstants.RIGHT
          },
          { // FRONT
-            Cube.RIGHT,          Cube.RIGHT,          Cube.TOP, 
-            Cube.DOWN,          Cube.FRONT,          Cube.RIGHT, 
-            Cube.DOWN,          Cube.DOWN,          Cube.BACK
+            CubeConstants.RIGHT,          CubeConstants.RIGHT,          CubeConstants.TOP, 
+            CubeConstants.DOWN,          CubeConstants.FRONT,          CubeConstants.RIGHT, 
+            CubeConstants.DOWN,          CubeConstants.DOWN,          CubeConstants.BACK
          },
          { // RIGHT
-            Cube.BACK,          Cube.BACK,          Cube.DOWN, 
-            Cube.DOWN,          Cube.RIGHT,          Cube.RIGHT, 
-            Cube.DOWN,          Cube.LEFT,          Cube.BACK
+            CubeConstants.BACK,          CubeConstants.BACK,          CubeConstants.DOWN, 
+            CubeConstants.DOWN,          CubeConstants.RIGHT,          CubeConstants.RIGHT, 
+            CubeConstants.DOWN,          CubeConstants.LEFT,          CubeConstants.BACK
          },
          { // BACK
-            Cube.FRONT,          Cube.DOWN,          Cube.TOP, 
-            Cube.FRONT,          Cube.BACK,          Cube.TOP, 
-            Cube.LEFT,          Cube.TOP,          Cube.RIGHT
+            CubeConstants.FRONT,          CubeConstants.DOWN,          CubeConstants.TOP, 
+            CubeConstants.FRONT,          CubeConstants.BACK,          CubeConstants.TOP, 
+            CubeConstants.LEFT,          CubeConstants.TOP,          CubeConstants.RIGHT
          },
          { // DOWN
-            Cube.FRONT,          Cube.LEFT,          Cube.RIGHT, 
-            Cube.RIGHT,          Cube.DOWN,          Cube.FRONT, 
-            Cube.TOP,          Cube.BACK,          Cube.DOWN
+            CubeConstants.FRONT,          CubeConstants.LEFT,          CubeConstants.RIGHT, 
+            CubeConstants.RIGHT,          CubeConstants.DOWN,          CubeConstants.FRONT, 
+            CubeConstants.TOP,          CubeConstants.BACK,          CubeConstants.DOWN
          }
       },
       { // Bi
          { // TOP
-            Cube.FRONT,          Cube.LEFT,          Cube.LEFT, 
-            Cube.TOP,          Cube.TOP,          Cube.LEFT, 
-            Cube.BACK,          Cube.TOP,          Cube.LEFT
+            CubeConstants.FRONT,          CubeConstants.LEFT,          CubeConstants.LEFT, 
+            CubeConstants.TOP,          CubeConstants.TOP,          CubeConstants.LEFT, 
+            CubeConstants.BACK,          CubeConstants.TOP,          CubeConstants.LEFT
          },
          { // LEFT
-            Cube.TOP,          Cube.FRONT,          Cube.TOP, 
-            Cube.BACK,          Cube.LEFT,          Cube.FRONT, 
-            Cube.DOWN,          Cube.BACK,          Cube.RIGHT
+            CubeConstants.TOP,          CubeConstants.FRONT,          CubeConstants.TOP, 
+            CubeConstants.BACK,          CubeConstants.LEFT,          CubeConstants.FRONT, 
+            CubeConstants.DOWN,          CubeConstants.BACK,          CubeConstants.RIGHT
          },
          { // FRONT
-            Cube.RIGHT,          Cube.RIGHT,          Cube.TOP, 
-            Cube.DOWN,          Cube.FRONT,          Cube.RIGHT, 
-            Cube.DOWN,          Cube.DOWN,          Cube.BACK
+            CubeConstants.RIGHT,          CubeConstants.RIGHT,          CubeConstants.TOP, 
+            CubeConstants.DOWN,          CubeConstants.FRONT,          CubeConstants.RIGHT, 
+            CubeConstants.DOWN,          CubeConstants.DOWN,          CubeConstants.BACK
          },
          { // RIGHT
-            Cube.BACK,          Cube.BACK,          Cube.FRONT, 
-            Cube.DOWN,          Cube.RIGHT,          Cube.BACK, 
-            Cube.DOWN,          Cube.LEFT,          Cube.LEFT
+            CubeConstants.BACK,          CubeConstants.BACK,          CubeConstants.FRONT, 
+            CubeConstants.DOWN,          CubeConstants.RIGHT,          CubeConstants.BACK, 
+            CubeConstants.DOWN,          CubeConstants.LEFT,          CubeConstants.LEFT
          },
          { // BACK
-            Cube.TOP,          Cube.TOP,          Cube.RIGHT, 
-            Cube.DOWN,          Cube.BACK,          Cube.TOP, 
-            Cube.FRONT,          Cube.FRONT,          Cube.LEFT
+            CubeConstants.TOP,          CubeConstants.TOP,          CubeConstants.RIGHT, 
+            CubeConstants.DOWN,          CubeConstants.BACK,          CubeConstants.TOP, 
+            CubeConstants.FRONT,          CubeConstants.FRONT,          CubeConstants.LEFT
          },
          { // DOWN
-            Cube.FRONT,          Cube.LEFT,          Cube.RIGHT, 
-            Cube.RIGHT,          Cube.DOWN,          Cube.FRONT, 
-            Cube.BACK,          Cube.RIGHT,          Cube.DOWN
+            CubeConstants.FRONT,          CubeConstants.LEFT,          CubeConstants.RIGHT, 
+            CubeConstants.RIGHT,          CubeConstants.DOWN,          CubeConstants.FRONT, 
+            CubeConstants.BACK,          CubeConstants.RIGHT,          CubeConstants.DOWN
          }
       },
       { // Ui
          { // TOP
-            Cube.LEFT,          Cube.LEFT,          Cube.LEFT, 
-            Cube.LEFT,          Cube.TOP,          Cube.TOP, 
-            Cube.FRONT,          Cube.TOP,          Cube.BACK
+            CubeConstants.LEFT,          CubeConstants.LEFT,          CubeConstants.LEFT, 
+            CubeConstants.LEFT,          CubeConstants.TOP,          CubeConstants.TOP, 
+            CubeConstants.FRONT,          CubeConstants.TOP,          CubeConstants.BACK
          },
          { // LEFT
-            Cube.TOP,          Cube.TOP,          Cube.RIGHT, 
-            Cube.BACK,          Cube.LEFT,          Cube.FRONT, 
-            Cube.DOWN,          Cube.BACK,          Cube.RIGHT
+            CubeConstants.TOP,          CubeConstants.TOP,          CubeConstants.RIGHT, 
+            CubeConstants.BACK,          CubeConstants.LEFT,          CubeConstants.FRONT, 
+            CubeConstants.DOWN,          CubeConstants.BACK,          CubeConstants.RIGHT
          },
          { // FRONT
-            Cube.TOP,          Cube.FRONT,          Cube.TOP, 
-            Cube.DOWN,          Cube.FRONT,          Cube.RIGHT, 
-            Cube.DOWN,          Cube.DOWN,          Cube.BACK
+            CubeConstants.TOP,          CubeConstants.FRONT,          CubeConstants.TOP, 
+            CubeConstants.DOWN,          CubeConstants.FRONT,          CubeConstants.RIGHT, 
+            CubeConstants.DOWN,          CubeConstants.DOWN,          CubeConstants.BACK
          },
          { // RIGHT
-            Cube.RIGHT,          Cube.RIGHT,          Cube.TOP, 
-            Cube.DOWN,          Cube.RIGHT,          Cube.BACK, 
-            Cube.DOWN,          Cube.LEFT,          Cube.LEFT
+            CubeConstants.RIGHT,          CubeConstants.RIGHT,          CubeConstants.TOP, 
+            CubeConstants.DOWN,          CubeConstants.RIGHT,          CubeConstants.BACK, 
+            CubeConstants.DOWN,          CubeConstants.LEFT,          CubeConstants.LEFT
          },
          { // BACK
-            Cube.BACK,          Cube.BACK,          Cube.FRONT, 
-            Cube.DOWN,          Cube.BACK,          Cube.TOP, 
-            Cube.FRONT,          Cube.FRONT,          Cube.LEFT
+            CubeConstants.BACK,          CubeConstants.BACK,          CubeConstants.FRONT, 
+            CubeConstants.DOWN,          CubeConstants.BACK,          CubeConstants.TOP, 
+            CubeConstants.FRONT,          CubeConstants.FRONT,          CubeConstants.LEFT
          },
          { // DOWN
-            Cube.FRONT,          Cube.LEFT,          Cube.RIGHT, 
-            Cube.RIGHT,          Cube.DOWN,          Cube.FRONT, 
-            Cube.BACK,          Cube.RIGHT,          Cube.DOWN
+            CubeConstants.FRONT,          CubeConstants.LEFT,          CubeConstants.RIGHT, 
+            CubeConstants.RIGHT,          CubeConstants.DOWN,          CubeConstants.FRONT, 
+            CubeConstants.BACK,          CubeConstants.RIGHT,          CubeConstants.DOWN
          }
       },
       { // Di
          { // TOP
-            Cube.LEFT,          Cube.LEFT,          Cube.LEFT, 
-            Cube.LEFT,          Cube.TOP,          Cube.TOP, 
-            Cube.FRONT,          Cube.TOP,          Cube.BACK
+            CubeConstants.LEFT,          CubeConstants.LEFT,          CubeConstants.LEFT, 
+            CubeConstants.LEFT,          CubeConstants.TOP,          CubeConstants.TOP, 
+            CubeConstants.FRONT,          CubeConstants.TOP,          CubeConstants.BACK
          },
          { // LEFT
-            Cube.TOP,          Cube.TOP,          Cube.RIGHT, 
-            Cube.BACK,          Cube.LEFT,          Cube.FRONT, 
-            Cube.DOWN,          Cube.DOWN,          Cube.BACK
+            CubeConstants.TOP,          CubeConstants.TOP,          CubeConstants.RIGHT, 
+            CubeConstants.BACK,          CubeConstants.LEFT,          CubeConstants.FRONT, 
+            CubeConstants.DOWN,          CubeConstants.DOWN,          CubeConstants.BACK
          },
          { // FRONT
-            Cube.TOP,          Cube.FRONT,          Cube.TOP, 
-            Cube.DOWN,          Cube.FRONT,          Cube.RIGHT, 
-            Cube.DOWN,          Cube.LEFT,          Cube.LEFT
+            CubeConstants.TOP,          CubeConstants.FRONT,          CubeConstants.TOP, 
+            CubeConstants.DOWN,          CubeConstants.FRONT,          CubeConstants.RIGHT, 
+            CubeConstants.DOWN,          CubeConstants.LEFT,          CubeConstants.LEFT
          },
          { // RIGHT
-            Cube.RIGHT,          Cube.RIGHT,          Cube.TOP, 
-            Cube.DOWN,          Cube.RIGHT,          Cube.BACK, 
-            Cube.FRONT,          Cube.FRONT,          Cube.LEFT
+            CubeConstants.RIGHT,          CubeConstants.RIGHT,          CubeConstants.TOP, 
+            CubeConstants.DOWN,          CubeConstants.RIGHT,          CubeConstants.BACK, 
+            CubeConstants.FRONT,          CubeConstants.FRONT,          CubeConstants.LEFT
          },
          { // BACK
-            Cube.BACK,          Cube.BACK,          Cube.FRONT, 
-            Cube.DOWN,          Cube.BACK,          Cube.TOP, 
-            Cube.DOWN,          Cube.BACK,          Cube.RIGHT
+            CubeConstants.BACK,          CubeConstants.BACK,          CubeConstants.FRONT, 
+            CubeConstants.DOWN,          CubeConstants.BACK,          CubeConstants.TOP, 
+            CubeConstants.DOWN,          CubeConstants.BACK,          CubeConstants.RIGHT
          },
          { // DOWN
-            Cube.RIGHT,          Cube.FRONT,          Cube.DOWN, 
-            Cube.LEFT,          Cube.DOWN,          Cube.RIGHT, 
-            Cube.FRONT,          Cube.RIGHT,          Cube.BACK
+            CubeConstants.RIGHT,          CubeConstants.FRONT,          CubeConstants.DOWN, 
+            CubeConstants.LEFT,          CubeConstants.DOWN,          CubeConstants.RIGHT, 
+            CubeConstants.FRONT,          CubeConstants.RIGHT,          CubeConstants.BACK
          }
       },
       { // L 
          { // TOP
-            Cube.RIGHT,          Cube.LEFT,          Cube.LEFT, 
-            Cube.TOP,          Cube.TOP,          Cube.TOP, 
-            Cube.FRONT,          Cube.TOP,          Cube.BACK
+            CubeConstants.RIGHT,          CubeConstants.LEFT,          CubeConstants.LEFT, 
+            CubeConstants.TOP,          CubeConstants.TOP,          CubeConstants.TOP, 
+            CubeConstants.FRONT,          CubeConstants.TOP,          CubeConstants.BACK
          },
          { // LEFT
-            Cube.DOWN,          Cube.BACK,          Cube.TOP, 
-            Cube.DOWN,          Cube.LEFT,          Cube.TOP, 
-            Cube.BACK,          Cube.FRONT,          Cube.RIGHT
+            CubeConstants.DOWN,          CubeConstants.BACK,          CubeConstants.TOP, 
+            CubeConstants.DOWN,          CubeConstants.LEFT,          CubeConstants.TOP, 
+            CubeConstants.BACK,          CubeConstants.FRONT,          CubeConstants.RIGHT
          },
          { // FRONT
-            Cube.LEFT,          Cube.FRONT,          Cube.TOP, 
-            Cube.LEFT,          Cube.FRONT,          Cube.RIGHT, 
-            Cube.FRONT,          Cube.LEFT,          Cube.LEFT
+            CubeConstants.LEFT,          CubeConstants.FRONT,          CubeConstants.TOP, 
+            CubeConstants.LEFT,          CubeConstants.FRONT,          CubeConstants.RIGHT, 
+            CubeConstants.FRONT,          CubeConstants.LEFT,          CubeConstants.LEFT
          },
          { // RIGHT
-            Cube.RIGHT,          Cube.RIGHT,          Cube.TOP, 
-            Cube.DOWN,          Cube.RIGHT,          Cube.BACK, 
-            Cube.FRONT,          Cube.FRONT,          Cube.LEFT
+            CubeConstants.RIGHT,          CubeConstants.RIGHT,          CubeConstants.TOP, 
+            CubeConstants.DOWN,          CubeConstants.RIGHT,          CubeConstants.BACK, 
+            CubeConstants.FRONT,          CubeConstants.FRONT,          CubeConstants.LEFT
          },
          { // BACK
-            Cube.BACK,          Cube.BACK,          Cube.FRONT, 
-            Cube.DOWN,          Cube.BACK,          Cube.LEFT, 
-            Cube.DOWN,          Cube.BACK,          Cube.RIGHT
+            CubeConstants.BACK,          CubeConstants.BACK,          CubeConstants.FRONT, 
+            CubeConstants.DOWN,          CubeConstants.BACK,          CubeConstants.LEFT, 
+            CubeConstants.DOWN,          CubeConstants.BACK,          CubeConstants.RIGHT
          },
          { // DOWN
-            Cube.TOP,          Cube.FRONT,          Cube.DOWN, 
-            Cube.DOWN,          Cube.DOWN,          Cube.RIGHT, 
-            Cube.DOWN,          Cube.RIGHT,          Cube.BACK
+            CubeConstants.TOP,          CubeConstants.FRONT,          CubeConstants.DOWN, 
+            CubeConstants.DOWN,          CubeConstants.DOWN,          CubeConstants.RIGHT, 
+            CubeConstants.DOWN,          CubeConstants.RIGHT,          CubeConstants.BACK
          }
       },
       { // F 
          { // TOP
-            Cube.RIGHT,          Cube.LEFT,          Cube.LEFT, 
-            Cube.TOP,          Cube.TOP,          Cube.TOP, 
-            Cube.RIGHT,          Cube.TOP,          Cube.TOP
+            CubeConstants.RIGHT,          CubeConstants.LEFT,          CubeConstants.LEFT, 
+            CubeConstants.TOP,          CubeConstants.TOP,          CubeConstants.TOP, 
+            CubeConstants.RIGHT,          CubeConstants.TOP,          CubeConstants.TOP
          },
          { // LEFT
-            Cube.DOWN,          Cube.BACK,          Cube.TOP, 
-            Cube.DOWN,          Cube.LEFT,          Cube.FRONT, 
-            Cube.BACK,          Cube.FRONT,          Cube.DOWN
+            CubeConstants.DOWN,          CubeConstants.BACK,          CubeConstants.TOP, 
+            CubeConstants.DOWN,          CubeConstants.LEFT,          CubeConstants.FRONT, 
+            CubeConstants.BACK,          CubeConstants.FRONT,          CubeConstants.DOWN
          },
          { // FRONT
-            Cube.FRONT,          Cube.LEFT,          Cube.LEFT, 
-            Cube.LEFT,          Cube.FRONT,          Cube.FRONT, 
-            Cube.LEFT,          Cube.RIGHT,          Cube.TOP
+            CubeConstants.FRONT,          CubeConstants.LEFT,          CubeConstants.LEFT, 
+            CubeConstants.LEFT,          CubeConstants.FRONT,          CubeConstants.FRONT, 
+            CubeConstants.LEFT,          CubeConstants.RIGHT,          CubeConstants.TOP
          },
          { // RIGHT
-            Cube.FRONT,          Cube.RIGHT,          Cube.TOP, 
-            Cube.TOP,          Cube.RIGHT,          Cube.BACK, 
-            Cube.BACK,          Cube.FRONT,          Cube.LEFT
+            CubeConstants.FRONT,          CubeConstants.RIGHT,          CubeConstants.TOP, 
+            CubeConstants.TOP,          CubeConstants.RIGHT,          CubeConstants.BACK, 
+            CubeConstants.BACK,          CubeConstants.FRONT,          CubeConstants.LEFT
          },
          { // BACK
-            Cube.BACK,          Cube.BACK,          Cube.FRONT, 
-            Cube.DOWN,          Cube.BACK,          Cube.LEFT, 
-            Cube.DOWN,          Cube.BACK,          Cube.RIGHT
+            CubeConstants.BACK,          CubeConstants.BACK,          CubeConstants.FRONT, 
+            CubeConstants.DOWN,          CubeConstants.BACK,          CubeConstants.LEFT, 
+            CubeConstants.DOWN,          CubeConstants.BACK,          CubeConstants.RIGHT
          },
          { // DOWN
-            Cube.FRONT,          Cube.DOWN,          Cube.RIGHT, 
-            Cube.DOWN,          Cube.DOWN,          Cube.RIGHT, 
-            Cube.DOWN,          Cube.RIGHT,          Cube.BACK
+            CubeConstants.FRONT,          CubeConstants.DOWN,          CubeConstants.RIGHT, 
+            CubeConstants.DOWN,          CubeConstants.DOWN,          CubeConstants.RIGHT, 
+            CubeConstants.DOWN,          CubeConstants.RIGHT,          CubeConstants.BACK
          }
       },
       { // R 
          { // TOP
-            Cube.RIGHT,          Cube.LEFT,          Cube.LEFT, 
-            Cube.TOP,          Cube.TOP,          Cube.FRONT, 
-            Cube.RIGHT,          Cube.TOP,          Cube.TOP
+            CubeConstants.RIGHT,          CubeConstants.LEFT,          CubeConstants.LEFT, 
+            CubeConstants.TOP,          CubeConstants.TOP,          CubeConstants.FRONT, 
+            CubeConstants.RIGHT,          CubeConstants.TOP,          CubeConstants.TOP
          },
          { // LEFT
-            Cube.DOWN,          Cube.BACK,          Cube.TOP, 
-            Cube.DOWN,          Cube.LEFT,          Cube.FRONT, 
-            Cube.BACK,          Cube.FRONT,          Cube.DOWN
+            CubeConstants.DOWN,          CubeConstants.BACK,          CubeConstants.TOP, 
+            CubeConstants.DOWN,          CubeConstants.LEFT,          CubeConstants.FRONT, 
+            CubeConstants.BACK,          CubeConstants.FRONT,          CubeConstants.DOWN
          },
          { // FRONT
-            Cube.FRONT,          Cube.LEFT,          Cube.RIGHT, 
-            Cube.LEFT,          Cube.FRONT,          Cube.RIGHT, 
-            Cube.LEFT,          Cube.RIGHT,          Cube.BACK
+            CubeConstants.FRONT,          CubeConstants.LEFT,          CubeConstants.RIGHT, 
+            CubeConstants.LEFT,          CubeConstants.FRONT,          CubeConstants.RIGHT, 
+            CubeConstants.LEFT,          CubeConstants.RIGHT,          CubeConstants.BACK
          },
          { // RIGHT
-            Cube.BACK,          Cube.TOP,          Cube.FRONT, 
-            Cube.FRONT,          Cube.RIGHT,          Cube.RIGHT, 
-            Cube.LEFT,          Cube.BACK,          Cube.TOP
+            CubeConstants.BACK,          CubeConstants.TOP,          CubeConstants.FRONT, 
+            CubeConstants.FRONT,          CubeConstants.RIGHT,          CubeConstants.RIGHT, 
+            CubeConstants.LEFT,          CubeConstants.BACK,          CubeConstants.TOP
          },
          { // BACK
-            Cube.TOP,          Cube.BACK,          Cube.FRONT, 
-            Cube.TOP,          Cube.BACK,          Cube.LEFT, 
-            Cube.LEFT,          Cube.BACK,          Cube.RIGHT
+            CubeConstants.TOP,          CubeConstants.BACK,          CubeConstants.FRONT, 
+            CubeConstants.TOP,          CubeConstants.BACK,          CubeConstants.LEFT, 
+            CubeConstants.LEFT,          CubeConstants.BACK,          CubeConstants.RIGHT
          },
          { // DOWN
-            Cube.FRONT,          Cube.DOWN,          Cube.DOWN, 
-            Cube.DOWN,          Cube.DOWN,          Cube.DOWN, 
-            Cube.DOWN,          Cube.RIGHT,          Cube.BACK
+            CubeConstants.FRONT,          CubeConstants.DOWN,          CubeConstants.DOWN, 
+            CubeConstants.DOWN,          CubeConstants.DOWN,          CubeConstants.DOWN, 
+            CubeConstants.DOWN,          CubeConstants.RIGHT,          CubeConstants.BACK
          }
       },
       { // B 
          { // TOP
-            Cube.FRONT,          Cube.RIGHT,          Cube.TOP, 
-            Cube.TOP,          Cube.TOP,          Cube.FRONT, 
-            Cube.RIGHT,          Cube.TOP,          Cube.TOP
+            CubeConstants.FRONT,          CubeConstants.RIGHT,          CubeConstants.TOP, 
+            CubeConstants.TOP,          CubeConstants.TOP,          CubeConstants.FRONT, 
+            CubeConstants.RIGHT,          CubeConstants.TOP,          CubeConstants.TOP
          },
          { // LEFT
-            Cube.LEFT,          Cube.BACK,          Cube.TOP, 
-            Cube.LEFT,          Cube.LEFT,          Cube.FRONT, 
-            Cube.RIGHT,          Cube.FRONT,          Cube.DOWN
+            CubeConstants.LEFT,          CubeConstants.BACK,          CubeConstants.TOP, 
+            CubeConstants.LEFT,          CubeConstants.LEFT,          CubeConstants.FRONT, 
+            CubeConstants.RIGHT,          CubeConstants.FRONT,          CubeConstants.DOWN
          },
          { // FRONT
-            Cube.FRONT,          Cube.LEFT,          Cube.RIGHT, 
-            Cube.LEFT,          Cube.FRONT,          Cube.RIGHT, 
-            Cube.LEFT,          Cube.RIGHT,          Cube.BACK
+            CubeConstants.FRONT,          CubeConstants.LEFT,          CubeConstants.RIGHT, 
+            CubeConstants.LEFT,          CubeConstants.FRONT,          CubeConstants.RIGHT, 
+            CubeConstants.LEFT,          CubeConstants.RIGHT,          CubeConstants.BACK
          },
          { // RIGHT
-            Cube.BACK,          Cube.TOP,          Cube.BACK, 
-            Cube.FRONT,          Cube.RIGHT,          Cube.RIGHT, 
-            Cube.LEFT,          Cube.BACK,          Cube.DOWN
+            CubeConstants.BACK,          CubeConstants.TOP,          CubeConstants.BACK, 
+            CubeConstants.FRONT,          CubeConstants.RIGHT,          CubeConstants.RIGHT, 
+            CubeConstants.LEFT,          CubeConstants.BACK,          CubeConstants.DOWN
          },
          { // BACK
-            Cube.LEFT,          Cube.TOP,          Cube.TOP, 
-            Cube.BACK,          Cube.BACK,          Cube.BACK, 
-            Cube.RIGHT,          Cube.LEFT,          Cube.FRONT
+            CubeConstants.LEFT,          CubeConstants.TOP,          CubeConstants.TOP, 
+            CubeConstants.BACK,          CubeConstants.BACK,          CubeConstants.BACK, 
+            CubeConstants.RIGHT,          CubeConstants.LEFT,          CubeConstants.FRONT
          },
          { // DOWN
-            Cube.FRONT,          Cube.DOWN,          Cube.DOWN, 
-            Cube.DOWN,          Cube.DOWN,          Cube.DOWN, 
-            Cube.DOWN,          Cube.DOWN,          Cube.BACK
+            CubeConstants.FRONT,          CubeConstants.DOWN,          CubeConstants.DOWN, 
+            CubeConstants.DOWN,          CubeConstants.DOWN,          CubeConstants.DOWN, 
+            CubeConstants.DOWN,          CubeConstants.DOWN,          CubeConstants.BACK
          }
       },
       { // U 
          { // TOP
-            Cube.RIGHT,          Cube.TOP,          Cube.FRONT, 
-            Cube.TOP,          Cube.TOP,          Cube.RIGHT, 
-            Cube.TOP,          Cube.FRONT,          Cube.TOP
+            CubeConstants.RIGHT,          CubeConstants.TOP,          CubeConstants.FRONT, 
+            CubeConstants.TOP,          CubeConstants.TOP,          CubeConstants.RIGHT, 
+            CubeConstants.TOP,          CubeConstants.FRONT,          CubeConstants.TOP
          },
          { // LEFT
-            Cube.FRONT,          Cube.LEFT,          Cube.RIGHT, 
-            Cube.LEFT,          Cube.LEFT,          Cube.FRONT, 
-            Cube.RIGHT,          Cube.FRONT,          Cube.DOWN
+            CubeConstants.FRONT,          CubeConstants.LEFT,          CubeConstants.RIGHT, 
+            CubeConstants.LEFT,          CubeConstants.LEFT,          CubeConstants.FRONT, 
+            CubeConstants.RIGHT,          CubeConstants.FRONT,          CubeConstants.DOWN
          },
          { // FRONT
-            Cube.BACK,          Cube.TOP,          Cube.BACK, 
-            Cube.LEFT,          Cube.FRONT,          Cube.RIGHT, 
-            Cube.LEFT,          Cube.RIGHT,          Cube.BACK
+            CubeConstants.BACK,          CubeConstants.TOP,          CubeConstants.BACK, 
+            CubeConstants.LEFT,          CubeConstants.FRONT,          CubeConstants.RIGHT, 
+            CubeConstants.LEFT,          CubeConstants.RIGHT,          CubeConstants.BACK
          },
          { // RIGHT
-            Cube.LEFT,          Cube.TOP,          Cube.TOP, 
-            Cube.FRONT,          Cube.RIGHT,          Cube.RIGHT, 
-            Cube.LEFT,          Cube.BACK,          Cube.DOWN
+            CubeConstants.LEFT,          CubeConstants.TOP,          CubeConstants.TOP, 
+            CubeConstants.FRONT,          CubeConstants.RIGHT,          CubeConstants.RIGHT, 
+            CubeConstants.LEFT,          CubeConstants.BACK,          CubeConstants.DOWN
          },
          { // BACK
-            Cube.LEFT,          Cube.BACK,          Cube.TOP, 
-            Cube.BACK,          Cube.BACK,          Cube.BACK, 
-            Cube.RIGHT,          Cube.LEFT,          Cube.FRONT
+            CubeConstants.LEFT,          CubeConstants.BACK,          CubeConstants.TOP, 
+            CubeConstants.BACK,          CubeConstants.BACK,          CubeConstants.BACK, 
+            CubeConstants.RIGHT,          CubeConstants.LEFT,          CubeConstants.FRONT
          },
          { // DOWN
-            Cube.FRONT,          Cube.DOWN,          Cube.DOWN, 
-            Cube.DOWN,          Cube.DOWN,          Cube.DOWN, 
-            Cube.DOWN,          Cube.DOWN,          Cube.BACK
+            CubeConstants.FRONT,          CubeConstants.DOWN,          CubeConstants.DOWN, 
+            CubeConstants.DOWN,          CubeConstants.DOWN,          CubeConstants.DOWN, 
+            CubeConstants.DOWN,          CubeConstants.DOWN,          CubeConstants.BACK
          }
       },
       { // D 
          { // TOP
-            Cube.RIGHT,          Cube.TOP,          Cube.FRONT, 
-            Cube.TOP,          Cube.TOP,          Cube.RIGHT, 
-            Cube.TOP,          Cube.FRONT,          Cube.TOP
+            CubeConstants.RIGHT,          CubeConstants.TOP,          CubeConstants.FRONT, 
+            CubeConstants.TOP,          CubeConstants.TOP,          CubeConstants.RIGHT, 
+            CubeConstants.TOP,          CubeConstants.FRONT,          CubeConstants.TOP
          },
          { // LEFT
-            Cube.FRONT,          Cube.LEFT,          Cube.RIGHT, 
-            Cube.LEFT,          Cube.LEFT,          Cube.FRONT, 
-            Cube.RIGHT,          Cube.LEFT,          Cube.FRONT
+            CubeConstants.FRONT,          CubeConstants.LEFT,          CubeConstants.RIGHT, 
+            CubeConstants.LEFT,          CubeConstants.LEFT,          CubeConstants.FRONT, 
+            CubeConstants.RIGHT,          CubeConstants.LEFT,          CubeConstants.FRONT
          },
          { // FRONT
-            Cube.BACK,          Cube.TOP,          Cube.BACK, 
-            Cube.LEFT,          Cube.FRONT,          Cube.RIGHT, 
-            Cube.RIGHT,          Cube.FRONT,          Cube.DOWN
+            CubeConstants.BACK,          CubeConstants.TOP,          CubeConstants.BACK, 
+            CubeConstants.LEFT,          CubeConstants.FRONT,          CubeConstants.RIGHT, 
+            CubeConstants.RIGHT,          CubeConstants.FRONT,          CubeConstants.DOWN
          },
          { // RIGHT
-            Cube.LEFT,          Cube.TOP,          Cube.TOP, 
-            Cube.FRONT,          Cube.RIGHT,          Cube.RIGHT, 
-            Cube.LEFT,          Cube.RIGHT,          Cube.BACK
+            CubeConstants.LEFT,          CubeConstants.TOP,          CubeConstants.TOP, 
+            CubeConstants.FRONT,          CubeConstants.RIGHT,          CubeConstants.RIGHT, 
+            CubeConstants.LEFT,          CubeConstants.RIGHT,          CubeConstants.BACK
          },
          { // BACK
-            Cube.LEFT,          Cube.BACK,          Cube.TOP, 
-            Cube.BACK,          Cube.BACK,          Cube.BACK, 
-            Cube.LEFT,          Cube.BACK,          Cube.DOWN
+            CubeConstants.LEFT,          CubeConstants.BACK,          CubeConstants.TOP, 
+            CubeConstants.BACK,          CubeConstants.BACK,          CubeConstants.BACK, 
+            CubeConstants.LEFT,          CubeConstants.BACK,          CubeConstants.DOWN
          },
          { // DOWN
-            Cube.DOWN,          Cube.DOWN,          Cube.FRONT, 
-            Cube.DOWN,          Cube.DOWN,          Cube.DOWN, 
-            Cube.BACK,          Cube.DOWN,          Cube.DOWN
+            CubeConstants.DOWN,          CubeConstants.DOWN,          CubeConstants.FRONT, 
+            CubeConstants.DOWN,          CubeConstants.DOWN,          CubeConstants.DOWN, 
+            CubeConstants.BACK,          CubeConstants.DOWN,          CubeConstants.DOWN
          }
       }
    };

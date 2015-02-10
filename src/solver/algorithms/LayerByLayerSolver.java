@@ -12,16 +12,16 @@ public class LayerByLayerSolver implements SolvingAlgorithm {
    
    // Bottom Cross 
    private static final byte BOTTOM_CROSS_EDGES[] = {
-      Cube.DF, Cube.DR, Cube.DB, Cube.DL
+      CubeConstants.DF, CubeConstants.DR, CubeConstants.DB, CubeConstants.DL
    };
    
    // F2L
    private static final byte F2L_EDGES[] = {
-      Cube.FL, Cube.FR, Cube.BR, Cube.BL
+      CubeConstants.FL, CubeConstants.FR, CubeConstants.BR, CubeConstants.BL
    };
    
    private static final byte F2L_CORNERS[] = {
-      Cube.DFL, Cube.DRF, Cube.DBR, Cube.DLB 
+      CubeConstants.DFL, CubeConstants.DRF, CubeConstants.DBR, CubeConstants.DLB 
    };
    
    private HashMap<String, byte[]> mFLEPermutations;
@@ -103,14 +103,14 @@ public class LayerByLayerSolver implements SolvingAlgorithm {
    
    private StringBuilder getEdgeArrangement(Cube cube, byte edges[], StringBuilder builder) {
       for(byte edge: edges) {
-         builder.append(Cube.EDGE_STRINGS[cube.findEdge(edge)]);
+         builder.append(CubeConstants.EDGE_STRINGS[cube.findEdge(edge)]);
       }
       return builder;
    }
    
    private StringBuilder getCornerArrangement(Cube cube, byte corners[], StringBuilder builder) {
       for(byte corner: corners) {
-         builder.append(Cube.CORNER_STRINGS[cube.findEdge(corner)]);
+         builder.append(CubeConstants.CORNER_STRINGS[cube.findEdge(corner)]);
       }
       return builder;
    }

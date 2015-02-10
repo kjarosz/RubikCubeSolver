@@ -6,6 +6,7 @@ import org.junit.Test;
 
 import solver.algorithms.Algorithm;
 import solver.algorithms.Cube;
+import solver.algorithms.CubeConstants;
 
 public class TestEdgeIndices {
 
@@ -17,12 +18,12 @@ public class TestEdgeIndices {
    };
    
    final static byte SOLUTIONS[] = {
-      Cube.DL, Cube.BL, Cube.DR, Cube.DB,
-      Cube.BU, Cube.FD, Cube.FL, Cube.UR,
-      Cube.FU, Cube.UL, Cube.RB, Cube.FR,
-      Cube.LD, Cube.LB, Cube.RD, Cube.BD,
-      Cube.UB, Cube.DF, Cube.LF, Cube.RU,
-      Cube.UF, Cube.LU, Cube.BR, Cube.RF
+      CubeConstants.DL, CubeConstants.BL, CubeConstants.DR, CubeConstants.DB,
+      CubeConstants.BU, CubeConstants.FD, CubeConstants.FL, CubeConstants.UR,
+      CubeConstants.FU, CubeConstants.UL, CubeConstants.RB, CubeConstants.FR,
+      CubeConstants.LD, CubeConstants.LB, CubeConstants.RD, CubeConstants.BD,
+      CubeConstants.UB, CubeConstants.DF, CubeConstants.LF, CubeConstants.RU,
+      CubeConstants.UF, CubeConstants.LU, CubeConstants.BR, CubeConstants.RF
    };
    
    @Test
