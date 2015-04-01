@@ -24,9 +24,8 @@ public abstract class SolvingAlgorithm extends SwingWorker<Algorithm, String> {
    
    @Override
    protected void process(List<String> messages) {
-       if(!messages.isEmpty()) {
-          String update = messages.get(messages.size()-1);
-          progressField.append("\n" + update);
+       for(String message: messages) {
+          progressField.append("\n" + message);
        }
    }
   
