@@ -41,6 +41,8 @@ public class Solver extends JFrame {
    private SolvingAlgorithm mSolvingAlgorithm;
    
    public Solver() {
+      super("Rubik's Cube Solver");
+      
       mSolverFactory = SolverFactory.getInstance(getAlgorithmStateListener());
       
       createWidgets();
