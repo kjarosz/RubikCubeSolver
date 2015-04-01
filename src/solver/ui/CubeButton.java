@@ -21,7 +21,7 @@ import javax.swing.SwingUtilities;
 import solver.algorithms.CubeConstants;
 
 public class CubeButton extends JButton {
-   private static final Dimension BUTTON_SIZE = new Dimension(25, 25);
+   private static final Dimension BUTTON_SIZE = new Dimension(35, 35);
    
    private byte mColor;
    
