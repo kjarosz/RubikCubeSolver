@@ -41,7 +41,7 @@ public class LayerByLayerSolver extends SolvingAlgorithm {
    
    // Generates all cases for the First Layer Edges (bottom cross)
    private HashMap<String, byte[]> generateFLEPermutations() {
-      System.out.println("Generating FLE Permutations.");
+      publish("Generating FLE Permutations.");
       
       HashMap<String, byte[]> permutations = new HashMap<>();
       
@@ -62,7 +62,7 @@ public class LayerByLayerSolver extends SolvingAlgorithm {
          algorithmQueue.addAll(nextAlgorithmQueue);
          nextAlgorithmQueue.clear();
          
-         System.out.println("Current level: " + (++level));
+         publish("Current level: " + (++level));
          while(!algorithmQueue.isEmpty()) {
             Algorithm alg = algorithmQueue.remove();
             
@@ -84,7 +84,7 @@ public class LayerByLayerSolver extends SolvingAlgorithm {
          }
       }
       
-      System.out.println("FLE Permutations Generated: " + permutations.size());
+      publish("FLE Permutations Generated: " + permutations.size());
       
       return permutations;
    }
@@ -110,7 +110,7 @@ public class LayerByLayerSolver extends SolvingAlgorithm {
    }
    
    private HashMap<String, byte[]> generateF2LPermutations() {
-      System.out.println("Generating F2L permutations.");
+      publish("Generating F2L permutations.");
       
       HashMap<String, byte[]> permutations = new HashMap<>();
       
@@ -132,7 +132,7 @@ public class LayerByLayerSolver extends SolvingAlgorithm {
          algorithmQueue.addAll(nextLevelQueue);
          nextLevelQueue.clear();
          
-         System.out.println("Current level: " + (++level));
+         publish("Current level: " + (++level));
          if(level > 20) {
             throw new RuntimeException("Level should not go above 20!");
          }
@@ -166,7 +166,7 @@ public class LayerByLayerSolver extends SolvingAlgorithm {
          }
       }
       
-      System.out.println("F2L Permutations Generated: " + permutations.size());
+      publish("F2L Permutations Generated: " + permutations.size());
       
       return permutations;
    }
