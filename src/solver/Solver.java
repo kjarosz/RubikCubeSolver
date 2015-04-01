@@ -1,12 +1,14 @@
 package solver;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.LinkedList;
 
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -46,21 +48,50 @@ public class Solver extends JFrame {
    
    private void createWidgets() {
       setLayout(new BorderLayout());
-      
-      JPanel scramblerPanel = new JPanel();
-      JTextArea scramblerOutput = new JTextArea(2, 30);
-      scramblerOutput.setEditable(false);
-      scramblerPanel.add(scramblerOutput);
-      JButton scrambleButton = new JButton("Scramble");
-      scrambleButton.addActionListener(scrambleButtonListener(scramblerOutput));
-      scramblerPanel.add(scrambleButton);
-      add(scramblerPanel, BorderLayout.NORTH);
-      
+
       mCubeInputPanel = new CubeInputPanel();
       add(mCubeInputPanel, BorderLayout.CENTER);
       
+      JPanel eastPanel = createEastPanel();
+      add(eastPanel, BorderLayout.EAST);
+   }
+   
+   private JPanel createEastPanel() {
+      JPanel eastPanel = new JPanel();
+      eastPanel.setLayout(new BoxLayout(eastPanel, BoxLayout.Y_AXIS));
+      eastPanel.setPreferredSize(new Dimension(200, 0));
+      
+      JPanel scramblerPanel = createScramblePanel();
+      eastPanel.add(scramblerPanel);
+      
       JPanel solutionPanel = createSolutionPanel();
-      add(solutionPanel, BorderLayout.SOUTH);
+      eastPanel.add(solutionPanel);
+      
+      return eastPanel;
+   }
+   
+   private JPanel createScramblePanel() {
+      JPanel scramblerPanel = new JPanel();
+      scramblerPanel.setLayout(new BoxLayout(scramblerPanel, BoxLayout.Y_AXIS));
+
+      JTextArea scramblerOutput = new JTextArea(2, 30);
+      scramblerOutput.setEditable(false);
+      scramblerOutput.setMaximumSize(new Dimension(200, 50));
+      
+      JPanel buttonPanel = new JPanel();
+      
+      JButton resetButton = new JButton("Reset");
+      resetButton.addActionListener(resetButtonListener(scramblerOutput));
+      buttonPanel.add(resetButton);
+      
+      JButton scrambleButton = new JButton("Scramble");
+      scrambleButton.addActionListener(scrambleButtonListener(scramblerOutput));
+      buttonPanel.add(scrambleButton);
+      
+      scramblerPanel.add(buttonPanel);
+      scramblerPanel.add(scramblerOutput);
+      
+      return scramblerPanel;
    }
    
    private JPanel createSolutionPanel() {
@@ -70,6 +101,7 @@ public class Solver extends JFrame {
       JScrollPane scrollPane = new JScrollPane();
       mOutput = new JTextArea();
       mOutput.setEditable(false);
+      mOutput.setRows(6);
       scrollPane.setViewportView(mOutput);
       solutionPanel.add(scrollPane, BorderLayout.CENTER);
       
@@ -85,6 +117,22 @@ public class Solver extends JFrame {
       solutionPanel.add(controlPanel, BorderLayout.SOUTH);
       
       return solutionPanel;
+   }
+   
+   private ActionListener resetButtonListener(final JTextArea output) {
+      return new ActionListener() {
+         @Override
+         public void actionPerformed(ActionEvent e) {
+            // Meh, I don't feel like doing this efficiently.
+            Cube cube = new Cube();
+            byte resetCube[][] = cube.getDescriptor();
+            mCubeInputPanel.setCubeDescriptor(resetCube);
+            
+            output.setText("");
+            
+            repaint();
+         }
+      };
    }
    
    private ActionListener scrambleButtonListener(final JTextArea output) {
@@ -135,10 +183,8 @@ public class Solver extends JFrame {
          @Override
          public void propertyChange(PropertyChangeEvent event) {
             String property = event.getPropertyName();
-            System.out.println(property);
             if("state".equals(property)) {
                String value = event.getNewValue().toString();
-               System.out.println(value);
                if("STARTED".equals(value)) {
                   mSolve = true;
                   mSolveButton.setText("Stop");
