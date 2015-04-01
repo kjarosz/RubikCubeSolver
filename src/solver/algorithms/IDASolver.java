@@ -1,43 +1,40 @@
 package solver.algorithms;
 
-import solver.ui.ProgressReporter;
+import java.beans.PropertyChangeListener;
 
-public class IDASolver implements SolvingAlgorithm {
+
+public class IDASolver extends SolvingAlgorithm {
    
    private IDAHeuristic mHeuristic;
    
-   private boolean mStop;
-   
-   public IDASolver() {
-      mHeuristic = new IDAHeuristic();
+   public IDASolver(PropertyChangeListener progressTracker) {
+      super(progressTracker);
+      mHeuristic = new IDAHeuristic(this);
    }
-   
+
    @Override
-   public Algorithm solveCube(Cube startingCube, ProgressReporter progressReporter) {
-      mStop = false;
-      
+   protected Algorithm doInBackground() throws Exception {
       if(startingCube.cubeSolved()) {
-         mStop = true;
          return new Algorithm(startingCube);
       }
       
       if(!mHeuristic.isComputed()) {
-         mHeuristic.computeHeuristics(progressReporter);
-         if(mStop)
+         mHeuristic.computeHeuristics();
+         if(isCancelled())
             return null;
       }
       
       byte depth = 0;
       byte moves[] = new byte[20];
       while(depth < 20) {
-         updateLevel(progressReporter, depth);
+         updateLevel(depth);
          
          Algorithm solution = findSolution(0, depth, startingCube, moves);
          if(solution != null) {
             return solution;
          }
          
-         if(mStop)
+         if(isCancelled())
             break;
          
          depth++;
@@ -47,7 +44,7 @@ public class IDASolver implements SolvingAlgorithm {
    }
    
    private Algorithm findSolution(int level, int depth, Cube cube, byte moves[]) {
-      if(mStop) {
+      if(isCancelled()) {
          return null;
       }
       
@@ -97,17 +94,16 @@ public class IDASolver implements SolvingAlgorithm {
       return false;
    }
    
-   @Override
-   public void stop() {
-      mStop = true;
-      
-      if(mHeuristic.isRunning())
-         mHeuristic.stop();
+   private void updateLevel(final int level) {
+      publish("Working level: " + (level+1));
    }
    
-   private void updateLevel(ProgressReporter reporter, final int level) {
-      reporter.updateProgress("Working level: " + (level+1));
+   // Since publish is protected (for use within this class only),
+   // and this algorithm may also execute the heuristic process, we
+   // have to provide this utility method to report progress from
+   // the heuristic subprocess.
+   public void report(String report) {
+      publish(report);
    }
-    
     
 }

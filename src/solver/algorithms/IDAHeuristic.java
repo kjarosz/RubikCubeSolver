@@ -2,26 +2,25 @@ package solver.algorithms;
 
 import java.util.HashMap;
 
-import solver.ui.ProgressReporter;
-
 public class IDAHeuristic {
    private HashMap<String, Byte> mCorners;
    private HashMap<String, Byte> mE1;
    private HashMap<String, Byte> mE2;
    
    private boolean mComputed;
-   
    private boolean mRunning;
-   private boolean mStop;
    
-   public IDAHeuristic() {
+   private IDASolver mParent;
+   
+   public IDAHeuristic(IDASolver parent) {
       mCorners = new HashMap<String, Byte>();
       mE1 = new HashMap<String, Byte>();
       mE2 = new HashMap<String, Byte>();
       
       mComputed = false;
       mRunning = false;
-      mStop = false;
+      
+      mParent = parent;
    }
    
    public boolean isComputed() {
@@ -32,40 +31,33 @@ public class IDAHeuristic {
       return mRunning;
    }
    
-   public void stop() {
-      mStop = true;
-   }
-   
-   public void computeHeuristics(ProgressReporter reporter) {
+   public void computeHeuristics() {
       mRunning = true;
-      mStop = false;
       
       // We have no idea where the previous algorithm has stopped.
       mCorners.clear();
       mE1.clear();
       mE2.clear();
       
-      if(!mStop)
-         computeCornerHeuristic(reporter);
+      if(!mParent.isCancelled())
+         computeCornerHeuristic();
+      // TODO compute other parts of the heuristic as well
       
-      
-      
-      if(!mStop) 
+      if(!mParent.isCancelled())
          mComputed = true;
       
-      mStop = true;
       mRunning = false;
    }
    
-   private void computeCornerHeuristic(ProgressReporter reporter) {
+   private void computeCornerHeuristic() {
       Cube goal = new Cube();
       mCorners.put(getCornerArrangement(goal), (byte)0);
       
       byte moves[] = new byte[11];
       
       byte depth = 0;
-      while(depth < 11 && !mStop) {
-         reportProgress(reporter, depth);
+      while(depth < 11 && !mParent.isCancelled()) {
+         reportProgress(depth);
          
          findCornerHeuristics(0, depth, goal, moves);
          
@@ -73,10 +65,9 @@ public class IDAHeuristic {
       }
    }
 
-   private void findCornerHeuristics(int level, int depth, Cube cube, byte moves[]) {
-      if(mStop) {
+   private void findCornerHeuristics(int level, int depth, Cube cube, byte moves[]) {      
+      if(mParent.isCancelled())
          return;
-      }
       
       for(byte i = 0; i < 12; i++) {
          moves[level] = i;
@@ -117,8 +108,8 @@ public class IDAHeuristic {
       return false;
    }
    
-   private void reportProgress(ProgressReporter reporter, int level) {
-      reporter.updateProgress("Corner Heuristic: Depth " + level);
+   private void reportProgress(int level) {
+      mParent.report("Corner Heuristic: Depth " + level);
    }
    
    private String getCornerArrangement(Cube cube) {

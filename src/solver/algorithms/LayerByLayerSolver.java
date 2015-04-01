@@ -1,15 +1,12 @@
 package solver.algorithms;
 
+import java.beans.PropertyChangeListener;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.Queue;
 
-import solver.ui.ProgressReporter;
-
-public class LayerByLayerSolver implements SolvingAlgorithm {
-
-   
+public class LayerByLayerSolver extends SolvingAlgorithm {
    // Bottom Cross 
    private static final byte BOTTOM_CROSS_EDGES[] = {
       CubeConstants.DF, CubeConstants.DR, CubeConstants.DB, CubeConstants.DL
@@ -28,21 +25,18 @@ public class LayerByLayerSolver implements SolvingAlgorithm {
    private HashMap<String, byte[]> mF2LPermutations;
    
    private boolean mPermutationsComputed;
-   private boolean mStop;
    
-   public LayerByLayerSolver() {
+   public LayerByLayerSolver(PropertyChangeListener propertyTracker) {
+      super(propertyTracker);
       mPermutationsComputed = false;
-      mStop = false;
    }
    
    public void computePermutations() {
-      if(mStop)
-         return;
-      mFLEPermutations = generateFLEPermutations();
+      if(!isCancelled())
+         mFLEPermutations = generateFLEPermutations();
       
-      if(mStop)
-         return;
-      mF2LPermutations = generateF2LPermutations();
+      if(!isCancelled())
+         mF2LPermutations = generateF2LPermutations();
    }
    
    // Generates all cases for the First Layer Edges (bottom cross)
@@ -72,7 +66,7 @@ public class LayerByLayerSolver implements SolvingAlgorithm {
          while(!algorithmQueue.isEmpty()) {
             Algorithm alg = algorithmQueue.remove();
             
-            if(mStop)
+            if(isCancelled())
                return null;
             
             moveLoop:
@@ -146,7 +140,7 @@ public class LayerByLayerSolver implements SolvingAlgorithm {
          while(!algorithmQueue.isEmpty()) {
             Algorithm alg = algorithmQueue.remove();
             
-            if(mStop)
+            if(isCancelled())
                return null;
             
             moveLoop:
@@ -197,12 +191,8 @@ public class LayerByLayerSolver implements SolvingAlgorithm {
    }
    
    @Override
-   public Algorithm solveCube(Cube startingCube,
-         ProgressReporter progressReporter) {
-      mStop = false;
-      
+   protected Algorithm doInBackground() {
       if(startingCube.cubeSolved()) {
-         mStop = true;
          return new Algorithm(startingCube);
       }
       
@@ -210,13 +200,12 @@ public class LayerByLayerSolver implements SolvingAlgorithm {
          computePermutations();
       }
       
-      if(mStop) {
+      if(isCancelled())
          return null;
-      }
       
       Algorithm firstLayerSolved = solveFirstLayer(startingCube);
       
-      if(mStop)
+      if(isCancelled())
          return null;
       
       return firstLayerSolved;
@@ -253,10 +242,4 @@ public class LayerByLayerSolver implements SolvingAlgorithm {
       }
       System.out.println();
    }
-   
-   @Override
-   public void stop() {
-      mStop = true;
-   }
-
 }

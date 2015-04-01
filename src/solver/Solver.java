@@ -3,14 +3,16 @@ package solver;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.util.LinkedList;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
-import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 
 import solver.algorithms.Algorithm;
@@ -18,13 +20,12 @@ import solver.algorithms.Cube;
 import solver.algorithms.SolverFactory;
 import solver.algorithms.SolvingAlgorithm;
 import solver.ui.CubeInputPanel;
-import solver.ui.ProgressReporter;
 
-public class Solver extends JFrame implements Runnable, ProgressReporter {
+public class Solver extends JFrame {
    
    private CubeInputPanel mCubeInputPanel;
    private JComboBox<String> mAlgorithmSelector;
-   private JTextField mOutput;
+   private JTextArea mOutput;
    private JButton mSolveButton;
    
    private SolverFactory mSolverFactory;
@@ -33,10 +34,8 @@ public class Solver extends JFrame implements Runnable, ProgressReporter {
    private boolean mSolve;
    private SolvingAlgorithm mSolvingAlgorithm;
    
-   public Solver() {  
-      new Thread(this).start();
-      
-      mSolverFactory = SolverFactory.getInstance();
+   public Solver() {
+      mSolverFactory = SolverFactory.getInstance(getAlgorithmStateListener());
       
       createWidgets();
       
@@ -68,9 +67,11 @@ public class Solver extends JFrame implements Runnable, ProgressReporter {
       JPanel solutionPanel = new JPanel();
       solutionPanel.setLayout(new BorderLayout());
       
-      mOutput = new JTextField();
+      JScrollPane scrollPane = new JScrollPane();
+      mOutput = new JTextArea();
       mOutput.setEditable(false);
-      solutionPanel.add(mOutput, BorderLayout.CENTER);
+      scrollPane.setViewportView(mOutput);
+      solutionPanel.add(scrollPane, BorderLayout.CENTER);
       
       JPanel controlPanel = new JPanel();
       mAlgorithmSelector = new JComboBox<>(mSolverFactory.getAvailableAlgorithms());
@@ -121,73 +122,46 @@ public class Solver extends JFrame implements Runnable, ProgressReporter {
         @Override
         public void actionPerformed(ActionEvent e) {
            if(!mSolve) {
-              mSolve = true;
-              mSolveButton.setText("Stop");
+              solveCube();
            } else {
-              mSolvingAlgorithm.stop();
+              mSolvingAlgorithm.cancel(true);
            }
         }
       };
    }
    
-   @Override
-   public void run() {
-      while(true) {
-         if(mSolve) {
-            solveCube();
-            
-            SwingUtilities.invokeLater(new Runnable() {
-               @Override
-               public void run() {
+   private PropertyChangeListener getAlgorithmStateListener() {
+      return new PropertyChangeListener() {
+         @Override
+         public void propertyChange(PropertyChangeEvent event) {
+            String property = event.getPropertyName();
+            System.out.println(property);
+            if("state".equals(property)) {
+               String value = event.getNewValue().toString();
+               System.out.println(value);
+               if("STARTED".equals(value)) {
+                  mSolve = true;
+                  mSolveButton.setText("Stop");
+               } else if("DONE".equals(value)) {
+                  mSolve = false;
                   mSolveButton.setText("Solve");
-                  String outputText = mOutput.getText() + " (stopped)";
-                  mOutput.setText(outputText);
                }
-            });
-            mSolve = false;
-         } else {
-            try {
-               Thread.sleep(100);
-            } catch(InterruptedException ex) {
-               System.out.println(ex.getMessage());
             }
          }
-      }
+      };
    }
    
    private void solveCube() {
+      if(mSolvingAlgorithm != null && !mSolvingAlgorithm.isDone()) {
+         return;
+      }
+      
       byte descriptor[][] = mCubeInputPanel.getCubeDescriptor();
       Cube startingCube = new Cube(descriptor);
       
       String algorithmName = (String)mAlgorithmSelector.getSelectedItem();
       mSolvingAlgorithm = mSolverFactory.getAlgorithm(algorithmName);
-      Algorithm solution = mSolvingAlgorithm.solveCube(startingCube, this);
-      if(solution != null)
-         outputSolution(solution);
-      
-   }
-
-   @Override
-   public void updateProgress(final String progress) {
-      SwingUtilities.invokeLater(new Runnable() {
-         @Override
-         public void run() {
-            mOutput.setText(progress);
-         }
-      });
-   }
-   
-   private void outputSolution(Algorithm solution) {
-      final StringBuilder solutionString = new StringBuilder();
-      for(Byte move: solution.moves) {
-         solutionString.append(Algorithm.MOVE_STRINGS[move] + " ");
-      }
-      SwingUtilities.invokeLater(new Runnable() {
-         @Override
-         public void run() {
-            mOutput.setText(solutionString.toString());
-         }
-      });
+      mSolvingAlgorithm.solveCube(startingCube, mOutput);
    }
    
    public static void main(String[] args) {

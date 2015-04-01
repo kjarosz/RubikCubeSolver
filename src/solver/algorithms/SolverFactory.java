@@ -1,5 +1,6 @@
 package solver.algorithms;
 
+import java.beans.PropertyChangeListener;
 import java.util.HashMap;
 import java.util.Iterator;
 
@@ -8,15 +9,15 @@ public class SolverFactory {
    
    private HashMap<String, SolvingAlgorithm> mAvailableAlgorithms;
    
-   private SolverFactory() {
+   private SolverFactory(PropertyChangeListener propertyTracker) {
       mAvailableAlgorithms = new HashMap<>();
-      mAvailableAlgorithms.put("God's Algorithm", new IDASolver());
-      mAvailableAlgorithms.put("Layer By Layer", new LayerByLayerSolver());
+      mAvailableAlgorithms.put("God's Algorithm", new IDASolver(propertyTracker));
+      mAvailableAlgorithms.put("Layer By Layer", new LayerByLayerSolver(propertyTracker));
    }
    
-   public static SolverFactory getInstance() {
+   public static SolverFactory getInstance(PropertyChangeListener propertyTracker) {
       if(sInstance == null) {
-         sInstance = new SolverFactory();
+         sInstance = new SolverFactory(propertyTracker);
       }
       
       return sInstance;
