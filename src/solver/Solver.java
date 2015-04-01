@@ -1,6 +1,7 @@
 package solver;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -8,6 +9,8 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.LinkedList;
 
+import javax.swing.BorderFactory;
+import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -16,6 +19,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.SwingUtilities;
+import javax.swing.border.Border;
 
 import solver.algorithms.Algorithm;
 import solver.algorithms.Cube;
@@ -59,15 +63,29 @@ public class Solver extends JFrame {
    private JPanel createEastPanel() {
       JPanel eastPanel = new JPanel();
       eastPanel.setLayout(new BoxLayout(eastPanel, BoxLayout.Y_AXIS));
-      eastPanel.setPreferredSize(new Dimension(200, 0));
+      eastPanel.setPreferredSize(new Dimension(250, 0));
+      
+      eastPanel.setBorder(createOptionsBorder());
       
       JPanel scramblerPanel = createScramblePanel();
       eastPanel.add(scramblerPanel);
+      
+      eastPanel.add(Box.createVerticalStrut(5));
       
       JPanel solutionPanel = createSolutionPanel();
       eastPanel.add(solutionPanel);
       
       return eastPanel;
+   }
+   
+   private Border createOptionsBorder() {
+      Border titledBorder = BorderFactory.createTitledBorder("Options");
+      Border beveledBorder = BorderFactory.createCompoundBorder(
+               BorderFactory.createLoweredBevelBorder(),
+               BorderFactory.createRaisedBevelBorder());
+      Border finalBorder = BorderFactory.createCompoundBorder(
+            beveledBorder, titledBorder);
+      return finalBorder;
    }
    
    private JPanel createScramblePanel() {
@@ -76,7 +94,8 @@ public class Solver extends JFrame {
 
       JTextArea scramblerOutput = new JTextArea(2, 30);
       scramblerOutput.setEditable(false);
-      scramblerOutput.setMaximumSize(new Dimension(200, 50));
+      scramblerOutput.setMaximumSize(new Dimension(300, 50));
+      scramblerOutput.setBorder(BorderFactory.createLineBorder(Color.BLACK));
       
       JPanel buttonPanel = new JPanel();
       
@@ -103,6 +122,7 @@ public class Solver extends JFrame {
       mOutput.setEditable(false);
       mOutput.setRows(6);
       scrollPane.setViewportView(mOutput);
+      scrollPane.setBorder(BorderFactory.createTitledBorder("Output"));
       solutionPanel.add(scrollPane, BorderLayout.CENTER);
       
       JPanel controlPanel = new JPanel();

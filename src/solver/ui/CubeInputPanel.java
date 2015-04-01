@@ -3,6 +3,7 @@ package solver.ui;
 import java.awt.GridLayout;
 
 import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
 
 import solver.algorithms.CubeConstants;
 
@@ -14,6 +15,8 @@ public class CubeInputPanel extends JPanel {
    }
    
    private void createWidgets() {
+      setBorder(new EmptyBorder(10, 10, 10, 10));
+      
       GridLayout layout = new GridLayout(3, 4);
       layout.setHgap(5);
       layout.setVgap(5);
