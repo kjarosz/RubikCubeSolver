@@ -5,14 +5,26 @@ import java.util.HashMap;
 import java.util.Iterator;
 
 public class SolverFactory {
+   private interface SolverSpawner {
+      public SolvingAlgorithm spawn();
+   }
+   
    private static SolverFactory sInstance;
    
-   private HashMap<String, SolvingAlgorithm> mAvailableAlgorithms;
+   private HashMap<String, SolverSpawner> mAvailableAlgorithms;
    
    private SolverFactory(PropertyChangeListener propertyTracker) {
       mAvailableAlgorithms = new HashMap<>();
-      mAvailableAlgorithms.put("God's Algorithm", new IDASolver(propertyTracker));
-      mAvailableAlgorithms.put("Layer By Layer", new LayerByLayerSolver(propertyTracker));
+      mAvailableAlgorithms.put("God's Algorithm", new SolverSpawner() {
+         public SolvingAlgorithm spawn() {
+            return new IDASolver(propertyTracker);
+         }
+      });
+      mAvailableAlgorithms.put("Layer By Layer", new SolverSpawner() {
+         public SolvingAlgorithm spawn() {
+            return new LayerByLayerSolver(propertyTracker);
+         }
+      });
    }
    
    public static SolverFactory getInstance(PropertyChangeListener propertyTracker) {
@@ -24,7 +36,7 @@ public class SolverFactory {
    }
    
    public SolvingAlgorithm getAlgorithm(String algorithm) {
-      return mAvailableAlgorithms.get(algorithm);
+      return mAvailableAlgorithms.get(algorithm).spawn();
    }
    
    public String[] getAvailableAlgorithms() {
