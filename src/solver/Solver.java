@@ -19,6 +19,8 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.SwingUtilities;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.border.Border;
 
 import solver.algorithms.Algorithm;
@@ -233,6 +235,26 @@ public class Solver extends JFrame {
    }
    
    public static void main(String[] args) {
+      // Set look and feel for the GUI
+      try {
+        UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+      }
+      catch (UnsupportedLookAndFeelException e) {
+        System.out.println("Unsupported look and feel.");
+        return;
+      }
+      catch (ClassNotFoundException e) {
+        System.out.println("Look and feel class not found.");
+        return;
+      }
+      catch (InstantiationException e) {
+        System.out.println("Instantiation failed while setting look and feel.");
+        return;
+      }
+      catch (IllegalAccessException e) {
+        System.out.println("Illegal access while setting look and feel.");
+        return;
+      }
       SwingUtilities.invokeLater(new Runnable() {
          @Override
          public void run() {
