@@ -123,8 +123,9 @@ public class CubeButton extends JButton {
    
    @Override
    public void paintComponent(Graphics g) {
+      final byte padding = 2;
       g.setColor(getColor());
-      g.fillRect(0, 0, getWidth(), getHeight());
+      g.fillRect(padding, padding, getWidth() - padding, getHeight() - padding);
    }
    
    private Color getColor() {
