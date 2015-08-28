@@ -31,6 +31,7 @@ public class CubeButton extends JButton {
       setPreferredSize(BUTTON_SIZE);
       setMaximumSize(BUTTON_SIZE);
       setSize(BUTTON_SIZE);
+      setOpaque(false);
       
       mColor = color;
       if(centerPiece) {
