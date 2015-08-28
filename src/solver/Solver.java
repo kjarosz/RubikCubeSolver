@@ -84,12 +84,7 @@ public class Solver extends JFrame {
    
    private Border createOptionsBorder() {
       Border titledBorder = BorderFactory.createTitledBorder("Options");
-      Border beveledBorder = BorderFactory.createCompoundBorder(
-               BorderFactory.createLoweredBevelBorder(),
-               BorderFactory.createRaisedBevelBorder());
-      Border finalBorder = BorderFactory.createCompoundBorder(
-            beveledBorder, titledBorder);
-      return finalBorder;
+      return titledBorder;
    }
    
    private JPanel createScramblePanel() {
