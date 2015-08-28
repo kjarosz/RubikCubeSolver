@@ -22,6 +22,7 @@ import solver.algorithms.CubeConstants;
 
 public class CubeButton extends JButton {
    private static final Dimension BUTTON_SIZE = new Dimension(35, 35);
+   private static final byte BUTTON_PADDING = 2;
    
    private byte mColor;
    
@@ -123,9 +124,11 @@ public class CubeButton extends JButton {
    
    @Override
    public void paintComponent(Graphics g) {
-      final byte padding = 2;
       g.setColor(getColor());
-      g.fillRect(padding, padding, getWidth() - padding, getHeight() - padding);
+      g.fillRect(BUTTON_PADDING,
+                 BUTTON_PADDING,
+                 getWidth() - BUTTON_PADDING,
+                 getHeight() - BUTTON_PADDING);
    }
    
    private Color getColor() {
