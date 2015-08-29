@@ -13,7 +13,7 @@ public class SolverFactory {
    
    private HashMap<String, SolverSpawner> mAvailableAlgorithms;
    
-   private SolverFactory(PropertyChangeListener propertyTracker) {
+   private SolverFactory(final PropertyChangeListener propertyTracker) {
       mAvailableAlgorithms = new HashMap<>();
       mAvailableAlgorithms.put("God's Algorithm", new SolverSpawner() {
          public SolvingAlgorithm spawn() {
